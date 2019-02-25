@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="OpenSans-Regular.ttf">
+            <string>OpenSans-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WandaClassMenu" customModule="Wanda" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="iN0-l3-epB" id="I1m-WG-WgD"/>
+                <outletCollection property="menuView" destination="1Dc-uu-M4P" collectionClass="NSMutableArray" id="03e-jL-byQ"/>
+                <outletCollection property="menuView" destination="03h-XX-xzZ" collectionClass="NSMutableArray" id="1VF-Bm-4XP"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="250" height="96"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="9ea-iU-5Qz">
+                    <rect key="frame" x="0.0" y="0.0" width="250" height="96"/>
+                    <subviews>
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Dc-uu-M4P" userLabel="Add to Calendar View">
+                            <rect key="frame" x="0.0" y="0.0" width="250" height="48"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GreyCalendarIcon" translatesAutoresizingMaskIntoConstraints="NO" id="p0O-MS-uQU">
+                                    <rect key="frame" x="26" y="13" width="20" height="22"/>
+                                    <color key="tintColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="22" id="PG8-Ml-2Ak"/>
+                                        <constraint firstAttribute="width" constant="20" id="yny-sv-52N"/>
+                                    </constraints>
+                                </imageView>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gX8-8I-V5b">
+                                    <rect key="frame" x="67" y="13" width="118" height="22"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="22" id="2dm-WR-Fji"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
+                                    <state key="normal" title="Add to calendar">
+                                        <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
+                                    </state>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstItem="gX8-8I-V5b" firstAttribute="leading" secondItem="p0O-MS-uQU" secondAttribute="trailing" constant="21" id="71a-Ux-vvX"/>
+                                <constraint firstItem="p0O-MS-uQU" firstAttribute="leading" secondItem="1Dc-uu-M4P" secondAttribute="leading" constant="26" id="Fgo-6D-mCQ"/>
+                                <constraint firstItem="gX8-8I-V5b" firstAttribute="centerY" secondItem="1Dc-uu-M4P" secondAttribute="centerY" id="UO3-1c-C0P"/>
+                                <constraint firstAttribute="height" constant="48" id="oOd-Jw-3IZ"/>
+                                <constraint firstItem="gX8-8I-V5b" firstAttribute="centerY" secondItem="p0O-MS-uQU" secondAttribute="centerY" id="qBC-7e-fhN"/>
+                            </constraints>
+                        </view>
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="03h-XX-xzZ" userLabel="Contact View">
+                            <rect key="frame" x="0.0" y="0.0" width="250" height="0.0"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EnvelopeIcon" translatesAutoresizingMaskIntoConstraints="NO" id="nqi-sX-jzk">
+                                    <rect key="frame" x="26" y="-8" width="20" height="16"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="16" id="LgW-tn-BHf"/>
+                                        <constraint firstAttribute="width" constant="20" id="kbl-7h-Yv1"/>
+                                    </constraints>
+                                </imageView>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jr3-eO-gV4">
+                                    <rect key="frame" x="64" y="-11" width="114" height="22"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="22" id="jsd-di-8s8"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
+                                    <state key="normal" title="Contact Wanda">
+                                        <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
+                                    </state>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="jr3-eO-gV4" firstAttribute="centerY" secondItem="03h-XX-xzZ" secondAttribute="centerY" id="3ca-Lx-m1w"/>
+                                <constraint firstItem="nqi-sX-jzk" firstAttribute="centerY" secondItem="jr3-eO-gV4" secondAttribute="centerY" id="66R-Ks-gJN"/>
+                                <constraint firstItem="jr3-eO-gV4" firstAttribute="leading" secondItem="nqi-sX-jzk" secondAttribute="trailing" constant="18" id="DKT-10-HsL"/>
+                                <constraint firstItem="nqi-sX-jzk" firstAttribute="leading" secondItem="03h-XX-xzZ" secondAttribute="leading" constant="26" id="fZp-fz-F1B"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="9ea-iU-5Qz" secondAttribute="trailing" id="EwO-nc-1Ak"/>
+                <constraint firstItem="9ea-iU-5Qz" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="bwV-FI-Efy"/>
+                <constraint firstAttribute="bottom" secondItem="9ea-iU-5Qz" secondAttribute="bottom" id="m42-JF-l0d"/>
+                <constraint firstItem="9ea-iU-5Qz" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="qOg-Hl-laF"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="EnvelopeIcon" width="20" height="17"/>
+        <image name="GreyCalendarIcon" width="20" height="23"/>
+    </resources>
+</document>

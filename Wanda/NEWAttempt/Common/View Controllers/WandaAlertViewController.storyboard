@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="OpenSans-Regular.ttf">
+            <string>OpenSans-Regular</string>
+        </array>
+        <array key="OpenSans-SemiBold.ttf">
+            <string>OpenSans-SemiBold</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Wanda Alert View Controller-->
+        <scene sceneID="xgA-dK-bjg">
+            <objects>
+                <viewController storyboardIdentifier="WandaAlertViewController" id="w5R-R6-8U4" customClass="WandaAlertViewController" customModule="Wanda" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eLy-LA-YIK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nbm-NL-N77">
+                                <rect key="frame" x="16" y="272" width="343" height="143"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="pWc-Ue-O38">
+                                        <rect key="frame" x="24" y="23" width="295" height="67"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="System Error" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zvn-sF-VfW">
+                                                <rect key="frame" x="0.0" y="0.0" width="295" height="22"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="22" id="028-RA-9gZ"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="OpenSans-SemiBold" family="Open Sans" pointSize="16"/>
+                                                <color key="textColor" red="0.0078431372549019607" green="0.094117647058823528" blue="0.16078431372549018" alpha="0.86745505136986301" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Looks like something isn't working properly. Try again or contact support for help." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CVq-R1-hp3">
+                                                <rect key="frame" x="0.0" y="34" width="295" height="33"/>
+                                                <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="14"/>
+                                                <color key="textColor" red="0.0078431372549019607" green="0.094117647058823528" blue="0.16078431372549018" alpha="0.86745505136986301" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="32h-LU-nfh">
+                                        <rect key="frame" x="190" y="109" width="47" height="19"/>
+                                        <fontDescription key="fontDescription" name="OpenSans-SemiBold" family="Open Sans" pointSize="14"/>
+                                        <state key="normal" title="CLOSE">
+                                            <color key="titleColor" red="0.0078431372549019607" green="0.094117647058823528" blue="0.16078431372549018" alpha="0.58922838184931503" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapCloseButton" destination="w5R-R6-8U4" eventType="touchUpInside" id="gdP-Te-gUb"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XB4-Ws-Hu1">
+                                        <rect key="frame" x="262" y="109" width="66" height="19"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="19" id="eyi-4Q-Sfe"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="OpenSans-SemiBold" family="Open Sans" pointSize="14"/>
+                                        <state key="normal" title="SUPPORT">
+                                            <color key="titleColor" red="0.015686274509803921" green="0.4392156862745098" blue="0.6588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapActionButton" destination="w5R-R6-8U4" eventType="touchUpInside" id="FQs-Of-GYB"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="pWc-Ue-O38" firstAttribute="centerX" secondItem="nbm-NL-N77" secondAttribute="centerX" id="0ce-nx-Lhc"/>
+                                    <constraint firstAttribute="bottom" secondItem="XB4-Ws-Hu1" secondAttribute="bottom" constant="15" id="3oc-lx-4UJ"/>
+                                    <constraint firstAttribute="bottom" secondItem="32h-LU-nfh" secondAttribute="bottom" constant="15" id="9iL-n7-tdL"/>
+                                    <constraint firstItem="XB4-Ws-Hu1" firstAttribute="leading" secondItem="32h-LU-nfh" secondAttribute="trailing" constant="25" id="EQp-a4-oRt"/>
+                                    <constraint firstItem="pWc-Ue-O38" firstAttribute="leading" secondItem="nbm-NL-N77" secondAttribute="leading" constant="24" id="IKZ-4g-jrk"/>
+                                    <constraint firstItem="32h-LU-nfh" firstAttribute="top" secondItem="XB4-Ws-Hu1" secondAttribute="top" id="UK7-9E-NrO"/>
+                                    <constraint firstItem="XB4-Ws-Hu1" firstAttribute="top" secondItem="pWc-Ue-O38" secondAttribute="bottom" constant="19" id="dNn-MT-UON"/>
+                                    <constraint firstItem="pWc-Ue-O38" firstAttribute="top" secondItem="nbm-NL-N77" secondAttribute="top" constant="23" id="wbb-Bk-Ty0"/>
+                                    <constraint firstAttribute="trailing" secondItem="XB4-Ws-Hu1" secondAttribute="trailing" constant="15" id="ziI-ea-zWn"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="nbm-NL-N77" firstAttribute="centerY" secondItem="6PU-oO-vzr" secondAttribute="centerY" id="1qT-PC-mJP"/>
+                            <constraint firstItem="6PU-oO-vzr" firstAttribute="trailing" secondItem="nbm-NL-N77" secondAttribute="trailing" constant="16" id="5Dv-la-hNo"/>
+                            <constraint firstItem="nbm-NL-N77" firstAttribute="leading" secondItem="6PU-oO-vzr" secondAttribute="leading" constant="16" id="fGo-du-1EE"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6PU-oO-vzr"/>
+                    </view>
+                    <connections>
+                        <outlet property="actionButton" destination="XB4-Ws-Hu1" id="5YU-Dw-Ab7"/>
+                        <outlet property="alertMessageLabel" destination="CVq-R1-hp3" id="XKG-kg-6cJ"/>
+                        <outlet property="alertTitleLabel" destination="Zvn-sF-VfW" id="KRf-Dm-iMn"/>
+                        <outlet property="closeButton" destination="32h-LU-nfh" id="sd2-9O-xQY"/>
+                        <outlet property="contentView" destination="nbm-NL-N77" id="cqc-SV-E0R"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UaC-JR-KD8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-79.200000000000003" y="-304.4977511244378"/>
+        </scene>
+    </scenes>
+</document>
