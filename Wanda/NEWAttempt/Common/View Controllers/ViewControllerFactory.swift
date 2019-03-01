@@ -24,8 +24,16 @@ struct ViewControllerFactory {
     }
 
     /// The view controller that pops up when the user taps the "Next Class" on the "Classes" screen.
-    static func makeReservationViewController() -> ReservationViewController? {
-        return UIStoryboard(identifier: .reservation).instantiateViewController(withIdentifier: ReservationViewController.storyboardIdentifier) as? ReservationViewController
+    static func makeReservationViewController(wandaClass: WandaClassInfo, classType: ClassType) -> ReservationViewController? {
+        guard let reservationViewController = UIStoryboard(identifier: .reservation).instantiateViewController(withIdentifier: ReservationViewController.storyboardIdentifier) as? ReservationViewController else {
+            assertionFailure("Could not instantiate ReservationViewController.")
+            return nil
+        }
+
+        reservationViewController.wandaClass = wandaClass
+        reservationViewController.classType = classType
+
+        return reservationViewController
     }
 
     /// The view controller that pops up when the user taps "Sign Up" on the "Login" screen.

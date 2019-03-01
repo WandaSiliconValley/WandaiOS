@@ -142,7 +142,10 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let reservationViewController = ViewControllerFactory.makeReservationViewController(), isNextClassesSection(section: indexPath.section) else {
+        let isNextClass = isNextClassesSection(section: indexPath.section)
+        let classType = isNextClass ? ClassType.nextClass : ClassType.upcomingClass
+
+        guard let wandaClass = isNextClass ? dataManager.nextClass : dataManager.upcomingClasses[indexPath.row], let reservationViewController = ViewControllerFactory.makeReservationViewController(wandaClass: wandaClass, classType: classType) else {
             return
         }
 
@@ -156,7 +159,6 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
                 return
             }
 
-            classCell.isUserInteractionEnabled = true
             classCell.configureClass(nextClass)
         } else {
             guard dataManager.upcomingClasses.indices.contains(indexPath.row) else {

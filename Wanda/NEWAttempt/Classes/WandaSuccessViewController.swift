@@ -65,10 +65,6 @@ class WandaSuccessViewController: UIViewController, MFMailComposeViewControllerD
     }
 
     @IBAction func didTapSignUpNextButton() {
-//        guard let dataManager = dataManager else {
-//            return
-//        }
-
         dataManager.getWandaClasses() { success in
             guard success, let classesViewController = ViewControllerFactory.makeClassesViewController() else {
                 if let wandaAlertViewController = ViewControllerFactory.makeWandaAlertController(.systemError, delegate: self) {
@@ -89,6 +85,7 @@ class WandaSuccessViewController: UIViewController, MFMailComposeViewControllerD
         }
 
         dataManager.getWandaMother(firebaseId: firebaseId) { success in
+            // to do should always kcik to the next screen, if we can't get the mother then we should have an alert there that says we're having trouble updating
             guard success else {
                 if let wandaAlertViewController = ViewControllerFactory.makeWandaAlertController(.systemError, delegate: self) {
                     self.present(wandaAlertViewController, animated: true, completion: nil)

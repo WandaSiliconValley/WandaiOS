@@ -6,16 +6,23 @@
 //  Copyright © 2019 Bell, Courtney. All rights reserved.
 //
 
+import FirebaseAuth
 import Foundation
 import MessageUI
 import UIKit
 
-class ForgotPasswordViewController: UIViewController, MFMailComposeViewControllerDelegate  {
+class ForgotPasswordViewController: UIViewController, MFMailComposeViewControllerDelegate, WandaAlertViewDelegate, UITextFieldDelegate  {
+    func didTapActionButton() {
+        print("AACTION")
+    }
+
     @IBOutlet private weak var emailInfoLabel: UILabel!
     @IBOutlet private weak var emailTextField: UITextField!
     @IBOutlet private weak var resetPasswordButton: UIButton!
+    @IBOutlet private weak var scrollView: UIScrollView!
 
     var dataManager = WandaDataManager.shared
+    var userEmail: String?
 
     static let storyboardIdentifier = String(describing: ForgotPasswordViewController.self)
 
@@ -37,7 +44,13 @@ class ForgotPasswordViewController: UIViewController, MFMailComposeViewControlle
     }
 
     override func viewDidLoad() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
         emailTextField.underlined()
+
+        if let userEmail = userEmail {
+            emailTextField.text = userEmail
+        }
     }
 
     // MARK: Private
@@ -50,6 +63,30 @@ class ForgotPasswordViewController: UIViewController, MFMailComposeViewControlle
         }
     }
 
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+
+    @objc
+    func keyboardWillShow(notification:NSNotification){
+
+        var userInfo = notification.userInfo!
+        var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
+
+        var contentInset:UIEdgeInsets = self.scrollView.contentInset
+        contentInset.bottom = keyboardFrame.size.height
+        scrollView.contentInset = contentInset
+    }
+
+    @objc
+    func keyboardWillHide(notification:NSNotification){
+
+        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
+        scrollView.contentInset = contentInset
+    }
+
     @objc
     private func backButtonPressed() {
         navigationController?.popViewController(animated: true)
@@ -60,6 +97,30 @@ class ForgotPasswordViewController: UIViewController, MFMailComposeViewControlle
     @IBAction func didTapResetPassword() {
         guard let userEmail = emailTextField.text, userEmail.verifyEmail(emailTextField: emailTextField, emailInfoLabel: emailInfoLabel) else {
             return
+        }
+
+        Auth.auth().sendPasswordReset(withEmail: userEmail) { error in
+            guard error == nil else {
+                if let error = error, let errorCode = AuthErrorCode(rawValue: error._code) {
+                    switch errorCode {
+                    case .wrongPassword, .userNotFound:
+                        self.emailTextField.shake()
+                        self.emailInfoLabel.font = UIFont.wandaFontItalic(size: 10)
+                        self.emailInfoLabel.textColor = .red
+                        self.emailInfoLabel.text = ErrorStrings.invalidCredentials
+                        self.emailInfoLabel.isHidden = false
+                    default:
+                        if let wandaAlertViewController = ViewControllerFactory.makeWandaAlertController(.forgotPasswordError, delegate: self) {
+                            self.present(wandaAlertViewController, animated: true, completion: nil)
+                        }
+                    }
+                }
+                return
+            }
+
+            if let wandaAlertViewController = ViewControllerFactory.makeWandaAlertController(.forgotPasswordSuccess, delegate: self) {
+                self.present(wandaAlertViewController, animated: true, completion: nil)
+            }
         }
     }
 

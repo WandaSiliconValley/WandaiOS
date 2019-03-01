@@ -65,6 +65,11 @@ struct ClassStrings {
 }
 
 struct ErrorStrings {
+    static var emailNotFound: String {
+        return NSLocalizedString("Wanda_Error_EmailNotFound",
+            value: "Email not on file with WANDA.",
+            comment: "Alert message informing the user that the email entered is not on file.")
+    }
     static var errorMessage: String {
         return NSLocalizedString("Wanda_Error_ErrorMessage",
             value: "Looks like something isn't working properly. Try again or contact support for help.",
@@ -98,10 +103,10 @@ struct GeneralStrings {
             value: "CANCEL",
             comment: "Button title indicating that on tap the action will be canceled.")
     }
-    static var closeAction: String {
-        return NSLocalizedString("Wanda_General_Close",
-             value: "CLOSE",
-             comment: "Button title indicating that on tap the alert will be closed.")
+    static var dismissAction: String {
+        return NSLocalizedString("Wanda_General_Dismiss",
+            value: "DISMISS",
+            comment: "Button title indicating that on tap the alert will be dismissed.")
     }
     static var confirmed: String {
         return NSLocalizedString("Wanda_General_Confirmed",

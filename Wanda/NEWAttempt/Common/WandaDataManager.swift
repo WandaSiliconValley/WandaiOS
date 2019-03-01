@@ -24,7 +24,9 @@ class WandaDataManager {
         let newClasses = allClasses.map { WandaClassInfo(from: $0, isReserved: false) }
         // Check if any classes are reserved.
         if let reservedClass = wandaMother?.reservedClasses.first {
+            // to do this is time consuming shouldnt be filtering through twice fix this
             newClasses.filter {$0.classId == reservedClass.classId}.first?.isReserved = true
+            newClasses.filter {$0.classId == reservedClass.classId}.first?.childCareNumber = reservedClass.childCareNumber
         }
 
         var sortedClasses = newClasses.sortedByDate()

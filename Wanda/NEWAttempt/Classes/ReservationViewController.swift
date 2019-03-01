@@ -15,10 +15,17 @@ private enum ReservationActionState {
     case discardRSVP
 }
 
+private enum ReservationState {
+    case makeRSVP
+    case changeRSVP
+    case updateRSVP
+}
+
 class ReservationViewController: UIViewController, WandaAlertViewDelegate {
     @IBOutlet private weak var addressLabel: UILabel!
     @IBOutlet private weak var changeRSVPButton: UIButton!
     @IBOutlet private weak var changeRSVPView: UIView!
+    @IBOutlet private weak var childCareView: UIView!
     @IBOutlet private weak var dateLabel: UILabel!
     @IBOutlet private weak var dateTimeToContentViewTopConstraint: NSLayoutConstraint!
     @IBOutlet private weak var dateTimeToReservedViewTopConstraint: NSLayoutConstraint!
@@ -30,17 +37,20 @@ class ReservationViewController: UIViewController, WandaAlertViewDelegate {
     @IBOutlet private weak var sendRSVPButton: UIButton!
     @IBOutlet private weak var timeLabel: UILabel!
 
+    var classType: ClassType?
+    var wandaClass: WandaClassInfo?
+
     private var dataManager = WandaDataManager.shared
     private var isReserved = false
     private var menuView: WandaClassMenu?
-    private var reservationActionState: ReservationActionState = .discardRSVP
+    private var reservationActionState: ReservationActionState = .cancelRSVP
+    private var reservationState: ReservationState = .changeRSVP
     private var unsavedChanges = false {
         didSet {
             changeRSVPButton.backgroundColor = unsavedChanges ? WandaColors.limeGreen : WandaColors.limeGreen.withAlphaComponent(0.5)
             changeRSVPButton.isEnabled = unsavedChanges
         }
     }
-    private var wandaClass: WandaClassInfo?
 
     static let storyboardIdentifier = String(describing: ReservationViewController.self)
 
@@ -48,11 +58,10 @@ class ReservationViewController: UIViewController, WandaAlertViewDelegate {
         super.viewWillAppear(animated)
 
         // Currently users should only see this screen for the next class.
-        guard let wandaClass = dataManager.nextClass else {
+        guard let wandaClass = wandaClass else {
             return
         }
 
-        self.wandaClass = wandaClass
         isReserved = wandaClass.isReserved
 
         configureNavigationBar()
@@ -63,25 +72,45 @@ class ReservationViewController: UIViewController, WandaAlertViewDelegate {
     // MARK: Private
 
     private func configureReservationView() {
-        guard let wandaClass = wandaClass else {
+        guard let wandaClass = wandaClass, let classType = classType else {
             return
         }
 
         title = wandaClass.topic
         timeLabel.text = wandaClass.time
         locationNameLabel.text = wandaClass.address
+        numberOfChildrenLabel.text = String(wandaClass.childCareNumber)
 
+        switch classType {
+            case .nextClass:
+                configureNextClassView()
+            case .upcomingClass:
+                configureUpcomingClassView()
+        }
+
+    }
+
+    private func configureUpcomingClassView() {
+        sendRSVPButton.isHidden = true
+        childCareView.isHidden = true
+        changeRSVPView.isHidden = true
+    }
+
+    private func configureNextClassView() {
         reservedHeader.isHidden = !isReserved
         changeRSVPView.isHidden = !isReserved
         sendRSVPButton.isHidden = isReserved
+        childCareView.isUserInteractionEnabled = !isReserved
 
         switch isReserved {
             case true:
+                reservationState = .changeRSVP
                 dateTimeToContentViewTopConstraint.priority = .defaultLow
                 dateTimeToReservedViewTopConstraint.priority = .defaultHigh
                 sendRSVPButton.backgroundColor = WandaColors.limeGreen
                 RSVPLabel.text = ClassStrings.iCantMakeIt
             case false:
+                reservationState = .makeRSVP
                 RSVPLabel.text = ClassStrings.reserveMySpot
                 RSVPLabel.textColor = UIColor.white.withAlphaComponent(0.5)
                 sendRSVPButton.setTitleColor(UIColor.white.withAlphaComponent(0.5), for: .disabled)
@@ -160,7 +189,50 @@ class ReservationViewController: UIViewController, WandaAlertViewDelegate {
         self.present(wandaAlertViewController, animated: true, completion: nil)
     }
 
+
+//    func showAndHideFilterMenu(category : Int) {
+//        if showFilterMenu == false {
+//            self.filterView.alpha = 0.0
+//            self.filterView.isHidden = false
+//            self.showFilterMenu = true
+//
+//            UIView.animate(withDuration: 0.6, delay: 0, options: .curveEaseInOut, animations: {
+//                self.filterView.alpha = 1.0
+//            }) { (isCompleted) in
+//            }
+//        } else{
+//            UIView.animate(withDuration: 0.6, delay: 0, options: .curveEaseInOut, animations: {
+//                self.filterView.alpha = 0.0
+//            }) { (isCompleted) in
+//                self.filterView.isHidden = true
+//                self.self.showFilterMenu = false
+//            }
+//        }
+//    }
+
     @IBAction func didTapSendRSVPButton() {
+        switch reservationState {
+            case .changeRSVP:
+                childCareView.isUserInteractionEnabled = true
+                changeRSVPButton.setTitle("UPDATE RSVP", for: .normal)
+                // user hasn't made any changes yet
+                unsavedChanges = false
+
+
+                // to do this doesn't really slide
+                UIView.animate(withDuration: 0.6, delay: 0, options: .curveEaseOut, animations: {
+                    self.reservedHeader.isHidden = true
+                    self.dateTimeToContentViewTopConstraint.priority = .defaultHigh
+                    self.dateTimeToReservedViewTopConstraint.priority = .defaultLow
+                })
+
+                reservationState = .updateRSVP
+            case .makeRSVP, .updateRSVP:
+                reserveWandaClass()
+        }
+    }
+
+    private func reserveWandaClass() {
         guard let motherId = dataManager.wandaMother?.motherId, let wandaClass = dataManager.nextClass, let numberOfChildrenText = numberOfChildrenLabel.text, let numberOfChildren = Int(numberOfChildrenText)  else {
             return
         }

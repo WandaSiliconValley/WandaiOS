@@ -139,7 +139,7 @@
                                     <constraint firstItem="6Ui-NT-E6I" firstAttribute="leading" secondItem="hl8-gz-Adu" secondAttribute="leading" constant="40" id="sfZ-3d-CEN"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EXH-Vm-IQF" userLabel="Childcare View">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EXH-Vm-IQF" userLabel="Child Care View">
                                 <rect key="frame" x="0.0" y="210" width="375" height="74"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Stroller" translatesAutoresizingMaskIntoConstraints="NO" id="pEf-LQ-U5q">
@@ -212,9 +212,9 @@
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d1q-Ib-1fd" userLabel="Change RSVP View">
                                 <rect key="frame" x="0.0" y="531" width="375" height="136"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P4w-GI-Q3h">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P4w-GI-Q3h">
                                         <rect key="frame" x="16" y="0.0" width="343" height="56"/>
-                                        <color key="backgroundColor" red="0.59999999999999998" green="0.80000000000000004" blue="0.20392156862745098" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.59999999999999998" green="0.80000000000000004" blue="0.20392156862745098" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="56" id="Gyt-dE-0KG"/>
                                         </constraints>
@@ -228,7 +228,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="didTapSendRSVPButton" destination="aGe-8Y-NHp" eventType="touchUpInside" id="wvu-0R-O9D"/>
+                                            <action selector="didTapSendRSVPButton" destination="aGe-8Y-NHp" eventType="touchUpInside" id="Dnv-wz-R4J"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E01-2n-d63">
@@ -308,6 +308,7 @@
                         <outlet property="addressLabel" destination="d4H-2S-O4k" id="DeV-U9-cbf"/>
                         <outlet property="changeRSVPButton" destination="P4w-GI-Q3h" id="jFX-iY-rhR"/>
                         <outlet property="changeRSVPView" destination="d1q-Ib-1fd" id="nwM-UA-2UT"/>
+                        <outlet property="childCareView" destination="EXH-Vm-IQF" id="HR6-jG-5WV"/>
                         <outlet property="dateLabel" destination="pEg-Je-bTT" id="Tas-tf-69t"/>
                         <outlet property="dateTimeToContentViewTopConstraint" destination="6Y0-J0-gS0" id="hVO-Cp-Och"/>
                         <outlet property="dateTimeToReservedViewTopConstraint" destination="sYO-N6-5b7" id="19Z-Ez-xoY"/>

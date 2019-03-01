@@ -41,7 +41,7 @@ class WandaClassInfo: CustomDebugStringConvertible {
     let street: String
     let city: String
     var isReserved: Bool
-    let childCareNumber: Int
+    var childCareNumber: Int
 
     // to do way too much duplication!!
     init(from wandaClass: WandaClass, isReserved: Bool) {

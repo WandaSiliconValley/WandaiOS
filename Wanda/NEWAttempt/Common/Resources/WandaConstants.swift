@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 struct WandaConstants {
     //http://wanda.us-east-2.elasticbeanstalk.com/wanda-app
     static let wandaURL = "http://localhost:8080/wanda-app"

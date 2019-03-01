@@ -11,6 +11,8 @@ import MessageUI
 import UIKit
 
 enum WandaAlertType {
+    case forgotPasswordError
+    case forgotPasswordSuccess
     case cancelRSVP
     case systemError
     case unsavedChanges
@@ -38,17 +40,24 @@ class WandaAlertViewController: UIViewController, MFMailComposeViewControllerDel
 
         contentView.layer.applySketchShadow(alpha: 0.22, y: 15, blur: 12)
         contentView.layer.applySketchShadow(alpha: 0.3, y: 19, blur: 38)
+        closeButton.setTitle(GeneralStrings.dismissAction, for: .normal)
 
         switch alertType {
+            // to do get real labels
+            case .forgotPasswordError:
+                alertTitleLabel.text = "Sorry something went wrong"
+                alertMessageLabel.text = "We couldn't reset your password, try again later."
+            // to do should we have a try again button as the action button
+            case .forgotPasswordSuccess:
+                alertTitleLabel.text = "Success"
+                alertMessageLabel.text = "An email was sent your way."
             case .cancelRSVP:
                 alertTitleLabel.text = ClassStrings.sorryYouCantMakeIt
                 alertMessageLabel.text = ClassStrings.requiredClassMessage
-                closeButton.setTitle(GeneralStrings.cancelAction, for: .normal)
                 actionButton.setTitle(GeneralStrings.continueAction, for: .normal)
             case .systemError:
                 alertTitleLabel.text = ErrorStrings.systemError
                 alertMessageLabel.text = ErrorStrings.errorMessage
-                closeButton.setTitle(GeneralStrings.closeAction, for: .normal)
                 actionButton.setTitle(ErrorStrings.support, for: .normal)
             case .unsavedChanges:
                 alertTitleLabel.isHidden = true
@@ -67,7 +76,7 @@ class WandaAlertViewController: UIViewController, MFMailComposeViewControllerDel
             return
         }
 
-        delegate.didTapActionButton()
         self.dismiss(animated: true, completion: nil)
+        delegate.didTapActionButton()
     }
 }
