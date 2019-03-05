@@ -12,17 +12,14 @@ import MessageUI
 import UIKit
 
 class ForgotPasswordViewController: UIViewController, MFMailComposeViewControllerDelegate, WandaAlertViewDelegate, UITextFieldDelegate  {
-    func didTapActionButton() {
-        print("AACTION")
-    }
-
     @IBOutlet private weak var emailInfoLabel: UILabel!
     @IBOutlet private weak var emailTextField: UITextField!
     @IBOutlet private weak var resetPasswordButton: UIButton!
     @IBOutlet private weak var scrollView: UIScrollView!
+    @IBOutlet private weak var spinner: UIActivityIndicatorView!
 
     var dataManager = WandaDataManager.shared
-    var userEmail: String?
+    var email: String?
 
     static let storyboardIdentifier = String(describing: ForgotPasswordViewController.self)
 
@@ -48,8 +45,8 @@ class ForgotPasswordViewController: UIViewController, MFMailComposeViewControlle
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
         emailTextField.underlined()
 
-        if let userEmail = userEmail {
-            emailTextField.text = userEmail
+        if let email = email {
+            emailTextField.text = email
         }
     }
 
@@ -70,7 +67,6 @@ class ForgotPasswordViewController: UIViewController, MFMailComposeViewControlle
 
     @objc
     func keyboardWillShow(notification:NSNotification){
-
         var userInfo = notification.userInfo!
         var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
         keyboardFrame = self.view.convert(keyboardFrame, from: nil)
@@ -94,31 +90,38 @@ class ForgotPasswordViewController: UIViewController, MFMailComposeViewControlle
 
     // MARK: IBActions
 
+    @IBAction func didEditEmail() {
+        emailInfoLabel.configureValidEmail(emailTextField)
+    }
+
     @IBAction func didTapResetPassword() {
-        guard let userEmail = emailTextField.text, userEmail.verifyEmail(emailTextField: emailTextField, emailInfoLabel: emailInfoLabel) else {
+        guard let email = emailTextField.text, email.isEmailValid(emailTextField: emailTextField, emailInfoLabel: emailInfoLabel) else {
             return
         }
 
-        Auth.auth().sendPasswordReset(withEmail: userEmail) { error in
+        spinner.toggleSpinner(for: resetPasswordButton, title: LoginSignUpStrings.resetPassword)
+
+        Auth.auth().sendPasswordReset(withEmail: email) { error in
             guard error == nil else {
+                self.spinner.toggleSpinner(for: self.resetPasswordButton, title: LoginSignUpStrings.resetPassword)
                 if let error = error, let errorCode = AuthErrorCode(rawValue: error._code) {
                     switch errorCode {
-                    case .wrongPassword, .userNotFound:
-                        self.emailTextField.shake()
-                        self.emailInfoLabel.font = UIFont.wandaFontItalic(size: 10)
-                        self.emailInfoLabel.textColor = .red
-                        self.emailInfoLabel.text = ErrorStrings.invalidCredentials
-                        self.emailInfoLabel.isHidden = false
-                    default:
-                        if let wandaAlertViewController = ViewControllerFactory.makeWandaAlertController(.forgotPasswordError, delegate: self) {
-                            self.present(wandaAlertViewController, animated: true, completion: nil)
+                        case .userNotFound:
+                            // If the user is not found we still want a 'success' modal to pop up for security reasons.
+                            if let wandaAlertViewController = ViewControllerFactory.makeWandaAlertController(.forgotPasswordSuccess, delegate: self) {
+                                self.present(wandaAlertViewController, animated: true, completion: nil)
+                            }
+                        default:
+                            if let wandaAlertViewController = ViewControllerFactory.makeWandaAlertController(.systemError, delegate: self) {
+                                self.present(wandaAlertViewController, animated: true, completion: nil)
+                            }
                         }
-                    }
                 }
                 return
             }
 
             if let wandaAlertViewController = ViewControllerFactory.makeWandaAlertController(.forgotPasswordSuccess, delegate: self) {
+                self.spinner.toggleSpinner(for: self.resetPasswordButton, title: LoginSignUpStrings.resetPassword)
                 self.present(wandaAlertViewController, animated: true, completion: nil)
             }
         }
@@ -140,5 +143,10 @@ class ForgotPasswordViewController: UIViewController, MFMailComposeViewControlle
 
         // Present the view controller modally.
         self.present(composeVC, animated: true, completion: nil)
+    }
+
+    // MARK: WandaAlertViewDelegate
+    func didTapActionButton() {
+        didTapResetPassword()
     }
 }

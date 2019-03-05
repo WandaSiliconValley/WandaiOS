@@ -46,7 +46,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your spot has been reserved" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cut-hl-VWO">
-                                        <rect key="frame" x="88" y="16.5" width="220" height="22"/>
+                                        <rect key="frame" x="88" y="16.5" width="219.5" height="22"/>
                                         <fontDescription key="fontDescription" name="OpenSans-SemiBold" family="Open Sans" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -61,12 +61,6 @@
                                     <constraint firstItem="hYA-HJ-tHj" firstAttribute="centerY" secondItem="8bK-jn-5hD" secondAttribute="centerY" id="kQb-wk-N5K"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RESERVE MY SPOT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O9z-19-Npc" userLabel="RSVP Label">
-                                <rect key="frame" x="101" y="605.5" width="173" height="27.5"/>
-                                <fontDescription key="fontDescription" name="OpenSans-SemiBold" family="Open Sans" pointSize="20"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gud-WA-qTy" userLabel="Date Time View">
                                 <rect key="frame" x="0.0" y="40" width="375" height="74"/>
                                 <subviews>
@@ -212,25 +206,43 @@
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d1q-Ib-1fd" userLabel="Change RSVP View">
                                 <rect key="frame" x="0.0" y="531" width="375" height="136"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P4w-GI-Q3h">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tvM-dT-J4o">
                                         <rect key="frame" x="16" y="0.0" width="343" height="56"/>
-                                        <color key="backgroundColor" red="0.59999999999999998" green="0.80000000000000004" blue="0.20392156862745098" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P4w-GI-Q3h">
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="56"/>
+                                                <color key="backgroundColor" red="0.59999999999999998" green="0.80000000000000004" blue="0.20392156862745098" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="56" id="Gyt-dE-0KG"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="OpenSans-SemiBold" family="Open Sans" pointSize="20"/>
+                                                <state key="normal" title="CHANGE RSVP">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <integer key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="didTapSendRSVPButton" destination="aGe-8Y-NHp" eventType="touchUpInside" id="Dnv-wz-R4J"/>
+                                                </connections>
+                                            </button>
+                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="1f6-uH-oJP">
+                                                <rect key="frame" x="153" y="9.5" width="37" height="37"/>
+                                            </activityIndicatorView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="56" id="Gyt-dE-0KG"/>
+                                            <constraint firstAttribute="height" constant="56" id="1KH-EQ-wTH"/>
+                                            <constraint firstAttribute="bottom" secondItem="P4w-GI-Q3h" secondAttribute="bottom" id="5Jf-vH-aCe"/>
+                                            <constraint firstItem="P4w-GI-Q3h" firstAttribute="top" secondItem="tvM-dT-J4o" secondAttribute="top" id="Do8-mr-UNT"/>
+                                            <constraint firstItem="1f6-uH-oJP" firstAttribute="centerX" secondItem="tvM-dT-J4o" secondAttribute="centerX" id="XT3-FK-kxU"/>
+                                            <constraint firstItem="1f6-uH-oJP" firstAttribute="centerY" secondItem="tvM-dT-J4o" secondAttribute="centerY" id="noa-Kl-eLY"/>
+                                            <constraint firstAttribute="trailing" secondItem="P4w-GI-Q3h" secondAttribute="trailing" id="rw5-yc-TGA"/>
+                                            <constraint firstItem="P4w-GI-Q3h" firstAttribute="leading" secondItem="tvM-dT-J4o" secondAttribute="leading" id="sMG-hF-8H0"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="OpenSans-SemiBold" family="Open Sans" pointSize="20"/>
-                                        <state key="normal" title="CHANGE RSVP">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <integer key="value" value="2"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="didTapSendRSVPButton" destination="aGe-8Y-NHp" eventType="touchUpInside" id="Dnv-wz-R4J"/>
-                                        </connections>
-                                    </button>
+                                    </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E01-2n-d63">
                                         <rect key="frame" x="16" y="69" width="343" height="48"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -248,71 +260,89 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="E01-2n-d63" firstAttribute="top" secondItem="tvM-dT-J4o" secondAttribute="bottom" constant="13" id="BWk-NC-pcp"/>
                                     <constraint firstAttribute="height" constant="136" id="QBs-cg-f5g"/>
-                                    <constraint firstItem="P4w-GI-Q3h" firstAttribute="centerX" secondItem="d1q-Ib-1fd" secondAttribute="centerX" id="UNH-a4-YND"/>
-                                    <constraint firstAttribute="trailing" secondItem="E01-2n-d63" secondAttribute="trailing" constant="16" id="VdM-zs-n54"/>
-                                    <constraint firstAttribute="trailing" secondItem="P4w-GI-Q3h" secondAttribute="trailing" constant="16" id="fPH-aS-v5k"/>
-                                    <constraint firstItem="E01-2n-d63" firstAttribute="centerX" secondItem="d1q-Ib-1fd" secondAttribute="centerX" id="fn4-xV-1pe"/>
-                                    <constraint firstItem="E01-2n-d63" firstAttribute="top" secondItem="P4w-GI-Q3h" secondAttribute="bottom" constant="13" id="gY4-WY-CCq"/>
-                                    <constraint firstAttribute="bottom" secondItem="E01-2n-d63" secondAttribute="bottom" constant="19" id="iu7-0Q-WjG"/>
+                                    <constraint firstAttribute="trailing" secondItem="tvM-dT-J4o" secondAttribute="trailing" constant="16" id="S6Q-bf-mlf"/>
+                                    <constraint firstAttribute="bottom" secondItem="E01-2n-d63" secondAttribute="bottom" constant="19" id="szq-IF-M0W"/>
+                                    <constraint firstItem="tvM-dT-J4o" firstAttribute="centerX" secondItem="d1q-Ib-1fd" secondAttribute="centerX" id="vHy-IT-4bH"/>
+                                    <constraint firstItem="E01-2n-d63" firstAttribute="centerX" secondItem="d1q-Ib-1fd" secondAttribute="centerX" id="wWG-j3-qwA"/>
+                                    <constraint firstAttribute="trailing" secondItem="E01-2n-d63" secondAttribute="trailing" constant="16" id="y04-sQ-Opf"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="usa-Ja-BXn">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2tF-6x-8Fu">
                                 <rect key="frame" x="16" y="591" width="343" height="56"/>
-                                <color key="backgroundColor" red="0.40000000000000002" green="0.20392156862745098" blue="0.59607843137254901" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="usa-Ja-BXn">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="56"/>
+                                        <color key="backgroundColor" red="0.40000000000000002" green="0.20392156862745098" blue="0.59607843137254901" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="56" id="ol1-Dh-RIr"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="OpenSans-SemiBold" family="Open Sans" pointSize="20"/>
+                                        <state key="normal" title="RESERVE MY SPOT">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <integer key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="didTapSendRSVPButton" destination="aGe-8Y-NHp" eventType="touchUpInside" id="lxD-G1-aho"/>
+                                        </connections>
+                                    </button>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Ruz-lk-voF">
+                                        <rect key="frame" x="153" y="9.5" width="37" height="37"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="56" id="ol1-Dh-RIr"/>
+                                    <constraint firstItem="Ruz-lk-voF" firstAttribute="centerY" secondItem="2tF-6x-8Fu" secondAttribute="centerY" id="4N7-em-kEB"/>
+                                    <constraint firstAttribute="bottom" secondItem="usa-Ja-BXn" secondAttribute="bottom" id="78k-ec-0bT"/>
+                                    <constraint firstItem="usa-Ja-BXn" firstAttribute="top" secondItem="2tF-6x-8Fu" secondAttribute="top" id="9cC-Wp-uor"/>
+                                    <constraint firstAttribute="trailing" secondItem="usa-Ja-BXn" secondAttribute="trailing" id="FIX-dy-kmh"/>
+                                    <constraint firstItem="usa-Ja-BXn" firstAttribute="leading" secondItem="2tF-6x-8Fu" secondAttribute="leading" id="I5P-uH-7ns"/>
+                                    <constraint firstAttribute="height" constant="56" id="fFG-eC-xM5"/>
+                                    <constraint firstItem="Ruz-lk-voF" firstAttribute="centerX" secondItem="2tF-6x-8Fu" secondAttribute="centerX" id="z14-nJ-T7g"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="OpenSans-SemiBold" family="Open Sans" pointSize="20"/>
-                                <state key="normal" title="RESERVE MY SPOT">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <integer key="value" value="2"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="didTapSendRSVPButton" destination="aGe-8Y-NHp" eventType="touchUpInside" id="lxD-G1-aho"/>
-                                </connections>
-                            </button>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="pfN-27-OGf" firstAttribute="trailing" secondItem="usa-Ja-BXn" secondAttribute="trailing" constant="16" id="4nb-it-zqr"/>
                             <constraint firstItem="Gud-WA-qTy" firstAttribute="top" secondItem="pfN-27-OGf" secondAttribute="top" priority="750" constant="20" id="6Y0-J0-gS0"/>
                             <constraint firstItem="pfN-27-OGf" firstAttribute="top" secondItem="8bK-jn-5hD" secondAttribute="top" id="7WQ-xZ-9oa"/>
                             <constraint firstItem="EXH-Vm-IQF" firstAttribute="top" secondItem="hl8-gz-Adu" secondAttribute="bottom" id="AeY-eI-9ZV"/>
-                            <constraint firstItem="O9z-19-Npc" firstAttribute="centerX" secondItem="usa-Ja-BXn" secondAttribute="centerX" id="Hpf-5U-Ctc"/>
                             <constraint firstItem="pfN-27-OGf" firstAttribute="trailing" secondItem="EXH-Vm-IQF" secondAttribute="trailing" id="IB8-wU-Lt5"/>
-                            <constraint firstItem="usa-Ja-BXn" firstAttribute="centerX" secondItem="pfN-27-OGf" secondAttribute="centerX" id="Iua-m7-Wwn"/>
-                            <constraint firstItem="O9z-19-Npc" firstAttribute="centerY" secondItem="usa-Ja-BXn" secondAttribute="centerY" id="PgC-x8-rnV"/>
                             <constraint firstItem="pfN-27-OGf" firstAttribute="bottom" secondItem="d1q-Ib-1fd" secondAttribute="bottom" id="QYI-b6-b5W"/>
-                            <constraint firstItem="pfN-27-OGf" firstAttribute="bottom" secondItem="usa-Ja-BXn" secondAttribute="bottom" constant="20" id="UOV-34-Kpd"/>
                             <constraint firstItem="hl8-gz-Adu" firstAttribute="leading" secondItem="pfN-27-OGf" secondAttribute="leading" id="VBm-RF-b3O"/>
                             <constraint firstItem="pfN-27-OGf" firstAttribute="trailing" secondItem="d1q-Ib-1fd" secondAttribute="trailing" id="XtZ-Uj-x3m"/>
                             <constraint firstItem="EXH-Vm-IQF" firstAttribute="leading" secondItem="pfN-27-OGf" secondAttribute="leading" id="Yo7-Pq-msM"/>
                             <constraint firstItem="d1q-Ib-1fd" firstAttribute="leading" secondItem="pfN-27-OGf" secondAttribute="leading" id="aZq-1z-VKY"/>
                             <constraint firstItem="Gud-WA-qTy" firstAttribute="leading" secondItem="pfN-27-OGf" secondAttribute="leading" id="anl-CD-9VT"/>
                             <constraint firstItem="hl8-gz-Adu" firstAttribute="top" secondItem="Gud-WA-qTy" secondAttribute="bottom" id="dds-iH-hu4"/>
+                            <constraint firstItem="pfN-27-OGf" firstAttribute="bottom" secondItem="2tF-6x-8Fu" secondAttribute="bottom" constant="20" id="hsc-bT-2gn"/>
                             <constraint firstItem="pfN-27-OGf" firstAttribute="trailing" secondItem="8bK-jn-5hD" secondAttribute="trailing" id="iW5-Mo-L94"/>
                             <constraint firstItem="8bK-jn-5hD" firstAttribute="leading" secondItem="pfN-27-OGf" secondAttribute="leading" id="j4y-0g-s6Z"/>
                             <constraint firstItem="pfN-27-OGf" firstAttribute="trailing" secondItem="Gud-WA-qTy" secondAttribute="trailing" id="jLL-IY-lPW"/>
                             <constraint firstItem="pfN-27-OGf" firstAttribute="trailing" secondItem="hl8-gz-Adu" secondAttribute="trailing" id="lKV-3U-tDv"/>
+                            <constraint firstItem="2tF-6x-8Fu" firstAttribute="centerX" secondItem="pfN-27-OGf" secondAttribute="centerX" id="nqj-ID-tDS"/>
                             <constraint firstItem="Gud-WA-qTy" firstAttribute="top" secondItem="8bK-jn-5hD" secondAttribute="bottom" priority="250" constant="10" id="sYO-N6-5b7"/>
+                            <constraint firstItem="pfN-27-OGf" firstAttribute="trailing" secondItem="2tF-6x-8Fu" secondAttribute="trailing" constant="16" id="tgJ-IL-UIr"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="pfN-27-OGf"/>
                     </view>
                     <connections>
-                        <outlet property="RSVPLabel" destination="O9z-19-Npc" id="5tC-YK-Jim"/>
                         <outlet property="addressLabel" destination="d4H-2S-O4k" id="DeV-U9-cbf"/>
+                        <outlet property="cancelRSVPButton" destination="E01-2n-d63" id="Xav-9g-hV6"/>
                         <outlet property="changeRSVPButton" destination="P4w-GI-Q3h" id="jFX-iY-rhR"/>
                         <outlet property="changeRSVPView" destination="d1q-Ib-1fd" id="nwM-UA-2UT"/>
+                        <outlet property="changeReservationSpinner" destination="1f6-uH-oJP" id="6t8-Qp-uJl"/>
                         <outlet property="childCareView" destination="EXH-Vm-IQF" id="HR6-jG-5WV"/>
                         <outlet property="dateLabel" destination="pEg-Je-bTT" id="Tas-tf-69t"/>
                         <outlet property="dateTimeToContentViewTopConstraint" destination="6Y0-J0-gS0" id="hVO-Cp-Och"/>
                         <outlet property="dateTimeToReservedViewTopConstraint" destination="sYO-N6-5b7" id="19Z-Ez-xoY"/>
                         <outlet property="locationNameLabel" destination="vlJ-lB-25m" id="31z-0z-CKi"/>
+                        <outlet property="makeReservationSpinner" destination="Ruz-lk-voF" id="trg-Ty-YPI"/>
                         <outlet property="numberOfChildrenLabel" destination="fVL-cK-8yj" id="laG-hd-rQZ"/>
                         <outlet property="reservedHeader" destination="8bK-jn-5hD" id="5iY-ok-GWz"/>
                         <outlet property="reservedHeaderHeightConstraint" destination="Vih-6z-kG5" id="1X5-yx-yvm"/>

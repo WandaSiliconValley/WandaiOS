@@ -8,11 +8,12 @@
 
 import Foundation
 
-// can only sign up 7 days before
+// to do can only sign up 7 days before
 
 class WandaDataManager {
     static let shared = WandaDataManager()
 
+    var needsReload = false
     var wandaMother: WandaMotherInfo?
     var upcomingClasses = [WandaClassInfo]()
     var allClasses = [WandaClass]()

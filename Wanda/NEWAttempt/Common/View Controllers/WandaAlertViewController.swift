@@ -11,9 +11,9 @@ import MessageUI
 import UIKit
 
 enum WandaAlertType {
-    case forgotPasswordError
     case forgotPasswordSuccess
     case cancelRSVP
+    case cantGetClasses
     case systemError
     case unsavedChanges
 }
@@ -43,14 +43,15 @@ class WandaAlertViewController: UIViewController, MFMailComposeViewControllerDel
         closeButton.setTitle(GeneralStrings.dismissAction, for: .normal)
 
         switch alertType {
-            // to do get real labels
-            case .forgotPasswordError:
-                alertTitleLabel.text = "Sorry something went wrong"
-                alertMessageLabel.text = "We couldn't reset your password, try again later."
-            // to do should we have a try again button as the action button
+            // to do get real text for this alert
             case .forgotPasswordSuccess:
                 alertTitleLabel.text = "Success"
                 alertMessageLabel.text = "An email was sent your way."
+            // to do ask m about this one
+            case .cantGetClasses:
+                alertTitleLabel.text = ErrorStrings.systemError
+                alertMessageLabel.text = "We can't seem to update your classes right now.  Try again later or contact support for help."
+                actionButton.setTitle(ErrorStrings.support, for: .normal)
             case .cancelRSVP:
                 alertTitleLabel.text = ClassStrings.sorryYouCantMakeIt
                 alertMessageLabel.text = ClassStrings.requiredClassMessage

@@ -7,14 +7,15 @@
 //
 
 import UIKit
+import MessageUI
 
-class ClassesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ClassesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, WandaAlertViewDelegate, MFMailComposeViewControllerDelegate {
     @IBOutlet var tableView: UITableView!
 
     var dataManager = WandaDataManager.shared
-
     private var wandaClasses = [WandaClass]()
     private var nextClassesSection = 0
+    private let overlayView = UIView(frame: UIScreen.main.bounds)
 
     static let storyboardIdentifier = String(describing: ClassesViewController.self)
 
@@ -32,10 +33,41 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        tableView.reloadData()
         self.navigationController?.isNavigationBarHidden = false
         configureNavigationBar()
         configureTableView()
+
+        if dataManager.needsReload {
+            guard let firebaseId = dataManager.wandaMother?.firebaseId else {
+                return
+            }
+
+            dataManager.needsReload = false
+            configureLoadingView()
+            dataManager.getWandaMother(firebaseId: firebaseId) { success in
+                guard success else {
+                    self.overlayView.removeFromSuperview()
+                    if let wandaAlertViewController = ViewControllerFactory.makeWandaAlertController(.cantGetClasses, delegate: self) {
+                        self.present(wandaAlertViewController, animated: true, completion: nil)
+                    }
+                    return
+                }
+
+                self.dataManager.loadClasses()
+                self.overlayView.removeFromSuperview()
+                self.tableView.reloadData()
+            }
+        }
+    }
+
+    private func configureLoadingView() {
+        overlayView.backgroundColor = UIColor.white.withAlphaComponent(0.4)
+        let spinner = UIActivityIndicatorView(frame: UIScreen.main.bounds)
+        spinner.activityIndicatorViewStyle = .whiteLarge
+        spinner.color = .black
+        spinner.startAnimating()
+        overlayView.addSubview(spinner)
+        self.view.addSubview(overlayView)
     }
 
     private func configureNavigationBar() {
@@ -119,7 +151,7 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
                 // its 15/15 in the table view cell but this isn't
                 // honoring that
                 backgroundView.frame = UIEdgeInsetsInsetRect(backgroundView.frame, UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 30))
-                backgroundView.layer.backgroundColor = WandaColors.lightGrey.cgColor
+                backgroundView.layer.backgroundColor = WandaColors.errorRed.cgColor
                 backgroundView.layer.masksToBounds = false
                 backgroundView.layer.applySketchShadow(alpha: 0.1, y: 1, blur: 2)
 
@@ -169,5 +201,24 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
             classCell.configureClass(upcomingClass)
             classCell.reservationButton.isHidden = true
         }
+    }
+
+    // MARK: WandaAlertViewDelegate
+
+    func didTapActionButton() {
+        // to do still want to make this reusable
+        if !MFMailComposeViewController.canSendMail() {
+            print("Mail services are not available")
+            return
+        }
+
+        let composeVC = MFMailComposeViewController()
+        composeVC.mailComposeDelegate = self
+
+        composeVC.setToRecipients(["address@example.com"])
+        composeVC.setSubject("Hello!")
+        composeVC.setMessageBody("Hello this is my message body!", isHTML: false)
+
+        self.present(composeVC, animated: true, completion: nil)
     }
 }

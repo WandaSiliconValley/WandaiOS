@@ -32,6 +32,21 @@ struct AlertStrings {
 }
 
 struct ClassStrings {
+    static var sendRSVP: String {
+        return NSLocalizedString("Wanda_Class_SendRSVP",
+                                 value: "SEND RSVP",
+                                 comment: "Button title indicating tap to let the user will send their rsvp.")
+    }
+    static var changeRSVP: String {
+        return NSLocalizedString("Wanda_Class_ICantMakeIt",
+                                 value: "CHANGE RSVP",
+                                 comment: "Button title indicating tap to the user will enter edit mode for their rsvp.")
+    }
+    static var updateRSVP: String {
+        return NSLocalizedString("Wanda_Class_UpdateRSVP",
+                                 value: "UPDATE RSVP",
+                                 comment: "Button title indicating tap to let the user will update their rsvp.")
+    }
     static var iCantMakeIt: String {
         return NSLocalizedString("Wanda_Class_ICantMakeIt",
             value: "I CAN'T MAKE IT",
@@ -65,9 +80,20 @@ struct ClassStrings {
 }
 
 struct ErrorStrings {
+    static var emailRequired: String {
+        return NSLocalizedString("Wanda_Error_EmailRequired",
+            value: "Email Required",
+            comment: "Alert message informing the user that the email field is required.")
+    }
+    static var passwordRequired: String {
+        return NSLocalizedString("Wanda_Error_PasswordRequired",
+            value: "Password Required",
+            comment: "Alert message informing the user that the password field is required.")
+    }
+    // to do ask about confirmation password required?^
     static var emailNotFound: String {
         return NSLocalizedString("Wanda_Error_EmailNotFound",
-            value: "Email not on file with WANDA.",
+            value: "Email not on file with WANDA",
             comment: "Alert message informing the user that the email entered is not on file.")
     }
     static var errorMessage: String {
@@ -77,7 +103,7 @@ struct ErrorStrings {
     }
     static var invalidCredentials: String {
         return NSLocalizedString("Wanda_Error_InvalidCredentials",
-            value: "Email or password is incorrect.",
+            value: "Email or password is incorrect",
             comment: "Error message indicating the email or password is incorrect.")
     }
     static var passwordError: String {
@@ -98,6 +124,11 @@ struct ErrorStrings {
 }
 
 struct GeneralStrings {
+    static var nextAction: String {
+        return NSLocalizedString("Wanda_General_Next",
+            value: "NEXT",
+            comment: "Button title indicating that on tap the user will be taken to the next step or screen.")
+    }
     static var cancelAction: String {
         return NSLocalizedString("Wanda_General_Cancel",
             value: "CANCEL",
@@ -118,13 +149,38 @@ struct GeneralStrings {
             value: "CONTINUE",
             comment: "Button title indicating that on tap the user will continue with the current action.")
     }
+    static var tryAgainAction: String {
+        return NSLocalizedString("Wanda_Class_TryAgain",
+            value: "TRY AGAIN",
+            comment: "Button title indicating that on tap the action will be tried again.")
+    }
+    static var submitAction: String {
+        return NSLocalizedString("Wanda_Class_Submit",
+            value: "SUBMIT",
+            comment: "Button title indicating that on tap the user will submit the form.")
+    }
 }
 
 struct LoginSignUpStrings {
+    static var resetPassword: String {
+        return NSLocalizedString("Wanda_LoginSignUp_ResetPassword",
+            value: "RESET PASSWORD",
+            comment: "Button title indicating that on tap the user will reset their password.")
+    }
+    static var emailInUse: String {
+        return NSLocalizedString("Wanda_LoginSignUp_EmailInUse",
+            value: "Email already in use",
+            comment: "Message indicating that the email entered already has a WANDA account.")
+    }
     static var invalidEmail: String {
         return NSLocalizedString("Wanda_LoginSignUp_InvalidEmail",
             value: "Not a valid email",
             comment: "Message indicating that the email entered is invalid.")
+    }
+    static var login: String {
+        return NSLocalizedString("Wanda_LoginSignUp_Login",
+            value: "LOGIN",
+            comment: "Button title indicating that on tap the user will attempt to login.")
     }
     static var passwordsDoNotMatch: String {
         return NSLocalizedString("Wanda_LoginSignUp_passwordsDoNotMatch",

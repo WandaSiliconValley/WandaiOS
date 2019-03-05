@@ -17,6 +17,7 @@ class WandaMotherNetworkController {
         let urlRequest = URLRequest(url: url)
 
         DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async {
+            // to do why is error always nil here???
             let task = URLSession.shared.dataTask(with: urlRequest) { data, response, error in
                 DispatchQueue.main.async {
                     guard let responseData = data, let wandaMother = try? JSONDecoder().decode(WandaMother.self, from: responseData) else {

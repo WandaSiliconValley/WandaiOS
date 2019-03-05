@@ -23,6 +23,7 @@ private enum ReservationState {
 
 class ReservationViewController: UIViewController, WandaAlertViewDelegate {
     @IBOutlet private weak var addressLabel: UILabel!
+    @IBOutlet private weak var cancelRSVPButton: UIButton!
     @IBOutlet private weak var changeRSVPButton: UIButton!
     @IBOutlet private weak var changeRSVPView: UIView!
     @IBOutlet private weak var childCareView: UIView!
@@ -33,9 +34,10 @@ class ReservationViewController: UIViewController, WandaAlertViewDelegate {
     @IBOutlet private weak var numberOfChildrenLabel: UILabel!
     @IBOutlet private weak var reservedHeader: UIView!
     @IBOutlet private weak var reservedHeaderHeightConstraint: NSLayoutConstraint!
-    @IBOutlet private weak var RSVPLabel: UILabel!
     @IBOutlet private weak var sendRSVPButton: UIButton!
     @IBOutlet private weak var timeLabel: UILabel!
+    @IBOutlet private weak var makeReservationSpinner: UIActivityIndicatorView!
+    @IBOutlet private weak var changeReservationSpinner: UIActivityIndicatorView!
 
     var classType: ClassType?
     var wandaClass: WandaClassInfo?
@@ -51,6 +53,7 @@ class ReservationViewController: UIViewController, WandaAlertViewDelegate {
             changeRSVPButton.isEnabled = unsavedChanges
         }
     }
+    let overlayView = UIView(frame: UIScreen.main.bounds)
 
     static let storyboardIdentifier = String(describing: ReservationViewController.self)
 
@@ -100,7 +103,7 @@ class ReservationViewController: UIViewController, WandaAlertViewDelegate {
         reservedHeader.isHidden = !isReserved
         changeRSVPView.isHidden = !isReserved
         sendRSVPButton.isHidden = isReserved
-        childCareView.isUserInteractionEnabled = !isReserved
+       // childCareView.isUserInteractionEnabled = !isReserved
 
         switch isReserved {
             case true:
@@ -108,11 +111,12 @@ class ReservationViewController: UIViewController, WandaAlertViewDelegate {
                 dateTimeToContentViewTopConstraint.priority = .defaultLow
                 dateTimeToReservedViewTopConstraint.priority = .defaultHigh
                 sendRSVPButton.backgroundColor = WandaColors.limeGreen
-                RSVPLabel.text = ClassStrings.iCantMakeIt
+                overlayView.backgroundColor = UIColor.white.withAlphaComponent(0.4)
+                self.view.addSubview(overlayView)
+                self.view.bringSubview(toFront: changeRSVPView)
+                self.view.bringSubview(toFront: reservedHeader)
             case false:
                 reservationState = .makeRSVP
-                RSVPLabel.text = ClassStrings.reserveMySpot
-                RSVPLabel.textColor = UIColor.white.withAlphaComponent(0.5)
                 sendRSVPButton.setTitleColor(UIColor.white.withAlphaComponent(0.5), for: .disabled)
         }
     }
@@ -180,7 +184,6 @@ class ReservationViewController: UIViewController, WandaAlertViewDelegate {
 
     @IBAction func didTapCancelRSVPButton() {
         reservationActionState = .cancelRSVP
-
         guard let wandaAlertViewController = ViewControllerFactory.makeWandaAlertController(.cancelRSVP, delegate: self) else {
             assertionFailure("Could not load the WandaAlertViewController.")
             return
@@ -189,43 +192,24 @@ class ReservationViewController: UIViewController, WandaAlertViewDelegate {
         self.present(wandaAlertViewController, animated: true, completion: nil)
     }
 
-
-//    func showAndHideFilterMenu(category : Int) {
-//        if showFilterMenu == false {
-//            self.filterView.alpha = 0.0
-//            self.filterView.isHidden = false
-//            self.showFilterMenu = true
-//
-//            UIView.animate(withDuration: 0.6, delay: 0, options: .curveEaseInOut, animations: {
-//                self.filterView.alpha = 1.0
-//            }) { (isCompleted) in
-//            }
-//        } else{
-//            UIView.animate(withDuration: 0.6, delay: 0, options: .curveEaseInOut, animations: {
-//                self.filterView.alpha = 0.0
-//            }) { (isCompleted) in
-//                self.filterView.isHidden = true
-//                self.self.showFilterMenu = false
-//            }
-//        }
-//    }
-
     @IBAction func didTapSendRSVPButton() {
         switch reservationState {
             case .changeRSVP:
-                childCareView.isUserInteractionEnabled = true
-                changeRSVPButton.setTitle("UPDATE RSVP", for: .normal)
-                // user hasn't made any changes yet
-                unsavedChanges = false
-
+                if overlayView.superview != nil {
+                    overlayView.removeFromSuperview()
+                }
 
                 // to do this doesn't really slide
                 UIView.animate(withDuration: 0.6, delay: 0, options: .curveEaseOut, animations: {
                     self.reservedHeader.isHidden = true
                     self.dateTimeToContentViewTopConstraint.priority = .defaultHigh
                     self.dateTimeToReservedViewTopConstraint.priority = .defaultLow
+                    self.childCareView.isUserInteractionEnabled = true
+                    self.changeRSVPButton.setTitle("UPDATE RSVP", for: .normal)
                 })
 
+                // user hasn't made any changes yet
+                unsavedChanges = false
                 reservationState = .updateRSVP
             case .makeRSVP, .updateRSVP:
                 reserveWandaClass()
@@ -237,8 +221,11 @@ class ReservationViewController: UIViewController, WandaAlertViewDelegate {
             return
         }
 
+        toggleCorrectSpinner()
+
         dataManager.reserveWandaClass(classId: wandaClass.classId, motherId: motherId, childcareNumber: numberOfChildren) { success in
             guard success, let reservationSuccessViewController = ViewControllerFactory.makeWandaSuccessController() else {
+                self.toggleCorrectSpinner()
                 if let wandaAlertViewController = ViewControllerFactory.makeWandaAlertController(.systemError, delegate: self) {
                     self.present(wandaAlertViewController, animated: true, completion: nil)
                 }
@@ -248,33 +235,40 @@ class ReservationViewController: UIViewController, WandaAlertViewDelegate {
 
             reservationSuccessViewController.successType = .reservation
             reservationSuccessViewController.dataManager = self.dataManager
+            self.toggleCorrectSpinner()
             self.navigationController?.pushViewController(reservationSuccessViewController, animated: true)
+        }
+    }
+
+    private func toggleCorrectSpinner() {
+        switch reservationState {
+            case .makeRSVP:
+                makeReservationSpinner.toggleSpinner(for: sendRSVPButton, title: ClassStrings.sendRSVP)
+            case .updateRSVP:
+                changeReservationSpinner.toggleSpinner(for: changeRSVPButton, title: ClassStrings.updateRSVP)
+            default:
+                return
         }
     }
 
     // MARK: WandaAlertViewDelegate
 
     func didTapActionButton() {
-        guard let motherId = dataManager.wandaMother?.motherId, let wandaClass = dataManager.nextClass, let firebaseId = dataManager.wandaMother?.firebaseId, let navigationController = navigationController else {
+        guard let motherId = dataManager.wandaMother?.motherId, let wandaClass = dataManager.nextClass, let navigationController = navigationController else {
             return
         }
 
         switch reservationActionState {
             case .cancelRSVP:
+                // to do where should the spinner be here since this is an alert?
                 dataManager.cancelWandaClassReservation(classId: wandaClass.classId, motherId: motherId) { success in
                     guard success else {
                         self.presentSystemAlert()
                         return
                     }
 
-                    self.dataManager.getWandaMother(firebaseId: firebaseId) { success in
-                        guard success else {
-                            self.presentSystemAlert()
-                            return
-                        }
-                        self.dataManager.loadClasses()
-                        navigationController.popViewController(animated: true)
-                    }
+                    self.dataManager.needsReload = true
+                    navigationController.popViewController(animated: true)
                 }
             case .discardRSVP:
                 navigationController.popViewController(animated: true)

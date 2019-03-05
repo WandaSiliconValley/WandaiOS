@@ -20,13 +20,28 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, MFMailCompose
     @IBOutlet private weak var confirmPasswordInfoLabel: UILabel!
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var signUpButton: UIButton!
+    @IBOutlet private weak var spinner: UIActivityIndicatorView!
 
-    var dataManager = WandaDataManager.shared
-
+    private var dataManager = WandaDataManager.shared
+    private var passwordsMatch: Bool {
+        return passwordTextField.text == confirmPasswordTextField.text
+    }
     private var showPasswordClicked = false
     private var showConfirmPasswordClicked = false
 
     static let storyboardIdentifier = String(describing: SignUpViewController.self)
+
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        if let navigationBar = self.navigationController?.navigationBar {
+            navigationBar.isTranslucent = false
+            navigationBar.setBackgroundImage(UIImage(), for: .default)
+            navigationBar.shadowImage = UIImage()
+            navigationBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 80.0)
+        }
+    }
 
     override func viewDidLoad() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -87,25 +102,44 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, MFMailCompose
         navigationController?.popViewController(animated: true)
     }
 
-    private func verifyConfirmationPassword() -> Bool {
-        guard let userPassword = confirmPasswordTextField.text, !userPassword.isEmpty, confirmPasswordTextField.text == passwordTextField.text else {
-            confirmPasswordInfoLabel.text = LoginSignUpStrings.passwordsDoNotMatch
-            confirmPasswordInfoLabel.textColor = WandaColors.errorRed
-            confirmPasswordTextField.shake()
+    private func verifySignUp() -> Bool {
+        guard let email = emailTextField.text, let password = passwordTextField.text else {
+            return false
+        }
+
+        if !passwordsMatch {
+            passwordInfoLabel.configureError(LoginSignUpStrings.passwordsDoNotMatch, invalidTextField: passwordTextField)
+        }
+
+        let emailValid = email.isEmailValid(emailTextField: emailTextField, emailInfoLabel: emailInfoLabel)
+        let passwordValid = password.isPasswordValid(passwordTextField: passwordTextField, passwordInfoLabel: passwordInfoLabel)
+        let confirmationPasswordValid = isConfirmationPasswordValid()
+
+        return emailValid && passwordValid && confirmationPasswordValid && passwordsMatch
+    }
+
+    private func isConfirmationPasswordValid() -> Bool {
+        guard let password = passwordTextField.text, let confirmationPassword = confirmPasswordTextField.text else {
+            return false
+        }
+
+        if password.isEmpty && !confirmationPassword.isEmpty {
+            passwordInfoLabel.configureError(LoginSignUpStrings.passwordsDoNotMatch, invalidTextField: passwordTextField)
+
             return false
         }
 
         return true
     }
 
-    @IBAction func didEditPassword() {
-        guard confirmPasswordTextField.text == passwordTextField.text else {
-            confirmPasswordInfoLabel.text = ""
-            return
-        }
+    @IBAction func didEditEmail() {
+        emailInfoLabel.configureValidEmail(emailTextField)
+    }
 
-        confirmPasswordInfoLabel.text = GeneralStrings.confirmed
-        confirmPasswordInfoLabel.textColor = WandaColors.limeGreen
+    @IBAction func didEditPassword() {
+        passwordInfoLabel.isHidden = true
+        passwordTextField.underlined(color: UIColor.white.cgColor)
+        confirmPasswordInfoLabel.isHidden = true
     }
 
     @IBAction func didTapShowHidePasswordButton() {
@@ -114,19 +148,27 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, MFMailCompose
     }
 
     @IBAction func didTapShowHideConfirmPasswordButton() {
-    //    confirmPasswordTextField.isSecureTextEntry = showConfirmPasswordClicked
+        confirmPasswordTextField.isSecureTextEntry = showConfirmPasswordClicked
         showConfirmPasswordClicked = !showConfirmPasswordClicked
     }
 
     @IBAction func didTapSignUp() {
-        guard let userEmail = emailTextField.text, userEmail.verifyEmail(emailTextField: emailTextField, emailInfoLabel: emailInfoLabel), let userPassword = passwordTextField.text, userPassword.verifyPassword(passwordTextField: passwordTextField, passwordInfoLabel: passwordInfoLabel), verifyConfirmationPassword() else {
+        guard verifySignUp(), let email = emailTextField.text, let password = passwordTextField.text else {
             return
         }
 
-        Auth.auth().createUser(withEmail: userEmail, password: userPassword) { (authResult, error) in
+        spinner.toggleSpinner(for: signUpButton, title: GeneralStrings.submitAction)
+
+        Auth.auth().createUser(withEmail: email, password: password) { (authResult, error) in
             guard let motherId = authResult?.user.uid else {
                 if let error = error, let errorCode = AuthErrorCode(rawValue: error._code) {
+                    self.spinner.toggleSpinner(for: self.signUpButton, title: GeneralStrings.submitAction)
+
                     switch errorCode {
+                        case .invalidEmail, .missingEmail:
+                            _ = email.isEmailValid(emailTextField: self.emailTextField, emailInfoLabel: self.emailInfoLabel)
+                        case .emailAlreadyInUse:
+                            self.emailInfoLabel.configureError(LoginSignUpStrings.emailInUse, invalidTextField: self.emailTextField)
                         case .wrongPassword, .userNotFound:
                             self.confirmPasswordInfoLabel.text = ErrorStrings.invalidCredentials
                             self.confirmPasswordInfoLabel.isHidden = false
@@ -141,8 +183,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, MFMailCompose
             }
 
             self.confirmPasswordInfoLabel.isHidden = true
-            self.dataManager.createWandaAccount(firebaseId: motherId, email: userEmail) { success in
+            self.dataManager.createWandaAccount(firebaseId: motherId, email: email) { success in
                 guard success, let signUpSuccessViewController = ViewControllerFactory.makeWandaSuccessController() else {
+                    self.spinner.toggleSpinner(for: self.signUpButton, title: GeneralStrings.submitAction)
                     // to do hate this in all instances can we either make this more reusable or move into datamanager?
                     if let wandaAlertViewController = ViewControllerFactory.makeWandaAlertController(.systemError, delegate: self) {
                         self.present(wandaAlertViewController, animated: true, completion: nil)
@@ -151,6 +194,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, MFMailCompose
                     return
                 }
                 signUpSuccessViewController.successType = .signUp
+                self.spinner.toggleSpinner(for: self.signUpButton, title: GeneralStrings.submitAction)
                 self.navigationController?.pushViewController(signUpSuccessViewController, animated: true)
             }
         }

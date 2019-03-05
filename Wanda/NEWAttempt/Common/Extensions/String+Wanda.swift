@@ -10,42 +10,38 @@ import Foundation
 import UIKit
 
 internal extension String {
-    func verifyPassword(passwordTextField: UITextField, passwordInfoLabel: UILabel) -> Bool {
-        guard self.count >= 6 else {
-            passwordInfoLabel.text = ErrorStrings.passwordError
-            passwordInfoLabel.isHidden = false
-            passwordTextField.shake()
-
+    func isPasswordValid(passwordTextField: UITextField, passwordInfoLabel: UILabel) -> Bool {
+        if self.isEmpty {
+            passwordInfoLabel.configureError(ErrorStrings.passwordRequired, invalidTextField: passwordTextField)
+            return false
+        } else if self.count <= 6 {
+            passwordInfoLabel.configureError(ErrorStrings.passwordError, invalidTextField: passwordTextField)
             return false
         }
-
-        passwordInfoLabel.isHidden = true
 
         return true
     }
 
-    func verifyEmail(emailTextField: UITextField, emailInfoLabel: UILabel) -> Bool {
-        guard self.isValidEmail() else {
-            emailInfoLabel.text = LoginSignUpStrings.invalidEmail
-            emailInfoLabel.font = UIFont.wandaFontItalic(size: 10)
-            emailInfoLabel.textColor = .red
-            emailTextField.shake()
+    func isEmailValid(emailTextField: UITextField, emailInfoLabel: UILabel) -> Bool {
+        if self.isEmpty {
+            emailInfoLabel.configureError(ErrorStrings.emailRequired, invalidTextField: emailTextField)
+
+            return false
+        } else if !self.validEmail() {
+            emailInfoLabel.configureError(LoginSignUpStrings.invalidEmail, invalidTextField: emailTextField)
 
             return false
         }
 
-        emailInfoLabel.font = UIFont.wandaFontRegular(size: 10)
-        emailInfoLabel.textColor = .white
-        emailInfoLabel.text = LoginSignUpStrings.useEmailOnFile
+        emailInfoLabel.configureValidEmail(emailTextField)
 
         return true
     }
 
-    private func isValidEmail() -> Bool {
+    private func validEmail() -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let email = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
 
-        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-
-        return emailTest.evaluate(with: self)
+        return email.evaluate(with: self)
     }
 }

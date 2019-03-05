@@ -14,11 +14,12 @@ enum SuccessType {
     case signUp
 }
 
-class WandaSuccessViewController: UIViewController, MFMailComposeViewControllerDelegate, WandaAlertViewDelegate {
+class WandaSuccessViewController: UIViewController, WandaAlertViewDelegate, MFMailComposeViewControllerDelegate {
     @IBOutlet private weak var successImage: UIImageView!
     @IBOutlet private weak var successTitle: UILabel!
     @IBOutlet private weak var successMessage: UILabel!
     @IBOutlet private weak var signUpNextButton: UIButton!
+    @IBOutlet private weak var spinner: UIActivityIndicatorView!
 
     var dataManager = WandaDataManager.shared
     var successType: SuccessType = .signUp
@@ -55,8 +56,11 @@ class WandaSuccessViewController: UIViewController, MFMailComposeViewControllerD
                 successTitle.text = SuccessStrings.thanksForSigningUp
                 successMessage.text = SuccessStrings.reservationSuccessMessage
                 signUpNextButton.isHidden = true
-            case .signUp:
-                view.backgroundColor = WandaColors.darkPurple
+        case .signUp:
+            // to do fine to set this in storyboard for now but not
+            // error proof, same hex value but setting the color here looks different
+            // than in storyboard
+           //     view.backgroundColor = WandaColors.darkPurple
                 successImage.image = WandaImages.successEmail
                 successTitle.text = SuccessStrings.accountCreated
                 successMessage.text = SuccessStrings.signUpSuccessMessage
@@ -65,36 +69,26 @@ class WandaSuccessViewController: UIViewController, MFMailComposeViewControllerD
     }
 
     @IBAction func didTapSignUpNextButton() {
+        spinner.toggleSpinner(for: signUpNextButton, title: GeneralStrings.nextAction)
         dataManager.getWandaClasses() { success in
             guard success, let classesViewController = ViewControllerFactory.makeClassesViewController() else {
                 if let wandaAlertViewController = ViewControllerFactory.makeWandaAlertController(.systemError, delegate: self) {
+                    self.spinner.toggleSpinner(for: self.signUpNextButton, title: GeneralStrings.nextAction)
                     self.present(wandaAlertViewController, animated: true, completion: nil)
                 }
                 return
             }
 
             classesViewController.dataManager = self.dataManager
+            self.spinner.toggleSpinner(for: self.signUpNextButton, title: GeneralStrings.nextAction)
             self.navigationController?.pushViewController(classesViewController, animated: true)
         }
     }
 
     @objc
     private func closeView() {
-        guard let firebaseId = dataManager.wandaMother?.firebaseId else {
-            return
-        }
-
-        dataManager.getWandaMother(firebaseId: firebaseId) { success in
-            // to do should always kcik to the next screen, if we can't get the mother then we should have an alert there that says we're having trouble updating
-            guard success else {
-                if let wandaAlertViewController = ViewControllerFactory.makeWandaAlertController(.systemError, delegate: self) {
-                    self.present(wandaAlertViewController, animated: true, completion: nil)
-                }
-                return
-            }
-            self.dataManager.loadClasses()
-            self.popBack(toControllerType: ClassesViewController.self)
-        }
+        dataManager.needsReload = true
+        self.popBack(toControllerType: ClassesViewController.self)
     }
 
     // super cool! understand this better

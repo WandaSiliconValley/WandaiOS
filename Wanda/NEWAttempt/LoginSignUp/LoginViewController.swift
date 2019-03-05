@@ -20,7 +20,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
     @IBOutlet private weak var passwordInfoLabel: UILabel!
     @IBOutlet private weak var passwordTextField: UITextField!
     @IBOutlet private weak var scrollView: UIScrollView!
-
+    @IBOutlet private weak var spinner: UIActivityIndicatorView!
 
     private var dataManager = WandaDataManager.shared
     private var isValidEmail = false
@@ -41,7 +41,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
     override func viewDidLoad() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
-  //      passwordTextField.isSecureTextEntry = true
+        passwordTextField.isSecureTextEntry = true
         passwordTextField.underlined()
         emailTextField.underlined()
     }
@@ -60,7 +60,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
 
     @objc
     func keyboardWillShow(notification:NSNotification){
-
         var userInfo = notification.userInfo!
         var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
         keyboardFrame = self.view.convert(keyboardFrame, from: nil)
@@ -77,6 +76,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
         scrollView.contentInset = contentInset
     }
 
+    @IBAction func didEditEmail() {
+        emailInfoLabel.configureValidEmail(emailTextField)
+    }
+
+    @IBAction func didEditPassword() {
+        passwordInfoLabel.isHidden = true
+        passwordTextField.underlined(color: UIColor.white.cgColor)
+    }
+
     @IBAction func didTapShowHideButton() {
         passwordTextField.isSecureTextEntry = showHideIconClicked
         showHideIconClicked = !showHideIconClicked
@@ -88,8 +96,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
             return
         }
 
-        if let userEmail = emailTextField.text {
-            forgotPasswordViewController.userEmail = userEmail
+        if let email = emailTextField.text {
+            forgotPasswordViewController.email = email
         }
 
         self.navigationController?.pushViewController(forgotPasswordViewController, animated: true)
@@ -104,19 +112,34 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
         self.navigationController?.pushViewController(signUpViewController, animated: true)
     }
 
+    private func verifySignUp() -> Bool {
+        guard let email = emailTextField.text, let password = passwordTextField.text else {
+            return false
+        }
+
+        let emailValid = email.isEmailValid(emailTextField: emailTextField, emailInfoLabel: emailInfoLabel)
+        let passwordValid = password.isPasswordValid(passwordTextField: passwordTextField, passwordInfoLabel: passwordInfoLabel)
+
+        return emailValid && passwordValid
+    }
+
     @IBAction func didTapLogin() {
-        guard let userEmail = emailTextField.text, userEmail.verifyEmail(emailTextField: emailTextField, emailInfoLabel: emailInfoLabel), let userPassword = passwordTextField.text, userPassword.verifyPassword(passwordTextField: passwordTextField, passwordInfoLabel: passwordInfoLabel) else {
+        guard verifySignUp(), let email = emailTextField.text, let password = passwordTextField.text else {
             return
         }
 
+        spinner.toggleSpinner(for: loginButton, title: LoginSignUpStrings.login)
+
         // Sign in existing user.
-        Auth.auth().signIn(withEmail: userEmail, password: userPassword) { authResult, error in
+        Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
             guard let firebaseId = authResult?.user.uid else {
                 if let error = error, let errorCode = AuthErrorCode(rawValue: error._code) {
+                    self.spinner.toggleSpinner(for: self.loginButton, title: LoginSignUpStrings.login)
                     switch errorCode {
+                        case .invalidEmail, .missingEmail:
+                            _ = email.isEmailValid(emailTextField: self.emailTextField, emailInfoLabel: self.emailInfoLabel)
                         case .wrongPassword, .userNotFound:
-                            self.passwordInfoLabel.text = ErrorStrings.invalidCredentials
-                            self.passwordInfoLabel.isHidden = false
+                            self.emailInfoLabel.configureError(ErrorStrings.invalidCredentials, invalidTextField: self.emailTextField)
                         default:
                             if let wandaAlertViewController = ViewControllerFactory.makeWandaAlertController(.systemError, delegate: self) {
                                 self.present(wandaAlertViewController, animated: true, completion: nil)
@@ -127,23 +150,26 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
                 return
             }
 
-            self.passwordInfoLabel.isHidden = true
             self.dataManager.getWandaMother(firebaseId: firebaseId) { success in
                 guard success else {
+                    self.spinner.toggleSpinner(for: self.loginButton, title: LoginSignUpStrings.login)
                     self.presentSystemErrorAlert()
                     return
                 }
 
                 self.dataManager.getWandaClasses() { success in
                     guard success else {
+                        self.spinner.toggleSpinner(for: self.loginButton, title: LoginSignUpStrings.login)
                         self.presentSystemErrorAlert()
                         return
                     }
                     DispatchQueue.main.async {
                         guard let classesViewController = ViewControllerFactory.makeClassesViewController() else {
+                            assertionFailure("Could not instantiate ClassesViewController.")
                             return
                         }
 
+                        self.spinner.toggleSpinner(for: self.loginButton, title: LoginSignUpStrings.login)
                         self.navigationController?.pushViewController(classesViewController, animated: true)
                     }
                 }
