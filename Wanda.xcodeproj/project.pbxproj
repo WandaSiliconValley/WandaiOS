@@ -13,6 +13,7 @@
 		851000B22043327800D450AE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 851000B02043327800D450AE /* LaunchScreen.storyboard */; };
 		851000BA204339F800D450AE /* ClassesHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 851000B9204339F800D450AE /* ClassesHeaderView.xib */; };
 		851000BE2043403D00D450AE /* ClassesHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851000BD2043403D00D450AE /* ClassesHeaderView.swift */; };
+		8514F7E9223D778200E79869 /* AuthErrorCode+Wanda.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8514F7E8223D778200E79869 /* AuthErrorCode+Wanda.swift */; };
 		85235A5B22227027002CABD5 /* WandaAlertViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85235A5A22227027002CABD5 /* WandaAlertViewController.storyboard */; };
 		85235A5D22227032002CABD5 /* WandaAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85235A5C22227032002CABD5 /* WandaAlertViewController.swift */; };
 		8533412221E05BDC003A0ABB /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8533412121E05BDC003A0ABB /* SignUpViewController.swift */; };
@@ -27,7 +28,7 @@
 		854CB2DE21750FA4008A1019 /* ClassesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 854CB2DD21750FA4008A1019 /* ClassesTableViewCell.xib */; };
 		855232F622236618007043D5 /* CALayer+Wanda.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855232F522236618007043D5 /* CALayer+Wanda.swift */; };
 		85670812204C73BA00305B85 /* WandaClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85670811204C73BA00305B85 /* WandaClass.swift */; };
-		85670814204CCA7D00305B85 /* ReservationViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85670813204CCA7D00305B85 /* ReservationViewController.storyboard */; };
+		85670814204CCA7D00305B85 /* WandaClassViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85670813204CCA7D00305B85 /* WandaClassViewController.storyboard */; };
 		856960D22051009700ADFF9A /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 856960D12051009700ADFF9A /* LICENSE.txt */; };
 		856960D3205100A500ADFF9A /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 856960C82051008900ADFF9A /* OpenSans-Bold.ttf */; };
 		856960D4205100A700ADFF9A /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 856960CB2051008A00ADFF9A /* OpenSans-BoldItalic.ttf */; };
@@ -46,6 +47,8 @@
 		8581DD6121A3506700EC12EF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8581DD6021A3506700EC12EF /* GoogleService-Info.plist */; };
 		858C33D921E9304C00F17504 /* ViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858C33D821E9304C00F17504 /* ViewControllerFactory.swift */; };
 		858C33DC21E9308100F17504 /* UIStoryboard+Wanda.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858C33DB21E9308100F17504 /* UIStoryboard+Wanda.swift */; };
+		859ED2062249C00C006580C8 /* UILabel+Wanda.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859ED2052249C00C006580C8 /* UILabel+Wanda.swift */; };
+		859ED2082249C02C006580C8 /* UIActivityIndicatorView+Wanda.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859ED2072249C02C006580C8 /* UIActivityIndicatorView+Wanda.swift */; };
 		85A0E30A2220B6A100EEE5DF /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A0E3092220B6A100EEE5DF /* ForgotPasswordViewController.swift */; };
 		85A0E30C2220B6AB00EEE5DF /* ForgotPasswordViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85A0E30B2220B6AB00EEE5DF /* ForgotPasswordViewController.storyboard */; };
 		85A2E92422135B81005A9296 /* WandaClassesNetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A2E92322135B81005A9296 /* WandaClassesNetworkController.swift */; };
@@ -58,7 +61,7 @@
 		85C181B620ACE7BC003A8556 /* WandaSuccessViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85C181B520ACE7BC003A8556 /* WandaSuccessViewController.storyboard */; };
 		85D9F296221E08BA001155B2 /* WandaClassMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D9F295221E08BA001155B2 /* WandaClassMenu.swift */; };
 		85DCCCAC20DC164D00D36FBF /* WandaDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DCCCAB20DC164D00D36FBF /* WandaDataManager.swift */; };
-		85F7C8C9204FAF8A005A1D00 /* ReservationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F7C8C8204FAF8A005A1D00 /* ReservationViewController.swift */; };
+		85F7C8C9204FAF8A005A1D00 /* WandaClassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F7C8C8204FAF8A005A1D00 /* WandaClassViewController.swift */; };
 		85FB6A56212F860800EB8852 /* ClassesViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85FB6A55212F860800EB8852 /* ClassesViewController.storyboard */; };
 		85FB6A58212F861000EB8852 /* ClassesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB6A57212F861000EB8852 /* ClassesViewController.swift */; };
 		85FB6A5B212F870000EB8852 /* WandaLocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB6A5A212F870000EB8852 /* WandaLocalizableStrings.swift */; };
@@ -75,6 +78,7 @@
 		851000B32043327800D450AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		851000B9204339F800D450AE /* ClassesHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClassesHeaderView.xib; sourceTree = "<group>"; };
 		851000BD2043403D00D450AE /* ClassesHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassesHeaderView.swift; sourceTree = "<group>"; };
+		8514F7E8223D778200E79869 /* AuthErrorCode+Wanda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthErrorCode+Wanda.swift"; sourceTree = "<group>"; };
 		85235A5A22227027002CABD5 /* WandaAlertViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WandaAlertViewController.storyboard; sourceTree = "<group>"; };
 		85235A5C22227032002CABD5 /* WandaAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WandaAlertViewController.swift; sourceTree = "<group>"; };
 		8533412121E05BDC003A0ABB /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -89,7 +93,7 @@
 		854CB2DD21750FA4008A1019 /* ClassesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClassesTableViewCell.xib; sourceTree = "<group>"; };
 		855232F522236618007043D5 /* CALayer+Wanda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Wanda.swift"; sourceTree = "<group>"; };
 		85670811204C73BA00305B85 /* WandaClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WandaClass.swift; sourceTree = "<group>"; };
-		85670813204CCA7D00305B85 /* ReservationViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReservationViewController.storyboard; sourceTree = "<group>"; };
+		85670813204CCA7D00305B85 /* WandaClassViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WandaClassViewController.storyboard; sourceTree = "<group>"; };
 		856960C72051008900ADFF9A /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
 		856960C82051008900ADFF9A /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		856960C92051008900ADFF9A /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
@@ -108,6 +112,8 @@
 		8581DD6021A3506700EC12EF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		858C33D821E9304C00F17504 /* ViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerFactory.swift; sourceTree = "<group>"; };
 		858C33DB21E9308100F17504 /* UIStoryboard+Wanda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Wanda.swift"; sourceTree = "<group>"; };
+		859ED2052249C00C006580C8 /* UILabel+Wanda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Wanda.swift"; sourceTree = "<group>"; };
+		859ED2072249C02C006580C8 /* UIActivityIndicatorView+Wanda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIActivityIndicatorView+Wanda.swift"; sourceTree = "<group>"; };
 		85A0E3092220B6A100EEE5DF /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		85A0E30B2220B6AB00EEE5DF /* ForgotPasswordViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ForgotPasswordViewController.storyboard; sourceTree = "<group>"; };
 		85A2E92322135B81005A9296 /* WandaClassesNetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WandaClassesNetworkController.swift; sourceTree = "<group>"; };
@@ -120,7 +126,7 @@
 		85C181B520ACE7BC003A8556 /* WandaSuccessViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WandaSuccessViewController.storyboard; sourceTree = "<group>"; };
 		85D9F295221E08BA001155B2 /* WandaClassMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WandaClassMenu.swift; sourceTree = "<group>"; };
 		85DCCCAB20DC164D00D36FBF /* WandaDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WandaDataManager.swift; sourceTree = "<group>"; };
-		85F7C8C8204FAF8A005A1D00 /* ReservationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationViewController.swift; sourceTree = "<group>"; };
+		85F7C8C8204FAF8A005A1D00 /* WandaClassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WandaClassViewController.swift; sourceTree = "<group>"; };
 		85FB6A55212F860800EB8852 /* ClassesViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ClassesViewController.storyboard; sourceTree = "<group>"; };
 		85FB6A57212F861000EB8852 /* ClassesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassesViewController.swift; sourceTree = "<group>"; };
 		85FB6A5A212F870000EB8852 /* WandaLocalizableStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WandaLocalizableStrings.swift; sourceTree = "<group>"; };
@@ -178,12 +184,14 @@
 		851000A42043327800D450AE /* Wanda */ = {
 			isa = PBXGroup;
 			children = (
-				8581DD6021A3506700EC12EF /* GoogleService-Info.plist */,
-				851000A52043327800D450AE /* AppDelegate.swift */,
-				854096212162AE080074D98D /* NEWAttempt */,
+				8533412A21E14876003A0ABB /* Common */,
+				8533412021E05BC4003A0ABB /* LoginSignUp */,
+				854096222162AF400074D98D /* Classes */,
 				851000AE2043327800D450AE /* Assets.xcassets */,
+				851000A52043327800D450AE /* AppDelegate.swift */,
 				851000B02043327800D450AE /* LaunchScreen.storyboard */,
 				851000B32043327800D450AE /* Info.plist */,
+				8581DD6021A3506700EC12EF /* GoogleService-Info.plist */,
 			);
 			path = Wanda;
 			sourceTree = "<group>";
@@ -202,12 +210,12 @@
 		8533412021E05BC4003A0ABB /* LoginSignUp */ = {
 			isa = PBXGroup;
 			children = (
+				85A0E3092220B6A100EEE5DF /* ForgotPasswordViewController.swift */,
+				85A0E30B2220B6AB00EEE5DF /* ForgotPasswordViewController.storyboard */,
 				8581DD5E21A33E8F00EC12EF /* LoginViewController.swift */,
 				8581DD5C21A33E8400EC12EF /* LoginViewController.storyboard */,
 				8533412121E05BDC003A0ABB /* SignUpViewController.swift */,
 				8533412521E131D4003A0ABB /* SignUpViewController.storyboard */,
-				85A0E3092220B6A100EEE5DF /* ForgotPasswordViewController.swift */,
-				85A0E30B2220B6AB00EEE5DF /* ForgotPasswordViewController.storyboard */,
 			);
 			path = LoginSignUp;
 			sourceTree = "<group>";
@@ -216,26 +224,15 @@
 			isa = PBXGroup;
 			children = (
 				85A688A720E591E900094B4F /* Extensions */,
+				856960C62051007800ADFF9A /* Font */,
 				85140A1F2124F4FC00C393B5 /* Networking */,
 				85FB6A59212F86F500EB8852 /* Resources */,
-				858C33DA21E9307400F17504 /* Storyboards */,
-				858C33D721E9304000F17504 /* View Controllers */,
+				859ED20A2249C170006580C8 /* UI */,
 				85670811204C73BA00305B85 /* WandaClass.swift */,
 				85DCCCAB20DC164D00D36FBF /* WandaDataManager.swift */,
 				8533412821E140C6003A0ABB /* WandaMother.swift */,
 			);
 			path = Common;
-			sourceTree = "<group>";
-		};
-		854096212162AE080074D98D /* NEWAttempt */ = {
-			isa = PBXGroup;
-			children = (
-				8533412A21E14876003A0ABB /* Common */,
-				8533412021E05BC4003A0ABB /* LoginSignUp */,
-				854096222162AF400074D98D /* Classes */,
-				856960C62051007800ADFF9A /* Font */,
-			);
-			path = NEWAttempt;
 			sourceTree = "<group>";
 		};
 		854096222162AF400074D98D /* Classes */ = {
@@ -247,8 +244,8 @@
 				854CB2DD21750FA4008A1019 /* ClassesTableViewCell.xib */,
 				85FB6A57212F861000EB8852 /* ClassesViewController.swift */,
 				85FB6A55212F860800EB8852 /* ClassesViewController.storyboard */,
-				85F7C8C8204FAF8A005A1D00 /* ReservationViewController.swift */,
-				85670813204CCA7D00305B85 /* ReservationViewController.storyboard */,
+				85F7C8C8204FAF8A005A1D00 /* WandaClassViewController.swift */,
+				85670813204CCA7D00305B85 /* WandaClassViewController.storyboard */,
 				85D9F295221E08BA001155B2 /* WandaClassMenu.swift */,
 				85712A8A221CE0020058C9E2 /* WandaClassMenu.xib */,
 				85C181B320ACE629003A8556 /* WandaSuccessViewController.swift */,
@@ -275,34 +272,30 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
-		858C33D721E9304000F17504 /* View Controllers */ = {
+		859ED20A2249C170006580C8 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				858C33DB21E9308100F17504 /* UIStoryboard+Wanda.swift */,
 				858C33D821E9304C00F17504 /* ViewControllerFactory.swift */,
 				85235A5A22227027002CABD5 /* WandaAlertViewController.storyboard */,
 				85235A5C22227032002CABD5 /* WandaAlertViewController.swift */,
 			);
-			path = "View Controllers";
-			sourceTree = "<group>";
-		};
-		858C33DA21E9307400F17504 /* Storyboards */ = {
-			isa = PBXGroup;
-			children = (
-				858C33DB21E9308100F17504 /* UIStoryboard+Wanda.swift */,
-			);
-			path = Storyboards;
+			path = UI;
 			sourceTree = "<group>";
 		};
 		85A688A720E591E900094B4F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				85A688AA20E5949600094B4F /* Array+Wanda.swift */,
+				8514F7E8223D778200E79869 /* AuthErrorCode+Wanda.swift */,
+				855232F522236618007043D5 /* CALayer+Wanda.swift */,
 				8533412321E12DE8003A0ABB /* String+Wanda.swift */,
+				859ED2072249C02C006580C8 /* UIActivityIndicatorView+Wanda.swift */,
 				85A688A820E591F300094B4F /* UIColor+Wanda.swift */,
 				8545C3C0222076A600FC392E /* UIFont+Wanda.swift */,
+				859ED2052249C00C006580C8 /* UILabel+Wanda.swift */,
 				8545C3C222207A4D00FC392E /* UITextField+Wanda.swift */,
 				854CB2D921750CF0008A1019 /* UIView+Wanda.swift */,
-				855232F522236618007043D5 /* CALayer+Wanda.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -380,7 +373,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				856960D8205100AF00ADFF9A /* OpenSans-Light.ttf in Resources */,
-				85670814204CCA7D00305B85 /* ReservationViewController.storyboard in Resources */,
+				85670814204CCA7D00305B85 /* WandaClassViewController.storyboard in Resources */,
 				85C181B620ACE7BC003A8556 /* WandaSuccessViewController.storyboard in Resources */,
 				856960D9205100B200ADFF9A /* OpenSans-LightItalic.ttf in Resources */,
 				85235A5B22227027002CABD5 /* WandaAlertViewController.storyboard in Resources */,
@@ -463,6 +456,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8545C3C1222076A600FC392E /* UIFont+Wanda.swift in Sources */,
+				8514F7E9223D778200E79869 /* AuthErrorCode+Wanda.swift in Sources */,
 				85A688A920E591F300094B4F /* UIColor+Wanda.swift in Sources */,
 				85A2E926221366BC005A9296 /* AccountNetworkController.swift in Sources */,
 				851000BE2043403D00D450AE /* ClassesHeaderView.swift in Sources */,
@@ -482,11 +476,13 @@
 				85D9F296221E08BA001155B2 /* WandaClassMenu.swift in Sources */,
 				85A2E92422135B81005A9296 /* WandaClassesNetworkController.swift in Sources */,
 				857CDAA1222073540002F5E7 /* WandaImages.swift in Sources */,
+				859ED2062249C00C006580C8 /* UILabel+Wanda.swift in Sources */,
 				851000A62043327800D450AE /* AppDelegate.swift in Sources */,
 				854CB2DA21750CF0008A1019 /* UIView+Wanda.swift in Sources */,
 				858C33D921E9304C00F17504 /* ViewControllerFactory.swift in Sources */,
-				85F7C8C9204FAF8A005A1D00 /* ReservationViewController.swift in Sources */,
+				85F7C8C9204FAF8A005A1D00 /* WandaClassViewController.swift in Sources */,
 				85FB6A5D212F8B6E00EB8852 /* WandaConstants.swift in Sources */,
+				859ED2082249C02C006580C8 /* UIActivityIndicatorView+Wanda.swift in Sources */,
 				8545C3C322207A4D00FC392E /* UITextField+Wanda.swift in Sources */,
 				85A2E92A221366E9005A9296 /* ClassRSVPNetworkController.swift in Sources */,
 				8533412921E140C6003A0ABB /* WandaMother.swift in Sources */,
@@ -626,7 +622,7 @@
 				DEVELOPMENT_TEAM = 9DKR7A94JE;
 				INFOPLIST_FILE = Wanda/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = capitalone.wanda;
+				PRODUCT_BUNDLE_IDENTIFIER = capitalone.wanda.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -642,7 +638,7 @@
 				DEVELOPMENT_TEAM = 9DKR7A94JE;
 				INFOPLIST_FILE = Wanda/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = capitalone.wanda;
+				PRODUCT_BUNDLE_IDENTIFIER = capitalone.wanda.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

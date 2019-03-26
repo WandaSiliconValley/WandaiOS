@@ -26,7 +26,7 @@
 		<true/>
 	</dict>
 	<key>NSCalendarsUsageDescription</key>
-	<string>add class to calendar</string>
+	<string>$(PRODUCT_NAME) add class to calendar</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>OpenSans-SemiBold.ttf</string>

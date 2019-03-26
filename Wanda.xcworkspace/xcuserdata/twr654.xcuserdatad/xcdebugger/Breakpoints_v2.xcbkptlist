@@ -218,11 +218,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wanda/NEWAttempt/Classes/ClassesViewController.swift"
-            timestampString = "573269450.550769"
+            timestampString = "575257554.1674449"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
             landmarkName = "numberOfSections(in:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -446,11 +446,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wanda/NEWAttempt/Common/WandaDataManager.swift"
-            timestampString = "573269450.551155"
+            timestampString = "574287543.814474"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
             landmarkName = "getWandaClasses(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -574,7 +574,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wanda/NEWAttempt/Common/WandaDataManager.swift"
-            timestampString = "573269450.551376"
+            timestampString = "574287543.814634"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "25"
@@ -622,11 +622,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wanda/NEWAttempt/LoginSignUp/ForgotPasswordViewController.swift"
-            timestampString = "573269450.551447"
+            timestampString = "575257554.1677459"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
             landmarkName = "didTapResetPassword()"
             landmarkType = "7">
             <Locations>
@@ -638,12 +638,12 @@
                   moduleName = "Wanda"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/twr654/Wanda/Wanda/NEWAttempt/LoginSignUp/ForgotPasswordViewController.swift"
-                  timestampString = "573250628.847411"
+                  timestampString = "575252791.081971"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "104"
                   endingLineNumber = "104"
-                  offsetFromSymbolStart = "1240">
+                  offsetFromSymbolStart = "1271">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -653,7 +653,7 @@
                   moduleName = "Wanda"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/twr654/Wanda/Wanda/NEWAttempt/LoginSignUp/ForgotPasswordViewController.swift"
-                  timestampString = "573250628.849088"
+                  timestampString = "575252791.08369"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "105"
@@ -670,11 +670,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wanda/NEWAttempt/LoginSignUp/ForgotPasswordViewController.swift"
-            timestampString = "573269450.551514"
+            timestampString = "575257554.167794"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
             landmarkName = "didTapResetPassword()"
             landmarkType = "7">
          </BreakpointContent>
@@ -686,11 +686,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wanda/NEWAttempt/LoginSignUp/ForgotPasswordViewController.swift"
-            timestampString = "573269450.551576"
+            timestampString = "575257554.167833"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "123"
-            endingLineNumber = "123"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
             landmarkName = "didTapResetPassword()"
             landmarkType = "7">
          </BreakpointContent>
@@ -702,23 +702,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wanda/NEWAttempt/LoginSignUp/ForgotPasswordViewController.swift"
-            timestampString = "573269450.551638"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
-            landmarkName = "keyboardWillShow(notification:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Wanda/NEWAttempt/LoginSignUp/ForgotPasswordViewController.swift"
-            timestampString = "573269450.551698"
+            timestampString = "575257554.16787"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "76"
@@ -733,12 +717,28 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Wanda/NEWAttempt/Common/WandaDataManager.swift"
-            timestampString = "573269450.55176"
+            filePath = "Wanda/NEWAttempt/LoginSignUp/ForgotPasswordViewController.swift"
+            timestampString = "575257554.167907"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "keyboardWillShow(notification:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Wanda/NEWAttempt/Common/WandaDataManager.swift"
+            timestampString = "574287543.814886"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
             landmarkName = "createWandaAccount(firebaseId:email:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -750,11 +750,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wanda/NEWAttempt/Common/WandaDataManager.swift"
-            timestampString = "573269450.551819"
+            timestampString = "574287543.814925"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
             landmarkName = "createWandaAccount(firebaseId:email:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -766,11 +766,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wanda/NEWAttempt/LoginSignUp/SignUpViewController.swift"
-            timestampString = "573269450.551963"
+            timestampString = "575257554.167973"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "190"
-            endingLineNumber = "190"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
             landmarkName = "didTapSignUp()"
             landmarkType = "7">
          </BreakpointContent>
@@ -782,11 +782,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wanda/NEWAttempt/LoginSignUp/SignUpViewController.swift"
-            timestampString = "573269450.552027"
+            timestampString = "575257554.168017"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "176"
-            endingLineNumber = "176"
+            startingLineNumber = "195"
+            endingLineNumber = "195"
             landmarkName = "didTapSignUp()"
             landmarkType = "7">
          </BreakpointContent>
@@ -798,71 +798,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wanda/NEWAttempt/Classes/ClassesViewController.swift"
-            timestampString = "573269450.552088"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
-            landmarkName = "viewWillAppear(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Wanda/NEWAttempt/Classes/ClassesViewController.swift"
-            timestampString = "573269450.552146"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
-            landmarkName = "viewWillAppear(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Wanda/NEWAttempt/Classes/ClassesViewController.swift"
-            timestampString = "573269450.552211"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "viewWillAppear(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Wanda/NEWAttempt/Classes/ClassesViewController.swift"
-            timestampString = "573269450.5522881"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "viewWillAppear(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Wanda/NEWAttempt/Classes/ClassesViewController.swift"
-            timestampString = "573269450.552359"
+            timestampString = "575257554.168059"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "58"
@@ -877,44 +813,188 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Wanda/NEWAttempt/Common/WandaDataManager.swift"
-            timestampString = "573269450.552418"
+            filePath = "Wanda/NEWAttempt/LoginSignUp/SignUpViewController.swift"
+            timestampString = "575257554.168099"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
+            landmarkName = "verifySignUp()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Wanda/NEWAttempt/LoginSignUp/SignUpViewController.swift"
+            timestampString = "575257554.1681401"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
+            landmarkName = "isConfirmationPasswordValid()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Wanda/NEWAttempt/Common/WandaDataManager.swift"
+            timestampString = "574287543.81515"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "getReservedWandaClass(classId:motherId:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Wanda/NEWAttempt/Common/WandaDataManager.swift"
+            timestampString = "574287543.8151881"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
+            landmarkName = "getReservedWandaClass(classId:motherId:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Wanda/NEWAttempt/Common/Networking/WandaClassesNetworkController.swift"
+            timestampString = "574404051.332238"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "getReservedWandaClass(motherId:classId:resultHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Wanda/NEWAttempt/Common/Networking/WandaClassesNetworkController.swift"
+            timestampString = "574404051.33231"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "getReservedWandaClass(motherId:classId:resultHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Wanda/NEWAttempt/Common/Networking/WandaClassesNetworkController.swift"
+            timestampString = "574404051.33237"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "getReservedWandaClass(motherId:classId:resultHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Wanda/NEWAttempt/Common/WandaDataManager.swift"
+            timestampString = "574287543.816052"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
             landmarkName = "getWandaMother(firebaseId:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Wanda/NEWAttempt/LoginSignUp/SignUpViewController.swift"
+            timestampString = "575257554.168245"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
+            landmarkName = "didTapSignUp()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Wanda/NEWAttempt/Classes/ReservationViewController.swift"
+            timestampString = "575254705.23333"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "232"
+            endingLineNumber = "232"
+            landmarkName = "didTapAddToCalendar()"
             landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Wanda.WandaDataManager.getWandaMother(firebaseId: Swift.String, completion: (Swift.Bool) -&gt; ()) -&gt; ()"
+                  symbolName = "Wanda.ReservationViewController.didTapAddToCalendar() -&gt; ()"
                   moduleName = "Wanda"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/twr654/Wanda/Wanda/NEWAttempt/Common/WandaDataManager.swift"
-                  timestampString = "573250628.894207"
+                  urlString = "file:///Users/twr654/Wanda/Wanda/NEWAttempt/Classes/ReservationViewController.swift"
+                  timestampString = "575252791.142238"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "67"
-                  endingLineNumber = "67"
-                  offsetFromSymbolStart = "43">
+                  startingLineNumber = "238"
+                  endingLineNumber = "238"
+                  offsetFromSymbolStart = "98">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Wanda.WandaMother&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Wanda.WandaDataManager.getWandaMother(firebaseId: Swift.String, completion: (Swift.Bool) -&gt; ()) -&gt; ()"
+                  symbolName = "closure #1 () -&gt; () in Wanda.ReservationViewController.didTapAddToCalendar() -&gt; ()"
                   moduleName = "Wanda"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/twr654/Wanda/Wanda/NEWAttempt/Common/WandaDataManager.swift"
-                  timestampString = "573250628.895779"
+                  urlString = "file:///Users/twr654/Wanda/Wanda/NEWAttempt/Classes/ReservationViewController.swift"
+                  timestampString = "575252791.143849"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "68"
-                  endingLineNumber = "68"
-                  offsetFromSymbolStart = "82">
+                  startingLineNumber = "239"
+                  endingLineNumber = "239"
+                  offsetFromSymbolStart = "41">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -925,13 +1005,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Wanda/NEWAttempt/Common/WandaDataManager.swift"
-            timestampString = "573269450.552498"
+            filePath = "Wanda/NEWAttempt/Classes/ReservationViewController.swift"
+            timestampString = "575254705.233912"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
-            landmarkName = "getWandaMother(firebaseId:completion:)"
+            startingLineNumber = "162"
+            endingLineNumber = "162"
+            landmarkName = "configureNextClassView()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -941,13 +1021,109 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Wanda/NEWAttempt/Common/WandaDataManager.swift"
-            timestampString = "573269450.55256"
+            filePath = "Wanda/NEWAttempt/Classes/ReservationViewController.swift"
+            timestampString = "575254705.234432"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "getWandaMother(firebaseId:completion:)"
+            startingLineNumber = "163"
+            endingLineNumber = "163"
+            landmarkName = "configureNextClassView()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Wanda/NEWAttempt/Classes/ReservationViewController.swift"
+            timestampString = "575254705.2348959"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "220"
+            endingLineNumber = "220"
+            landmarkName = "didTapAddToCalendar()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Wanda/NEWAttempt/Classes/ReservationViewController.swift"
+            timestampString = "575254705.235413"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "235"
+            endingLineNumber = "235"
+            landmarkName = "didTapAddToCalendar()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in Wanda.ReservationViewController.didTapAddToCalendar() -&gt; ()"
+                  moduleName = "Wanda"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/twr654/Wanda/Wanda/NEWAttempt/Classes/ReservationViewController.swift"
+                  timestampString = "575252791.1572191"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "240"
+                  endingLineNumber = "240"
+                  offsetFromSymbolStart = "76">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Bool, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 () -&gt; () in Wanda.ReservationViewController.didTapAddToCalendar() -&gt; ()"
+                  moduleName = "Wanda"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/twr654/Wanda/Wanda/NEWAttempt/Classes/ReservationViewController.swift"
+                  timestampString = "575252791.158685"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "241"
+                  endingLineNumber = "241"
+                  offsetFromSymbolStart = "110">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Wanda/NEWAttempt/Classes/ReservationViewController.swift"
+            timestampString = "575254705.2358969"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "237"
+            endingLineNumber = "237"
+            landmarkName = "didTapAddToCalendar()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Wanda/NEWAttempt/Classes/ReservationViewController.swift"
+            timestampString = "575254705.236367"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "236"
+            endingLineNumber = "236"
+            landmarkName = "didTapAddToCalendar()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
