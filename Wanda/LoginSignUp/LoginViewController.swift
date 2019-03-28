@@ -32,7 +32,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
     private enum ActionState {
         case contactUs
         case retryGetClasses
-        case retryGetMother
+        case retryGetMotehr
         case retryLogin
     }
 

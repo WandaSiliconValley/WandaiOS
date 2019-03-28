@@ -6,7 +6,6 @@
 //  Copyright © 2019 Bell, Courtney. All rights reserved.
 //
 
-import BrightFutures
 import Firebase
 import MessageUI
 import UIKit
