@@ -26,11 +26,11 @@ extension String {
         return true
     }
 
-    func isPasswordValid(passwordTextField: UITextField, passwordInfoLabel: UILabel) -> Bool {
+    func isPasswordValid(passwordTextField: UITextField, passwordInfoLabel: UILabel, checkLength: Bool) -> Bool {
         if self.isEmpty {
             passwordInfoLabel.configureError(ErrorStrings.passwordRequired, invalidTextField: passwordTextField)
             return false
-        } else if self.count <= 6 {
+        } else if self.count <= 6 && checkLength {
             passwordInfoLabel.configureError(ErrorStrings.passwordError, invalidTextField: passwordTextField)
             return false
         }

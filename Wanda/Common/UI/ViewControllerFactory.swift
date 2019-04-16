@@ -31,7 +31,7 @@ struct ViewControllerFactory {
     }
 
     /// The view controller that pops up when the user taps the "Next Class" on the "Classes" screen.
-    static func makeWandaClassViewController(wandaClass: WandaClassInfo, classType: ClassType) -> WandaClassViewController? {
+    static func makeWandaClassViewController(wandaClass: WandaClass, classType: ClassType) -> WandaClassViewController? {
         guard let wandaClassViewController = UIStoryboard(identifier: .wandaClass).instantiateViewController(withIdentifier: WandaClassViewController.storyboardIdentifier) as? WandaClassViewController else {
             assertionFailure("Could not instantiate WandaClassViewController.")
             return nil
@@ -72,14 +72,12 @@ struct ViewControllerFactory {
     /// The view controller that appears when the user taps contact us the mail app will open and pre-fill an email.
     static func makeContactUsViewController(for contactUsType: ContactUsType) -> MFMailComposeViewController? {
         guard MFMailComposeViewController.canSendMail() else {
-            print("Mail services are not available")
-            // to do this should be an alert or something
+            assertionFailure("Could not instantiate ContactUsViewController.")
             return nil
         }
 
         let emailComposeViewController = MFMailComposeViewController()
 
-        // to do verify email's
         switch contactUsType {
             case .login:
                 emailComposeViewController.setToRecipients([WandaConstants.wandaSupportEmail])

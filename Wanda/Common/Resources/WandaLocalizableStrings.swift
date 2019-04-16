@@ -80,12 +80,16 @@ struct ClassStrings {
 }
 
 struct ErrorStrings {
+    static var classesErrorTryAgain: String {
+        return NSLocalizedString("Wanda_Error_ClassesErrorTryAgain",
+            value: "We can't seem to update your classes right now.",
+            comment: "Alert message informing the user that the classes can't be updated. They can either try again or contact support.")
+    }
     static var errorMessage: String {
         return NSLocalizedString("Wanda_Error_ErrorMessage",
             value: "Looks like something isn't working properly. Try again or contact support for help.",
             comment: "Alert message informing the user that something went wrong.")
     }
-    // to do ask about confirmation password required?^
     static var emailNotFound: String {
         return NSLocalizedString("Wanda_Error_EmailNotFound",
             value: "Email not on file with WANDA",
@@ -100,6 +104,16 @@ struct ErrorStrings {
         return NSLocalizedString("Wanda_Error_InvalidCredentials",
             value: "Email or password is incorrect",
             comment: "Error message indicating the email or password is incorrect.")
+    }
+    static var networkError: String {
+        return NSLocalizedString("Wanda_Error_NetworkError",
+            value: "Network Error",
+            comment: "Error message indicating that there was a network error.")
+    }
+    static var networkErrorMessage: String {
+        return NSLocalizedString("Wanda_Error_NetworkErrorMessage",
+            value: "Looks like you aren't connected to a network.",
+            comment: "Error message indicating that the user is not connected to a network.")
     }
     static var passwordError: String {
         return NSLocalizedString("Wanda_Error_PasswordError",
@@ -159,6 +173,11 @@ struct GeneralStrings {
             value: "SUBMIT",
             comment: "Button title indicating that on tap the user will submit the form.")
     }
+    static var success: String {
+        return NSLocalizedString("Wanda_General_Success",
+            value: "Success",
+            comment: "Message indicating that the action was a success.")
+    }
     static var tryAgainAction: String {
         return NSLocalizedString("Wanda_Class_TryAgain",
             value: "TRY AGAIN",
@@ -196,6 +215,11 @@ struct LoginSignUpStrings {
         return NSLocalizedString("Wanda_LoginSignUp_ResetPassword",
             value: "RESET PASSWORD",
             comment: "Button title indicating that on tap the user will reset their password.")
+    }
+    static var resetPasswordMessage: String {
+        return NSLocalizedString("Wanda_LoginSignUp_ResetPasswordMessage",
+            value: "An email was sent your way.",
+            comment: "Message indicating that an email was sent to the user to reset their password.")
     }
     static var signUpHelp: String {
         return NSLocalizedString("Wanda_LoginSignUp_SignUpHelp",

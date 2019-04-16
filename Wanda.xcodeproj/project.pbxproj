@@ -66,6 +66,8 @@
 		85FB6A58212F861000EB8852 /* ClassesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB6A57212F861000EB8852 /* ClassesViewController.swift */; };
 		85FB6A5B212F870000EB8852 /* WandaLocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB6A5A212F870000EB8852 /* WandaLocalizableStrings.swift */; };
 		85FB6A5D212F8B6E00EB8852 /* WandaConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB6A5C212F8B6E00EB8852 /* WandaConstants.swift */; };
+		F16E58552260699D00040741 /* DateFormatter+Wanda.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16E58542260699D00040741 /* DateFormatter+Wanda.swift */; };
+		F17799A922570D1B000B3F3F /* UIViewController+Wanda.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17799A822570D1B000B3F3F /* UIViewController+Wanda.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -132,6 +134,8 @@
 		85FB6A5A212F870000EB8852 /* WandaLocalizableStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WandaLocalizableStrings.swift; sourceTree = "<group>"; };
 		85FB6A5C212F8B6E00EB8852 /* WandaConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WandaConstants.swift; sourceTree = "<group>"; };
 		9518B1ED484EC8C2CB9E8743 /* Pods-Wanda.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wanda.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wanda/Pods-Wanda.debug.xcconfig"; sourceTree = "<group>"; };
+		F16E58542260699D00040741 /* DateFormatter+Wanda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Wanda.swift"; sourceTree = "<group>"; };
+		F17799A822570D1B000B3F3F /* UIViewController+Wanda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Wanda.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -296,6 +300,8 @@
 				859ED2052249C00C006580C8 /* UILabel+Wanda.swift */,
 				8545C3C222207A4D00FC392E /* UITextField+Wanda.swift */,
 				854CB2D921750CF0008A1019 /* UIView+Wanda.swift */,
+				F17799A822570D1B000B3F3F /* UIViewController+Wanda.swift */,
+				F16E58542260699D00040741 /* DateFormatter+Wanda.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -465,9 +471,11 @@
 				855232F622236618007043D5 /* CALayer+Wanda.swift in Sources */,
 				8581DD5F21A33E8F00EC12EF /* LoginViewController.swift in Sources */,
 				85670812204C73BA00305B85 /* WandaClass.swift in Sources */,
+				F17799A922570D1B000B3F3F /* UIViewController+Wanda.swift in Sources */,
 				85235A5D22227032002CABD5 /* WandaAlertViewController.swift in Sources */,
 				8545C3C522207DD000FC392E /* WandaColors.swift in Sources */,
 				85D9F296221E08BA001155B2 /* WandaClassMenu.swift in Sources */,
+				F16E58552260699D00040741 /* DateFormatter+Wanda.swift in Sources */,
 				85A2E92422135B81005A9296 /* WandaClassesNetworkController.swift in Sources */,
 				857CDAA1222073540002F5E7 /* WandaImages.swift in Sources */,
 				859ED2062249C00C006580C8 /* UILabel+Wanda.swift in Sources */,

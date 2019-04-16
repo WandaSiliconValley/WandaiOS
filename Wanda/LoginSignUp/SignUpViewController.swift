@@ -12,22 +12,42 @@ import UIKit
 
 class SignUpViewController: UIViewController, UITextFieldDelegate, MFMailComposeViewControllerDelegate, WandaAlertViewDelegate {
     @IBOutlet private weak var confirmPasswordInfoLabel: UILabel!
-    @IBOutlet private weak var confirmPasswordTextField: UITextField!
+    @IBOutlet private var confirmPasswordTextField: UITextField!
     @IBOutlet private weak var emailInfoLabel: UILabel!
-    @IBOutlet private weak var emailTextField: UITextField!
+    @IBOutlet private var emailTextField: UITextField!
     @IBOutlet private weak var passwordInfoLabel: UILabel!
-    @IBOutlet private weak var passwordTextField: UITextField!
+    @IBOutlet private var passwordTextField: UITextField!
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var signUpButton: UIButton!
     @IBOutlet private weak var spinner: UIActivityIndicatorView!
 
+    private var actionState: ActionState = .retryCreateFirebaseUser
     private var dataManager = WandaDataManager.shared
+    private var motherId: String?
+    private var password: String {
+        guard let password = passwordTextField.text else {
+            return ""
+        }
+        
+        return password.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+    private var confirmationPassword: String {
+        guard let confirmationPassword = confirmPasswordTextField.text else {
+            return ""
+        }
+
+        return confirmationPassword.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
     private var passwordsMatch: Bool {
-        // to do need to trim password whitespace
-        return passwordTextField.text == confirmPasswordTextField.text
+        return password.trimmingCharacters(in: .whitespacesAndNewlines) == confirmationPassword.trimmingCharacters(in: .whitespacesAndNewlines)
     }
     private var showPasswordClicked = false
     private var showConfirmPasswordClicked = false
+    
+    private enum ActionState {
+        case retryCreateFirebaseUser
+        case retryCreateWandaMother
+    }
 
     static let storyboardIdentifier = String(describing: SignUpViewController.self)
 
@@ -41,6 +61,13 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, MFMailCompose
             navigationBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 80.0)
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+
+    }
+
 
     override func viewDidLoad() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -49,9 +76,11 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, MFMailCompose
         // to do !!
 //        passwordTextField.isSecureTextEntry = true
 //        confirmPasswordTextField.isSecureTextEntry = true
+        self.view.layoutIfNeeded()
         passwordTextField.underlined()
         emailTextField.underlined()
         confirmPasswordTextField.underlined()
+
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
     }
@@ -106,7 +135,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, MFMailCompose
     }
 
     private func verifySignUp() -> Bool {
-        guard let email = emailTextField.text, let password = passwordTextField.text else {
+        guard let email = emailTextField.text else {
             return false
         }
 
@@ -115,20 +144,15 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, MFMailCompose
         }
 
         let emailValid = email.isEmailValid(emailTextField: emailTextField, emailInfoLabel: emailInfoLabel)
-        let passwordValid = password.isPasswordValid(passwordTextField: passwordTextField, passwordInfoLabel: passwordInfoLabel)
+        let passwordValid = password.isPasswordValid(passwordTextField: passwordTextField, passwordInfoLabel: passwordInfoLabel, checkLength: true)
         let confirmationPasswordValid = isConfirmationPasswordValid()
 
         return emailValid && passwordValid && confirmationPasswordValid && passwordsMatch
     }
 
     private func isConfirmationPasswordValid() -> Bool {
-        guard let password = passwordTextField.text, let confirmationPassword = confirmPasswordTextField.text else {
-            return false
-        }
-
         if password.isEmpty && !confirmationPassword.isEmpty {
             passwordInfoLabel.configureError(LoginSignUpStrings.passwordsDoNotMatch, invalidTextField: passwordTextField)
-
             return false
         }
 
@@ -137,7 +161,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, MFMailCompose
 
     private func contactSupport() {
         guard let contactUsViewController = ViewControllerFactory.makeContactUsViewController(for: .signUp) else {
-            assertionFailure("Could not load the ContactUsViewController.")
+            self.presentErrorAlert(for: .contactUsError)
             return
         }
 
@@ -156,7 +180,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, MFMailCompose
 
     @IBAction private func didEditPassword() {
         passwordInfoLabel.isHidden = true
-        passwordTextField.underlined(color: UIColor.white.cgColor)
+        passwordTextField.underlined()
         confirmPasswordInfoLabel.isHidden = true
     }
 
@@ -171,7 +195,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, MFMailCompose
     }
 
     @IBAction private func didTapSignUp() {
-        guard verifySignUp(), let email = emailTextField.text, let password = passwordTextField.text else {
+        guard verifySignUp(), let email = emailTextField.text else {
             return
         }
 
@@ -183,6 +207,11 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, MFMailCompose
                     self.spinner.toggleSpinner(for: self.signUpButton, title: GeneralStrings.submitAction)
 
                     switch errorCode {
+                        case .networkError:
+                            self.actionState = .retryCreateFirebaseUser
+                            if let wandaAlertViewController = ViewControllerFactory.makeWandaAlertController(.networkError, delegate: self) {
+                                self.present(wandaAlertViewController, animated: true, completion: nil)
+                            }
                         case .invalidEmail, .missingEmail:
                             _ = email.isEmailValid(emailTextField: self.emailTextField, emailInfoLabel: self.emailInfoLabel)
                         case .emailAlreadyInUse:
@@ -191,40 +220,51 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, MFMailCompose
                             self.confirmPasswordInfoLabel.text = ErrorStrings.invalidCredentials
                             self.confirmPasswordInfoLabel.isHidden = false
                         default:
-                            if let wandaAlertViewController = ViewControllerFactory.makeWandaAlertController(.systemError, delegate: self) {
-                                self.present(wandaAlertViewController, animated: true, completion: nil)
-                            }
+                            self.actionState = .retryCreateFirebaseUser
+                            self.presentErrorAlert(for: .systemError)
                     }
                 }
 
                 return
             }
 
+            self.motherId = motherId
             self.confirmPasswordInfoLabel.isHidden = true
-            self.dataManager.createWandaAccount(firebaseId: motherId, email: email) { success in
-                guard success, let signUpSuccessViewController = ViewControllerFactory.makeWandaSuccessController() else {
-                    self.spinner.toggleSpinner(for: self.signUpButton, title: GeneralStrings.submitAction)
-                    // to do hate this in all instances can we either make this more reusable or move into datamanager?
-                    if let wandaAlertViewController = ViewControllerFactory.makeWandaAlertController(.systemError, delegate: self) {
-                        self.present(wandaAlertViewController, animated: true, completion: nil)
-                    }
+            self.createWandaMother()
+        }
+    }
+    
+    private func createWandaMother() {
+        guard verifySignUp(), let email = emailTextField.text, let motherId = motherId else {
+            return
+        }
 
-                    return
-                }
-                signUpSuccessViewController.successType = .signUp
+        self.dataManager.createWandaAccount(firebaseId: motherId, email: email) { success in
+            guard success, let signUpSuccessViewController = ViewControllerFactory.makeWandaSuccessController() else {
+                self.actionState = .retryCreateWandaMother
                 self.spinner.toggleSpinner(for: self.signUpButton, title: GeneralStrings.submitAction)
-                self.navigationController?.pushViewController(signUpSuccessViewController, animated: true)
+                self.presentErrorAlert(for: .systemError)
+                return
             }
+            signUpSuccessViewController.successType = .signUp
+            self.spinner.toggleSpinner(for: self.signUpButton, title: GeneralStrings.submitAction)
+            self.navigationController?.pushViewController(signUpSuccessViewController, animated: true)
         }
     }
 
     @IBAction private func didTapContactUs() {
+        // to do we will want contact support once we get the retry limit in place - retry 2 times then contact support
         contactSupport()
     }
 
     // MARK: WandaAlertViewDelegate
 
     func didTapActionButton() {
-        contactSupport()
+        switch actionState {
+            case .retryCreateFirebaseUser:
+                didTapSignUp()
+            case .retryCreateWandaMother:
+                createWandaMother()
+        }
     }
 }

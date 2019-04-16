@@ -11,9 +11,11 @@ import MessageUI
 import UIKit
 
 enum WandaAlertType {
-    case forgotPasswordSuccess
-    case cancelRSVP
+    case addEventError
     case cantGetClasses
+    case cancelRSVP
+    case contactUsError
+    case forgotPasswordSuccess
     case networkError
     case systemError
     case unsavedChanges
@@ -36,6 +38,7 @@ class WandaAlertViewController: UIViewController, MFMailComposeViewControllerDel
 
     static let storyboardIdentifier = String(describing: WandaAlertViewController.self)
 
+    // to do can we make it default before for retry to be the first action and support to be the second????
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
@@ -45,30 +48,37 @@ class WandaAlertViewController: UIViewController, MFMailComposeViewControllerDel
         closeButton.isHidden = false
 
         switch alertType {
-            // to do get real text for this alert
-            case .forgotPasswordSuccess:
-                alertTitleLabel.text = "Success"
-                alertMessageLabel.text = "An email was sent your way."
+            case .addEventError:
+                alertTitleLabel.text = ErrorStrings.systemError
+                alertMessageLabel.text = "We can't seem to access your calendar. You may need to check your settings."
                 closeButton.isHidden = true
                 actionButton.setTitle(GeneralStrings.dismissAction, for: .normal)
-            // to do ask m about this one
+            case .contactUsError:
+                alertTitleLabel.text = ErrorStrings.systemError
+                alertMessageLabel.text = "We can't seem to access your email. You may need to check your settings."
+                closeButton.isHidden = true
+                actionButton.setTitle(GeneralStrings.dismissAction, for: .normal)
+            case .forgotPasswordSuccess:
+                alertTitleLabel.text = GeneralStrings.success
+                alertMessageLabel.text = LoginSignUpStrings.resetPasswordMessage
+                closeButton.isHidden = true
+                actionButton.setTitle(GeneralStrings.dismissAction, for: .normal)
             case .cantGetClasses:
                 alertTitleLabel.text = ErrorStrings.systemError
-                alertMessageLabel.text = "We can't seem to update your classes right now.  Try again later or contact support for help."
-                actionButton.setTitle(ErrorStrings.support, for: .normal)
+                alertMessageLabel.text = ErrorStrings.classesErrorTryAgain
+                actionButton.setTitle(GeneralStrings.retryAction, for: .normal)
             case .cancelRSVP:
                 alertTitleLabel.text = ClassStrings.sorryYouCantMakeIt
                 alertMessageLabel.text = ClassStrings.requiredClassMessage
                 actionButton.setTitle(GeneralStrings.continueAction, for: .normal)
-            // to do need real text for this one
             case .networkError:
-                alertTitleLabel.text = "Network Error"
-                alertMessageLabel.text = "Looks like you aren't connected to a network."
+                alertTitleLabel.text = ErrorStrings.networkError
+                alertMessageLabel.text = ErrorStrings.networkErrorMessage
                 actionButton.setTitle(GeneralStrings.retryAction, for: .normal)
             case .systemError:
                 alertTitleLabel.text = ErrorStrings.systemError
                 alertMessageLabel.text = ErrorStrings.errorMessage
-                actionButton.setTitle(ErrorStrings.support, for: .normal)
+                actionButton.setTitle(GeneralStrings.retryAction, for: .normal)
             case .unsavedChanges:
                 alertTitleLabel.isHidden = true
                 alertMessageLabel.text = AlertStrings.oopsMessage

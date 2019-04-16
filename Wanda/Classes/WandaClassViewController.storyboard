@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aGe-8Y-NHp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aGe-8Y-NHp">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -174,13 +174,13 @@
                                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tN8-9W-pAw">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tN8-9W-pAw" userLabel="Subtract Button">
                                         <rect key="frame" x="270" y="26" width="22" height="22"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="tN8-9W-pAw" secondAttribute="height" multiplier="1:1" id="xz9-nU-Edj"/>
                                         </constraints>
                                         <color key="tintColor" red="0.40000000000000002" green="0.20392156862745098" blue="0.59607843137254901" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" image="PurpleMinusIcon"/>
+                                        <state key="normal" image="MinusIcon"/>
                                         <connections>
                                             <action selector="didTapSubtractChildButton" destination="aGe-8Y-NHp" eventType="touchUpInside" id="6Ce-9m-Zi1"/>
                                         </connections>
@@ -271,7 +271,7 @@
                                     <constraint firstAttribute="trailing" secondItem="E01-2n-d63" secondAttribute="trailing" constant="16" id="y04-sQ-Opf"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2tF-6x-8Fu">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2tF-6x-8Fu" userLabel="Make RSVP View">
                                 <rect key="frame" x="16" y="591" width="343" height="56"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="usa-Ja-BXn">
@@ -338,14 +338,14 @@
                         <outlet property="addressLabel" destination="d4H-2S-O4k" id="DeV-U9-cbf"/>
                         <outlet property="cancelRSVPButton" destination="E01-2n-d63" id="Xav-9g-hV6"/>
                         <outlet property="changeRSVPButton" destination="P4w-GI-Q3h" id="jFX-iY-rhR"/>
+                        <outlet property="changeRSVPSpinner" destination="1f6-uH-oJP" id="WVJ-6d-fqW"/>
                         <outlet property="changeRSVPView" destination="d1q-Ib-1fd" id="nwM-UA-2UT"/>
-                        <outlet property="changeReservationSpinner" destination="1f6-uH-oJP" id="6t8-Qp-uJl"/>
                         <outlet property="childCareView" destination="EXH-Vm-IQF" id="HR6-jG-5WV"/>
                         <outlet property="dateLabel" destination="pEg-Je-bTT" id="Tas-tf-69t"/>
                         <outlet property="dateTimeToContentViewTopConstraint" destination="6Y0-J0-gS0" id="hVO-Cp-Och"/>
                         <outlet property="dateTimeToReservedViewTopConstraint" destination="sYO-N6-5b7" id="19Z-Ez-xoY"/>
                         <outlet property="locationNameLabel" destination="vlJ-lB-25m" id="31z-0z-CKi"/>
-                        <outlet property="makeReservationSpinner" destination="Ruz-lk-voF" id="trg-Ty-YPI"/>
+                        <outlet property="makeRSVPSpinner" destination="Ruz-lk-voF" id="PaC-6i-8E6"/>
                         <outlet property="numberOfChildrenLabel" destination="fVL-cK-8yj" id="laG-hd-rQZ"/>
                         <outlet property="reservedHeader" destination="8bK-jn-5hD" id="5iY-ok-GWz"/>
                         <outlet property="reservedHeaderHeightConstraint" destination="Vih-6z-kG5" id="1X5-yx-yvm"/>
@@ -363,7 +363,7 @@
         <image name="AddIcon" width="23" height="23"/>
         <image name="Clock" width="21" height="21"/>
         <image name="Location" width="17" height="24"/>
-        <image name="PurpleMinusIcon" width="23" height="23"/>
+        <image name="MinusIcon" width="23" height="23"/>
         <image name="Stroller" width="23" height="24"/>
         <image name="WhiteCheckIcon" width="22" height="17"/>
     </resources>

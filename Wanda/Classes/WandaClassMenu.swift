@@ -10,10 +10,11 @@ import Foundation
 import UIKit
 
 class WandaClassMenu: UIView {
-    @IBOutlet var menuView: [UIView]!
-    @IBOutlet var contactUsButton: UIButton!
     @IBOutlet var addToCalendarButton: UIButton!
+    @IBOutlet var contactUsButton: UIButton!
     @IBOutlet var contentView: UIView!
+    @IBOutlet var menuView: [UIView]!
+
     var view: UIView?
 
     class func nibName() -> String {
@@ -31,10 +32,28 @@ class WandaClassMenu: UIView {
 
         commonInit()
     }
+    
+    func toggleMenu() {
+        var isHidden = false
+        DispatchQueue.main.async {
+            self.contentView.isHidden = !self.contentView.isHidden
+            self.menuView.forEach { menuItem in
+                menuItem.isHidden = !menuItem.isHidden
+                isHidden = menuItem.isHidden
+            }
+            
+            if isHidden {
+                self.bringSubview(toFront: self.contentView)
+            } else {
+                self.sendSubview(toBack: self.contentView)
+            }
+        }
+    }
+    
+    // MARK: Private
 
     private func commonInit() {
         Bundle.main.loadNibNamed(WandaClassMenu.nibName(), owner: self, options: nil)
-
         self.addSubview(contentView)
 
         contentView.translatesAutoresizingMaskIntoConstraints = false
@@ -45,22 +64,5 @@ class WandaClassMenu: UIView {
         contentView.isHidden = true
         contentView.layer.applySketchShadow(alpha: 0.22, y: 15, blur: 12)
         contentView.layer.applySketchShadow(alpha: 0.3, y: 19, blur: 38)
-    }
-
-    func toggleMenu() {
-        var isHidden = false
-        DispatchQueue.main.async {
-            self.contentView.isHidden = !self.contentView.isHidden
-            self.menuView.forEach { menuItem in
-                menuItem.isHidden = !menuItem.isHidden
-                isHidden = menuItem.isHidden
-            }
-
-            if isHidden {
-                self.bringSubview(toFront: self.contentView)
-            } else {
-                self.sendSubview(toBack: self.contentView)
-            }
-        }
     }
 }

@@ -8,11 +8,11 @@
 
 import Foundation
 
-extension Array where Iterator.Element == WandaClassInfo {
-    func sortedByDate(descending shouldUseDescendingOrder: Bool = true) -> [WandaClassInfo] {
+extension Array where Iterator.Element == WandaClass {
+    func sortedByDate(descending shouldUseDescendingOrder: Bool = true) -> [WandaClass] {
         return sorted {
-            let date = $0.date
-            let secondDate = $1.date
+            let date = $0.details.date
+            let secondDate = $1.details.date
 
             if shouldUseDescendingOrder {
                 return date > secondDate

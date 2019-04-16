@@ -18,10 +18,16 @@ class ForgotPasswordViewController: UIViewController, MFMailComposeViewControlle
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var spinner: UIActivityIndicatorView!
 
-    var dataManager = WandaDataManager.shared
     var email: String?
 
     static let storyboardIdentifier = String(describing: ForgotPasswordViewController.self)
+    private var actionState: ActionState = .resetPassword
+    private var dataManager = WandaDataManager.shared
+
+    enum ActionState {
+        case resetPassword
+        case success
+    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -44,6 +50,7 @@ class ForgotPasswordViewController: UIViewController, MFMailComposeViewControlle
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
+        self.view.layoutIfNeeded()
         emailTextField.underlined()
 
         if let email = email {
@@ -112,12 +119,19 @@ class ForgotPasswordViewController: UIViewController, MFMailComposeViewControlle
                 self.spinner.toggleSpinner(for: self.resetPasswordButton, title: LoginSignUpStrings.resetPassword)
                 if let error = error, let errorCode = AuthErrorCode(rawValue: error._code) {
                     switch errorCode {
+                        case .networkError:
+                            self.actionState = .resetPassword
+                            if let wandaAlertViewController = ViewControllerFactory.makeWandaAlertController(.networkError, delegate: self) {
+                                self.present(wandaAlertViewController, animated: true, completion: nil)
+                            }
                         case .userNotFound:
                             // If the user is not found we still want a 'success' modal to pop up for security reasons.
+                            self.actionState = .success
                             if let wandaAlertViewController = ViewControllerFactory.makeWandaAlertController(.forgotPasswordSuccess, delegate: self) {
                                 self.present(wandaAlertViewController, animated: true, completion: nil)
                             }
                         default:
+                            self.actionState = .resetPassword
                             if let wandaAlertViewController = ViewControllerFactory.makeWandaAlertController(.systemError, delegate: self) {
                                 self.present(wandaAlertViewController, animated: true, completion: nil)
                             }
@@ -125,7 +139,8 @@ class ForgotPasswordViewController: UIViewController, MFMailComposeViewControlle
                 }
                 return
             }
-
+ 
+            self.actionState = .success
             if let wandaAlertViewController = ViewControllerFactory.makeWandaAlertController(.forgotPasswordSuccess, delegate: self) {
                 self.spinner.toggleSpinner(for: self.resetPasswordButton, title: LoginSignUpStrings.resetPassword)
                 self.present(wandaAlertViewController, animated: true, completion: nil)
@@ -134,24 +149,25 @@ class ForgotPasswordViewController: UIViewController, MFMailComposeViewControlle
     }
 
     @IBAction func didTapContactUs() {
-        if !MFMailComposeViewController.canSendMail() {
-            print("Mail services are not available")
+        guard let contactUsViewController = ViewControllerFactory.makeContactUsViewController(for: .signUp) else {
+            self.presentErrorAlert(for: .contactUsError)
             return
         }
-
-        let composeVC = MFMailComposeViewController()
-        composeVC.mailComposeDelegate = self
-
-        // Configure the fields of the interface.
-        composeVC.setToRecipients(["wandaapphelp@gmail.com"])
-        composeVC.setSubject("Reset Password Help")
-
-        // Present the view controller modally.
-        self.present(composeVC, animated: true, completion: nil)
+        
+        contactUsViewController.mailComposeDelegate = self
+        self.present(contactUsViewController, animated: true) {
+            // to do check if working - this is depracated
+            UIApplication.shared.statusBarStyle = .lightContent
+        }
     }
 
     // MARK: WandaAlertViewDelegate
     func didTapActionButton() {
-      //  didTapResetPassword()
+        switch actionState {
+        case .resetPassword:
+            didTapResetPassword()
+        case .success:
+            return
+        }
     }
 }

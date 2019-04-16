@@ -8,31 +8,24 @@
 
 import Foundation
 
-// to do can only sign up 7 days before
-
 class WandaDataManager {
     static let shared = WandaDataManager()
 
     var needsReload = false
     var wandaMother: WandaMotherInfo?
-    var upcomingClasses = [WandaClassInfo]()
-    var allClasses = [WandaClass]()
-    var nextClass: WandaClassInfo?
+    var upcomingClasses = [WandaClass]()
+    private var allClasses = [WandaClass]()
+    var nextClass: WandaClass?
 
     init() { }
 
     func loadClasses() {
-        let newClasses = allClasses.map { WandaClassInfo(from: $0, isReserved: false) }
         // Check if any classes are reserved.
         if let reservedClassId = wandaMother?.reservedClassIds.first {
-            // to do this is time consuming shouldnt be filtering through twice fix this
-            // to do shouldnt just be pulled first id ^ want to get all reserved classes - post mvp
-            newClasses.filter {$0.classId == reservedClassId}.first?.isReserved = true
-            // this means we cant get the childcare number!
-//            newClasses.filter {$0.classId == reservedClassId}.first?.childCareNumber = reservedClass.childCareNumber
+            allClasses.filter {$0.details.classId == reservedClassId}.first?.isReserved = true
         }
 
-        var sortedClasses = newClasses.sortedByDate(descending: false)
+        var sortedClasses = allClasses.sortedByDate(descending: false)
         if let nextClass = sortedClasses.first {
             self.nextClass = nextClass
         }

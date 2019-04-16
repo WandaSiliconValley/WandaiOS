@@ -56,8 +56,10 @@ class WandaClassesNetworkController {
                     }
 
                     do {
-                        let wandaClasses = try JSONDecoder().decode(Array<WandaClass>.self, from: responseData)
-                        let classes = wandaClasses.map { $0 }
+                        let wandaClasses = try JSONDecoder().decode(Array<WandaClassDetail>.self, from: responseData)
+                        // We always set isReserved to false because we don't know what it is yet.
+                        // When we get the Wanda Mother we set the real value of isReserved.
+                        let classes = wandaClasses.map { WandaClass(from: $0, isReserved: false) }
                         resultHandler(classes, nil)
                     } catch  {
                         resultHandler(nil, error)

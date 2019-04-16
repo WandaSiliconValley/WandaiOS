@@ -6,24 +6,25 @@
 //  Copyright © 2018 Bell, Courtney. All rights reserved.
 //
 
+import Firebase
+import FirebaseAuth
 import UIKit
 import MessageUI
 
 class ClassesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, WandaAlertViewDelegate, MFMailComposeViewControllerDelegate {
-    @IBOutlet var tableView: UITableView!
+    @IBOutlet private var tableView: UITableView!
 
-    var dataManager = WandaDataManager.shared
-    private var wandaClasses = [WandaClass]()
+    private var dataManager = WandaDataManager.shared
     private var nextClassesSection = 0
     private let overlayView = UIView(frame: UIScreen.main.bounds)
 
     static let storyboardIdentifier = String(describing: ClassesViewController.self)
 
     private struct DefaultHeight {
+        static let headerViewHeight: CGFloat = 50
         static let nextClassHeight: CGFloat = 118
         static let upcomingClassHeight: CGFloat = 86
         static let upcomingClassBackgroundViewHeight: CGFloat = 75
-        static let headerViewHeight: CGFloat = 50
     }
 
     override var nibBundle: Bundle? {
@@ -38,64 +39,11 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
         configureTableView()
 
         if dataManager.needsReload {
-            guard let firebaseId = dataManager.wandaMother?.firebaseId else {
-                return
-            }
-
-            dataManager.needsReload = false
-            configureLoadingView()
-            dataManager.getWandaMother(firebaseId: firebaseId) { success in
-                guard success else {
-                    self.overlayView.removeFromSuperview()
-                    if let wandaAlertViewController = ViewControllerFactory.makeWandaAlertController(.cantGetClasses, delegate: self) {
-                        self.present(wandaAlertViewController, animated: true, completion: nil)
-                    }
-                    return
-                }
-
-                self.dataManager.loadClasses()
-                self.overlayView.removeFromSuperview()
-                self.tableView.reloadData()
-            }
+            getWandaMother()
         }
     }
-
-    private func configureLoadingView() {
-        overlayView.backgroundColor = UIColor.white.withAlphaComponent(0.4)
-        let spinner = UIActivityIndicatorView(frame: UIScreen.main.bounds)
-        spinner.activityIndicatorViewStyle = .whiteLarge
-        spinner.color = .black
-        spinner.startAnimating()
-        overlayView.addSubview(spinner)
-        self.view.addSubview(overlayView)
-    }
-
-    private func configureNavigationBar() {
-        self.navigationItem.hidesBackButton = true
-
-        if let navigationBar = navigationController?.navigationBar, let leftBarButtonItem = navigationItem.leftBarButtonItem, let rightBarButtonItem = navigationItem.rightBarButtonItem {
-            navigationBar.barTintColor = WandaColors.lightPurple
-            leftBarButtonItem.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: UIFont.wandaFontBold(size: 20)], for: .normal)
-            rightBarButtonItem.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: UIFont.wandaFontRegular(size: 16)], for: .normal)
-        }
-
-        let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
-        if statusBar.responds(to:#selector(setter: UIView.backgroundColor)) {
-            statusBar.backgroundColor = UIColor.black.withAlphaComponent(0.2)
-        }
-    }
-
-    private func configureTableView() {
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.separatorStyle = .none
-        tableView.tableFooterView = UIView()
-
-        let classesHeaderViewNib = UINib(nibName: ClassesHeaderView.nibName(), bundle: nibBundle)
-        tableView.register(classesHeaderViewNib, forHeaderFooterViewReuseIdentifier: ClassesHeaderView.nibName())
-        let classesTableViewCellNib = UINib(nibName: ClassesTableViewCell.nibName(), bundle: nibBundle)
-        tableView.register(classesTableViewCellNib, forCellReuseIdentifier: ClassesTableViewCell.nibName())
-    }
+    
+    // MARK: UITableViewDataSource
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return dataManager.numberOfSections()
@@ -108,14 +56,8 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
 
         return dataManager.upcomingClasses.count
     }
-
-    private func isNextClassesSection(section: Int) -> Bool {
-        guard let _ = dataManager.nextClass else {
-            return false
-        }
-
-        return section == nextClassesSection
-    }
+    
+    // MARK: UITableViewDelegate
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: ClassesHeaderView.nibName()) as? ClassesHeaderView else {
@@ -133,7 +75,6 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-
         let heightForRow = indexPath.section == nextClassesSection ? DefaultHeight.nextClassHeight : DefaultHeight.upcomingClassHeight
 
         return heightForRow
@@ -185,6 +126,20 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
         self.navigationController?.pushViewController(wandaClassViewController, animated: true)
     }
 
+    // MARK: IBActions
+    
+    @IBAction func didTapLogoutButton() {
+        do {
+            try Auth.auth().signOut()
+        } catch {
+            // We are currently failing silently and sending the user back to the LoginViewController.
+           print("Couldn't sign user out. Returning back to Login.")
+        }
+        popBack(toControllerType: LoginViewController.self)
+    }
+    
+    // MARK: Private
+    
     private func configureClassCell(_ classCell: ClassesTableViewCell, indexPath: IndexPath) {
         classCell.selectionStyle = .none
         if isNextClassesSection(section: indexPath.section) {
@@ -203,23 +158,75 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
             classCell.reservationButton.isHidden = true
         }
     }
+    
+    private func isNextClassesSection(section: Int) -> Bool {
+        guard let _ = dataManager.nextClass else {
+            return false
+        }
+        
+        return section == nextClassesSection
+    }
+    
+    private func configureNavigationBar() {
+        self.navigationItem.hidesBackButton = true
+        
+        if let navigationBar = navigationController?.navigationBar, let leftBarButtonItem = navigationItem.leftBarButtonItem, let rightBarButtonItem = navigationItem.rightBarButtonItem {
+            navigationBar.barTintColor = WandaColors.lightPurple
+            leftBarButtonItem.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: UIFont.wandaFontBold(size: 20)], for: .normal)
+            rightBarButtonItem.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: UIFont.wandaFontRegular(size: 16)], for: .normal)
+        }
+        
+        let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
+        if statusBar.responds(to:#selector(setter: UIView.backgroundColor)) {
+            statusBar.backgroundColor = UIColor.black.withAlphaComponent(0.2)
+        }
+    }
+    
+    private func configureTableView() {
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.separatorStyle = .none
+        tableView.tableFooterView = UIView()
+        
+        let classesHeaderViewNib = UINib(nibName: ClassesHeaderView.nibName(), bundle: nibBundle)
+        tableView.register(classesHeaderViewNib, forHeaderFooterViewReuseIdentifier: ClassesHeaderView.nibName())
+        let classesTableViewCellNib = UINib(nibName: ClassesTableViewCell.nibName(), bundle: nibBundle)
+        tableView.register(classesTableViewCellNib, forCellReuseIdentifier: ClassesTableViewCell.nibName())
+    }
+    
+    private func configureLoadingView() {
+        overlayView.backgroundColor = UIColor.white.withAlphaComponent(0.4)
+        let spinner = UIActivityIndicatorView(frame: UIScreen.main.bounds)
+        spinner.activityIndicatorViewStyle = .whiteLarge
+        spinner.color = .black
+        spinner.startAnimating()
+        overlayView.addSubview(spinner)
+        self.view.addSubview(overlayView)
+    }
+    
+    private func getWandaMother() {
+        guard let firebaseId = dataManager.wandaMother?.firebaseId else {
+            return
+        }
+        
+        dataManager.needsReload = false
+        configureLoadingView()
+        dataManager.getWandaMother(firebaseId: firebaseId) { success in
+            guard success else {
+                self.overlayView.removeFromSuperview()
+                self.presentErrorAlert(for: .cantGetClasses)
+                return
+            }
+            
+            self.dataManager.loadClasses()
+            self.overlayView.removeFromSuperview()
+            self.tableView.reloadData()
+        }
+    }
 
     // MARK: WandaAlertViewDelegate
 
     func didTapActionButton() {
-        // to do still want to make this reusable
-        if !MFMailComposeViewController.canSendMail() {
-            print("Mail services are not available")
-            return
-        }
-
-        let composeVC = MFMailComposeViewController()
-        composeVC.mailComposeDelegate = self
-
-        composeVC.setToRecipients(["address@example.com"])
-        composeVC.setSubject("Hello!")
-        composeVC.setMessageBody("Hello this is my message body!", isHTML: false)
-
-        self.present(composeVC, animated: true, completion: nil)
+        getWandaMother()
     }
 }

@@ -32,8 +32,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
     private enum ActionState {
         case contactUs
         case retryGetClasses
-        case retryGetMotehr
+        case retryGetMother
         case retryLogin
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let navigationBar = self.navigationController?.navigationBar {
+            navigationBar.barTintColor = WandaColors.darkPurple
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -44,8 +51,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
             navigationBar.isTranslucent = false
             navigationBar.setBackgroundImage(UIImage(), for: .default)
             navigationBar.shadowImage = UIImage()
-                          navigationBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 80.0)
+            navigationBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 80.0)
         }
+        passwordTextField.underlined()
+        emailTextField.underlined()
     }
 
     override func viewDidLoad() {
@@ -53,8 +62,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
         passwordTextField.isSecureTextEntry = true
-        passwordTextField.underlined()
-        emailTextField.underlined()
     }
 
     // MARK: Private
@@ -96,22 +103,20 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
         Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
             guard let firebaseId = authResult?.user.uid else {
                 if let error = error, let errorCode = AuthErrorCode(rawValue: error._code) {
-                    // Set action state to retry login so the user has the option to retry the API call.
-                    self.actionState = .retryLogin
                     self.spinner.toggleSpinner(for: self.loginButton, title: LoginSignUpStrings.login)
                     switch errorCode {
-                    case .networkError:
-                        if let wandaAlertViewController = ViewControllerFactory.makeWandaAlertController(.networkError, delegate: self) {
-                            self.present(wandaAlertViewController, animated: true, completion: nil)
-                        }
-                    case .invalidEmail, .missingEmail:
-                        _ = email.isEmailValid(emailTextField: self.emailTextField, emailInfoLabel: self.emailInfoLabel)
-                    case .wrongPassword, .userNotFound:
-                        self.emailInfoLabel.configureError(ErrorStrings.invalidCredentials, invalidTextField: self.emailTextField)
-                    default:
-                        if let wandaAlertViewController = ViewControllerFactory.makeWandaAlertController(.systemError, delegate: self) {
-                            self.present(wandaAlertViewController, animated: true, completion: nil)
-                        }
+                        case .networkError:
+                            // Set action state to retry login so the user has the option to retry the API call.
+                            self.actionState = .retryLogin
+                            self.presentErrorAlert(for: .networkError)
+                        case .invalidEmail, .missingEmail:
+                            _ = email.isEmailValid(emailTextField: self.emailTextField, emailInfoLabel: self.emailInfoLabel)
+                        case .wrongPassword, .userNotFound:
+                            self.emailInfoLabel.configureError(ErrorStrings.invalidCredentials, invalidTextField: self.emailTextField)
+                        default:
+                            // Set action state to retry login so the user has the option to retry the API call.
+                            self.actionState = .retryLogin
+                            self.presentErrorAlert(for: .systemError)
                     }
                 }
 
@@ -122,15 +127,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
             self.actionState = .contactUs
             // We store the firebase id for the case that the get mother api call needs to be retried.
             self.firebaseId = firebaseId
-            self.getWandaMother(firebaseId: firebaseId)
+            self.getWandaMother()
         }
     }
 
-    private func getWandaMother(firebaseId: String) {
+    private func getWandaMother() {
+        guard let firebaseId = firebaseId else {
+            return
+        }
+
         dataManager.getWandaMother(firebaseId: firebaseId) { success in
             guard success else {
                 self.spinner.toggleSpinner(for: self.loginButton, title: LoginSignUpStrings.login)
-                self.presentSystemErrorAlert()
+                self.presentErrorAlert(for: .networkError)
                 // Set action state to retry get mother so the user has the option to retry the API call.
                 self.actionState = .retryGetMother
                 return
@@ -145,10 +154,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
     private func getClasses() {
         self.dataManager.getWandaClasses() { success in
             guard success else {
-                self.spinner.toggleSpinner(for: self.loginButton, title: LoginSignUpStrings.login)
-                self.presentSystemErrorAlert()
                 // Set action state to retry get classes so the user has the option to retry the API call.
                 self.actionState = .retryGetClasses
+                self.spinner.toggleSpinner(for: self.loginButton, title: LoginSignUpStrings.login)
+                self.presentErrorAlert(for: .cantGetClasses)
                 return
             }
 
@@ -161,23 +170,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
                 }
 
                 self.spinner.toggleSpinner(for: self.loginButton, title: LoginSignUpStrings.login)
+                self.dataManager.needsReload = true
                 self.navigationController?.pushViewController(classesViewController, animated: true)
             }
         }
     }
 
-    private func presentSystemErrorAlert() {
-        guard let wandaAlertViewController = ViewControllerFactory.makeWandaAlertController(.systemError, delegate: self) else {
-            assertionFailure("Could not instantiate WandaAlertViewController.")
-            return
-        }
-
-        self.present(wandaAlertViewController, animated: true, completion: nil)
-    }
-
     private func contactUs() {
         guard let contactUsViewController = ViewControllerFactory.makeContactUsViewController(for: .login) else {
-            assertionFailure("Could not load the ContactUsViewController.")
+            self.presentErrorAlert(for: .contactUsError)
             return
         }
 
@@ -193,7 +194,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
 
     @IBAction private func didEditPassword() {
         passwordInfoLabel.isHidden = true
-        passwordTextField.underlined(color: UIColor.white.cgColor)
+        passwordTextField.underlined()
     }
 
     @IBAction private func didTapShowHideButton() {
@@ -229,7 +230,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
         }
 
         let emailValid = email.isEmailValid(emailTextField: emailTextField, emailInfoLabel: emailInfoLabel)
-        let passwordValid = password.isPasswordValid(passwordTextField: passwordTextField, passwordInfoLabel: passwordInfoLabel)
+        let passwordValid = password.isPasswordValid(passwordTextField: passwordTextField, passwordInfoLabel: passwordInfoLabel, checkLength: false)
 
         return emailValid && passwordValid
     }
@@ -252,10 +253,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
             case .retryGetClasses:
                 getClasses()
             case .retryGetMother:
-                guard let firebaseId = firebaseId else {
-                    return
-                }
-                getWandaMother(firebaseId: firebaseId)
+                getWandaMother()
             case .retryLogin:
                 didTapLogin()
         }
