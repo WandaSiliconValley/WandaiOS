@@ -98,12 +98,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
 
         return true
     }
-
+    
     private func loginWithFirebase(email: String, password: String) {
         Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
             guard let firebaseId = authResult?.user.uid else {
                 if let error = error, let errorCode = AuthErrorCode(rawValue: error._code) {
                     self.spinner.toggleSpinner(for: self.loginButton, title: LoginSignUpStrings.login)
+                    let errorString = FirebaseError(errorCode: errorCode.rawValue)
+                    Analytics.logEvent("login_login_\(errorString.rawValue)", parameters: nil)
                     switch errorCode {
                         case .networkError:
                             // Set action state to retry login so the user has the option to retry the API call.
@@ -239,7 +241,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
         guard verifySignUp(), let email = emailTextField.text, let password = passwordTextField.text else {
             return
         }
-
+        
+        
+        Analytics.logEvent("login_clicked_login_button", parameters: nil)
         spinner.toggleSpinner(for: loginButton, title: LoginSignUpStrings.login)
         loginWithFirebase(email: email, password: password)
     }

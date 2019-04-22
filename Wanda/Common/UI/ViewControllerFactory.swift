@@ -72,6 +72,7 @@ struct ViewControllerFactory {
     /// The view controller that appears when the user taps contact us the mail app will open and pre-fill an email.
     static func makeContactUsViewController(for contactUsType: ContactUsType) -> MFMailComposeViewController? {
         guard MFMailComposeViewController.canSendMail() else {
+            // to do shouldn't mail cus of  this should pop up an alert
             assertionFailure("Could not instantiate ContactUsViewController.")
             return nil
         }

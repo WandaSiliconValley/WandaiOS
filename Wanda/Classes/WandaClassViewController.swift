@@ -242,14 +242,14 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
         
         dataManager.getReservedWandaClass(classId: wandaClass.details.classId, motherId: motherId) { success, reservedClass in
             guard success, let reservedClass = reservedClass else {
+                // to do retry twice then contact support
                 self.reservationActionState = .retryGetWandaClass
                 self.presentErrorAlert(for: .systemError)
                 completion()
                 return
             }
             
-            //       self.wandaClass = reservedClass
-            self.wandaClass?.childCareNumber = reservedClass.childcareNumber
+            wandaClass.childCareNumber = reservedClass.childcareNumber
             completion()
         }
     }

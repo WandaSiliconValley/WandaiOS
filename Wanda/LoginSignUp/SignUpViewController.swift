@@ -61,13 +61,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, MFMailCompose
             navigationBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 80.0)
         }
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-
-    }
-
 
     override func viewDidLoad() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -241,6 +234,11 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, MFMailCompose
 
         self.dataManager.createWandaAccount(firebaseId: motherId, email: email) { success in
             guard success, let signUpSuccessViewController = ViewControllerFactory.makeWandaSuccessController() else {
+                Auth.auth().currentUser?.delete { error in
+                    // to do should we fail this siletnly and just log an analytics tag?
+                    print("Couldn't delete user")
+                }
+                
                 self.actionState = .retryCreateWandaMother
                 self.spinner.toggleSpinner(for: self.signUpButton, title: GeneralStrings.submitAction)
                 self.presentErrorAlert(for: .systemError)

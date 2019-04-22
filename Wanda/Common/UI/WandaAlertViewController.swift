@@ -64,6 +64,7 @@ class WandaAlertViewController: UIViewController, MFMailComposeViewControllerDel
                 closeButton.isHidden = true
                 actionButton.setTitle(GeneralStrings.dismissAction, for: .normal)
             case .cantGetClasses:
+                // to do shouldnt need a whole new case for a diff message to system error
                 alertTitleLabel.text = ErrorStrings.systemError
                 alertMessageLabel.text = ErrorStrings.classesErrorTryAgain
                 actionButton.setTitle(GeneralStrings.retryAction, for: .normal)

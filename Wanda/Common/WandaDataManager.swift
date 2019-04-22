@@ -8,6 +8,32 @@
 
 import Foundation
 
+public enum FirebaseError: String {
+    case invalidEmail = "invalid_email"
+    case missingEmail = "missing_email"
+    case wrongPassword = "wrong_password"
+    case userNotFound = "user_not_found"
+    case networkError = "network_error"
+    case unknown
+    
+    init(errorCode: Int) {
+        switch errorCode {
+        case 17020:
+            self = .networkError
+        case 17008:
+            self = .invalidEmail
+        case 17034:
+            self = .missingEmail
+        case 17009:
+            self = .wrongPassword
+        case 17011:
+            self = .userNotFound
+        default:
+            self = .unknown
+        }
+    }
+}
+
 class WandaDataManager {
     static let shared = WandaDataManager()
 
