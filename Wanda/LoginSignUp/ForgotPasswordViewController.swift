@@ -48,8 +48,8 @@ class ForgotPasswordViewController: UIViewController, MFMailComposeViewControlle
 
     override func viewDidLoad() {
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIApplication.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIApplication.keyboardWillHideNotification, object: nil)
         self.view.layoutIfNeeded()
         emailTextField.underlined()
 
@@ -69,7 +69,7 @@ class ForgotPasswordViewController: UIViewController, MFMailComposeViewControlle
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: WandaImages.backArrow, style: .plain, target: self, action: #selector(backButtonPressed))
 
         if let navigationBar = navigationController?.navigationBar {
-            navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: UIFont.wandaFontBold(size: 20)]
+            navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.wandaFontBold(size: 20)]
         }
     }
 
@@ -81,7 +81,7 @@ class ForgotPasswordViewController: UIViewController, MFMailComposeViewControlle
     @objc
     func keyboardWillShow(notification:NSNotification){
         var userInfo = notification.userInfo!
-        var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
         keyboardFrame = self.view.convert(keyboardFrame, from: nil)
 
         var contentInset:UIEdgeInsets = self.scrollView.contentInset
@@ -113,11 +113,14 @@ class ForgotPasswordViewController: UIViewController, MFMailComposeViewControlle
         }
 
         spinner.toggleSpinner(for: resetPasswordButton, title: LoginSignUpStrings.resetPassword)
+        logAnalytic(tag: WandaAnalytics.resetPasswordTapped)
 
         Auth.auth().sendPasswordReset(withEmail: email) { error in
             guard error == nil else {
                 self.spinner.toggleSpinner(for: self.resetPasswordButton, title: LoginSignUpStrings.resetPassword)
                 if let error = error, let errorCode = AuthErrorCode(rawValue: error._code) {
+                    let errorString = FirebaseError(errorCode: errorCode.rawValue)
+                    self.logAnalytic(tag: "\(WandaAnalytics.resetPassowordError)_\(errorString.rawValue)")
                     switch errorCode {
                         case .networkError:
                             self.actionState = .resetPassword
@@ -141,6 +144,7 @@ class ForgotPasswordViewController: UIViewController, MFMailComposeViewControlle
             }
  
             self.actionState = .success
+            self.logAnalytic(tag: WandaAnalytics.resetPasswordSuccess)
             if let wandaAlertViewController = ViewControllerFactory.makeWandaAlertController(.forgotPasswordSuccess, delegate: self) {
                 self.spinner.toggleSpinner(for: self.resetPasswordButton, title: LoginSignUpStrings.resetPassword)
                 self.present(wandaAlertViewController, animated: true, completion: nil)
@@ -154,6 +158,7 @@ class ForgotPasswordViewController: UIViewController, MFMailComposeViewControlle
             return
         }
         
+        logAnalytic(tag: WandaAnalytics.resetPasswordContactUsTapped)
         contactUsViewController.mailComposeDelegate = self
         self.present(contactUsViewController, animated: true) {
             // to do check if working - this is depracated

@@ -129,6 +129,8 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
     @IBAction func didTapSendRSVPButton() {
         switch reservationState {
             case .changeRSVP:
+                // rename these cases ^ cus this is really update rsvp?
+                logAnalytic(tag: WandaAnalytics.classDetailUpdateRSVPButtonTapped)
                 if overlayView.superview != nil {
                     overlayView.removeFromSuperview()
                 }
@@ -150,7 +152,11 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
                 // user hasn't made any changes yet
                 unsavedChanges = false
                 reservationState = .updateRSVP
-            case .makeRSVP, .updateRSVP:
+            case .makeRSVP:
+                logAnalytic(tag: WandaAnalytics.classDetailReserveSpotTapped)
+                reserveWandaClass()
+            case .updateRSVP:
+                logAnalytic(tag: WandaAnalytics.classDetailUpdateRSVPButtonTapped)
                 reserveWandaClass()
         }
     }
@@ -164,6 +170,7 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
             return
         }
         
+        logAnalytic(tag: WandaAnalytics.classDetailMenuContatctWandaTapped)
         contactUsViewController.mailComposeDelegate = self
         contactUsViewController.setSubject("\(wandaClass.details.topic)")
         contactUsViewController.setMessageBody("Class Name: \n\(wandaClass.details.topic) \n\nTime: \n\(wandaClass.details.date) \n\(wandaClass.details.time) \n\nLocation: \n\(wandaClass.details.address)\n\(wandaClass.details.street), \(wandaClass.details.city)", isHTML: false)
@@ -177,6 +184,7 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
     
     @objc
     private func didTapOverflowMenu() {
+        logAnalytic(tag: WandaAnalytics.classDetailMenuButtonTapped)
         if let menuView = menuView {
             menuView.toggleMenu()
         }
@@ -201,6 +209,8 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
             self.presentErrorAlert(for: .addEventError)
             return
         }
+
+        logAnalytic(tag: WandaAnalytics.classDetailMenuAddEventTapped)
 
         let eventTimes = wandaClass.details.time.components(separatedBy: " - ")
         let startTime = DateFormatter.timeDateFormatter.date(from: eventTimes[0])
@@ -268,6 +278,7 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
         }
         
         // to do fix this
+        // to do log tap on address & make address open google maps
         var addressLabelText = ""
         if !wandaClass.details.unit.isEmpty {
             addressLabelText.append(wandaClass.details.unit + " ")
@@ -316,8 +327,8 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
                 addButton.imageView?.tintColor = WandaColors.mediumGrey
                 subtractbutton.imageView?.tintColor = WandaColors.mediumGrey
                 self.view.addSubview(overlayView)
-                self.view.bringSubview(toFront: changeRSVPView)
-                self.view.bringSubview(toFront: reservedHeader)
+                self.view.bringSubviewToFront(changeRSVPView)
+                self.view.bringSubviewToFront(reservedHeader)
             case false:
                 addButton.imageView?.tintColor = WandaColors.darkPurple
                 subtractbutton.imageView?.tintColor = WandaColors.darkPurple
@@ -344,7 +355,7 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: WandaImages.overflowIcon, style: .plain, target: self, action: #selector(didTapOverflowMenu))
         navigationItem.rightBarButtonItem?.tintColor = UIColor.white
         
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white, NSAttributedStringKey.font: UIFont.wandaFontSemiBold(size: 20)]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white, NSAttributedString.Key.font: UIFont.wandaFontSemiBold(size: 20)]
     }
     
     private func toggleSubtractChildButton() {

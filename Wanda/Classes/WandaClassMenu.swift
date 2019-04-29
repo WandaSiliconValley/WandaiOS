@@ -43,9 +43,9 @@ class WandaClassMenu: UIView {
             }
             
             if isHidden {
-                self.bringSubview(toFront: self.contentView)
+                self.bringSubviewToFront(self.contentView)
             } else {
-                self.sendSubview(toBack: self.contentView)
+                self.sendSubviewToBack(self.contentView)
             }
         }
     }

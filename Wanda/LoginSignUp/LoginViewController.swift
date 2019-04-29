@@ -59,8 +59,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
 
     override func viewDidLoad() {
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIApplication.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIApplication.keyboardWillHideNotification, object: nil)
         passwordTextField.isSecureTextEntry = true
     }
 
@@ -74,7 +74,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
     @objc
     private func keyboardWillShow(notification: NSNotification) {
         var userInfo = notification.userInfo!
-        let keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        let keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
         var contentInset:UIEdgeInsets = self.scrollView.contentInset
         contentInset.bottom = keyboardFrame.size.height + 40
         scrollView.contentInset = contentInset
@@ -105,7 +105,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
                 if let error = error, let errorCode = AuthErrorCode(rawValue: error._code) {
                     self.spinner.toggleSpinner(for: self.loginButton, title: LoginSignUpStrings.login)
                     let errorString = FirebaseError(errorCode: errorCode.rawValue)
-                    Analytics.logEvent("login_login_\(errorString.rawValue)", parameters: nil)
+                    self.logAnalytic(tag: "\(WandaAnalytics.loginError)_\(errorString.rawValue)")
                     switch errorCode {
                         case .networkError:
                             // Set action state to retry login so the user has the option to retry the API call.
@@ -178,6 +178,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
         }
     }
 
+    // to do how is this being used here right now?
     private func contactUs() {
         guard let contactUsViewController = ViewControllerFactory.makeContactUsViewController(for: .login) else {
             self.presentErrorAlert(for: .contactUsError)
@@ -214,6 +215,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
             forgotPasswordViewController.email = email
         }
 
+        logAnalytic(tag: WandaAnalytics.loginForgotPasswordTapped)
         self.navigationController?.pushViewController(forgotPasswordViewController, animated: true)
     }
 
@@ -223,6 +225,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
             return
         }
 
+        logAnalytic(tag: WandaAnalytics.loginSignUpButtonTapped)
         self.navigationController?.pushViewController(signUpViewController, animated: true)
     }
 
@@ -243,7 +246,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
         }
         
         
-        Analytics.logEvent("login_clicked_login_button", parameters: nil)
+        logAnalytic(tag: WandaAnalytics.loginButtonTapped)
         spinner.toggleSpinner(for: loginButton, title: LoginSignUpStrings.login)
         loginWithFirebase(email: email, password: password)
     }

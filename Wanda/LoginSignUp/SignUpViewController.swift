@@ -63,8 +63,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, MFMailCompose
     }
 
     override func viewDidLoad() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIApplication.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIApplication.keyboardWillHideNotification, object: nil)
         configureNavigationBar()
         // to do !!
 //        passwordTextField.isSecureTextEntry = true
@@ -84,11 +84,12 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, MFMailCompose
     private func keyboardWillShow(notification:NSNotification){
         guard let userInfo = notification.userInfo else {return}
 
+        // to do redo me asap
         // to do can we make this scroll so the whole screen shows
-        let keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
-        var contentInset:UIEdgeInsets = self.scrollView.contentInset
-        contentInset.bottom = keyboardFrame.size.height + 40
-        scrollView.contentInset = contentInset
+//        UIResponder.keyboardFrameBeginUserInfoKey = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+//        var contentInset:UIEdgeInsets = self.scrollView.contentInset
+//        contentInset.bottom = keyboardFrame.size.height + 40
+//        scrollView.contentInset = contentInset
     }
 
     @objc
@@ -111,7 +112,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, MFMailCompose
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: WandaImages.backArrow, style: .plain, target: self, action: #selector(backButtonPressed))
 
         if let navigationBar = navigationController?.navigationBar {
-            navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: UIFont.wandaFontBold(size: 20)]
+            navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.wandaFontBold(size: 20)]
         }
     }
 
@@ -193,12 +194,14 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, MFMailCompose
         }
 
         spinner.toggleSpinner(for: signUpButton, title: GeneralStrings.submitAction)
-
+        logAnalytic(tag: WandaAnalytics.signUpButtonTapped)
+        
         Auth.auth().createUser(withEmail: email, password: password) { (authResult, error) in
             guard let motherId = authResult?.user.uid else {
                 if let error = error, let errorCode = AuthErrorCode(rawValue: error._code) {
                     self.spinner.toggleSpinner(for: self.signUpButton, title: GeneralStrings.submitAction)
-
+                    let errorString = FirebaseError(errorCode: errorCode.rawValue)
+                    self.logAnalytic(tag: "\(WandaAnalytics.signUpError)_\(errorString.rawValue)")
                     switch errorCode {
                         case .networkError:
                             self.actionState = .retryCreateFirebaseUser
@@ -252,6 +255,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, MFMailCompose
 
     @IBAction private func didTapContactUs() {
         // to do we will want contact support once we get the retry limit in place - retry 2 times then contact support
+        logAnalytic(tag: WandaAnalytics.signUpContactUsTapped)
         contactSupport()
     }
 

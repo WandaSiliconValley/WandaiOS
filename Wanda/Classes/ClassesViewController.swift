@@ -92,13 +92,13 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
                 // to do why does this need to be right 30 here???
                 // its 15/15 in the table view cell but this isn't
                 // honoring that
-                backgroundView.frame = UIEdgeInsetsInsetRect(backgroundView.frame, UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 30))
+                backgroundView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 30))
                 backgroundView.layer.backgroundColor = WandaColors.errorRed.cgColor
                 backgroundView.layer.masksToBounds = false
                 backgroundView.layer.applySketchShadow(alpha: 0.1, y: 1, blur: 2)
 
                 classesTableViewCell.contentView.addSubview(backgroundView)
-                classesTableViewCell.contentView.sendSubview(toBack: backgroundView)
+                classesTableViewCell.contentView.sendSubviewToBack(backgroundView)
                 classesTableViewCell.layoutSubviews()
                 classesTableViewCell.layoutIfNeeded()
             }
@@ -119,9 +119,13 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
         let isNextClass = isNextClassesSection(section: indexPath.section)
         let classType = isNextClass ? ClassType.nextClass : ClassType.upcomingClass
 
+        // to do ask about analytic here
         guard let wandaClass = isNextClass ? dataManager.nextClass : dataManager.upcomingClasses[indexPath.row], let wandaClassViewController = ViewControllerFactory.makeWandaClassViewController(wandaClass: wandaClass, classType: classType) else {
             return
         }
+        
+        let analyticsTag = isNextClass ? WandaAnalytics.classReserveSpotButtonTapped : WandaAnalytics.classUpcomingClassTapped
+        logAnalytic(tag: analyticsTag)
 
         self.navigationController?.pushViewController(wandaClassViewController, animated: true)
     }
@@ -129,6 +133,7 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
     // MARK: IBActions
     
     @IBAction func didTapLogoutButton() {
+        logAnalytic(tag: WandaAnalytics.classLogoutButtonTapped)
         do {
             try Auth.auth().signOut()
         } catch {
@@ -172,8 +177,8 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
         
         if let navigationBar = navigationController?.navigationBar, let leftBarButtonItem = navigationItem.leftBarButtonItem, let rightBarButtonItem = navigationItem.rightBarButtonItem {
             navigationBar.barTintColor = WandaColors.lightPurple
-            leftBarButtonItem.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: UIFont.wandaFontBold(size: 20)], for: .normal)
-            rightBarButtonItem.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: UIFont.wandaFontRegular(size: 16)], for: .normal)
+            leftBarButtonItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.wandaFontBold(size: 20)], for: .normal)
+            rightBarButtonItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.wandaFontRegular(size: 16)], for: .normal)
         }
         
         let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
@@ -197,7 +202,7 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
     private func configureLoadingView() {
         overlayView.backgroundColor = UIColor.white.withAlphaComponent(0.4)
         let spinner = UIActivityIndicatorView(frame: UIScreen.main.bounds)
-        spinner.activityIndicatorViewStyle = .whiteLarge
+        spinner.style = .whiteLarge
         spinner.color = .black
         spinner.startAnimating()
         overlayView.addSubview(spinner)

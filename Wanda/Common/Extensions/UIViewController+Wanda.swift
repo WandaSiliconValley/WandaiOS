@@ -6,6 +6,7 @@
 //  Copyright © 2019 Bell, Courtney. All rights reserved.
 //
 
+import FirebaseAnalytics
 import UIKit
 
 extension UIViewController {
@@ -27,5 +28,10 @@ extension UIViewController {
                 }
             }
         }
+    }
+    
+    // to do make this strict to the analytics tag strings - enum?
+    func logAnalytic(tag: String) {
+        Analytics.logEvent(tag, parameters: nil)
     }
 }

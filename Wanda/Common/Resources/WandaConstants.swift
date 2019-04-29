@@ -14,8 +14,9 @@ struct WandaConstants {
     static let wandaURL = "http://wanda.us-east-2.elasticbeanstalk.com/wanda-app"
 }
 
+
+
 struct WandaAnalytics {
-    
     // General
     static let clicked = "_clicked_"
     static let error = "_error"
@@ -61,4 +62,7 @@ struct WandaAnalytics {
     static let classDetailMenuAddEventTapped = classDetail + div + menu + clicked + "add_to_calendar"
     static let classDetailAddressTapped = classDetail + clicked + "address"
     static let classDetailReserveSpotTapped = classDetail + clicked + "reserve_my_spot" + button
+    static let classDetailChangeRSVPButtonTapped = classDetail + clicked + "change_rsvp" + button
+    static let classDetailUpdateRSVPButtonTapped = classDetail + clicked + "change_rsvp" + button
+    static let classDetailCancelRSVPButtonTapped = classDetail + clicked + "change_rsvp" + button
 }

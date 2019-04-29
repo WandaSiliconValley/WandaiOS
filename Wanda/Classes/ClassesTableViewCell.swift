@@ -33,7 +33,7 @@ class ClassesTableViewCell: UITableViewCell {
         super.layoutSubviews()
         
         contentView.backgroundColor = .clear
-        contentView.frame = UIEdgeInsetsInsetRect(contentView.frame, UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15))
+        contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15))
     }
     
     func configureClass(_ wandaClass: WandaClass) {
