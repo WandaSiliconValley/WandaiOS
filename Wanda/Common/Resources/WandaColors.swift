@@ -18,4 +18,6 @@ struct WandaColors {
     static let offWhite = UIColor(hexString: "#FEFFFE")
     static let mediumGrey = UIColor(hexString: "#8B8B8B")
     static let darkPurple = UIColor(hexString: "#663498")
+    // to do can we get rid of old error red now?
+    static let newErrorRed = UIColor(hexString: "#FF6E6E")
 }

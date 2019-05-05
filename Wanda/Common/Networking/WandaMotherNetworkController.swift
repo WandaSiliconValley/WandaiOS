@@ -9,28 +9,52 @@
 import Foundation
 
 class WandaMotherNetworkController {
-    static func getWandaMother(firebaseId: String, resultHandler: @escaping(WandaMother?, Error?) -> Void) {
+    static func getWandaMother(firebaseId: String, resultHandler: @escaping(WandaMother?, WandaError?) -> Void) {
         let url = URL(string: "\(WandaConstants.wandaURL)/mother/\(firebaseId)")!
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "GET"
         let urlRequest = URLRequest(url: url)
-
+        
         DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async {
-            // to do why is error always nil here???
             let task = URLSession.shared.dataTask(with: urlRequest) { data, response, error in
                 DispatchQueue.main.async {
-
-                    // look at response.errorbody
-                    // response.message
-                    guard let responseData = data, let wandaMother = try? JSONDecoder().decode(WandaMother.self, from: responseData) else {
-                        resultHandler(nil, error)
+                    guard let responseData = data else {
+                        resultHandler(nil, WandaError.unknown)
                         return
                     }
-                    resultHandler(wandaMother, nil)
+                    
+                    print("DATA \(data)")
+                    print("RESPONSE \(response)")
+                    
+                    do {
+                        let wandaMother = try JSONDecoder().decode(WandaMother.self, from: responseData)
+                        resultHandler(wandaMother, nil)
+                    } catch  {
+                        resultHandler(nil, WandaError(error.code))
+                    }
                 }
             }
             task.resume()
         }
     }
+}
+
+public enum WandaError {
+    case networkError
+    case unknown
+    
+    init(_ errorCode: Int) {
+        switch errorCode {
+            case -1009:
+                self = .networkError
+            default:
+                self = .unknown
+        }
+    }
+}
+
+extension Error {
+    var code: Int { return (self as NSError).code }
+    var domain: String { return (self as NSError).domain }
 }

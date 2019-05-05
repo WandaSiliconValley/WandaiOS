@@ -18,126 +18,126 @@ public enum FirebaseError: String {
     
     init(errorCode: Int) {
         switch errorCode {
-        case 17020:
-            self = .networkError
-        case 17008:
-            self = .invalidEmail
-        case 17034:
-            self = .missingEmail
-        case 17009:
-            self = .wrongPassword
-        case 17011:
-            self = .userNotFound
-        default:
-            self = .unknown
+            case 17020:
+                self = .networkError
+            case 17008:
+                self = .invalidEmail
+            case 17034:
+                self = .missingEmail
+            case 17009:
+                self = .wrongPassword
+            case 17011:
+                self = .userNotFound
+            default:
+                self = .unknown
         }
     }
 }
 
 class WandaDataManager {
     static let shared = WandaDataManager()
-
+    
     var needsReload = false
     var wandaMother: WandaMotherInfo?
     var upcomingClasses = [WandaClass]()
     private var allClasses = [WandaClass]()
     var nextClass: WandaClass?
-
+    
     init() { }
-
+    
     func loadClasses() {
         // Check if any classes are reserved.
         if let reservedClassId = wandaMother?.reservedClassIds.first {
             allClasses.filter {$0.details.classId == reservedClassId}.first?.isReserved = true
         }
-
+        
         var sortedClasses = allClasses.sortedByDate(descending: false)
         if let nextClass = sortedClasses.first {
             self.nextClass = nextClass
         }
-
+        
         // Remove first element (next class) and then set upcoming classes
         sortedClasses.removeFirst()
         self.upcomingClasses = sortedClasses
     }
-
+    
     func numberOfSections() -> Int {
         if allClasses.isEmpty {
             return 0
         } else if allClasses.count == 1 {
             return 1
         }
-
+        
         return 2
     }
-
-    func getWandaClasses(completion: @escaping (Bool) -> Void) {
+    
+    func getWandaClasses(completion: @escaping (Bool, WandaError?) -> Void) {
         WandaClassesNetworkController.requestWandaClasses { wandaClasses, error in
             guard let wandaClasses = wandaClasses else {
-                completion(false)
+                completion(false, error)
                 return
             }
-
+            
             self.allClasses = wandaClasses
             self.loadClasses()
-            completion(true)
+            completion(true, nil)
         }
     }
-
-    func getWandaMother(firebaseId: String, completion: @escaping (Bool) -> Void) {
+    
+    func getWandaMother(firebaseId: String, completion: @escaping (Bool, WandaError?) -> Void) {
         WandaMotherNetworkController.getWandaMother(firebaseId: firebaseId) { wandaMother, error in
             guard let wandaMother = wandaMother else {
-                completion(false)
+                completion(false, error)
                 return
             }
-
+            
             self.wandaMother = WandaMotherInfo(from: wandaMother)
-            completion(true)
+            completion(true, nil)
         }
     }
-
-    func createWandaAccount(firebaseId: String, email: String, completion: @escaping (Bool) -> Void) {
+    
+    func createWandaAccount(firebaseId: String, email: String, completion: @escaping (Bool, WandaError?) -> Void) {
         AccountNetworkController.createWandaAccount(firebaseId: firebaseId, email: email) { wandaMother, error in
             guard let wandaMother = wandaMother else {
-                completion(false)
+                completion(false, error)
                 return
             }
-
+            
             self.wandaMother = WandaMotherInfo(from: wandaMother)
-            completion(true)
+            completion(true, nil)
         }
     }
-
-    func getReservedWandaClass(classId: Int, motherId: Int, completion: @escaping (Bool, ReservedWandaClass?) -> Void) {
+    
+    func getReservedWandaClass(classId: Int, motherId: Int, completion: @escaping (Bool, ReservedWandaClass?, WandaError?) -> Void) {
         WandaClassesNetworkController.getReservedWandaClass(motherId: motherId, classId: classId) { reservedClass, error in
             guard let reservedClass = reservedClass else {
-                completion(false, nil)
+                completion(false, nil, error)
                 return
             }
-
-            completion(true, reservedClass)
+            
+            completion(true, reservedClass, nil)
         }
     }
-
-    func reserveWandaClass(classId: Int, motherId: Int, childcareNumber: Int, completion: @escaping (Bool) -> Void) {
+    
+    func reserveWandaClass(classId: Int, motherId: Int, childcareNumber: Int, completion: @escaping (Bool, WandaError?) -> Void) {
         ClassRSVPNetworkController.reserveWandaClass(classId: classId, motherId: motherId, childcareNumber: childcareNumber) { success, error in
             guard success else {
-                completion(false)
+                completion(false, error)
                 return
             }
-
-            completion(true)
+            
+            completion(true, nil)
         }
     }
-
-    func cancelWandaClassReservation(classId: Int, motherId: Int, completion: @escaping (Bool) -> Void) {
+    
+    func cancelWandaClassReservation(classId: Int, motherId: Int, completion: @escaping (Bool, WandaError?) -> Void) {
         ClassRSVPNetworkController.cancelWandaClassReservation(classId: classId, motherId: motherId) { success, error in
             guard success else {
-                completion(false)
+                completion(false, error)
                 return
             }
-
-            completion(true)
+            
+            completion(true, nil)
         }
     }
 }

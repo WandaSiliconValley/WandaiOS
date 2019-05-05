@@ -80,11 +80,6 @@ struct ClassStrings {
 }
 
 struct ErrorStrings {
-    static var classesErrorTryAgain: String {
-        return NSLocalizedString("Wanda_Error_ClassesErrorTryAgain",
-            value: "We can't seem to update your classes right now.",
-            comment: "Alert message informing the user that the classes can't be updated. They can either try again or contact support.")
-    }
     static var errorMessage: String {
         return NSLocalizedString("Wanda_Error_ErrorMessage",
             value: "Looks like something isn't working properly. Try again or contact support for help.",
@@ -107,12 +102,12 @@ struct ErrorStrings {
     }
     static var networkError: String {
         return NSLocalizedString("Wanda_Error_NetworkError",
-            value: "Network Error",
+            value: "No Internet Connection",
             comment: "Error message indicating that there was a network error.")
     }
     static var networkErrorMessage: String {
         return NSLocalizedString("Wanda_Error_NetworkErrorMessage",
-            value: "Looks like you aren't connected to a network.",
+            value: "Unable to connect to WANDA. Please check your internet connection and try again.",
             comment: "Error message indicating that the user is not connected to a network.")
     }
     static var passwordError: String {
@@ -162,11 +157,6 @@ struct GeneralStrings {
         return NSLocalizedString("Wanda_General_Next",
             value: "NEXT",
             comment: "Button title indicating that on tap the user will be taken to the next step or screen.")
-    }
-    static var retryAction: String {
-        return NSLocalizedString("Wanda_Error_RetryError",
-            value: "RETRY",
-            comment: "Button title indicating that on tap the user with retry the previous action.")
     }
     static var submitAction: String {
         return NSLocalizedString("Wanda_Class_Submit",

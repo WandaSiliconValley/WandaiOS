@@ -46,7 +46,7 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
     @IBOutlet private weak var timeLabel: UILabel!
     var classType: ClassType?
     var wandaClass: WandaClass?
-
+    
     private var dataManager = WandaDataManager.shared
     private var isReserved = false
     private var menuView: WandaClassMenu?
@@ -59,19 +59,19 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
         }
     }
     let overlayView = UIView(frame: UIScreen.main.bounds)
-
+    
     static let storyboardIdentifier = String(describing: WandaClassViewController.self)
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        
         // Currently users should only see this screen for the next class.
         guard let wandaClass = wandaClass else {
             return
         }
         
         configureNavigationBar()
-
+        
         if wandaClass.isReserved {
             getReservedWandaClass {
                 self.isReserved = wandaClass.isReserved
@@ -85,13 +85,20 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
         }
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(menuView?.hideMenu))
+        self.view.addGestureRecognizer(tap)
+    }
+    
     private func configureView() {
         toggleSubtractChildButton()
         configureReservationView()
     }
-
+    
     // MARK: IBActions
-
+    
     @IBAction func didTapAddChildButton() {
         guard let numberOfChildrenString = numberOfChildrenLabel.text, var numberOfChildren = Int(numberOfChildrenString), let wandaClass = wandaClass else {
             return
@@ -101,31 +108,31 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
         unsavedChanges = numberOfChildren != wandaClass.childCareNumber
         toggleSubtractChildButton()
     }
-
+    
     @IBAction func didTapSubtractChildButton() {
         guard let numberOfChildrenString = numberOfChildrenLabel.text, var numberOfChildren = Int(numberOfChildrenString), let wandaClass = wandaClass else {
             return
         }
-
+        
         if numberOfChildren > 0 {
             numberOfChildren -= 1
             numberOfChildrenLabel.text = String(numberOfChildren)
         }
         toggleSubtractChildButton()
-
+        
         unsavedChanges = numberOfChildren != wandaClass.childCareNumber
     }
-
+    
     @IBAction func didTapCancelRSVPButton() {
         guard let wandaAlertViewController = ViewControllerFactory.makeWandaAlertController(.cancelRSVP, delegate: self) else {
             assertionFailure("Could not load the WandaAlertViewController.")
             return
         }
-
+        
         reservationActionState = .cancelRSVP
         self.present(wandaAlertViewController, animated: true, completion: nil)
     }
-
+    
     @IBAction func didTapSendRSVPButton() {
         switch reservationState {
             case .changeRSVP:
@@ -134,10 +141,10 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
                 if overlayView.superview != nil {
                     overlayView.removeFromSuperview()
                 }
-
+                
                 toggleSubtractChildButton()
                 addButton.imageView?.tintColor = WandaColors.darkPurple
-
+                
                 // to do this doesn't really slide
                 DispatchQueue.main.async {
                     UIView.animate(withDuration: 0.6, delay: 0, options: .curveEaseOut, animations: {
@@ -148,7 +155,7 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
                         self.changeRSVPButton.setTitle(ClassStrings.updateRSVP, for: .normal)
                     })
                 }
-
+                
                 // user hasn't made any changes yet
                 unsavedChanges = false
                 reservationState = .updateRSVP
@@ -206,12 +213,12 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
     @objc
     private func didTapAddToCalendar() {
         guard let wandaClass = wandaClass else {
-            self.presentErrorAlert(for: .addEventError)
+            // to do should we pop up an error here?
             return
         }
-
+        
         logAnalytic(tag: WandaAnalytics.classDetailMenuAddEventTapped)
-
+        
         let eventTimes = wandaClass.details.time.components(separatedBy: " - ")
         let startTime = DateFormatter.timeDateFormatter.date(from: eventTimes[0])
         let endTime = DateFormatter.timeDateFormatter.date(from: eventTimes[1])
@@ -250,11 +257,19 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
             return
         }
         
-        dataManager.getReservedWandaClass(classId: wandaClass.details.classId, motherId: motherId) { success, reservedClass in
+        dataManager.getReservedWandaClass(classId: wandaClass.details.classId, motherId: motherId) { success, reservedClass, error in
             guard success, let reservedClass = reservedClass else {
-                // to do retry twice then contact support
-                self.reservationActionState = .retryGetWandaClass
-                self.presentErrorAlert(for: .systemError)
+                if let error = error {
+                    // to do retry twice then contact support
+                    self.reservationActionState = .retryGetWandaClass
+                    switch error {
+                        case .networkError:
+                            self.presentErrorAlert(for: .networkError)
+                        case .unknown:
+                            self.presentErrorAlert(for: .systemError)
+                    }
+                }
+                
                 completion()
                 return
             }
@@ -371,36 +386,41 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
             subtractbutton.isEnabled = false
         }
     }
-
+    
     private func reserveWandaClass() {
         guard let motherId = dataManager.wandaMother?.motherId, let wandaClass = dataManager.nextClass, let numberOfChildrenText = numberOfChildrenLabel.text, let numberOfChildren = Int(numberOfChildrenText)  else {
             return
         }
-
+        
         toggleCorrectSpinner()
-
-        dataManager.reserveWandaClass(classId: wandaClass.details.classId, motherId: motherId, childcareNumber: numberOfChildren) { success in
+        
+        dataManager.reserveWandaClass(classId: wandaClass.details.classId, motherId: motherId, childcareNumber: numberOfChildren) { success, error in
             guard success, let reservationSuccessViewController = ViewControllerFactory.makeWandaSuccessController() else {
-                self.toggleCorrectSpinner()
-                if let wandaAlertViewController = ViewControllerFactory.makeWandaAlertController(.systemError, delegate: self) {
-                    self.present(wandaAlertViewController, animated: true, completion: nil)
+                if let error = error {
+                    self.toggleCorrectSpinner()
+                    switch error {
+                        case .networkError:
+                            self.presentErrorAlert(for: .networkError)
+                        case .unknown:
+                            self.presentErrorAlert(for: .systemError)
+                    }
                 }
-
+                
                 return
             }
-
+            
             switch self.reservationState {
                 case .updateRSVP:
                     reservationSuccessViewController.successType = .update
                 default:
                     reservationSuccessViewController.successType = .reservation
             }
-
+            
             self.toggleCorrectSpinner()
             self.navigationController?.pushViewController(reservationSuccessViewController, animated: true)
         }
     }
-
+    
     private func toggleCorrectSpinner() {
         switch reservationState {
             case .makeRSVP:
@@ -411,26 +431,34 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
                 return
         }
     }
-
+    
     // MARK: WandaAlertViewDelegate
-
+    
     func didTapActionButton() {
         guard let motherId = dataManager.wandaMother?.motherId, let wandaClass = dataManager.nextClass, let navigationController = navigationController else {
             return
         }
-
+        
         switch reservationActionState {
             case .getWandaClass, .retryGetWandaClass:
                 getReservedWandaClass{}
             case .cancelRSVP, .retryCancelRSVP:
                 // to do where should the spinner be here since this is an alert?
-                dataManager.cancelWandaClassReservation(classId: wandaClass.details.classId, motherId: motherId) { success in
+                dataManager.cancelWandaClassReservation(classId: wandaClass.details.classId, motherId: motherId) { success, error in
                     guard success else {
-                        self.reservationActionState = .retryCancelRSVP
-                        self.presentErrorAlert(for: .systemError)
+                        if let error = error {
+                            self.reservationActionState = .retryCancelRSVP
+                            switch error {
+                            case .networkError:
+                                self.presentErrorAlert(for: .networkError)
+                            case .unknown:
+                                self.presentErrorAlert(for: .systemError)
+                            }
+                        }
+                        
                         return
                     }
-
+                    
                     self.dataManager.needsReload = true
                     navigationController.popViewController(animated: true)
                 }

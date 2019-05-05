@@ -13,11 +13,9 @@ import MessageUI
 
 class ClassesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, WandaAlertViewDelegate, MFMailComposeViewControllerDelegate {
     @IBOutlet private var tableView: UITableView!
-
     private var dataManager = WandaDataManager.shared
     private var nextClassesSection = 0
     private let overlayView = UIView(frame: UIScreen.main.bounds)
-
     static let storyboardIdentifier = String(describing: ClassesViewController.self)
 
     private struct DefaultHeight {
@@ -33,18 +31,15 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
         self.navigationController?.isNavigationBarHidden = false
         configureNavigationBar()
         configureTableView()
-
         if dataManager.needsReload {
             getWandaMother()
         }
     }
     
     // MARK: UITableViewDataSource
-
     func numberOfSections(in tableView: UITableView) -> Int {
         return dataManager.numberOfSections()
     }
@@ -53,20 +48,16 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
         if isNextClassesSection(section: section) {
             return 1
         }
-
         return dataManager.upcomingClasses.count
     }
     
     // MARK: UITableViewDelegate
-
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: ClassesHeaderView.nibName()) as? ClassesHeaderView else {
             return UIView()
         }
-
         let sectionHeaderText = section == nextClassesSection ? ClassStrings.nextClass : ClassStrings.upcomingClasses
         headerView.update(sectionText: sectionHeaderText)
-
         return headerView
     }
 
@@ -76,7 +67,6 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let heightForRow = indexPath.section == nextClassesSection ? DefaultHeight.nextClassHeight : DefaultHeight.upcomingClassHeight
-
         return heightForRow
     }
 
@@ -84,7 +74,6 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
         if let classesTableViewCell = cell as? ClassesTableViewCell {
             // We want it to appear as if there are spaces between the table view cells.
             classesTableViewCell.backgroundColor = WandaColors.lightGrey
-
             if isNextClassesSection(section: indexPath.section) {
                 classesTableViewCell.contentView.layer.applySketchShadow(alpha: 0.1, y: 1, blur: 2)
             } else {
@@ -96,7 +85,6 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
                 backgroundView.layer.backgroundColor = WandaColors.errorRed.cgColor
                 backgroundView.layer.masksToBounds = false
                 backgroundView.layer.applySketchShadow(alpha: 0.1, y: 1, blur: 2)
-
                 classesTableViewCell.contentView.addSubview(backgroundView)
                 classesTableViewCell.contentView.sendSubviewToBack(backgroundView)
                 classesTableViewCell.layoutSubviews()
@@ -109,16 +97,13 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
         guard let classCell = tableView.dequeueReusableCell(withIdentifier: ClassesTableViewCell.nibName(), for: indexPath) as? ClassesTableViewCell else {
             return UITableViewCell()
         }
-
         configureClassCell(classCell, indexPath: indexPath)
-
         return classCell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let isNextClass = isNextClassesSection(section: indexPath.section)
         let classType = isNextClass ? ClassType.nextClass : ClassType.upcomingClass
-
         // to do ask about analytic here
         guard let wandaClass = isNextClass ? dataManager.nextClass : dataManager.upcomingClasses[indexPath.row], let wandaClassViewController = ViewControllerFactory.makeWandaClassViewController(wandaClass: wandaClass, classType: classType) else {
             return
@@ -126,7 +111,6 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
         
         let analyticsTag = isNextClass ? WandaAnalytics.classReserveSpotButtonTapped : WandaAnalytics.classUpcomingClassTapped
         logAnalytic(tag: analyticsTag)
-
         self.navigationController?.pushViewController(wandaClassViewController, animated: true)
     }
 
@@ -138,7 +122,7 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
             try Auth.auth().signOut()
         } catch {
             // We are currently failing silently and sending the user back to the LoginViewController.
-           print("Couldn't sign user out. Returning back to Login.")
+            print("Couldn't sign user out. Returning back to Login.")
         }
         popBack(toControllerType: LoginViewController.self)
     }
@@ -151,13 +135,11 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
             guard let nextClass = dataManager.nextClass else {
                 return
             }
-
             classCell.configureClass(nextClass)
         } else {
             guard dataManager.upcomingClasses.indices.contains(indexPath.row) else {
                 return
             }
-
             let upcomingClass = dataManager.upcomingClasses[indexPath.row]
             classCell.configureClass(upcomingClass)
             classCell.reservationButton.isHidden = true
@@ -216,10 +198,17 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
         
         dataManager.needsReload = false
         configureLoadingView()
-        dataManager.getWandaMother(firebaseId: firebaseId) { success in
+        dataManager.getWandaMother(firebaseId: firebaseId) { success, error in
             guard success else {
+                if let error = error {
+                    switch error {
+                        case .networkError:
+                            self.presentErrorAlert(for: .networkError)
+                        case .unknown:
+                            self.presentErrorAlert(for: .systemError)
+                    }
+                }
                 self.overlayView.removeFromSuperview()
-                self.presentErrorAlert(for: .cantGetClasses)
                 return
             }
             
@@ -228,9 +217,8 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
             self.tableView.reloadData()
         }
     }
-
+    
     // MARK: WandaAlertViewDelegate
-
     func didTapActionButton() {
         getWandaMother()
     }

@@ -13,8 +13,8 @@ extension UILabel {
         self.isHidden = false
         self.text = errorMessage
         self.font = UIFont.wandaFontItalic(size: 10)
-        self.textColor = .red
-        invalidTextField.underlined(color: UIColor.red.cgColor)
+        self.textColor = WandaColors.newErrorRed
+        invalidTextField.underlined(color: WandaColors.newErrorRed.cgColor)
         invalidTextField.shake()
     }
 

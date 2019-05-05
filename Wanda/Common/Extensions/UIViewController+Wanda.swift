@@ -11,11 +11,15 @@ import UIKit
 
 extension UIViewController {
     func presentErrorAlert(for type: WandaAlertType) {
-        guard let selfAsDelegate = self as? WandaAlertViewDelegate, let wandaAlertViewController = ViewControllerFactory.makeWandaAlertController(type, delegate: selfAsDelegate) else {
-            assertionFailure("Could not instantiate WandaAlertViewController.")
+        guard let selfAsDelegate = self as? WandaAlertViewDelegate else {
             return
         }
-        self.present(wandaAlertViewController, animated: true, completion: nil)
+            guard let wandaAlertViewController = ViewControllerFactory.makeWandaAlertController(type, delegate: selfAsDelegate) else {
+            return
+        }
+        self.present(wandaAlertViewController, animated: true) {
+            wandaAlertViewController.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.dismissAlert)))
+        }
     }
     
     func popBack<T: UIViewController>(toControllerType: T.Type) {
@@ -33,5 +37,10 @@ extension UIViewController {
     // to do make this strict to the analytics tag strings - enum?
     func logAnalytic(tag: String) {
         Analytics.logEvent(tag, parameters: nil)
+    }
+    
+    @objc
+    private func dismissAlert() {
+        dismiss(animated: true, completion: nil)
     }
 }
