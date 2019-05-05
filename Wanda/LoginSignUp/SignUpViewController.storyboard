@@ -54,8 +54,8 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Pg-KE-x7E">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WandaLogo" translatesAutoresizingMaskIntoConstraints="NO" id="GaH-bl-cza">
-                                                <rect key="frame" x="82" y="32" width="211" height="201"/>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NewWandaLogo" translatesAutoresizingMaskIntoConstraints="NO" id="GaH-bl-cza">
+                                                <rect key="frame" x="82.5" y="32" width="210" height="200"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="GaH-bl-cza" secondAttribute="height" multiplier="21:20" id="4d9-Hz-XCX"/>
                                                 </constraints>
@@ -355,7 +355,7 @@
     <resources>
         <image name="EyeIcon" width="22" height="15"/>
         <image name="LockIcon" width="20" height="20"/>
+        <image name="NewWandaLogo" width="200" height="200"/>
         <image name="PersonIcon" width="20" height="20"/>
-        <image name="WandaLogo" width="211" height="200"/>
     </resources>
 </document>
