@@ -124,20 +124,14 @@ class ForgotPasswordViewController: UIViewController, MFMailComposeViewControlle
                     switch errorCode {
                         case .networkError:
                             self.actionState = .resetPassword
-                            if let wandaAlertViewController = ViewControllerFactory.makeWandaAlertController(.networkError, delegate: self) {
-                                self.present(wandaAlertViewController, animated: true, completion: nil)
-                            }
+                            self.presentErrorAlert(for: .networkError)
                         case .userNotFound:
                             // If the user is not found we still want a 'success' modal to pop up for security reasons.
                             self.actionState = .success
-                            if let wandaAlertViewController = ViewControllerFactory.makeWandaAlertController(.forgotPasswordSuccess, delegate: self) {
-                                self.present(wandaAlertViewController, animated: true, completion: nil)
-                            }
+                            self.presentErrorAlert(for: .forgotPasswordSuccess)
                         default:
                             self.actionState = .resetPassword
-                            if let wandaAlertViewController = ViewControllerFactory.makeWandaAlertController(.systemError, delegate: self) {
-                                self.present(wandaAlertViewController, animated: true, completion: nil)
-                            }
+                            self.presentErrorAlert(for: .systemError)
                         }
                 }
                 return
@@ -145,10 +139,8 @@ class ForgotPasswordViewController: UIViewController, MFMailComposeViewControlle
  
             self.actionState = .success
             self.logAnalytic(tag: WandaAnalytics.resetPasswordSuccess)
-            if let wandaAlertViewController = ViewControllerFactory.makeWandaAlertController(.forgotPasswordSuccess, delegate: self) {
-                self.spinner.toggleSpinner(for: self.resetPasswordButton, title: LoginSignUpStrings.resetPassword)
-                self.present(wandaAlertViewController, animated: true, completion: nil)
-            }
+            self.presentErrorAlert(for: .forgotPasswordSuccess)
+            self.spinner.toggleSpinner(for: self.resetPasswordButton, title: LoginSignUpStrings.resetPassword)
         }
     }
 

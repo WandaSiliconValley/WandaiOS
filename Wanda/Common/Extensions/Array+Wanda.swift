@@ -14,6 +14,10 @@ extension Array where Iterator.Element == WandaClass {
             let date = $0.details.date
             let secondDate = $1.details.date
 
+//            if $0.details.date > Date() {
+//                print("PAST \($0.details.date)")
+//            }
+            
             if shouldUseDescendingOrder {
                 return date > secondDate
             }

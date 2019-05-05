@@ -205,9 +205,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, MFMailCompose
                     switch errorCode {
                         case .networkError:
                             self.actionState = .retryCreateFirebaseUser
-                            if let wandaAlertViewController = ViewControllerFactory.makeWandaAlertController(.networkError, delegate: self) {
-                                self.present(wandaAlertViewController, animated: true, completion: nil)
-                            }
+                            self.presentErrorAlert(for: .networkError)
                         case .invalidEmail, .missingEmail:
                             _ = email.isEmailValid(emailTextField: self.emailTextField, emailInfoLabel: self.emailInfoLabel)
                         case .emailAlreadyInUse:

@@ -45,6 +45,15 @@ class WandaDataManager {
     
     init() { }
     
+  //  func isIn
+    
+//    func isEven(number: Int) -> Bool {
+//        return number % 2 == 0
+//    }
+//
+//    evens = Array(1...10).filter(isEven)
+//    println(evens)
+    
     func loadClasses() {
         // Check if any classes are reserved.
         if let reservedClassId = wandaMother?.reservedClassIds.first {
@@ -52,6 +61,13 @@ class WandaDataManager {
         }
         
         var sortedClasses = allClasses.sortedByDate(descending: false)
+        
+        sortedClasses = sortedClasses.filter {DateFormatter.simpleDateFormatter.date(from: $0.details.date) ?? Date() > Date()}
+        
+        //let pets = animals.filter { $0 != "chimps" }
+
+       // sortedClasses.filter($0.d)
+        
         if let nextClass = sortedClasses.first {
             self.nextClass = nextClass
         }

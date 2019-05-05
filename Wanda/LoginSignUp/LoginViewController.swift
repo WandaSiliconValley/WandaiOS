@@ -99,8 +99,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
     }
     
     private func loginWithFirebase(email: String, password: String) {
-        self.spinner.toggleSpinner(for: self.loginButton, title: LoginSignUpStrings.login)
-
         Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
             guard let firebaseId = authResult?.user.uid else {
                 if let error = error, let errorCode = AuthErrorCode(rawValue: error._code) {
@@ -139,8 +137,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
             return
         }
 
-        self.spinner.toggleSpinner(for: self.loginButton, title: LoginSignUpStrings.login)
-        
         dataManager.getWandaMother(firebaseId: firebaseId) { success, error in
             guard success else {
                 if let error = error {

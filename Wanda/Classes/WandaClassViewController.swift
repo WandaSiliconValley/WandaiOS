@@ -124,13 +124,14 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
     }
     
     @IBAction func didTapCancelRSVPButton() {
-        guard let wandaAlertViewController = ViewControllerFactory.makeWandaAlertController(.cancelRSVP, delegate: self) else {
-            assertionFailure("Could not load the WandaAlertViewController.")
-            return
-        }
+//        guard let wandaAlertViewController = ViewControllerFactory.makeWandaAlertController(.cancelRSVP, delegate: self) else {
+//            assertionFailure("Could not load the WandaAlertViewController.")
+//            return
+//        }
         
         reservationActionState = .cancelRSVP
-        self.present(wandaAlertViewController, animated: true, completion: nil)
+        self.presentErrorAlert(for: .cancelRSVP)
+   //     self.present(wandaAlertViewController, animated: true, completion: nil)
     }
     
     @IBAction func didTapSendRSVPButton() {
@@ -200,12 +201,13 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
     @objc
     private func backButtonPressed(_ sender: UIButton) {
         if unsavedChanges {
-            guard let wandaAlertViewController = ViewControllerFactory.makeWandaAlertController(.unsavedChanges, delegate: self) else {
-                assertionFailure("Could not load the WandaAlertViewController.")
-                return
-            }
+//            guard let wandaAlertViewController = ViewControllerFactory.makeWandaAlertController(.unsavedChanges, delegate: self) else {
+//                assertionFailure("Could not load the WandaAlertViewController.")
+//                return
+//            }
             reservationActionState = .discardRSVP
-            self.present(wandaAlertViewController, animated: true, completion: nil)
+            self.presentErrorAlert(for: .unsavedChanges)
+         //   self.present(wandaAlertViewController, animated: true, completion: nil)
         }
         _ = navigationController?.popViewController(animated: true)
     }
