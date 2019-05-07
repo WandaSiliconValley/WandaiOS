@@ -81,12 +81,13 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
                 // to do why does this need to be right 30 here???
                 // its 15/15 in the table view cell but this isn't
                 // honoring that
-                backgroundView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 30))
-                backgroundView.layer.backgroundColor = WandaColors.errorRed.cgColor
-                backgroundView.layer.masksToBounds = false
-                backgroundView.layer.applySketchShadow(alpha: 0.1, y: 1, blur: 2)
+//                backgroundView.frame = UIEdgeInsetsInsetRect(backgroundView.frame, UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 30))
+//                backgroundView.layer.masksToBounds = false
+//                backgroundView.backgroundColor = .red
+//                backgroundView.layer.applySketchShadow(alpha: 0.1, y: 1, blur: 2)
+       //         classesTableViewCell.layer.applySketchShadow(alpha: 0.1, y: 1, blur: 2)
                 classesTableViewCell.contentView.addSubview(backgroundView)
-                classesTableViewCell.contentView.sendSubviewToBack(backgroundView)
+                classesTableViewCell.contentView.sendSubview(toBack: backgroundView)
                 classesTableViewCell.layoutSubviews()
                 classesTableViewCell.layoutIfNeeded()
             }
@@ -135,13 +136,13 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
             guard let nextClass = dataManager.nextClass else {
                 return
             }
-            classCell.configureClass(nextClass)
+            classCell.configureClass(nextClass, isNextClass: true)
         } else {
             guard dataManager.upcomingClasses.indices.contains(indexPath.row) else {
                 return
             }
             let upcomingClass = dataManager.upcomingClasses[indexPath.row]
-            classCell.configureClass(upcomingClass)
+            classCell.configureClass(upcomingClass, isNextClass: false)
             classCell.reservationButton.isHidden = true
         }
     }
@@ -184,7 +185,7 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
     private func configureLoadingView() {
         overlayView.backgroundColor = UIColor.white.withAlphaComponent(0.4)
         let spinner = UIActivityIndicatorView(frame: UIScreen.main.bounds)
-        spinner.style = .whiteLarge
+        spinner.activityIndicatorViewStyle = .whiteLarge
         spinner.color = .black
         spinner.startAnimating()
         overlayView.addSubview(spinner)

@@ -170,6 +170,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="classDescriptionView" destination="Y1h-eY-XZF" id="a8Z-PW-iEZ"/>
                 <outlet property="classLocationLabel" destination="mDW-P3-tt8" id="tTM-sk-aBA"/>
                 <outlet property="classTimeLabel" destination="0av-7m-nXk" id="lVB-yh-UAj"/>
                 <outlet property="classTopicLabel" destination="cSN-o1-GHP" id="djg-Xi-9it"/>

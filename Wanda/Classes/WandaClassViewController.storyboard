@@ -182,7 +182,7 @@
                                         <color key="tintColor" red="0.40000000000000002" green="0.20392156862745098" blue="0.59607843137254901" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" image="MinusIcon"/>
                                         <connections>
-                                            <action selector="didTapSubtractChildButton" destination="aGe-8Y-NHp" eventType="touchUpInside" id="6Ce-9m-Zi1"/>
+                                            <action selector="didTapSubtractChildButton" destination="aGe-8Y-NHp" eventType="touchUpInside" id="0vp-BE-T1a"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -350,7 +350,7 @@
                         <outlet property="reservedHeader" destination="8bK-jn-5hD" id="5iY-ok-GWz"/>
                         <outlet property="reservedHeaderHeightConstraint" destination="Vih-6z-kG5" id="1X5-yx-yvm"/>
                         <outlet property="sendRSVPButton" destination="usa-Ja-BXn" id="fzD-de-kCQ"/>
-                        <outlet property="subtractbutton" destination="tN8-9W-pAw" id="o6G-9s-Kiv"/>
+                        <outlet property="subtractbutton" destination="tN8-9W-pAw" id="xuD-C2-g9m"/>
                         <outlet property="timeLabel" destination="KRB-qO-TQM" id="jK7-cq-nHF"/>
                     </connections>
                 </viewController>

@@ -11,6 +11,7 @@ import UIKit
 // TODO will want to pass completion block? or just utilize class name to get to the right reservation screen??
 // Is this the proper place to put the action
 class ClassesTableViewCell: UITableViewCell {
+    @IBOutlet weak var classDescriptionView: UIView!
     @IBOutlet private weak var classLocationLabel: UILabel!
     @IBOutlet private weak var classTopicLabel: UILabel!
     @IBOutlet private weak var classTimeLabel: UILabel!
@@ -33,10 +34,10 @@ class ClassesTableViewCell: UITableViewCell {
         super.layoutSubviews()
         
         contentView.backgroundColor = .clear
-        contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15))
+        contentView.frame = UIEdgeInsetsInsetRect(contentView.frame, UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15))
     }
     
-    func configureClass(_ wandaClass: WandaClass) {
+    func configureClass(_ wandaClass: WandaClass, isNextClass: Bool) {
         guard let eventDate = DateFormatter.simpleDateFormatter.date(from: wandaClass.details.date) else {
             return
         }
@@ -52,8 +53,8 @@ class ClassesTableViewCell: UITableViewCell {
         classTimeLabel.text = wandaClass.details.time
         classLocationLabel.text = wandaClass.details.address
         
-        let numberOfDays = Calendar.current.dateComponents([.day], from: eventDate, to: Date()).day ?? 0
-        if numberOfDays <= 7 {
+      //  let numberOfDays = Calendar.current.dateComponents([.day], from: eventDate, to: Date()).day ?? 0
+      //  if numberOfDays <= 7 {
             switch wandaClass.isReserved {
                 case true:
                     reservationButton.isHidden = true
@@ -62,9 +63,15 @@ class ClassesTableViewCell: UITableViewCell {
                     reservationButton.isHidden = false
                     reservedView.isHidden = true
             }
+     //   } else {
+//            reservationButton.isHidden = true
+//            reservedView.isHidden = true
+     //   }
+        
+        if isNextClass {
+            classDescriptionView.layer.applySketchShadow(alpha: 0, y: 0, blur: 0)
         } else {
-            reservationButton.isHidden = true
-            reservedView.isHidden = true
+            classDescriptionView.layer.applySketchShadow(alpha: 0.1, y: 1, blur: 2)
         }
     }
 }

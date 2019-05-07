@@ -20,6 +20,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
     @IBOutlet private weak var passwordInfoLabel: UILabel!
     @IBOutlet private weak var passwordTextField: UITextField!
     @IBOutlet private weak var scrollView: UIScrollView!
+    @IBOutlet private weak var showHidePasswordButton: UIButton!
     @IBOutlet private weak var spinner: UIActivityIndicatorView!
     
     private var actionState: ActionState = .contactUs
@@ -34,13 +35,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
         case retryGetClasses
         case retryGetMother
         case retryLogin
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        if let navigationBar = self.navigationController?.navigationBar {
-            navigationBar.barTintColor = WandaColors.darkPurple
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -59,8 +53,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
     
     override func viewDidLoad() {
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIApplication.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIApplication.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         passwordTextField.isSecureTextEntry = true
     }
     
@@ -74,7 +68,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
     @objc
     private func keyboardWillShow(notification: NSNotification) {
         var userInfo = notification.userInfo!
-        let keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        let keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
         var contentInset:UIEdgeInsets = self.scrollView.contentInset
         contentInset.bottom = keyboardFrame.size.height + 60
         scrollView.contentInset = contentInset
@@ -217,6 +211,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
     }
     
     @IBAction private func didTapShowHideButton() {
+        let icon = showHideIconClicked ? WandaImages.eyeIcon : WandaImages.eyeOffIcon
+        showHidePasswordButton.setImage(icon, for: .normal)
         passwordTextField.isSecureTextEntry = showHideIconClicked
         showHideIconClicked = !showHideIconClicked
     }

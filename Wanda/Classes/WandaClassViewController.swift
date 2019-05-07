@@ -25,7 +25,7 @@ private enum ReservationState {
     case updateRSVP
 }
 
-class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMailComposeViewControllerDelegate, EKEventEditViewDelegate {
+class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMailComposeViewControllerDelegate, EKEventEditViewDelegate, UIGestureRecognizerDelegate {
     @IBOutlet private weak var addButton: UIButton!
     @IBOutlet private weak var addressLabel: UILabel!
     @IBOutlet private weak var cancelRSVPButton: UIButton!
@@ -73,11 +73,10 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
         configureNavigationBar()
         
         if wandaClass.isReserved {
-            getReservedWandaClass {
-                self.isReserved = wandaClass.isReserved
-                self.configureView()
-                self.configureMenu()
-            }
+            self.isReserved = wandaClass.isReserved
+            self.configureView()
+            self.configureMenu()
+            getReservedWandaClass()
         } else {
             isReserved = wandaClass.isReserved
             configureView()
@@ -88,8 +87,9 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(menuView?.hideMenu))
-        self.view.addGestureRecognizer(tap)
+        // to do figure out how to get me back
+//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(menuView?.hideMenu))
+//        self.view.addGestureRecognizer(tap)
     }
     
     private func configureView() {
@@ -254,10 +254,18 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
         }
     }
     
-    private func getReservedWandaClass(completion: @escaping() -> (Void)) {
+    private func getReservedWandaClass() {
         guard let wandaClass = wandaClass, let motherId = dataManager.wandaMother?.motherId else {
             return
         }
+        
+        view.isUserInteractionEnabled = false
+        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+        activityIndicator.center = view.center
+        view.addSubview(activityIndicator)
+        view.bringSubview(toFront: activityIndicator)
         
         dataManager.getReservedWandaClass(classId: wandaClass.details.classId, motherId: motherId) { success, reservedClass, error in
             guard success, let reservedClass = reservedClass else {
@@ -265,20 +273,28 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
                     // to do retry twice then contact support
                     self.reservationActionState = .retryGetWandaClass
                     switch error {
-                        case .networkError:
-                            self.presentErrorAlert(for: .networkError)
-                        case .unknown:
-                            self.presentErrorAlert(for: .systemError)
+                    case .networkError:
+                        self.presentErrorAlert(for: .networkError)
+                    case .unknown:
+                        self.presentErrorAlert(for: .systemError)
                     }
                 }
                 
-                completion()
+                activityIndicator.removeFromSuperview()
+                self.view.isUserInteractionEnabled = true
+                self.view.bringSubview(toFront: self.changeRSVPView)
+                self.view.bringSubview(toFront: self.reservedHeader)
                 return
             }
             
+            activityIndicator.removeFromSuperview()
+            self.view.isUserInteractionEnabled = true
+            self.view.bringSubview(toFront: self.changeRSVPView)
+            self.view.bringSubview(toFront: self.reservedHeader)
             wandaClass.childCareNumber = reservedClass.childcareNumber
-            completion()
+            self.numberOfChildrenLabel.text = String(wandaClass.childCareNumber)
         }
+        
     }
     
     private func configureReservationView() {
@@ -344,8 +360,6 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
                 addButton.imageView?.tintColor = WandaColors.mediumGrey
                 subtractbutton.imageView?.tintColor = WandaColors.mediumGrey
                 self.view.addSubview(overlayView)
-                self.view.bringSubviewToFront(changeRSVPView)
-                self.view.bringSubviewToFront(reservedHeader)
             case false:
                 addButton.imageView?.tintColor = WandaColors.darkPurple
                 subtractbutton.imageView?.tintColor = WandaColors.darkPurple
@@ -443,7 +457,7 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
         
         switch reservationActionState {
             case .getWandaClass, .retryGetWandaClass:
-                getReservedWandaClass{}
+                getReservedWandaClass()
             case .cancelRSVP, .retryCancelRSVP:
                 // to do where should the spinner be here since this is an alert?
                 dataManager.cancelWandaClassReservation(classId: wandaClass.details.classId, motherId: motherId) { success, error in
@@ -483,5 +497,13 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
         
         // Dismiss the mail compose view controller.
         controller.dismiss(animated: true, completion: nil)
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        guard let menuView = menuView else {
+            return false
+        }
+
+        return !menuView.isHidden
     }
 }

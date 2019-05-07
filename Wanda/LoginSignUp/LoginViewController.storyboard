@@ -51,7 +51,7 @@
                                                             <constraint firstAttribute="width" constant="20" id="esq-vJ-dqC"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MZW-hZ-1YR">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="courtney.bell@capitalone.com" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MZW-hZ-1YR">
                                                         <rect key="frame" x="38" y="0.0" width="279" height="24"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -102,7 +102,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fpu-XX-RkO" userLabel="Password Text View">
                                                         <rect key="frame" x="40" y="0.0" width="279" height="24"/>
                                                         <subviews>
-                                                            <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TZi-py-bWO">
+                                                            <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="testtest" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TZi-py-bWO">
                                                                 <rect key="frame" x="0.0" y="0.0" width="279" height="24"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -124,7 +124,7 @@
                                                                     <constraint firstAttribute="height" constant="15" id="3Jq-0w-KfA"/>
                                                                     <constraint firstAttribute="width" constant="23.5" id="N2o-5f-v4C"/>
                                                                 </constraints>
-                                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="tintColor" red="0.59999999999999998" green="0.80000000000000004" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <state key="normal" image="EyeIcon"/>
                                                                 <connections>
                                                                     <action selector="didTapShowHideButton" destination="mk5-6E-flT" eventType="touchUpInside" id="try-FO-cgZ"/>
@@ -227,7 +227,7 @@
                                                         <rect key="frame" x="116.5" y="0.0" width="41" height="12"/>
                                                         <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="10"/>
                                                         <state key="normal" title="SIGN UP">
-                                                            <color key="titleColor" red="0.0" green="0.54509803921568623" blue="0.75686274509803919" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="titleColor" red="0.59999999999999998" green="0.80000000000000004" blue="0.20392156862745098" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="didTapSignUp" destination="mk5-6E-flT" eventType="touchUpInside" id="ZYL-Rk-I07"/>
@@ -289,6 +289,7 @@
                         <outlet property="passwordInfoLabel" destination="puH-Uq-zhY" id="p07-1g-SES"/>
                         <outlet property="passwordTextField" destination="TZi-py-bWO" id="Dg9-Bw-6q3"/>
                         <outlet property="scrollView" destination="ofl-RS-5Sc" id="sKg-sQ-xXx"/>
+                        <outlet property="showHidePasswordButton" destination="OGm-4G-HPH" id="PKK-Sf-ftQ"/>
                         <outlet property="spinner" destination="geW-rH-Dh1" id="nhs-Eo-98D"/>
                     </connections>
                 </viewController>

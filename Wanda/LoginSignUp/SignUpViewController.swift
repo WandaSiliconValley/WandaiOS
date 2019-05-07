@@ -18,6 +18,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, MFMailCompose
     @IBOutlet private weak var passwordInfoLabel: UILabel!
     @IBOutlet private var passwordTextField: UITextField!
     @IBOutlet private weak var scrollView: UIScrollView!
+    @IBOutlet private weak var showHidePasswordButton: UIButton!
+    @IBOutlet private weak var showHideConfirmPasswordButton: UIButton!
     @IBOutlet private weak var signUpButton: UIButton!
     @IBOutlet private weak var spinner: UIActivityIndicatorView!
     
@@ -63,8 +65,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, MFMailCompose
     }
     
     override func viewDidLoad() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIApplication.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIApplication.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         configureNavigationBar()
         // to do !!
         //        passwordTextField.isSecureTextEntry = true
@@ -86,7 +88,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, MFMailCompose
         guard let userInfo = notification.userInfo else {
             return
         }
-        let keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        let keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
         var contentInset:UIEdgeInsets = self.scrollView.contentInset
         contentInset.bottom = keyboardFrame.size.height + 60
         scrollView.contentInset = contentInset
@@ -179,11 +181,16 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, MFMailCompose
     }
     
     @IBAction private func didTapShowHidePasswordButton() {
+        let icon = showPasswordClicked ? WandaImages.eyeIcon : WandaImages.eyeOffIcon
+        showHidePasswordButton.setImage(icon, for: .normal)
         passwordTextField.isSecureTextEntry = showPasswordClicked
         showPasswordClicked = !showPasswordClicked
     }
     
     @IBAction private func didTapShowHideConfirmPasswordButton() {
+        let icon = showConfirmPasswordClicked ? WandaImages.eyeIcon : WandaImages.eyeOffIcon
+        showHidePasswordButton.setImage(icon, for: .normal)
+        showHideConfirmPasswordButton.imageView?.image  = showConfirmPasswordClicked ? WandaImages.eyeOffIcon : WandaImages.eyeIcon
         confirmPasswordTextField.isSecureTextEntry = showConfirmPasswordClicked
         showConfirmPasswordClicked = !showConfirmPasswordClicked
     }

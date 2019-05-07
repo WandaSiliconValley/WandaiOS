@@ -15,6 +15,8 @@ struct WandaImages {
     fileprivate struct ImageName {
         static let backArrow = "BackArrow"
         static let closeIcon = "CloseIcon"
+        static let eyeIcon = "EyeIcon"
+        static let eyeOffIcon = "EyeOffIcon"
         static let overflowIcon = "OverflowIcon"
         static let successCalendar = "SuccessCalendar"
         static let successEmail = "SuccessEmail"
@@ -22,6 +24,8 @@ struct WandaImages {
 
     static let backArrow = UIImage(named: ImageName.backArrow, in: bundle, compatibleWith: nil)
     static let closeIcon = UIImage(named: ImageName.closeIcon, in: bundle, compatibleWith: nil)
+    static let eyeIcon = UIImage(named: ImageName.eyeIcon, in: bundle, compatibleWith: nil)
+    static let eyeOffIcon = UIImage(named: ImageName.eyeOffIcon, in: bundle, compatibleWith: nil)
     static let overflowIcon = UIImage(named: ImageName.overflowIcon, in: bundle, compatibleWith: nil)
     static let successCalendar = UIImage(named: ImageName.successCalendar, in: bundle, compatibleWith: nil)
     static let successEmail = UIImage(named: ImageName.successEmail, in: bundle, compatibleWith: nil)

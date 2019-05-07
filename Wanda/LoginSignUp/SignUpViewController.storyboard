@@ -28,6 +28,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lq7-zr-Zn6">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.40000000000000002" green="0.20392156859999999" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
@@ -151,7 +152,7 @@
                                                             <constraint firstAttribute="width" constant="23.5" id="JQF-ID-xXd"/>
                                                             <constraint firstAttribute="height" constant="15" id="if9-f9-wsi"/>
                                                         </constraints>
-                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="tintColor" red="0.59999999999999998" green="0.80000000000000004" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
                                                         <state key="normal" image="EyeIcon"/>
                                                         <connections>
                                                             <action selector="didTapShowHidePasswordButton" destination="TuE-3r-anb" eventType="touchUpInside" id="Kis-uM-L5B"/>
@@ -202,7 +203,7 @@
                                                             <constraint firstAttribute="height" constant="15" id="Ibr-ic-v0f"/>
                                                             <constraint firstAttribute="width" constant="23.5" id="hK8-Kl-0ii"/>
                                                         </constraints>
-                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="tintColor" red="0.59999999999999998" green="0.80000000000000004" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
                                                         <state key="normal" image="EyeIcon"/>
                                                         <connections>
                                                             <action selector="didTapShowHideConfirmPasswordButton" destination="TuE-3r-anb" eventType="touchUpInside" id="SUL-dN-soZ"/>
@@ -267,7 +268,7 @@
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="LJh-yD-7zc" userLabel="Sign Up Stack View">
-                                                <rect key="frame" x="16" y="567" width="130.5" height="12"/>
+                                                <rect key="frame" x="16" y="567" width="163.5" height="12"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Need help?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xnD-eq-9Kb">
                                                         <rect key="frame" x="0.0" y="0.0" width="52.5" height="12"/>
@@ -276,10 +277,10 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rcK-tm-GDO">
-                                                        <rect key="frame" x="68.5" y="0.0" width="62" height="12"/>
+                                                        <rect key="frame" x="68.5" y="0.0" width="95" height="12"/>
                                                         <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="10"/>
-                                                        <state key="normal" title="CONTACT US">
-                                                            <color key="titleColor" red="0.0" green="0.5450980392" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <state key="normal" title="CONTACT SUPPORT">
+                                                            <color key="titleColor" red="0.59999999999999998" green="0.80000000000000004" blue="0.20392156862745098" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="didTapContactUs" destination="TuE-3r-anb" eventType="touchUpInside" id="3Q3-dP-4nW"/>
@@ -343,6 +344,8 @@
                         <outlet property="passwordInfoLabel" destination="v3e-eb-IJu" id="BVr-MQ-DFB"/>
                         <outlet property="passwordTextField" destination="U4W-Et-xNw" id="MNb-R8-mmZ"/>
                         <outlet property="scrollView" destination="869-Bc-mVw" id="XhO-EB-Cm9"/>
+                        <outlet property="showHideConfirmPasswordButton" destination="iA7-lq-gsH" id="JTk-E6-pXE"/>
+                        <outlet property="showHidePasswordButton" destination="Ual-wQ-Jz0" id="OMN-A4-GZW"/>
                         <outlet property="signUpButton" destination="zc8-FE-OwC" id="OwD-vX-XVE"/>
                         <outlet property="spinner" destination="rPo-UK-fvw" id="aqV-d2-QJT"/>
                     </connections>
