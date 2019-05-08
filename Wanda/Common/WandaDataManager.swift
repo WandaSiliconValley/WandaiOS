@@ -54,7 +54,15 @@ class WandaDataManager {
 //    evens = Array(1...10).filter(isEven)
 //    println(evens)
     
+    // to do dont like this!
+    func removeReservation(_ wandaClass: WandaClass) {
+        let classToUpdate = allClasses.filter { $0.details.classId == wandaClass.details.classId }.first
+       classToUpdate?.isReserved = false
+       classToUpdate?.childCareNumber = 0
+    }
+    
     func loadClasses() {
+        
         // Check if any classes are reserved.
         if let reservedClassId = wandaMother?.reservedClassIds.first {
             allClasses.filter {$0.details.classId == reservedClassId}.first?.isReserved = true

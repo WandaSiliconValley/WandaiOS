@@ -39,7 +39,7 @@ class ForgotPasswordViewController: UIViewController, MFMailComposeViewControlle
         super.viewDidAppear(animated)
 
         if let navigationBar = self.navigationController?.navigationBar {
-            navigationBar.isTranslucent = false
+            navigationBar.isTranslucent = true
             navigationBar.setBackgroundImage(UIImage(), for: .default)
             navigationBar.shadowImage = UIImage()
             navigationBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 80.0)

@@ -42,10 +42,10 @@
                                                 </constraints>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aME-lg-tcD" userLabel="Email View">
-                                                <rect key="frame" x="34" y="335" width="317" height="38"/>
+                                                <rect key="frame" x="34" y="331" width="317" height="42"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PersonIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Z4P-p0-7Ji">
-                                                        <rect key="frame" x="0.0" y="2" width="20" height="20"/>
+                                                        <rect key="frame" x="0.0" y="6" width="20" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="7gF-ns-ge7"/>
                                                             <constraint firstAttribute="width" constant="20" id="esq-vJ-dqC"/>
@@ -68,23 +68,23 @@
                                                         </connections>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Use email on file with WANDA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Gt-Iy-dKl" userLabel="Email Info Label">
-                                                        <rect key="frame" x="38" y="24" width="279" height="14"/>
-                                                        <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="10"/>
+                                                        <rect key="frame" x="38" y="28" width="279" height="14"/>
+                                                        <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="14"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="bottom" secondItem="MZW-hZ-1YR" secondAttribute="bottom" constant="14" id="0Om-QX-BoH"/>
+                                                    <constraint firstAttribute="bottom" secondItem="MZW-hZ-1YR" secondAttribute="bottom" constant="18" id="0Om-QX-BoH"/>
                                                     <constraint firstItem="MZW-hZ-1YR" firstAttribute="top" secondItem="aME-lg-tcD" secondAttribute="top" id="9vD-Ae-S2Q"/>
                                                     <constraint firstAttribute="bottom" secondItem="4Gt-Iy-dKl" secondAttribute="bottom" id="DM8-BK-Igf"/>
-                                                    <constraint firstAttribute="height" constant="38" id="LkB-on-FY2"/>
+                                                    <constraint firstAttribute="height" constant="42" id="LkB-on-FY2"/>
                                                     <constraint firstItem="4Gt-Iy-dKl" firstAttribute="trailing" secondItem="MZW-hZ-1YR" secondAttribute="trailing" id="MNK-5U-hkQ"/>
                                                     <constraint firstAttribute="trailing" secondItem="MZW-hZ-1YR" secondAttribute="trailing" id="VEM-vC-hyF"/>
                                                     <constraint firstItem="MZW-hZ-1YR" firstAttribute="leading" secondItem="Z4P-p0-7Ji" secondAttribute="trailing" constant="18" id="VjU-8W-Tc9"/>
                                                     <constraint firstItem="4Gt-Iy-dKl" firstAttribute="leading" secondItem="MZW-hZ-1YR" secondAttribute="leading" id="iFC-KP-fdd"/>
-                                                    <constraint firstItem="4Gt-Iy-dKl" firstAttribute="top" secondItem="MZW-hZ-1YR" secondAttribute="bottom" id="lvo-MW-yOK"/>
+                                                    <constraint firstItem="4Gt-Iy-dKl" firstAttribute="top" secondItem="MZW-hZ-1YR" secondAttribute="bottom" constant="4" id="lvo-MW-yOK"/>
                                                     <constraint firstAttribute="bottom" secondItem="Z4P-p0-7Ji" secondAttribute="bottom" constant="16" id="r6L-3D-heb"/>
                                                     <constraint firstItem="Z4P-p0-7Ji" firstAttribute="leading" secondItem="aME-lg-tcD" secondAttribute="leading" id="xQm-Ti-lI3"/>
                                                 </constraints>
@@ -100,10 +100,10 @@
                                                         </constraints>
                                                     </imageView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fpu-XX-RkO" userLabel="Password Text View">
-                                                        <rect key="frame" x="40" y="0.0" width="279" height="24"/>
+                                                        <rect key="frame" x="40" y="0.0" width="279" height="20"/>
                                                         <subviews>
                                                             <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="testtest" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TZi-py-bWO">
-                                                                <rect key="frame" x="0.0" y="0.0" width="279" height="24"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="279" height="20"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="18"/>
@@ -119,10 +119,10 @@
                                                                 </connections>
                                                             </textField>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OGm-4G-HPH" userLabel="Show Hide Button">
-                                                                <rect key="frame" x="255.5" y="5" width="23.5" height="15"/>
+                                                                <rect key="frame" x="255.5" y="-1" width="23.5" height="22"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="15" id="3Jq-0w-KfA"/>
-                                                                    <constraint firstAttribute="width" constant="23.5" id="N2o-5f-v4C"/>
+                                                                    <constraint firstAttribute="width" secondItem="OGm-4G-HPH" secondAttribute="height" multiplier="23:22" id="97Q-1P-rs0"/>
+                                                                    <constraint firstAttribute="width" constant="23.5" id="ILc-0a-2fB"/>
                                                                 </constraints>
                                                                 <color key="tintColor" red="0.59999999999999998" green="0.80000000000000004" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <state key="normal" image="EyeIcon"/>
@@ -138,13 +138,12 @@
                                                             <constraint firstAttribute="trailing" secondItem="TZi-py-bWO" secondAttribute="trailing" id="Gvj-2p-Q2r"/>
                                                             <constraint firstItem="TZi-py-bWO" firstAttribute="leading" secondItem="Fpu-XX-RkO" secondAttribute="leading" id="Qj1-eS-Gc0"/>
                                                             <constraint firstItem="TZi-py-bWO" firstAttribute="top" secondItem="Fpu-XX-RkO" secondAttribute="top" id="WN8-g2-1fj"/>
-                                                            <constraint firstItem="OGm-4G-HPH" firstAttribute="top" secondItem="Fpu-XX-RkO" secondAttribute="top" constant="5" id="X33-eQ-jIs"/>
-                                                            <constraint firstAttribute="bottom" secondItem="OGm-4G-HPH" secondAttribute="bottom" constant="4" id="viY-ki-noq"/>
+                                                            <constraint firstItem="OGm-4G-HPH" firstAttribute="centerY" secondItem="TZi-py-bWO" secondAttribute="centerY" id="wr3-tR-EOb"/>
                                                         </constraints>
                                                     </view>
                                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password must be at least 6 characters." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="puH-Uq-zhY" userLabel="Password Info Label">
                                                         <rect key="frame" x="40" y="24" width="279" height="14"/>
-                                                        <fontDescription key="fontDescription" name="OpenSans-Italic" family="Open Sans" pointSize="10"/>
+                                                        <fontDescription key="fontDescription" name="OpenSans-Italic" family="Open Sans" pointSize="15"/>
                                                         <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -152,9 +151,9 @@
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="Fpu-XX-RkO" firstAttribute="top" secondItem="APh-5R-2Qa" secondAttribute="top" id="4ft-zz-ujP"/>
-                                                    <constraint firstItem="puH-Uq-zhY" firstAttribute="top" secondItem="Fpu-XX-RkO" secondAttribute="bottom" id="OMn-j7-ojk"/>
+                                                    <constraint firstItem="puH-Uq-zhY" firstAttribute="top" secondItem="Fpu-XX-RkO" secondAttribute="bottom" constant="4" id="OMn-j7-ojk"/>
                                                     <constraint firstAttribute="bottom" secondItem="2it-vr-AdJ" secondAttribute="bottom" constant="14" id="Qxb-pS-ZFp"/>
-                                                    <constraint firstAttribute="bottom" secondItem="Fpu-XX-RkO" secondAttribute="bottom" constant="14" id="UmJ-4F-697"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Fpu-XX-RkO" secondAttribute="bottom" constant="18" id="UmJ-4F-697"/>
                                                     <constraint firstItem="puH-Uq-zhY" firstAttribute="trailing" secondItem="Fpu-XX-RkO" secondAttribute="trailing" id="XQn-c6-P9j"/>
                                                     <constraint firstItem="Fpu-XX-RkO" firstAttribute="leading" secondItem="2it-vr-AdJ" secondAttribute="trailing" constant="16" id="aTG-a4-O1k"/>
                                                     <constraint firstAttribute="height" constant="38" id="aXQ-Js-vpz"/>
@@ -165,11 +164,11 @@
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AaX-kq-Td0">
-                                                <rect key="frame" x="72" y="435" width="83" height="12"/>
+                                                <rect key="frame" x="72" y="439" width="115" height="12"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="12" id="xAP-Kl-o24"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="10"/>
+                                                <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="14"/>
                                                 <state key="normal" title="Forgot Password?">
                                                     <color key="titleColor" red="0.59999999999999998" green="0.80000000000000004" blue="0.20392156862745098" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
@@ -215,17 +214,17 @@
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="fXS-Cf-3z7" userLabel="Sign Up Stack View">
-                                                <rect key="frame" x="17" y="567" width="157.5" height="12"/>
+                                                <rect key="frame" x="17" y="567" width="216.5" height="12"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N2o-ak-06b">
-                                                        <rect key="frame" x="0.0" y="0.0" width="108.5" height="12"/>
-                                                        <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="10"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="151.5" height="12"/>
+                                                        <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="14"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5hL-IN-vJG">
-                                                        <rect key="frame" x="116.5" y="0.0" width="41" height="12"/>
-                                                        <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="10"/>
+                                                        <rect key="frame" x="159.5" y="0.0" width="57" height="12"/>
+                                                        <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="14"/>
                                                         <state key="normal" title="SIGN UP">
                                                             <color key="titleColor" red="0.59999999999999998" green="0.80000000000000004" blue="0.20392156862745098" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
@@ -247,8 +246,8 @@
                                             <constraint firstItem="APh-5R-2Qa" firstAttribute="top" secondItem="aME-lg-tcD" secondAttribute="bottom" constant="24" id="D4K-u9-1fb"/>
                                             <constraint firstItem="APh-5R-2Qa" firstAttribute="leading" secondItem="Irz-mj-9J9" secondAttribute="leading" constant="32" id="H6X-OM-Tje"/>
                                             <constraint firstItem="AaX-kq-Td0" firstAttribute="leading" secondItem="Fpu-XX-RkO" secondAttribute="leading" id="LMu-bu-16R"/>
-                                            <constraint firstItem="Eq6-O3-iZN" firstAttribute="top" secondItem="AaX-kq-Td0" secondAttribute="bottom" constant="56" id="Oqm-jF-LSh"/>
-                                            <constraint firstItem="AaX-kq-Td0" firstAttribute="top" secondItem="APh-5R-2Qa" secondAttribute="bottom" id="RTY-vx-1wI"/>
+                                            <constraint firstItem="Eq6-O3-iZN" firstAttribute="top" secondItem="AaX-kq-Td0" secondAttribute="bottom" constant="52" id="Oqm-jF-LSh"/>
+                                            <constraint firstItem="AaX-kq-Td0" firstAttribute="top" secondItem="APh-5R-2Qa" secondAttribute="bottom" constant="4" id="RTY-vx-1wI"/>
                                             <constraint firstItem="fXS-Cf-3z7" firstAttribute="top" secondItem="Eq6-O3-iZN" secondAttribute="bottom" constant="8" id="UDw-RA-cii"/>
                                             <constraint firstItem="aME-lg-tcD" firstAttribute="top" relation="greaterThanOrEqual" secondItem="RQu-Nw-r8m" secondAttribute="bottom" constant="10" id="Wtm-L1-Yyb"/>
                                             <constraint firstItem="fXS-Cf-3z7" firstAttribute="leading" secondItem="Irz-mj-9J9" secondAttribute="leading" constant="17" id="WxP-gs-qHA"/>
@@ -319,7 +318,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="EyeIcon" width="22" height="15"/>
+        <image name="EyeIcon" width="18" height="18"/>
         <image name="LockIcon" width="20" height="20"/>
         <image name="NewWandaLogo" width="200" height="200"/>
         <image name="PersonIcon" width="20" height="20"/>

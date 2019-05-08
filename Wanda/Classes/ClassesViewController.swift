@@ -37,6 +37,12 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
         if dataManager.needsReload {
             getWandaMother()
         }
+        
+        navigationController?.view.backgroundColor = WandaColors.lightPurple
+        if let navigationBar = self.navigationController?.navigationBar {
+            navigationBar.barTintColor = WandaColors.lightPurple
+            navigationBar.isTranslucent = false
+        }
     }
     
     // MARK: UITableViewDataSource

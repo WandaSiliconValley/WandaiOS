@@ -37,12 +37,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
         case retryLogin
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let navigationBar = self.navigationController?.navigationBar {
+            navigationBar.barTintColor = WandaColors.darkPurple
+            navigationBar.isTranslucent = true
+        }
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         // to do look at ease scene styles
+        
         if let navigationBar = self.navigationController?.navigationBar {
-            navigationBar.isTranslucent = false
             navigationBar.setBackgroundImage(UIImage(), for: .default)
             navigationBar.shadowImage = UIImage()
             navigationBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 80.0)
@@ -148,7 +157,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
                 return
             }
 
-            self.spinner.toggleSpinner(for: self.loginButton, title: LoginSignUpStrings.login)
             // Ensure action state is set back to contact us if the call was successful.
             self.actionState = .contactUs
             self.getClasses()

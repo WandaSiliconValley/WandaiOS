@@ -58,6 +58,7 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
             changeRSVPButton.isEnabled = unsavedChanges
         }
     }
+
     let overlayView = UIView(frame: UIScreen.main.bounds)
     
     static let storyboardIdentifier = String(describing: WandaClassViewController.self)
@@ -88,8 +89,17 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
         super.viewDidLoad()
         
         // to do figure out how to get me back
-//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(menuView?.hideMenu))
-//        self.view.addGestureRecognizer(tap)
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideMenuIfPossible))
+        self.view.addGestureRecognizer(tap)
+    }
+    
+    @objc
+    func hideMenuIfPossible() {
+        guard menuView?.contentView.isHidden == false else {
+            return
+        }
+        
+        menuView?.toggleMenu()
     }
     
     private func configureView() {
@@ -260,7 +270,8 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
         }
         
         view.isUserInteractionEnabled = false
-        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        activityIndicator.color = .darkGray
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
         activityIndicator.center = view.center
@@ -475,6 +486,7 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
                         return
                     }
                     
+                    self.dataManager.removeReservation(wandaClass)
                     self.dataManager.needsReload = true
                     navigationController.popViewController(animated: true)
                 }

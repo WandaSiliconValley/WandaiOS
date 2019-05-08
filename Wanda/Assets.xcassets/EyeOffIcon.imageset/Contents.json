@@ -2,7 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "eye-off (5).png",
+      "filename" : "eye-off (3).png",
       "scale" : "1x"
     },
     {
@@ -12,7 +12,7 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "eye-off (3).png",
+      "filename" : "eye-off (5).png",
       "scale" : "3x"
     }
   ],
