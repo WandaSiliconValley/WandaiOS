@@ -66,23 +66,7 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // Currently users should only see this screen for the next class.
-        guard let wandaClass = wandaClass else {
-            return
-        }
-        
         configureNavigationBar()
-        
-        if wandaClass.isReserved {
-            self.isReserved = wandaClass.isReserved
-            self.configureView()
-            self.configureMenu()
-            getReservedWandaClass()
-        } else {
-            isReserved = wandaClass.isReserved
-            configureView()
-            configureMenu()
-        }
     }
     
     override func viewDidLoad() {
@@ -91,6 +75,21 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
         // to do figure out how to get me back
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideMenuIfPossible))
         self.view.addGestureRecognizer(tap)
+        
+        // Currently users should only see this screen for the next class.
+        guard let wandaClass = wandaClass else {
+            return
+        }
+        
+        if wandaClass.isReserved {
+            self.isReserved = wandaClass.isReserved
+            self.configureView()
+            getReservedWandaClass()
+        } else {
+            isReserved = wandaClass.isReserved
+            configureView()
+            configureMenu()
+        }
     }
     
     @objc
@@ -304,6 +303,7 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
             self.view.bringSubview(toFront: self.reservedHeader)
             wandaClass.childCareNumber = reservedClass.childcareNumber
             self.numberOfChildrenLabel.text = String(wandaClass.childCareNumber)
+            self.configureMenu()
         }
         
     }
@@ -386,6 +386,7 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
             menuView.frame.origin.x = self.view.frame.width - menuView.frame.width
             
             self.view.addSubview(menuView)
+            self.view.bringSubview(toFront: menuView)
         }
         
         menuView?.addToCalendarButton.addTarget(self, action: #selector(didTapAddToCalendar), for: .touchUpInside)

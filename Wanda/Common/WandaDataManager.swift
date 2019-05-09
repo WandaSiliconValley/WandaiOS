@@ -70,7 +70,7 @@ class WandaDataManager {
         
         var sortedClasses = allClasses.sortedByDate(descending: false)
         
-        sortedClasses = sortedClasses.filter {DateFormatter.simpleDateFormatter.date(from: $0.details.date) ?? Date() > Date()}
+        sortedClasses = sortedClasses.filter {DateFormatter.simpleDateFormatter.date(from: $0.details.date) ?? Date() >= Date()}
         
         //let pets = animals.filter { $0 != "chimps" }
 

@@ -22,15 +22,21 @@ class WandaSuccessViewController: UIViewController, WandaAlertViewDelegate, MFMa
     
     private var dataManager = WandaDataManager.shared
     static let storyboardIdentifier = String(describing: WandaSuccessViewController.self)
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationItem.hidesBackButton = true
+        if let navigationBar = self.navigationController?.navigationBar {
+        //    navigationBar.barTintColor = WandaColors.darkPurple
+            navigationBar.isTranslucent = true
+        }
         configureSuccessView()
     }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if let navigationBar = self.navigationController?.navigationBar {
-            navigationBar.isTranslucent = false
+           // navigationBar.isTranslucent = false
             navigationBar.setBackgroundImage(UIImage(), for: .default)
             navigationBar.shadowImage = UIImage()
             navigationBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 80.0)

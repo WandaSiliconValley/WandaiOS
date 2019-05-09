@@ -13,6 +13,8 @@ import MessageUI
 
 class ClassesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, WandaAlertViewDelegate, MFMailComposeViewControllerDelegate {
     @IBOutlet private var tableView: UITableView!
+    @IBOutlet private var networkConnectionImage: UIImageView!
+    @IBOutlet private var systemErrorImage: UIImageView!
     private var dataManager = WandaDataManager.shared
     private var nextClassesSection = 0
     private let overlayView = UIView(frame: UIScreen.main.bounds)
@@ -210,8 +212,10 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
                 if let error = error {
                     switch error {
                         case .networkError:
+                            self.toggleErrorScreen(false, type: .networkError)
                             self.presentErrorAlert(for: .networkError)
                         case .unknown:
+                            self.toggleErrorScreen(false, type: .unknown)
                             self.presentErrorAlert(for: .systemError)
                     }
                 }
@@ -219,10 +223,26 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
                 return
             }
             
+            self.toggleErrorScreen(true)
             self.dataManager.loadClasses()
             self.overlayView.removeFromSuperview()
             self.tableView.reloadData()
         }
+    }
+    
+    func toggleErrorScreen(_ isHidden: Bool, type: WandaError? = nil) {
+        if let type = type {
+            switch type {
+                case .networkError:
+                    networkConnectionImage.isHidden = isHidden
+                default:
+                    systemErrorImage.isHidden = isHidden
+            }
+        } else if isHidden {
+            networkConnectionImage.isHidden = isHidden
+            systemErrorImage.isHidden = isHidden
+        }
+        tableView.isHidden = !isHidden
     }
     
     // MARK: WandaAlertViewDelegate

@@ -26,12 +26,12 @@
                   moduleName = "Wanda"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Courtney/Develop/Wanda/Wanda/LoginSignUp/ForgotPasswordViewController.swift"
-                  timestampString = "578982069.8053221"
+                  timestampString = "579076148.598655"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "118"
                   endingLineNumber = "118"
-                  offsetFromSymbolStart = "1388">
+                  offsetFromSymbolStart = "1236">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -41,12 +41,12 @@
                   moduleName = "Wanda"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Courtney/Develop/Wanda/Wanda/LoginSignUp/ForgotPasswordViewController.swift"
-                  timestampString = "578982069.809382"
+                  timestampString = "579076148.6006"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "119"
                   endingLineNumber = "119"
-                  offsetFromSymbolStart = "203">
+                  offsetFromSymbolStart = "176">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -154,7 +154,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wanda/Common/Networking/WandaMotherNetworkController.swift"
-            timestampString = "578727534.006514"
+            timestampString = "579076852.918709"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "31"
@@ -170,7 +170,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wanda/Common/Networking/WandaMotherNetworkController.swift"
-            timestampString = "578727534.006569"
+            timestampString = "579076852.91879"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "34"
@@ -186,7 +186,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wanda/Common/Networking/WandaMotherNetworkController.swift"
-            timestampString = "578727534.006622"
+            timestampString = "579076852.918837"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "29"
@@ -282,12 +282,12 @@
                   moduleName = "Wanda"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Courtney/Develop/Wanda/Wanda/LoginSignUp/SignUpViewController.swift"
-                  timestampString = "578982069.902198"
+                  timestampString = "579076148.754316"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "245"
                   endingLineNumber = "245"
-                  offsetFromSymbolStart = "849">
+                  offsetFromSymbolStart = "824">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -297,12 +297,12 @@
                   moduleName = "Wanda"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Courtney/Develop/Wanda/Wanda/LoginSignUp/SignUpViewController.swift"
-                  timestampString = "578982069.906244"
+                  timestampString = "579076148.756231"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "247"
                   endingLineNumber = "247"
-                  offsetFromSymbolStart = "27">
+                  offsetFromSymbolStart = "56">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -362,12 +362,12 @@
                   moduleName = "Wanda"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Courtney/Develop/Wanda/Wanda/LoginSignUp/SignUpViewController.swift"
-                  timestampString = "578982069.928635"
+                  timestampString = "579076148.767794"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "243"
                   endingLineNumber = "243"
-                  offsetFromSymbolStart = "626">
+                  offsetFromSymbolStart = "548">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -377,12 +377,12 @@
                   moduleName = "Wanda"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Courtney/Develop/Wanda/Wanda/LoginSignUp/SignUpViewController.swift"
-                  timestampString = "578982069.932763"
+                  timestampString = "579076148.769524"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "244"
                   endingLineNumber = "244"
-                  offsetFromSymbolStart = "177">
+                  offsetFromSymbolStart = "196">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -617,28 +617,12 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Wanda/Classes/ClassesViewController.swift"
-            timestampString = "578985290.5303169"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "216"
-            endingLineNumber = "216"
-            landmarkName = "getWandaMother()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Wanda/Classes/WandaClassViewController.swift"
-            timestampString = "578985290.5303659"
+            timestampString = "579076852.919107"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "432"
-            endingLineNumber = "432"
+            startingLineNumber = "433"
+            endingLineNumber = "433"
             landmarkName = "reserveWandaClass()"
             landmarkType = "7">
          </BreakpointContent>
@@ -650,11 +634,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wanda/Classes/WandaClassViewController.swift"
-            timestampString = "578985290.5307961"
+            timestampString = "579076852.919158"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "482"
-            endingLineNumber = "482"
+            startingLineNumber = "483"
+            endingLineNumber = "483"
             landmarkName = "didTapActionButton()"
             landmarkType = "7">
          </BreakpointContent>
@@ -666,11 +650,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wanda/Classes/WandaSuccessViewController.swift"
-            timestampString = "578727534.009499"
+            timestampString = "579076852.919203"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
             landmarkName = "didTapSignUpNextButton()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1146,11 +1130,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wanda/Classes/WandaClassViewController.swift"
-            timestampString = "578985290.5318249"
+            timestampString = "579076852.919549"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "153"
-            endingLineNumber = "153"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
             landmarkName = "didTapSendRSVPButton()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1162,11 +1146,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wanda/Classes/WandaClassViewController.swift"
-            timestampString = "578985290.5321079"
+            timestampString = "579076852.919608"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "281"
-            endingLineNumber = "281"
+            startingLineNumber = "280"
+            endingLineNumber = "280"
             landmarkName = "getReservedWandaClass()"
             landmarkType = "7">
             <Locations>
@@ -1178,12 +1162,12 @@
                   moduleName = "Wanda"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Courtney/Develop/Wanda/Wanda/Classes/WandaClassViewController.swift"
-                  timestampString = "578982070.066376"
+                  timestampString = "579076148.8341449"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "270"
-                  endingLineNumber = "270"
-                  offsetFromSymbolStart = "2002">
+                  startingLineNumber = "280"
+                  endingLineNumber = "280"
+                  offsetFromSymbolStart = "1812">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -1193,11 +1177,11 @@
                   moduleName = "Wanda"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Courtney/Develop/Wanda/Wanda/Classes/WandaClassViewController.swift"
-                  timestampString = "578982070.070212"
+                  timestampString = "579076148.836172"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "271"
-                  endingLineNumber = "271"
+                  startingLineNumber = "281"
+                  endingLineNumber = "281"
                   offsetFromSymbolStart = "304">
                </Location>
             </Locations>
@@ -1210,11 +1194,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wanda/Classes/ClassesViewController.swift"
-            timestampString = "578985290.532385"
+            timestampString = "579076852.919656"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
             landmarkName = "viewWillAppear(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1226,11 +1210,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wanda/Classes/ClassesViewController.swift"
-            timestampString = "578985290.532431"
+            timestampString = "579076852.920055"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
             landmarkName = "viewWillAppear(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1242,7 +1226,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wanda/Common/WandaDataManager.swift"
-            timestampString = "578985290.532477"
+            timestampString = "579076852.920312"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "67"
@@ -1258,7 +1242,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wanda/Common/WandaDataManager.swift"
-            timestampString = "578985290.532526"
+            timestampString = "579076852.92058"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "68"
@@ -1274,12 +1258,12 @@
                   moduleName = "Wanda"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Courtney/Develop/Wanda/Wanda/Common/WandaDataManager.swift"
-                  timestampString = "578982078.4153841"
+                  timestampString = "579076148.856733"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "60"
-                  endingLineNumber = "60"
-                  offsetFromSymbolStart = "671">
+                  startingLineNumber = "68"
+                  endingLineNumber = "68"
+                  offsetFromSymbolStart = "500">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -1289,12 +1273,156 @@
                   moduleName = "Wanda"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Courtney/Develop/Wanda/Wanda/Common/WandaDataManager.swift"
-                  timestampString = "578982078.4186161"
+                  timestampString = "579076148.859686"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "60"
-                  endingLineNumber = "60"
-                  offsetFromSymbolStart = "28">
+                  startingLineNumber = "68"
+                  endingLineNumber = "68"
+                  offsetFromSymbolStart = "24">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Wanda/Classes/ClassesViewController.swift"
+            timestampString = "579076852.920805"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "215"
+            endingLineNumber = "215"
+            landmarkName = "getWandaMother()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Wanda/Classes/ClassesViewController.swift"
+            timestampString = "579076852.921064"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "218"
+            endingLineNumber = "218"
+            landmarkName = "getWandaMother()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Wanda/Classes/ClassesViewController.swift"
+            timestampString = "579076852.921315"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "226"
+            endingLineNumber = "226"
+            landmarkName = "getWandaMother()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Wanda/Classes/ClassesViewController.swift"
+            timestampString = "579076852.9215651"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "250"
+            endingLineNumber = "250"
+            landmarkName = "didTapActionButton()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Wanda/Classes/ClassesViewController.swift"
+            timestampString = "579076852.921809"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "205"
+            endingLineNumber = "205"
+            landmarkName = "getWandaMother()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Wanda/Classes/ClassesViewController.swift"
+            timestampString = "579076852.922055"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "204"
+            endingLineNumber = "204"
+            landmarkName = "getWandaMother()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Wanda/Classes/ClassesViewController.swift"
+            timestampString = "579076852.9223"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "210"
+            endingLineNumber = "210"
+            landmarkName = "getWandaMother()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Wanda.ClassesViewController.(getWandaMother in _73DCC6DCA12EDC47F0833BF55241BEF8)() -&gt; ()"
+                  moduleName = "Wanda"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Courtney/Develop/Wanda/Wanda/Classes/ClassesViewController.swift"
+                  timestampString = "579076148.9031399"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "209"
+                  endingLineNumber = "209"
+                  offsetFromSymbolStart = "464">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Bool, Swift.Optional&lt;Wanda.WandaError&gt;) -&gt; () in Wanda.ClassesViewController.(getWandaMother in _73DCC6DCA12EDC47F0833BF55241BEF8)() -&gt; ()"
+                  moduleName = "Wanda"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Courtney/Develop/Wanda/Wanda/Classes/ClassesViewController.swift"
+                  timestampString = "579076148.904985"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "210"
+                  endingLineNumber = "210"
+                  offsetFromSymbolStart = "164">
                </Location>
             </Locations>
          </BreakpointContent>
