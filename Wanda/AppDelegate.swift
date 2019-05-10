@@ -19,6 +19,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         FirebaseApp.configure()
 
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+
+        var initialViewController = UIViewController()
+        if Auth.auth().currentUser != nil{
+            guard let classesViewController = ViewControllerFactory.makeClassesViewController() else {
+                return false
+            }
+            initialViewController = classesViewController
+        } else {
+            guard let loginViewController = ViewControllerFactory.makeLoginViewController() else {
+                return false
+            }
+            initialViewController = loginViewController
+        }
+
+        self.window?.rootViewController = initialViewController
+        self.window?.makeKeyAndVisible()
+
         let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
         if statusBar.responds(to:#selector(setter: UIView.backgroundColor)) {
             statusBar.backgroundColor = UIColor.black.withAlphaComponent(0.2)

@@ -30,6 +30,11 @@ struct ViewControllerFactory {
         return UIStoryboard(identifier: .forgotPassword).instantiateViewController(withIdentifier: ForgotPasswordViewController.storyboardIdentifier) as? ForgotPasswordViewController
     }
 
+    /// The view controller that pops up when the user is on the "Login" screen.
+    static func makeLoginViewController() -> LoginViewController? {
+        return UIStoryboard(identifier: .login).instantiateViewController(withIdentifier: LoginViewController.storyboardIdentifier) as? LoginViewController
+    }
+
     /// The view controller that pops up when the user taps the "Next Class" on the "Classes" screen.
     static func makeWandaClassViewController(wandaClass: WandaClass, classType: ClassType) -> WandaClassViewController? {
         guard let wandaClassViewController = UIStoryboard(identifier: .wandaClass).instantiateViewController(withIdentifier: WandaClassViewController.storyboardIdentifier) as? WandaClassViewController else {

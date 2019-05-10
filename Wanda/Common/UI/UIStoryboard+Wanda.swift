@@ -12,6 +12,7 @@ import UIKit
 enum WandaStoryboardIdentifier {
     case classes
     case forgotPassword
+    case login
     case signUp
     case wandaAlert
     case wandaClass
@@ -25,6 +26,8 @@ extension UIStoryboard {
                 self.init(name: ClassesViewController.storyboardIdentifier, bundle: Bundle(for: ClassesViewController.self))
             case .forgotPassword:
                 self.init(name: ForgotPasswordViewController.storyboardIdentifier, bundle: Bundle(for: ForgotPasswordViewController.self))
+            case .login:
+                self.init(name: LoginViewController.storyboardIdentifier, bundle: Bundle(for: LoginViewController.self))
             case .signUp:
                 self.init(name: SignUpViewController.storyboardIdentifier, bundle: Bundle(for: SignUpViewController.self))
             case .wandaAlert:

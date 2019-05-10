@@ -29,6 +29,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
     private var isValidEmail = false
     private var isValidPassword = false
     private var showHideIconClicked = false
+    static let storyboardIdentifier = String(describing: LoginViewController.self)
     
     private enum ActionState {
         case contactUs

@@ -24,7 +24,7 @@
         <!--Login View Controller-->
         <scene sceneID="6ss-d3-CN7">
             <objects>
-                <viewController id="mk5-6E-flT" customClass="LoginViewController" customModule="Wanda" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="mk5-6E-flT" customClass="LoginViewController" customModule="Wanda" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" opaque="NO" contentMode="scaleToFill" id="lHz-uu-T2Y">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
