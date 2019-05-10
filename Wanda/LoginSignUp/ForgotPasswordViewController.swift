@@ -152,10 +152,7 @@ class ForgotPasswordViewController: UIViewController, MFMailComposeViewControlle
         
         logAnalytic(tag: WandaAnalytics.resetPasswordContactUsTapped)
         contactUsViewController.mailComposeDelegate = self
-        self.present(contactUsViewController, animated: true) {
-            // to do check if working - this is depracated
-            UIApplication.shared.statusBarStyle = .lightContent
-        }
+        self.present(contactUsViewController, animated: true, completion: nil)
     }
 
     // MARK: WandaAlertViewDelegate
@@ -166,5 +163,15 @@ class ForgotPasswordViewController: UIViewController, MFMailComposeViewControlle
         case .success:
             return
         }
+    }
+
+    // MARK: MFMailComposeViewControllerDelegate
+
+    func mailComposeController(_ controller: MFMailComposeViewController,
+                               didFinishWith result: MFMailComposeResult, error: Error?) {
+        // Check the result or perform other tasks.
+
+        // Dismiss the mail compose view controller.
+        controller.dismiss(animated: true, completion: nil)
     }
 }

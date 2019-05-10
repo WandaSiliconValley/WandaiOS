@@ -8,7 +8,14 @@
 
 import Foundation
 
-extension DateFormatter {    
+extension DateFormatter {
+
+    static var timeFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH':'mm':'ss'.'SSS"
+        return formatter
+    }()
+
     // Ex: Saturday, March 25th
     static var fullDayMonthFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -20,6 +27,12 @@ extension DateFormatter {
     static var simpleDateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy'-'MM'-'dd"
+        return formatter
+    }()
+
+    static var dateTimeFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'SSS"
         return formatter
     }()
     

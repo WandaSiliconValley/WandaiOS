@@ -231,9 +231,26 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
         logAnalytic(tag: WandaAnalytics.classDetailMenuAddEventTapped)
         
         let eventTimes = wandaClass.details.time.components(separatedBy: " - ")
-        let startTime = DateFormatter.timeDateFormatter.date(from: eventTimes[0])
-        let endTime = DateFormatter.timeDateFormatter.date(from: eventTimes[1])
-        
+        guard let startTime = DateFormatter.timeDateFormatter.date(from: eventTimes[0]), let endTime = DateFormatter.timeDateFormatter.date(from: eventTimes[1]) else {
+            print("COULDNT GET TIME")
+            return
+        }
+
+        let startTimeString = DateFormatter.timeFormatter.string(from: startTime)
+        let endTimeString = DateFormatter.timeFormatter.string(from: endTime)
+        let startDateString = wandaClass.details.date + "T" + startTimeString
+        let endDateString = wandaClass.details.date + "T" + endTimeString
+        let startDate = DateFormatter.dateTimeFormatter.date(from: startDateString)
+        let endDate = DateFormatter.dateTimeFormatter.date(from: endDateString)
+
+//        et dateFormatter = DateFormatter()
+//        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+//        dateFormatter.dateFormat = "MMMM dd, yyyy 'at' h:mm a"
+//        let string = date + " at " + time                       // "March 24, 2017 at 7:00 AM"
+//        let finalDate = dateFormatter.date(from: string)
+//        print(finalDate?.description(with: .current) ?? "")  // "Friday, March 2
+//
+
         // to do getting there - still need to add the time component to the start/end date
         
         DispatchQueue.main.async {
@@ -247,8 +264,8 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
                     let event = EKEvent(eventStore: eventStore)
                     event.title = wandaClass.details.topic
                     let eventDate = DateFormatter.simpleDateFormatter.date(from: wandaClass.details.date)
-                    event.startDate = eventDate?.addingTimeInterval(TimeInterval())
-                    event.endDate = eventDate
+                    event.startDate = startDate
+                    event.endDate = endDate
                     event.location = wandaClass.details.address
                     event.calendar = eventStore.defaultCalendarForNewEvents
                     

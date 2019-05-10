@@ -162,10 +162,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, MFMailCompose
         }
         
         contactUsViewController.mailComposeDelegate = self
-        self.present(contactUsViewController, animated: true) {
-            // to do check if working - this is depracated
-            UIApplication.shared.statusBarStyle = .lightContent
-        }
+        self.present(contactUsViewController, animated: true, completion: nil)
     }
     
     // MARK: IBActions
@@ -281,5 +278,15 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, MFMailCompose
             case .retryCreateWandaMother:
                 createWandaMother()
         }
+    }
+
+    // MARK: MFMailComposeViewControllerDelegate
+
+    func mailComposeController(_ controller: MFMailComposeViewController,
+                               didFinishWith result: MFMailComposeResult, error: Error?) {
+        // Check the result or perform other tasks.
+
+        // Dismiss the mail compose view controller.
+        controller.dismiss(animated: true, completion: nil)
     }
 }
