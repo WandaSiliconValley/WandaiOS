@@ -224,7 +224,7 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
     @objc
     private func didTapAddToCalendar() {
         guard let wandaClass = wandaClass else {
-            // to do should we pop up an error here?
+// to do should we show an error here?
             return
         }
         
@@ -266,6 +266,8 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
                     controller.editViewDelegate = self
                     controller.setNeedsStatusBarAppearanceUpdate()
                     self.present(controller, animated: true)
+                } else {
+                    self.presentErrorAlert(for: .addEventError)
                 }
             })
         }

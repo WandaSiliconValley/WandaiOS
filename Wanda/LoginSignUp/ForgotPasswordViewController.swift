@@ -115,13 +115,14 @@ class ForgotPasswordViewController: UIViewController, MFMailComposeViewControlle
         spinner.toggleSpinner(for: resetPasswordButton, title: LoginSignUpStrings.resetPassword)
         logAnalytic(tag: WandaAnalytics.resetPasswordTapped)
 
-        Auth.auth().sendPasswordReset(withEmail: email) { error in
-            guard error == nil else {
-                self.spinner.toggleSpinner(for: self.resetPasswordButton, title: LoginSignUpStrings.resetPassword)
-                if let error = error, let errorCode = AuthErrorCode(rawValue: error._code) {
-                    let errorString = FirebaseError(errorCode: errorCode.rawValue)
-                    self.logAnalytic(tag: "\(WandaAnalytics.resetPassowordError)_\(errorString.rawValue)")
-                    switch errorCode {
+        DispatchQueue.main.async {
+            Auth.auth().sendPasswordReset(withEmail: email) { error in
+                guard error == nil else {
+                    self.spinner.toggleSpinner(for: self.resetPasswordButton, title: LoginSignUpStrings.resetPassword)
+                    if let error = error, let errorCode = AuthErrorCode(rawValue: error._code) {
+                        let errorString = FirebaseError(errorCode: errorCode.rawValue)
+                        self.logAnalytic(tag: "\(WandaAnalytics.resetPassowordError)_\(errorString.rawValue)")
+                        switch errorCode {
                         case .networkError:
                             self.actionState = .resetPassword
                             self.presentErrorAlert(for: .networkError)
@@ -133,15 +134,17 @@ class ForgotPasswordViewController: UIViewController, MFMailComposeViewControlle
                             self.actionState = .resetPassword
                             self.presentErrorAlert(for: .systemError)
                         }
+                    }
+                    return
                 }
-                return
+                
+                self.actionState = .success
+                self.logAnalytic(tag: WandaAnalytics.resetPasswordSuccess)
+                self.presentErrorAlert(for: .forgotPasswordSuccess)
+                self.spinner.toggleSpinner(for: self.resetPasswordButton, title: LoginSignUpStrings.resetPassword)
             }
- 
-            self.actionState = .success
-            self.logAnalytic(tag: WandaAnalytics.resetPasswordSuccess)
-            self.presentErrorAlert(for: .forgotPasswordSuccess)
-            self.spinner.toggleSpinner(for: self.resetPasswordButton, title: LoginSignUpStrings.resetPassword)
         }
+
     }
 
     @IBAction func didTapContactUs() {

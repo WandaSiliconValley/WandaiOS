@@ -11,12 +11,10 @@ import UIKit
 
 extension UIViewController {
     func presentErrorAlert(for type: WandaAlertType) {
-        guard let selfAsDelegate = self as? WandaAlertViewDelegate else {
+        guard let selfAsDelegate = self as? WandaAlertViewDelegate, let wandaAlertViewController = ViewControllerFactory.makeWandaAlertController(type, delegate: selfAsDelegate) else {
             return
         }
-            guard let wandaAlertViewController = ViewControllerFactory.makeWandaAlertController(type, delegate: selfAsDelegate) else {
-            return
-        }
+
         self.present(wandaAlertViewController, animated: true) {
             wandaAlertViewController.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.dismissAlert)))
         }
