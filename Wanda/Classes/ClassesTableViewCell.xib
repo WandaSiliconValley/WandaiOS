@@ -41,29 +41,28 @@
                                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="APR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ODD-y4-ca1">
-                                        <rect key="frame" x="0.0" y="37" width="28" height="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="APR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="ODD-y4-ca1">
+                                        <rect key="frame" x="0.5" y="39" width="27" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="17" id="STX-8Z-dXP"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="OpenSans-SemiBold" family="Open Sans" pointSize="12"/>
+                                        <fontDescription key="fontDescription" name="OpenSans-SemiBold" family="Open Sans" pointSize="14"/>
                                         <color key="textColor" red="0.5450980392" green="0.5450980392" blue="0.5450980392" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="ODD-y4-ca1" firstAttribute="width" secondItem="tBu-p8-A7g" secondAttribute="width" id="8je-Mv-cZB"/>
                                     <constraint firstItem="tBu-p8-A7g" firstAttribute="width" secondItem="Mgm-YD-rdJ" secondAttribute="width" id="9dD-qo-wRe"/>
                                     <constraint firstItem="tBu-p8-A7g" firstAttribute="centerX" secondItem="Mgm-YD-rdJ" secondAttribute="centerX" id="H39-mJ-yNO"/>
                                     <constraint firstItem="ODD-y4-ca1" firstAttribute="centerX" secondItem="tBu-p8-A7g" secondAttribute="centerX" id="Lid-h8-M8Y"/>
                                     <constraint firstItem="tBu-p8-A7g" firstAttribute="top" secondItem="Mgm-YD-rdJ" secondAttribute="top" constant="17" id="W0v-zl-OlU"/>
-                                    <constraint firstItem="ODD-y4-ca1" firstAttribute="top" secondItem="tBu-p8-A7g" secondAttribute="bottom" id="Z3U-5k-BPb"/>
-                                    <constraint firstAttribute="bottom" secondItem="ODD-y4-ca1" secondAttribute="bottom" constant="21" id="gdm-l0-eR1"/>
+                                    <constraint firstItem="ODD-y4-ca1" firstAttribute="top" secondItem="tBu-p8-A7g" secondAttribute="bottom" constant="2" id="Z3U-5k-BPb"/>
+                                    <constraint firstAttribute="bottom" secondItem="ODD-y4-ca1" secondAttribute="bottom" constant="19" id="gdm-l0-eR1"/>
                                     <constraint firstAttribute="width" constant="28" id="zWt-93-e1O"/>
                                 </constraints>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="OZM-6G-2Az">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="OZM-6G-2Az">
                                 <rect key="frame" x="71" y="6" width="289" height="58"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Financial Literacy II" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cSN-o1-GHP">
@@ -75,21 +74,21 @@
                                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9:30am - 2:00pm" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0av-7m-nXk">
-                                        <rect key="frame" x="0.0" y="22" width="289" height="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9:30am - 2:00pm" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="1" translatesAutoresizingMaskIntoConstraints="NO" id="0av-7m-nXk">
+                                        <rect key="frame" x="0.0" y="24" width="289" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="17" id="d3k-5t-V0l"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="12"/>
+                                        <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="14"/>
                                         <color key="textColor" red="0.5450980392" green="0.5450980392" blue="0.5450980392" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delaware Pacific Apartments" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mDW-P3-tt8">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delaware Pacific Apartments" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="1" translatesAutoresizingMaskIntoConstraints="NO" id="mDW-P3-tt8">
                                         <rect key="frame" x="0.0" y="41" width="289" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="17" id="pyb-TG-UUb"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="12"/>
+                                        <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="14"/>
                                         <color key="textColor" red="0.5450980392" green="0.5450980392" blue="0.5450980392" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>

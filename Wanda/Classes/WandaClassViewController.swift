@@ -102,8 +102,8 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
     }
     
     private func configureView() {
-        toggleSubtractChildButton()
         configureReservationView()
+        toggleSubtractChildButton()
     }
     
     // MARK: IBActions
@@ -243,15 +243,7 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
         let startDate = DateFormatter.dateTimeFormatter.date(from: startDateString)
         let endDate = DateFormatter.dateTimeFormatter.date(from: endDateString)
 
-//        et dateFormatter = DateFormatter()
-//        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-//        dateFormatter.dateFormat = "MMMM dd, yyyy 'at' h:mm a"
-//        let string = date + " at " + time                       // "March 24, 2017 at 7:00 AM"
-//        let finalDate = dateFormatter.date(from: string)
-//        print(finalDate?.description(with: .current) ?? "")  // "Friday, March 2
-//
-
-        // to do getting there - still need to add the time component to the start/end date
+        // to do don't like this!
         
         DispatchQueue.main.async {
             let eventStore = EKEventStore()
@@ -263,7 +255,6 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
                     
                     let event = EKEvent(eventStore: eventStore)
                     event.title = wandaClass.details.topic
-                    let eventDate = DateFormatter.simpleDateFormatter.date(from: wandaClass.details.date)
                     event.startDate = startDate
                     event.endDate = endDate
                     event.location = wandaClass.details.address
