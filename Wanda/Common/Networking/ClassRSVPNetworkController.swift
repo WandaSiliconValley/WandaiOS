@@ -10,7 +10,7 @@ import Foundation
 
 class ClassRSVPNetworkController {
     static func reserveWandaClass(classId: Int, motherId: Int, childcareNumber: Int, resultHandler: @escaping (Bool, WandaError?) -> Void) {
-        let url = URL(string: "\(WandaConstants.wandaURL)/rsvp")!
+        let url = URL(string: "\(WandaDataManager.shared.environmentURL)/rsvp")!
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
@@ -37,7 +37,7 @@ class ClassRSVPNetworkController {
     }
     
     static func cancelWandaClassReservation(classId: Int, motherId: Int, resultHandler: @escaping (Bool, WandaError?) -> Void) {
-        let url = URL(string: "\(WandaConstants.wandaURL)/rsvp/\(classId)/\(motherId)")!
+        let url = URL(string: "\(WandaDataManager.shared.environmentURL)/rsvp/\(classId)/\(motherId)")!
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "DELETE"

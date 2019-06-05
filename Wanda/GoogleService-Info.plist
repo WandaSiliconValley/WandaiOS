@@ -2,14 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
-	<string>ca-app-pub-3940256099942544/2934735716</string>
-	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
-	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>903496219373-it416keakqclcknrlg1efd4lkh6079n4.apps.googleusercontent.com</string>
+	<string>903496219373-20ebe0t42srrgqqst2d81t7pshth5knd.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.903496219373-it416keakqclcknrlg1efd4lkh6079n4</string>
+	<string>com.googleusercontent.apps.903496219373-20ebe0t42srrgqqst2d81t7pshth5knd</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>903496219373-gp7m37vj26h9nhcg6mcbfshhpsg878ov.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
 	<string>AIzaSyBJp76mrnz9oZUEylgvghyCwYd8fQ2FWL4</string>
 	<key>GCM_SENDER_ID</key>
@@ -17,23 +15,23 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.capitalone.wanda</string>
+	<string>com.wanda</string>
 	<key>PROJECT_ID</key>
 	<string>wanda-85601</string>
 	<key>STORAGE_BUCKET</key>
 	<string>wanda-85601.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<true/>
+	<false/>
 	<key>IS_ANALYTICS_ENABLED</key>
 	<false/>
 	<key>IS_APPINVITE_ENABLED</key>
-	<false/>
+	<true/>
 	<key>IS_GCM_ENABLED</key>
 	<true/>
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:903496219373:ios:af0e2594b1a238c1</string>
+	<string>1:903496219373:ios:4a195b78879a783b</string>
 	<key>DATABASE_URL</key>
 	<string>https://wanda-85601.firebaseio.com</string>
 </dict>

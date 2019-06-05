@@ -86,14 +86,6 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
                 classesTableViewCell.contentView.layer.applySketchShadow(alpha: 0.1, y: 1, blur: 2)
             } else {
                 let backgroundView = UIView(frame: CGRect(x: 0, y: 0, width: classesTableViewCell.frame.size.width, height: DefaultHeight.upcomingClassBackgroundViewHeight))
-                // to do why does this need to be right 30 here???
-                // its 15/15 in the table view cell but this isn't
-                // honoring that
-//                backgroundView.frame = UIEdgeInsetsInsetRect(backgroundView.frame, UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 30))
-//                backgroundView.layer.masksToBounds = false
-//                backgroundView.backgroundColor = .red
-//                backgroundView.layer.applySketchShadow(alpha: 0.1, y: 1, blur: 2)
-       //         classesTableViewCell.layer.applySketchShadow(alpha: 0.1, y: 1, blur: 2)
                 classesTableViewCell.contentView.addSubview(backgroundView)
                 classesTableViewCell.contentView.sendSubview(toBack: backgroundView)
                 classesTableViewCell.layoutSubviews()

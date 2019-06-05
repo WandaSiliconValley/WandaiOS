@@ -10,7 +10,7 @@ import Foundation
 
 class WandaMotherNetworkController {
     static func getWandaMother(firebaseId: String, resultHandler: @escaping(WandaMother?, WandaError?) -> Void) {
-        let url = URL(string: "\(WandaConstants.wandaURL)/mother/\(firebaseId)")!
+        let url = URL(string: "\(WandaDataManager.shared.environmentURL)/mother/\(firebaseId)")!
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "GET"
@@ -23,10 +23,7 @@ class WandaMotherNetworkController {
                         resultHandler(nil, WandaError.unknown)
                         return
                     }
-                    
-                    print("DATA \(data)")
-                    print("RESPONSE \(response)")
-                    
+
                     do {
                         let wandaMother = try JSONDecoder().decode(WandaMother.self, from: responseData)
                         resultHandler(wandaMother, nil)

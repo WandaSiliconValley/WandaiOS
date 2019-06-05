@@ -72,7 +72,6 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // to do figure out how to get me back
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideMenuIfPossible))
         self.view.addGestureRecognizer(tap)
         

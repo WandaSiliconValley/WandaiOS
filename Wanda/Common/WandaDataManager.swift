@@ -37,22 +37,18 @@ public enum FirebaseError: String {
 class WandaDataManager {
     static let shared = WandaDataManager()
     
+    var environmentURL = WandaConstants.wandaProdURL
     var needsReload = false
     var wandaMother: WandaMotherInfo?
     var upcomingClasses = [WandaClass]()
     private var allClasses = [WandaClass]()
     var nextClass: WandaClass?
     
-    init() { }
-    
-  //  func isIn
-    
-//    func isEven(number: Int) -> Bool {
-//        return number % 2 == 0
-//    }
-//
-//    evens = Array(1...10).filter(isEven)
-//    println(evens)
+    private init() {
+        #if DEBUG
+            environmentURL = WandaConstants.wandaDevURL
+        #endif
+    }
     
     // to do dont like this!
     func removeReservation(_ wandaClass: WandaClass) {

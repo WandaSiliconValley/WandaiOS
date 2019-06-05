@@ -10,7 +10,7 @@ import Foundation
 
 class WandaClassesNetworkController {
     static func getReservedWandaClass(motherId: Int, classId: Int, resultHandler: @escaping (ReservedWandaClass?, WandaError?) -> Void) {
-        let endpoint = "\(WandaConstants.wandaURL)/rsvp/\(classId)/\(motherId)"
+        let endpoint = "\(WandaDataManager.shared.environmentURL)/rsvp/\(classId)/\(motherId)"
         guard let url = URL(string: endpoint) else {
             print("Error: cannot create URL")
             return
@@ -39,7 +39,7 @@ class WandaClassesNetworkController {
     }
     
     static func requestWandaClasses(resultHandler: @escaping ([WandaClass]?, WandaError?) -> Void) {
-        let endpoint: String = "\(WandaConstants.wandaURL)/classes"
+        let endpoint: String = "\(WandaDataManager.shared.environmentURL)/classes"
         guard let url = URL(string: endpoint) else {
             print("Error: cannot create URL")
             return

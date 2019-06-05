@@ -9,8 +9,9 @@
 import Foundation
 
 class AccountNetworkController {
+
     static func createWandaAccount(firebaseId: String, email: String, resultHandler: @escaping(WandaMother?, WandaError?) -> Void) {
-        let url = URL(string: "\(WandaConstants.wandaURL)/account")!
+        let url = URL(string: "\(WandaDataManager.shared.environmentURL)/account")!
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
@@ -24,11 +25,7 @@ class AccountNetworkController {
                         resultHandler(nil, WandaError.unknown)
                         return
                     }
-                    
-                    
-                    print("DATA \(data)")
-                    print("RESPONSE \(response)")
-                    
+
                     do {
                         let wandaMother = try JSONDecoder().decode(WandaMother.self, from: responseData)
                         resultHandler(wandaMother, nil)

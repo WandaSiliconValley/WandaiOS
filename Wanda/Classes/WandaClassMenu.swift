@@ -44,15 +44,7 @@ class WandaClassMenu: UIView {
             }
         }
     }
-    
-    // to do not sure if this works need to test
-    @objc
-    func hideMenu() {
-        if !contentView.isHidden {
-            contentView.isHidden = true
-        }
-    }
-    
+
     // MARK: Private
     private func commonInit() {
         Bundle.main.loadNibNamed(WandaClassMenu.nibName(), owner: self, options: nil)
