@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DSv-MK-CoK">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="OpenSans-Regular.ttf">
+            <string>OpenSans-Regular</string>
+        </array>
+        <array key="OpenSans-SemiBold.ttf">
+            <string>OpenSans-SemiBold</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="057-Xz-Y8b">
+            <objects>
+                <navigationController navigationBarHidden="YES" id="DSv-MK-CoK" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="2Og-40-YHn">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="HuF-pq-NaK" kind="relationship" relationship="rootViewController" id="JLE-Rc-s14"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZNo-Y4-Bsm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-634" y="163"/>
+        </scene>
+        <!--Wanda Success View Controller-->
+        <scene sceneID="Qf2-Sr-SGM">
+            <objects>
+                <viewController storyboardIdentifier="WandaSuccessViewController" id="HuF-pq-NaK" customClass="WandaSuccessViewController" customModule="Wanda" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="UPj-T1-Krn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SuccessCalendar" translatesAutoresizingMaskIntoConstraints="NO" id="sKs-gi-9DA">
+                                <rect key="frame" x="77.5" y="52" width="220" height="220"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="sKs-gi-9DA" secondAttribute="height" multiplier="1:1" id="e2N-bS-f8J"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thanks for signing up!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mhq-yU-eed">
+                                <rect key="frame" x="81.5" y="372" width="212" height="27"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="27" id="daQ-zu-LT0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="OpenSans-SemiBold" family="Open Sans" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your RSVP has been sent to WANDA. We’re so excited to see you at the next class. " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vEI-cK-GSS">
+                                <rect key="frame" x="16" y="415" width="343" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Ta8-VW-Rk6"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f7q-Ns-py1" userLabel="Next Button View">
+                                <rect key="frame" x="16" y="551" width="343" height="56"/>
+                                <subviews>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BZp-41-cz2">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="56"/>
+                                        <color key="backgroundColor" red="0.59999999999999998" green="0.80000000000000004" blue="0.20392156859999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="56" id="ii1-81-4sa"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="25"/>
+                                        <state key="normal" title="NEXT">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <integer key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="didTapSignUpNextButton" destination="HuF-pq-NaK" eventType="touchUpInside" id="F7P-Qn-lHn"/>
+                                        </connections>
+                                    </button>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="A2Z-D1-zth">
+                                        <rect key="frame" x="153" y="9.5" width="37" height="37"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="BZp-41-cz2" firstAttribute="leading" secondItem="f7q-Ns-py1" secondAttribute="leading" id="1Vm-DL-FA6"/>
+                                    <constraint firstAttribute="height" constant="56" id="BOd-bb-X1K"/>
+                                    <constraint firstAttribute="bottom" secondItem="BZp-41-cz2" secondAttribute="bottom" id="DAL-DT-dMc"/>
+                                    <constraint firstItem="BZp-41-cz2" firstAttribute="top" secondItem="f7q-Ns-py1" secondAttribute="top" id="Kj6-9j-Qrj"/>
+                                    <constraint firstItem="A2Z-D1-zth" firstAttribute="centerX" secondItem="f7q-Ns-py1" secondAttribute="centerX" id="nqH-DU-dl1"/>
+                                    <constraint firstAttribute="trailing" secondItem="BZp-41-cz2" secondAttribute="trailing" id="xGj-aI-nBe"/>
+                                    <constraint firstItem="A2Z-D1-zth" firstAttribute="centerY" secondItem="f7q-Ns-py1" secondAttribute="centerY" id="ziz-59-QOH"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.40000000000000002" green="0.20392156862745098" blue="0.59607843137254901" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="vEI-cK-GSS" firstAttribute="top" secondItem="Mhq-yU-eed" secondAttribute="bottom" constant="16" id="5WY-di-ApP"/>
+                            <constraint firstItem="vEI-cK-GSS" firstAttribute="centerX" secondItem="NJN-s4-gmf" secondAttribute="centerX" id="BwN-2p-kTB"/>
+                            <constraint firstItem="f7q-Ns-py1" firstAttribute="top" relation="greaterThanOrEqual" secondItem="vEI-cK-GSS" secondAttribute="bottom" constant="10" id="G02-Rs-IPi"/>
+                            <constraint firstItem="vEI-cK-GSS" firstAttribute="leading" secondItem="NJN-s4-gmf" secondAttribute="leading" constant="16" id="HzK-mz-sGp"/>
+                            <constraint firstItem="sKs-gi-9DA" firstAttribute="centerX" secondItem="NJN-s4-gmf" secondAttribute="centerX" id="JNO-6n-crt"/>
+                            <constraint firstItem="NJN-s4-gmf" firstAttribute="bottom" secondItem="f7q-Ns-py1" secondAttribute="bottom" constant="60" id="MNa-eS-kNf"/>
+                            <constraint firstItem="Mhq-yU-eed" firstAttribute="top" secondItem="sKs-gi-9DA" secondAttribute="bottom" constant="100" id="MgH-xZ-zo7"/>
+                            <constraint firstItem="sKs-gi-9DA" firstAttribute="top" secondItem="NJN-s4-gmf" secondAttribute="top" constant="32" id="cSc-rx-Biq"/>
+                            <constraint firstItem="Mhq-yU-eed" firstAttribute="centerX" secondItem="NJN-s4-gmf" secondAttribute="centerX" id="cw2-cx-JyP"/>
+                            <constraint firstItem="NJN-s4-gmf" firstAttribute="trailing" secondItem="f7q-Ns-py1" secondAttribute="trailing" constant="16" id="pzf-Pw-BjI"/>
+                            <constraint firstItem="f7q-Ns-py1" firstAttribute="leading" secondItem="NJN-s4-gmf" secondAttribute="leading" constant="16" id="wkB-hH-2Mq"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="NJN-s4-gmf"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Rcz-Y9-V67"/>
+                    <connections>
+                        <outlet property="signUpNextButton" destination="BZp-41-cz2" id="82D-8u-LNB"/>
+                        <outlet property="spinner" destination="A2Z-D1-zth" id="DRN-6x-emO"/>
+                        <outlet property="successImage" destination="sKs-gi-9DA" id="UHI-f6-RbF"/>
+                        <outlet property="successMessage" destination="vEI-cK-GSS" id="mBQ-mw-wdf"/>
+                        <outlet property="successTitle" destination="Mhq-yU-eed" id="nNN-X4-ixD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kjb-Lt-Lka" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="188" y="163.26836581709148"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="SuccessCalendar" width="220" height="220"/>
+    </resources>
+</document>
