@@ -60,12 +60,13 @@ class WandaDataManager {
     func loadClasses() {
         
         // Check if any classes are reserved.
-        if let reservedClassId = wandaMother?.reservedClassIds.first {
-            allClasses.filter {$0.details.classId == reservedClassId}.first?.isReserved = true
+        if let reservedClasses = wandaMother?.reservedClassIds {
+            for wandaClass in reservedClasses {
+                allClasses.filter {$0.details.classId == wandaClass}.first?.isReserved = true
+            }
         }
-        
+
         var sortedClasses = allClasses.sortedByDate(descending: false)
-        
         sortedClasses = sortedClasses.filter {DateFormatter.simpleDateFormatter.date(from: $0.details.date) ?? Date() >= Date()}
         
         if let nextClass = sortedClasses.first {
