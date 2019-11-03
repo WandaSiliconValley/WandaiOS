@@ -42,10 +42,17 @@ struct ViewControllerFactory {
         return wandaClassViewController
     }
 
+    
+    // to do - do i need this still since were using storyboard refs now?
     /// The view controller that pops up when the user taps "Sign Up" on the "Login" screen.
     static func makeSignUpViewController() -> SignUpViewController? {
         return UIStoryboard(identifier: .signUp).instantiateViewController(
             withIdentifier: SignUpViewController.storyboardIdentifier ) as? SignUpViewController
+    }
+    
+    static func makeLoginViewController() -> LoginViewController? {
+        return UIStoryboard(identifier: .login).instantiateViewController(
+            withIdentifier: LoginViewController.storyboardIdentifier ) as? LoginViewController
     }
 
     /// The view controller that appears when the user either successfully signs up for the app or makes a class reservation.

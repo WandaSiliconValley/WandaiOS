@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ns9-JZ-QY4">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="OpenSans-Regular.ttf">
+            <string>OpenSans-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Login Sign Up View Controller-->
+        <scene sceneID="97e-rr-sc8">
+            <objects>
+                <viewController storyboardIdentifier="LoginSignUpViewController" id="Ns9-JZ-QY4" customClass="LoginSignUpViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="t2C-5F-igt">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Csw-pf-Hnh">
+                                <rect key="frame" x="16" y="708" width="382" height="45"/>
+                                <color key="backgroundColor" red="0.55686274509803924" green="0.14117647058823529" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="Elk-nd-nDs"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
+                                <state key="normal" title="Login">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapLogin" destination="Ns9-JZ-QY4" eventType="touchUpInside" id="a1L-kE-J33"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S9i-np-VuI">
+                                <rect key="frame" x="16" y="777" width="382" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="OzY-XZ-mE6"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
+                                <state key="normal" title="Sign Up">
+                                    <color key="titleColor" red="0.5568627451" green="0.14117647059999999" blue="0.66666666669999997" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.5568627451" green="0.14117647059999999" blue="0.66666666669999997" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="didTapSignUp" destination="Ns9-JZ-QY4" eventType="touchUpInside" id="ih0-aN-OFV"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NewWandaLogo" translatesAutoresizingMaskIntoConstraints="NO" id="4sa-hn-JMw">
+                                <rect key="frame" x="79" y="60" width="256" height="256"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="4sa-hn-JMw" secondAttribute="height" multiplier="1:1" id="4EA-lH-SWQ"/>
+                                    <constraint firstAttribute="width" constant="256" id="PWy-Cz-7hB"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="4sa-hn-JMw" firstAttribute="top" secondItem="eKb-ZS-qVA" secondAttribute="top" constant="16" id="Ag0-qP-RrV"/>
+                            <constraint firstItem="S9i-np-VuI" firstAttribute="centerX" secondItem="eKb-ZS-qVA" secondAttribute="centerX" id="Ao8-Lg-ZGI"/>
+                            <constraint firstItem="S9i-np-VuI" firstAttribute="trailing" secondItem="Csw-pf-Hnh" secondAttribute="trailing" id="Uil-Lm-Jgm"/>
+                            <constraint firstItem="eKb-ZS-qVA" firstAttribute="bottom" secondItem="S9i-np-VuI" secondAttribute="bottom" constant="40" id="a2m-ms-6In"/>
+                            <constraint firstItem="4sa-hn-JMw" firstAttribute="centerX" secondItem="eKb-ZS-qVA" secondAttribute="centerX" id="bjM-lv-bgo"/>
+                            <constraint firstItem="eKb-ZS-qVA" firstAttribute="trailing" secondItem="Csw-pf-Hnh" secondAttribute="trailing" constant="16" id="cil-Bl-Wnm"/>
+                            <constraint firstItem="Csw-pf-Hnh" firstAttribute="centerX" secondItem="eKb-ZS-qVA" secondAttribute="centerX" id="wkv-aV-9IX"/>
+                            <constraint firstItem="S9i-np-VuI" firstAttribute="top" secondItem="Csw-pf-Hnh" secondAttribute="bottom" constant="24" id="zRL-MQ-b6T"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="eKb-ZS-qVA"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="23b-B6-575"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jI4-v0-8Ok" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="602.89855072463774" y="-108.48214285714285"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="NewWandaLogo" width="200" height="200"/>
+    </resources>
+</document>

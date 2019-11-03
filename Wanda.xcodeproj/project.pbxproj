@@ -64,6 +64,7 @@
 		85FB6A58212F861000EB8852 /* ClassesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB6A57212F861000EB8852 /* ClassesViewController.swift */; };
 		85FB6A5B212F870000EB8852 /* WandaLocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB6A5A212F870000EB8852 /* WandaLocalizableStrings.swift */; };
 		85FB6A5D212F8B6E00EB8852 /* WandaConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB6A5C212F8B6E00EB8852 /* WandaConstants.swift */; };
+		F1296AAA23581128001AED6C /* LoginSignUpViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1296AA923581127001AED6C /* LoginSignUpViewController.storyboard */; };
 		F12B5F8622A797BE001B2E27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F12B5F8522A797BE001B2E27 /* GoogleService-Info.plist */; };
 		F16E58552260699D00040741 /* DateFormatter+Wanda.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16E58542260699D00040741 /* DateFormatter+Wanda.swift */; };
 		F17799A922570D1B000B3F3F /* UIViewController+Wanda.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17799A822570D1B000B3F3F /* UIViewController+Wanda.swift */; };
@@ -131,6 +132,7 @@
 		85FB6A5A212F870000EB8852 /* WandaLocalizableStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WandaLocalizableStrings.swift; sourceTree = "<group>"; };
 		85FB6A5C212F8B6E00EB8852 /* WandaConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WandaConstants.swift; sourceTree = "<group>"; };
 		9518B1ED484EC8C2CB9E8743 /* Pods-Wanda.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wanda.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wanda/Pods-Wanda.debug.xcconfig"; sourceTree = "<group>"; };
+		F1296AA923581127001AED6C /* LoginSignUpViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginSignUpViewController.storyboard; sourceTree = "<group>"; };
 		F12B5F8522A797BE001B2E27 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F16E58542260699D00040741 /* DateFormatter+Wanda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Wanda.swift"; sourceTree = "<group>"; };
 		F17799A822570D1B000B3F3F /* UIViewController+Wanda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Wanda.swift"; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 				8581DD5C21A33E8400EC12EF /* LoginViewController.storyboard */,
 				8533412121E05BDC003A0ABB /* SignUpViewController.swift */,
 				8533412521E131D4003A0ABB /* SignUpViewController.storyboard */,
+				F1296AA923581127001AED6C /* LoginSignUpViewController.storyboard */,
 			);
 			path = LoginSignUp;
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 				854CB2DE21750FA4008A1019 /* ClassesTableViewCell.xib in Resources */,
 				856960DB205100B700ADFF9A /* OpenSans-SemiBold.ttf in Resources */,
 				F12B5F8622A797BE001B2E27 /* GoogleService-Info.plist in Resources */,
+				F1296AAA23581128001AED6C /* LoginSignUpViewController.storyboard in Resources */,
 				856960D3205100A500ADFF9A /* OpenSans-Bold.ttf in Resources */,
 				85712A8B221CE0020058C9E2 /* WandaClassMenu.xib in Resources */,
 				851000BA204339F800D450AE /* ClassesHeaderView.xib in Resources */,

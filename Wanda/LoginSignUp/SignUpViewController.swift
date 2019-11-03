@@ -106,13 +106,14 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, MFMailCompose
     }
     
     @objc
-    private func backButtonPressed() {
+    private func didTapBackButton() {
         navigationController?.popViewController(animated: true)
     }
     
     private func configureNavigationBar() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: WandaImages.backArrow, style: .plain, target: self, action: #selector(backButtonPressed))
-        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: WandaImages.backArrow, style: .plain, target: self, action: #selector(didTapBackButton))
+        navigationItem.leftBarButtonItem?.tintColor = UIColor(hexString: "#663498")
+
         if let navigationBar = navigationController?.navigationBar {
             navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.wandaFontBold(size: 20)]
         }

@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <array key="OpenSans-Regular.ttf">
             <string>OpenSans-Regular</string>
-        </array>
-        <array key="OpenSans-SemiBold.ttf">
-            <string>OpenSans-SemiBold</string>
         </array>
     </customFonts>
     <scenes>
@@ -27,31 +22,29 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nbm-NL-N77">
-                                <rect key="frame" x="16" y="269.5" width="343" height="148.5"/>
+                                <rect key="frame" x="16" y="241" width="343" height="185.5"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="pWc-Ue-O38">
-                                        <rect key="frame" x="24" y="23" width="295" height="72.5"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="System Error" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zvn-sF-VfW">
-                                                <rect key="frame" x="0.0" y="0.0" width="295" height="22"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="22" id="028-RA-9gZ"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="OpenSans-SemiBold" family="Open Sans" pointSize="16"/>
-                                                <color key="textColor" red="0.0078431372549019607" green="0.094117647058823528" blue="0.16078431372549018" alpha="0.86745505136986301" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Looks like something isn't working properly. Try again or contact support for help." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CVq-R1-hp3">
-                                                <rect key="frame" x="0.0" y="34" width="295" height="38.5"/>
-                                                <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="14"/>
-                                                <color key="textColor" red="0.0078431372549019607" green="0.094117647058823528" blue="0.16078431372549018" alpha="0.86745505136986301" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="System Error" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zvn-sF-VfW">
+                                        <rect key="frame" x="24" y="24" width="295" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="028-RA-9gZ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
+                                        <color key="textColor" red="0.0078431372549019607" green="0.094117647058823528" blue="0.16078431372549018" alpha="0.86745505136986301" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Looks like something isn't working properly. Try again or contact support for help." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CVq-R1-hp3">
+                                        <rect key="frame" x="24" y="54" width="295" height="38.5"/>
+                                        <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="14"/>
+                                        <color key="textColor" red="0.0078431372549019607" green="0.094117647058823528" blue="0.16078431372549018" alpha="0.86745505136986301" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="32h-LU-nfh">
-                                        <rect key="frame" x="187" y="114.5" width="43" height="19"/>
-                                        <fontDescription key="fontDescription" name="OpenSans-SemiBold" family="Open Sans" pointSize="14"/>
+                                        <rect key="frame" x="190" y="150.5" width="43" height="19"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="19" id="ODm-fr-pgW"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="14"/>
                                         <state key="normal" title="CLOSE">
                                             <color key="titleColor" red="0.0078431372549019607" green="0.094117647058823528" blue="0.16078431372549018" alpha="0.58922838184931503" colorSpace="calibratedRGB"/>
                                         </state>
@@ -60,11 +53,11 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XB4-Ws-Hu1">
-                                        <rect key="frame" x="255" y="114.5" width="73" height="19"/>
+                                        <rect key="frame" x="258" y="150.5" width="70" height="19"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="19" id="eyi-4Q-Sfe"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="OpenSans-SemiBold" family="Open Sans" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="14"/>
                                         <state key="normal" title="TRY AGAIN">
                                             <color key="titleColor" red="0.015686274509803921" green="0.4392156862745098" blue="0.6588235294117647" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -73,11 +66,11 @@
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wRa-4P-J6C">
-                                        <rect key="frame" x="15" y="114.5" width="64" height="19"/>
+                                        <rect key="frame" x="15" y="150.5" width="63" height="19"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="19" id="qij-Un-Fjd"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="OpenSans-SemiBold" family="Open Sans" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="14"/>
                                         <state key="normal" title="SUPPORT">
                                             <color key="titleColor" red="0.015686274510000001" green="0.43921568630000002" blue="0.6588235294" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -88,17 +81,21 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="pWc-Ue-O38" firstAttribute="centerX" secondItem="nbm-NL-N77" secondAttribute="centerX" id="0ce-nx-Lhc"/>
-                                    <constraint firstAttribute="bottom" secondItem="XB4-Ws-Hu1" secondAttribute="bottom" constant="15" id="3oc-lx-4UJ"/>
-                                    <constraint firstAttribute="bottom" secondItem="32h-LU-nfh" secondAttribute="bottom" constant="15" id="9iL-n7-tdL"/>
+                                    <constraint firstItem="Zvn-sF-VfW" firstAttribute="top" secondItem="nbm-NL-N77" secondAttribute="top" constant="24" id="2z6-nD-ttF"/>
+                                    <constraint firstAttribute="bottom" secondItem="XB4-Ws-Hu1" secondAttribute="bottom" constant="16" id="3oc-lx-4UJ"/>
+                                    <constraint firstItem="Zvn-sF-VfW" firstAttribute="centerX" secondItem="nbm-NL-N77" secondAttribute="centerX" id="3yL-dd-dr9"/>
+                                    <constraint firstItem="CVq-R1-hp3" firstAttribute="centerX" secondItem="nbm-NL-N77" secondAttribute="centerX" id="7zJ-Zu-D26"/>
+                                    <constraint firstItem="CVq-R1-hp3" firstAttribute="top" secondItem="Zvn-sF-VfW" secondAttribute="bottom" constant="10" id="82T-S7-DOy"/>
+                                    <constraint firstAttribute="bottom" secondItem="32h-LU-nfh" secondAttribute="bottom" constant="16" id="9iL-n7-tdL"/>
                                     <constraint firstItem="XB4-Ws-Hu1" firstAttribute="leading" secondItem="32h-LU-nfh" secondAttribute="trailing" constant="25" id="EQp-a4-oRt"/>
-                                    <constraint firstItem="pWc-Ue-O38" firstAttribute="leading" secondItem="nbm-NL-N77" secondAttribute="leading" constant="24" id="IKZ-4g-jrk"/>
+                                    <constraint firstItem="CVq-R1-hp3" firstAttribute="leading" secondItem="nbm-NL-N77" secondAttribute="leading" constant="24" id="FXA-bz-iPB"/>
                                     <constraint firstItem="wRa-4P-J6C" firstAttribute="leading" secondItem="nbm-NL-N77" secondAttribute="leading" constant="15" id="KJg-Xz-13G"/>
                                     <constraint firstItem="32h-LU-nfh" firstAttribute="top" secondItem="XB4-Ws-Hu1" secondAttribute="top" id="UK7-9E-NrO"/>
-                                    <constraint firstItem="XB4-Ws-Hu1" firstAttribute="top" secondItem="pWc-Ue-O38" secondAttribute="bottom" constant="19" id="dNn-MT-UON"/>
+                                    <constraint firstItem="32h-LU-nfh" firstAttribute="top" secondItem="CVq-R1-hp3" secondAttribute="bottom" constant="58" id="cPd-ic-WCj"/>
+                                    <constraint firstItem="Zvn-sF-VfW" firstAttribute="leading" secondItem="nbm-NL-N77" secondAttribute="leading" constant="24" id="dyN-nD-cCy"/>
                                     <constraint firstItem="32h-LU-nfh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="wRa-4P-J6C" secondAttribute="trailing" constant="10" id="iET-ln-M5y"/>
-                                    <constraint firstAttribute="bottom" secondItem="wRa-4P-J6C" secondAttribute="bottom" constant="15" id="lMc-en-RIS"/>
-                                    <constraint firstItem="pWc-Ue-O38" firstAttribute="top" secondItem="nbm-NL-N77" secondAttribute="top" constant="23" id="wbb-Bk-Ty0"/>
+                                    <constraint firstAttribute="bottom" secondItem="wRa-4P-J6C" secondAttribute="bottom" constant="16" id="lMc-en-RIS"/>
+                                    <constraint firstItem="wRa-4P-J6C" firstAttribute="top" secondItem="32h-LU-nfh" secondAttribute="top" id="pyf-j4-cV8"/>
                                     <constraint firstAttribute="trailing" secondItem="XB4-Ws-Hu1" secondAttribute="trailing" constant="15" id="ziI-ea-zWn"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>

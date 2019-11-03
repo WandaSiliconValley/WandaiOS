@@ -32,7 +32,6 @@ struct WandaAnalytics {
     static let loginButtonTapped = login + clicked + login + button
     static let loginSuccess = login + div + login + success
     static let loginError = login + div + login + error
-    static let loginSignUpButtonTapped = login + clicked + signUp + button
     static let loginForgotPasswordTapped = login + clicked + "forgot_password" + button
     
     // Forgot Password

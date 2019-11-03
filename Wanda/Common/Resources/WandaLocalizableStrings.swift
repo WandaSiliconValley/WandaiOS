@@ -236,7 +236,7 @@ struct SuccessStrings {
     }
     static var signUpSuccessMessage: String {
         return NSLocalizedString("Wanda_Success_SignUpSuccess",
-            value: "You can now login to the app with your credentials. We're so excited to see you at the next class.",
+            value: "Get started to see the class schedule and make your monthly contributions.",
             comment: "Message informing the user that they have successfully signed up for the app and can now login anytime.")
     }
     static var thanksForSigningUp: String {

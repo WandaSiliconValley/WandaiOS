@@ -30,6 +30,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
     private var isValidPassword = false
     private var showHideIconClicked = false
     
+    static let storyboardIdentifier = String(describing: LoginViewController.self)
+    
     private enum ActionState {
         case contactUs
         case retryGetClasses
@@ -40,8 +42,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: WandaImages.backArrow, style: .plain, target: self, action: #selector(didTapBackButton))
+        navigationItem.leftBarButtonItem?.tintColor = UIColor(hexString: "#663498")
         if let navigationBar = self.navigationController?.navigationBar {
-            navigationBar.barTintColor = WandaColors.darkPurple
             navigationBar.isTranslucent = true
         }
     }
@@ -56,18 +59,26 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
             navigationBar.shadowImage = UIImage()
             navigationBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 80.0)
         }
-        passwordTextField.underlined()
-        emailTextField.underlined()
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         passwordTextField.isSecureTextEntry = true
+        
+        passwordTextField.underlined()
+        emailTextField.underlined()
     }
     
     // MARK: Private
+    
+    @objc
+    private func didTapBackButton() {
+        navigationController?.popViewController(animated: true)
+    }
     
     @objc
     private func dismissKeyboard() {
@@ -237,16 +248,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
         
         logAnalytic(tag: WandaAnalytics.loginForgotPasswordTapped)
         self.navigationController?.pushViewController(forgotPasswordViewController, animated: true)
-    }
-    
-    @IBAction func didTapSignUp() {
-        guard let signUpViewController = ViewControllerFactory.makeSignUpViewController() else {
-            assertionFailure("Could not load the SignUpViewController.")
-            return
-        }
-        
-        logAnalytic(tag: WandaAnalytics.loginSignUpButtonTapped)
-        self.navigationController?.pushViewController(signUpViewController, animated: true)
     }
     
     private func verifySignUp() -> Bool {
