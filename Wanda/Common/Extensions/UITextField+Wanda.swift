@@ -9,7 +9,6 @@
 import UIKit
 
 extension UITextField {
-    // to do why does it lag in changing th color = login vc
     func underlined(color: CGColor? = WandaColors.mediumPurple.cgColor){
         let border = CALayer()
         let width = CGFloat(1.0)

@@ -19,7 +19,7 @@
         <!--Login View Controller-->
         <scene sceneID="6ss-d3-CN7">
             <objects>
-                <viewController id="mk5-6E-flT" customClass="LoginViewController" customModule="Wanda" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="mk5-6E-flT" customClass="LoginViewController" customModule="Wanda" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" opaque="NO" contentMode="scaleToFill" id="lHz-uu-T2Y">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -31,14 +31,14 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NewWandaLogo" translatesAutoresizingMaskIntoConstraints="NO" id="RQu-Nw-r8m">
-                                                <rect key="frame" x="115" y="16" width="145" height="145"/>
+                                                <rect key="frame" x="123.5" y="0.0" width="128" height="128"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="RQu-Nw-r8m" secondAttribute="height" multiplier="1:1" id="YS8-4p-0iv"/>
-                                                    <constraint firstAttribute="height" constant="145" id="j29-GT-ipR"/>
+                                                    <constraint firstAttribute="height" constant="128" id="j29-GT-ipR"/>
                                                 </constraints>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aME-lg-tcD" userLabel="Email View">
-                                                <rect key="frame" x="34" y="201" width="317" height="38"/>
+                                                <rect key="frame" x="34" y="168" width="317" height="38"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PersonIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Z4P-p0-7Ji">
                                                         <rect key="frame" x="0.0" y="2" width="20" height="20"/>
@@ -92,7 +92,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="APh-5R-2Qa" userLabel="Password View">
-                                                <rect key="frame" x="32" y="279" width="319" height="38"/>
+                                                <rect key="frame" x="32" y="246" width="319" height="38"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PurpleLockIcon" translatesAutoresizingMaskIntoConstraints="NO" id="2it-vr-AdJ" userLabel="Lock Icon">
                                                         <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
@@ -172,7 +172,7 @@
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AaX-kq-Td0">
-                                                <rect key="frame" x="72" y="321" width="88" height="12"/>
+                                                <rect key="frame" x="72" y="270" width="88" height="12"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="12" id="xAP-Kl-o24"/>
                                                 </constraints>
@@ -222,15 +222,15 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="APh-5R-2Qa" secondAttribute="trailing" constant="24" id="4V8-8a-AyT"/>
+                                            <constraint firstItem="AaX-kq-Td0" firstAttribute="top" secondItem="Fpu-XX-RkO" secondAttribute="bottom" constant="4" id="97B-CF-cof"/>
                                             <constraint firstAttribute="trailing" secondItem="aME-lg-tcD" secondAttribute="trailing" constant="24" id="ANM-6Q-V6H"/>
                                             <constraint firstItem="APh-5R-2Qa" firstAttribute="top" secondItem="aME-lg-tcD" secondAttribute="bottom" constant="40" id="D4K-u9-1fb"/>
                                             <constraint firstItem="APh-5R-2Qa" firstAttribute="leading" secondItem="Irz-mj-9J9" secondAttribute="leading" constant="32" id="H6X-OM-Tje"/>
                                             <constraint firstAttribute="bottom" secondItem="Eq6-O3-iZN" secondAttribute="bottom" constant="40" id="IAy-k9-HVB"/>
                                             <constraint firstItem="AaX-kq-Td0" firstAttribute="leading" secondItem="Fpu-XX-RkO" secondAttribute="leading" id="LMu-bu-16R"/>
-                                            <constraint firstItem="AaX-kq-Td0" firstAttribute="top" secondItem="APh-5R-2Qa" secondAttribute="bottom" constant="4" id="RTY-vx-1wI"/>
                                             <constraint firstItem="aME-lg-tcD" firstAttribute="top" secondItem="RQu-Nw-r8m" secondAttribute="bottom" constant="40" id="Wtm-L1-Yyb"/>
                                             <constraint firstItem="aME-lg-tcD" firstAttribute="leading" secondItem="Irz-mj-9J9" secondAttribute="leading" constant="34" id="X2a-vq-how"/>
-                                            <constraint firstItem="RQu-Nw-r8m" firstAttribute="top" secondItem="Irz-mj-9J9" secondAttribute="top" constant="16" id="hAd-aO-HIS"/>
+                                            <constraint firstItem="RQu-Nw-r8m" firstAttribute="top" secondItem="Irz-mj-9J9" secondAttribute="top" id="hAd-aO-HIS"/>
                                             <constraint firstItem="Eq6-O3-iZN" firstAttribute="top" relation="greaterThanOrEqual" secondItem="AaX-kq-Td0" secondAttribute="bottom" constant="50" id="nft-tQ-gQX"/>
                                             <constraint firstItem="RQu-Nw-r8m" firstAttribute="centerX" secondItem="Irz-mj-9J9" secondAttribute="centerX" id="pSs-Fm-7bJ"/>
                                             <constraint firstItem="Eq6-O3-iZN" firstAttribute="leading" secondItem="Irz-mj-9J9" secondAttribute="leading" constant="16" id="s05-82-N4z"/>
@@ -263,6 +263,7 @@
                     <connections>
                         <outlet property="emailInfoLabel" destination="4Gt-Iy-dKl" id="2TP-lD-gGW"/>
                         <outlet property="emailTextField" destination="MZW-hZ-1YR" id="Jq7-58-utv"/>
+                        <outlet property="forgotPasswordButton" destination="AaX-kq-Td0" id="our-Vw-6hV"/>
                         <outlet property="loginButton" destination="Du7-ac-Y15" id="mTy-qR-my3"/>
                         <outlet property="passwordInfoLabel" destination="puH-Uq-zhY" id="p07-1g-SES"/>
                         <outlet property="passwordTextField" destination="TZi-py-bWO" id="Dg9-Bw-6q3"/>

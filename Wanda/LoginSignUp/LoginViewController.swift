@@ -22,6 +22,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var showHidePasswordButton: UIButton!
     @IBOutlet private weak var spinner: UIActivityIndicatorView!
+    @IBOutlet private weak var forgotPasswordButton: UIButton!
     
     private var actionState: ActionState = .contactUs
     private var dataManager = WandaDataManager.shared
@@ -29,6 +30,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
     private var isValidEmail = false
     private var isValidPassword = false
     private var showHideIconClicked = false
+    
+    var forgot: CGFloat?
     
     static let storyboardIdentifier = String(describing: LoginViewController.self)
     
@@ -59,6 +62,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
             navigationBar.shadowImage = UIImage()
             navigationBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 80.0)
         }
+        
+        forgot = self.forgotPasswordButton.frame.origin.y
     }
     
     override func viewDidLoad() {
@@ -227,6 +232,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
     @IBAction private func didEditPassword() {
         passwordInfoLabel.isHidden = true
         passwordTextField.underlined()
+        
+        if (forgot != forgotPasswordButton.frame.origin.y){
+            UIView.animate(
+                withDuration: 0.1,
+                delay: 0.0,
+                options: .curveLinear,
+                animations: {
+                    self.forgotPasswordButton?.frame.origin.y = self.forgotPasswordButton.frame.origin.y - 18
+            })
+        }
     }
     
     @IBAction private func didTapShowHideButton() {
@@ -257,6 +272,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
         
         let emailValid = email.isEmailValid(emailTextField: emailTextField, emailInfoLabel: emailInfoLabel)
         let passwordValid = password.isPasswordValid(passwordTextField: passwordTextField, passwordInfoLabel: passwordInfoLabel, checkLength: false)
+        let test = self.forgotPasswordButton.frame.origin.y + 18
+        if !passwordValid && !(Int(forgot!) >= Int(test)) {
+            UIView.animate(
+                withDuration: 0.1,
+                delay: 0.0,
+                options: .curveLinear,
+                animations: {
+                    self.forgotPasswordButton?.frame.origin.y = test
+            })
+        }
         
         return emailValid && passwordValid
     }

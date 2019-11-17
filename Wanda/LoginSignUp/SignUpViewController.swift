@@ -277,6 +277,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, MFMailCompose
             case .retryCreateFirebaseUser:
                 didTapSignUp()
             case .retryCreateWandaMother:
+                self.spinner.toggleSpinner(for: self.signUpButton, title: GeneralStrings.submitAction)
                 createWandaMother()
         }
     }
