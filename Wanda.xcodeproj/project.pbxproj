@@ -66,8 +66,18 @@
 		85FB6A5D212F8B6E00EB8852 /* WandaConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB6A5C212F8B6E00EB8852 /* WandaConstants.swift */; };
 		F1292CD9237E767600B0D23B /* LoginSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1292CD8237E767600B0D23B /* LoginSignUpViewController.swift */; };
 		F1296AAA23581128001AED6C /* LoginSignUpViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1296AA923581127001AED6C /* LoginSignUpViewController.storyboard */; };
+		F1296AA823541E12001AED6C /* SignUpSuccessScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1296AA723541E12001AED6C /* SignUpSuccessScreen.swift */; };
 		F12B5F8622A797BE001B2E27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F12B5F8522A797BE001B2E27 /* GoogleService-Info.plist */; };
+		F131F85C23447D64006B0A53 /* ForgotPasswordScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F131F85B23447D64006B0A53 /* ForgotPasswordScreen.swift */; };
+		F131F860234932A5006B0A53 /* WandaClassListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F131F85F234932A5006B0A53 /* WandaClassListScreen.swift */; };
 		F1609E4023431CD90007A4D3 /* WandaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1609E3F23431CD90007A4D3 /* WandaTests.swift */; };
+		F1609E5D234320C60007A4D3 /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1609E5C234320C60007A4D3 /* Screen.swift */; };
+		F165920A23A0B341009B8961 /* AlertScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165920823A0B341009B8961 /* AlertScreen.swift */; };
+		F165920B23A0B341009B8961 /* ClassDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165920923A0B341009B8961 /* ClassDetailScreen.swift */; };
+		F165920F23A0B34D009B8961 /* LoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165920C23A0B34D009B8961 /* LoginScreen.swift */; };
+		F165921023A0B34D009B8961 /* LoginSignUpScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165920D23A0B34D009B8961 /* LoginSignUpScreen.swift */; };
+		F165921123A0B34D009B8961 /* ReservationSuccessScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165920E23A0B34D009B8961 /* ReservationSuccessScreen.swift */; };
+		F165921323A0B354009B8961 /* SignUpScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165921223A0B354009B8961 /* SignUpScreen.swift */; };
 		F16E58552260699D00040741 /* DateFormatter+Wanda.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16E58542260699D00040741 /* DateFormatter+Wanda.swift */; };
 		F17799A922570D1B000B3F3F /* UIViewController+Wanda.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17799A822570D1B000B3F3F /* UIViewController+Wanda.swift */; };
 /* End PBXBuildFile section */
@@ -153,12 +163,22 @@
 		9518B1ED484EC8C2CB9E8743 /* Pods-Wanda.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wanda.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wanda/Pods-Wanda.debug.xcconfig"; sourceTree = "<group>"; };
 		F1292CD8237E767600B0D23B /* LoginSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginSignUpViewController.swift; path = /Users/Courtney/Develop/WandaNew/Wanda/LoginSignUp/LoginSignUpViewController.swift; sourceTree = "<absolute>"; };
 		F1296AA923581127001AED6C /* LoginSignUpViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginSignUpViewController.storyboard; sourceTree = "<group>"; };
+		F1296AA723541E12001AED6C /* SignUpSuccessScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpSuccessScreen.swift; sourceTree = "<group>"; };
 		F12B5F8522A797BE001B2E27 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F131F85B23447D64006B0A53 /* ForgotPasswordScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordScreen.swift; sourceTree = "<group>"; };
+		F131F85F234932A5006B0A53 /* WandaClassListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WandaClassListScreen.swift; sourceTree = "<group>"; };
 		F1609E3D23431CD90007A4D3 /* WandaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WandaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1609E3F23431CD90007A4D3 /* WandaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WandaTests.swift; sourceTree = "<group>"; };
 		F1609E4123431CD90007A4D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F1609E4B23431CE30007A4D3 /* WandaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WandaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1609E4F23431CE30007A4D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F1609E5C234320C60007A4D3 /* Screen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
+		F165920823A0B341009B8961 /* AlertScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertScreen.swift; sourceTree = "<group>"; };
+		F165920923A0B341009B8961 /* ClassDetailScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassDetailScreen.swift; sourceTree = "<group>"; };
+		F165920C23A0B34D009B8961 /* LoginScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginScreen.swift; sourceTree = "<group>"; };
+		F165920D23A0B34D009B8961 /* LoginSignUpScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginSignUpScreen.swift; sourceTree = "<group>"; };
+		F165920E23A0B34D009B8961 /* ReservationSuccessScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReservationSuccessScreen.swift; sourceTree = "<group>"; };
+		F165921223A0B354009B8961 /* SignUpScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpScreen.swift; sourceTree = "<group>"; };
 		F16E58542260699D00040741 /* DateFormatter+Wanda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Wanda.swift"; sourceTree = "<group>"; };
 		F17799A822570D1B000B3F3F /* UIViewController+Wanda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Wanda.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -373,9 +393,27 @@
 		F1609E4C23431CE30007A4D3 /* WandaUITests */ = {
 			isa = PBXGroup;
 			children = (
+				F1609E5B2343204E0007A4D3 /* Screens */,
 				F1609E4F23431CE30007A4D3 /* Info.plist */,
 			);
 			path = WandaUITests;
+			sourceTree = "<group>";
+		};
+		F1609E5B2343204E0007A4D3 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				F165921223A0B354009B8961 /* SignUpScreen.swift */,
+				F165920C23A0B34D009B8961 /* LoginScreen.swift */,
+				F165920D23A0B34D009B8961 /* LoginSignUpScreen.swift */,
+				F165920E23A0B34D009B8961 /* ReservationSuccessScreen.swift */,
+				F165920823A0B341009B8961 /* AlertScreen.swift */,
+				F165920923A0B341009B8961 /* ClassDetailScreen.swift */,
+				F1609E5C234320C60007A4D3 /* Screen.swift */,
+				F131F85B23447D64006B0A53 /* ForgotPasswordScreen.swift */,
+				F131F85F234932A5006B0A53 /* WandaClassListScreen.swift */,
+				F1296AA723541E12001AED6C /* SignUpSuccessScreen.swift */,
+			);
+			path = Screens;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -629,6 +667,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1609E4023431CD90007A4D3 /* WandaTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F1609E4723431CE30007A4D3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F1609E5D234320C60007A4D3 /* Screen.swift in Sources */,
+				F131F85C23447D64006B0A53 /* ForgotPasswordScreen.swift in Sources */,
+				F131F860234932A5006B0A53 /* WandaClassListScreen.swift in Sources */,
+				F165921023A0B34D009B8961 /* LoginSignUpScreen.swift in Sources */,
+				F165921323A0B354009B8961 /* SignUpScreen.swift in Sources */,
+				F1609E5623431F1F0007A4D3 /* UITestCase.swift in Sources */,
+				F165920F23A0B34D009B8961 /* LoginScreen.swift in Sources */,
+				F165921623A0B364009B8961 /* WandaClassUITests.swift in Sources */,
+				F165921723A0B364009B8961 /* WandaLoginSignUpTests.swift in Sources */,
+				F165920B23A0B341009B8961 /* ClassDetailScreen.swift in Sources */,
+				F165921123A0B34D009B8961 /* ReservationSuccessScreen.swift in Sources */,
+				F1296AA823541E12001AED6C /* SignUpSuccessScreen.swift in Sources */,
+				F165920A23A0B341009B8961 /* AlertScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
