@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DSv-MK-CoK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DSv-MK-CoK">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -41,12 +41,14 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SuccessCalendar" translatesAutoresizingMaskIntoConstraints="NO" id="sKs-gi-9DA">
                                 <rect key="frame" x="77.5" y="40" width="220" height="220"/>
+                                <accessibility key="accessibilityConfiguration" identifier="success_image"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="sKs-gi-9DA" secondAttribute="height" multiplier="1:1" id="e2N-bS-f8J"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thanks for signing up!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mhq-yU-eed">
                                 <rect key="frame" x="81.5" y="300" width="212" height="27"/>
+                                <accessibility key="accessibilityConfiguration" identifier="success_title"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="27" id="daQ-zu-LT0"/>
                                 </constraints>
@@ -56,6 +58,7 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your RSVP has been sent to WANDA. We’re so excited to see you at the next class. " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vEI-cK-GSS">
                                 <rect key="frame" x="16" y="343" width="343" height="44"/>
+                                <accessibility key="accessibilityConfiguration" identifier="success_message"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="Ta8-VW-Rk6"/>
                                 </constraints>

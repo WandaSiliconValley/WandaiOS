@@ -26,6 +26,7 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="System Error" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zvn-sF-VfW">
                                         <rect key="frame" x="24" y="24" width="295" height="20"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="alert_title"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="028-RA-9gZ"/>
                                         </constraints>
@@ -35,12 +36,28 @@
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Looks like something isn't working properly. Try again or contact support for help." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CVq-R1-hp3">
                                         <rect key="frame" x="24" y="54" width="295" height="38.5"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="alert_message"/>
                                         <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="14"/>
                                         <color key="textColor" red="0.0078431372549019607" green="0.094117647058823528" blue="0.16078431372549018" alpha="0.86745505136986301" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wRa-4P-J6C">
+                                        <rect key="frame" x="15" y="150.5" width="63" height="19"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="alert_button_one"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="19" id="qij-Un-Fjd"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="14"/>
+                                        <state key="normal" title="SUPPORT">
+                                            <color key="titleColor" red="0.015686274510000001" green="0.43921568630000002" blue="0.6588235294" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapSupportButton" destination="w5R-R6-8U4" eventType="touchUpInside" id="dwe-rZ-RoP"/>
+                                        </connections>
+                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="32h-LU-nfh">
                                         <rect key="frame" x="190" y="150.5" width="43" height="19"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="alert_button_two"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="19" id="ODm-fr-pgW"/>
                                         </constraints>
@@ -54,6 +71,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XB4-Ws-Hu1">
                                         <rect key="frame" x="258" y="150.5" width="70" height="19"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="alert_button_three"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="19" id="eyi-4Q-Sfe"/>
                                         </constraints>
@@ -63,19 +81,6 @@
                                         </state>
                                         <connections>
                                             <action selector="didTapActionButton" destination="w5R-R6-8U4" eventType="touchUpInside" id="FQs-Of-GYB"/>
-                                        </connections>
-                                    </button>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wRa-4P-J6C">
-                                        <rect key="frame" x="15" y="150.5" width="63" height="19"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="19" id="qij-Un-Fjd"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="14"/>
-                                        <state key="normal" title="SUPPORT">
-                                            <color key="titleColor" red="0.015686274510000001" green="0.43921568630000002" blue="0.6588235294" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="didTapSupportButton" destination="w5R-R6-8U4" eventType="touchUpInside" id="dwe-rZ-RoP"/>
                                         </connections>
                                     </button>
                                 </subviews>

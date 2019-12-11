@@ -32,6 +32,7 @@
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NewWandaLogo" translatesAutoresizingMaskIntoConstraints="NO" id="GaH-bl-cza">
                                                 <rect key="frame" x="123.5" y="0.0" width="128" height="128"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="su_wanda_logo"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="128" id="IrS-1A-vSQ"/>
                                                     <constraint firstAttribute="width" secondItem="GaH-bl-cza" secondAttribute="height" multiplier="1:1" id="XIm-Yw-5aT"/>
@@ -43,6 +44,7 @@
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PersonIcon" translatesAutoresizingMaskIntoConstraints="NO" id="mzy-yZ-VQr">
                                                         <rect key="frame" x="0.0" y="-2" width="24" height="24"/>
                                                         <color key="tintColor" red="0.36078431370000003" green="0.0" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="email_icon"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="24" id="Uvy-PE-EDo"/>
                                                             <constraint firstAttribute="width" secondItem="mzy-yZ-VQr" secondAttribute="height" multiplier="1:1" id="hMb-il-EoZ"/>
@@ -51,6 +53,7 @@
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mla-S6-5UH">
                                                         <rect key="frame" x="42" y="0.0" width="267" height="24"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="su_email_text_field"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="24" id="4Wy-20-46Y"/>
                                                         </constraints>
@@ -69,6 +72,7 @@
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Use email on file with WANDA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ATi-eK-ZNO" userLabel="Email Info Label">
                                                         <rect key="frame" x="42" y="28" width="267" height="10"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="su_email_info_label"/>
                                                         <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="10"/>
                                                         <color key="textColor" red="0.36078431370000003" green="0.0" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -94,6 +98,7 @@
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PurpleLockIcon" translatesAutoresizingMaskIntoConstraints="NO" id="GN6-Ii-Noo" userLabel="Lock Icon">
                                                         <rect key="frame" x="0.0" y="4" width="24" height="24"/>
                                                         <color key="tintColor" red="0.36078431370000003" green="0.0" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="password_icon"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="GN6-Ii-Noo" secondAttribute="height" multiplier="1:1" id="WXX-1V-Fxb"/>
                                                             <constraint firstAttribute="width" constant="24" id="lur-50-tNX"/>
@@ -102,6 +107,7 @@
                                                     <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="U4W-Et-xNw">
                                                         <rect key="frame" x="40" y="0.0" width="271" height="24"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="su_password_text_field"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="24" id="b7e-Ee-tTG"/>
                                                         </constraints>
@@ -126,6 +132,7 @@
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ual-wQ-Jz0" userLabel="Show Hide Button">
                                                         <rect key="frame" x="287" y="4" width="24" height="16"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="su_password_show_hide"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="24" id="6h2-9M-GCA"/>
                                                             <constraint firstAttribute="height" constant="16" id="o6x-pH-Pnq"/>
@@ -159,6 +166,7 @@
                                                     <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0SY-TP-WgH">
                                                         <rect key="frame" x="0.0" y="0.0" width="271" height="24"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="confirm_password_text_field"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="24" id="YXa-Uz-CD8"/>
                                                         </constraints>
@@ -177,6 +185,7 @@
                                                     </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iA7-lq-gsH" userLabel="Show Hide Button">
                                                         <rect key="frame" x="247" y="4" width="24" height="16"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="confirm_show_hide"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="16" id="KKy-hf-aJk"/>
                                                             <constraint firstAttribute="width" constant="24" id="Uuc-0p-iI9"/>
@@ -214,6 +223,7 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zc8-FE-OwC">
                                                         <rect key="frame" x="0.0" y="0.0" width="343" height="45"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="sign_up_button"/>
                                                         <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
                                                         <state key="normal" title="Sign Up">
                                                             <color key="titleColor" red="0.59999999999999998" green="0.15686274510000001" blue="0.70196078429999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
