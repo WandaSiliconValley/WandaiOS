@@ -92,17 +92,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
     
     @objc
     private func keyboardWillShow(notification: NSNotification) {
-        var userInfo = notification.userInfo!
-        let keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
-        var contentInset:UIEdgeInsets = self.scrollView.contentInset
-        contentInset.bottom = keyboardFrame.size.height + 60
-        scrollView.contentInset = contentInset
+        DispatchQueue.main.async {
+            let userInfo = notification.userInfo!
+            let keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+            var contentInset:UIEdgeInsets = self.scrollView.contentInset
+            contentInset.bottom = keyboardFrame.size.height + 60
+            self.scrollView.contentInset = contentInset
+        }
     }
     
     @objc
     private func keyboardWillHide(notification:NSNotification){
-        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
-        scrollView.contentInset = contentInset
+        DispatchQueue.main.async {
+            let contentInset:UIEdgeInsets = UIEdgeInsets.zero
+            self.scrollView.contentInset = contentInset
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
