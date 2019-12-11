@@ -1,6 +1,6 @@
 //
 //  LoginSignUpViewController.swift
-//  
+//
 //
 //  Created by Courtney on 10/16/19.
 //
@@ -15,14 +15,11 @@ class LoginSignUpViewController: UIViewController {
         if let navigationBar = self.navigationController?.navigationBar {
             navigationBar.isTranslucent = true
         }
-        print("UMMM")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print("HIIII")
-        
+                
         if let navigationBar = self.navigationController?.navigationBar {
             navigationBar.setBackgroundImage(UIImage(), for: .default)
             navigationBar.shadowImage = UIImage()

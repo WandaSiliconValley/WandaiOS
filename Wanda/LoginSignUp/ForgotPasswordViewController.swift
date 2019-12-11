@@ -67,6 +67,7 @@ class ForgotPasswordViewController: UIViewController, MFMailComposeViewControlle
 
     private func configureNavigationBar() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: WandaImages.backArrow, style: .plain, target: self, action: #selector(backButtonPressed))
+        navigationItem.leftBarButtonItem?.accessibilityIdentifier = "Back"
 
         if let navigationBar = navigationController?.navigationBar {
             navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.wandaFontBold(size: 20)]
@@ -80,7 +81,8 @@ class ForgotPasswordViewController: UIViewController, MFMailComposeViewControlle
 
     @objc
     func keyboardWillShow(notification:NSNotification){
-        var userInfo = notification.userInfo!
+        // to do get rid of !
+        let userInfo = notification.userInfo!
         var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
         keyboardFrame = self.view.convert(keyboardFrame, from: nil)
 
