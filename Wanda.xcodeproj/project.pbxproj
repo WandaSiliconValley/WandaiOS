@@ -67,9 +67,27 @@
 		F1292CD9237E767600B0D23B /* LoginSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1292CD8237E767600B0D23B /* LoginSignUpViewController.swift */; };
 		F1296AAA23581128001AED6C /* LoginSignUpViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1296AA923581127001AED6C /* LoginSignUpViewController.storyboard */; };
 		F12B5F8622A797BE001B2E27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F12B5F8522A797BE001B2E27 /* GoogleService-Info.plist */; };
+		F1609E4023431CD90007A4D3 /* WandaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1609E3F23431CD90007A4D3 /* WandaTests.swift */; };
 		F16E58552260699D00040741 /* DateFormatter+Wanda.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16E58542260699D00040741 /* DateFormatter+Wanda.swift */; };
 		F17799A922570D1B000B3F3F /* UIViewController+Wanda.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17799A822570D1B000B3F3F /* UIViewController+Wanda.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F1609E4223431CD90007A4D3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8510009A2043327700D450AE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 851000A12043327800D450AE;
+			remoteInfo = Wanda;
+		};
+		F1609E5023431CE30007A4D3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8510009A2043327700D450AE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 851000A12043327800D450AE;
+			remoteInfo = Wanda;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		14F740111B79E6BF0B3A0846 /* Pods-Wanda.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wanda.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wanda/Pods-Wanda.release.xcconfig"; sourceTree = "<group>"; };
@@ -136,6 +154,11 @@
 		F1292CD8237E767600B0D23B /* LoginSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginSignUpViewController.swift; path = /Users/Courtney/Develop/WandaNew/Wanda/LoginSignUp/LoginSignUpViewController.swift; sourceTree = "<absolute>"; };
 		F1296AA923581127001AED6C /* LoginSignUpViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginSignUpViewController.storyboard; sourceTree = "<group>"; };
 		F12B5F8522A797BE001B2E27 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F1609E3D23431CD90007A4D3 /* WandaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WandaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1609E3F23431CD90007A4D3 /* WandaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WandaTests.swift; sourceTree = "<group>"; };
+		F1609E4123431CD90007A4D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F1609E4B23431CE30007A4D3 /* WandaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WandaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1609E4F23431CE30007A4D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F16E58542260699D00040741 /* DateFormatter+Wanda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Wanda.swift"; sourceTree = "<group>"; };
 		F17799A822570D1B000B3F3F /* UIViewController+Wanda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Wanda.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -146,6 +169,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B2D1509E8ADB5CF833F781F /* Pods_Wanda.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F1609E3A23431CD90007A4D3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F1609E4823431CE30007A4D3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,6 +210,8 @@
 			isa = PBXGroup;
 			children = (
 				851000A42043327800D450AE /* Wanda */,
+				F1609E3E23431CD90007A4D3 /* WandaTests */,
+				F1609E4C23431CE30007A4D3 /* WandaUITests */,
 				851000A32043327800D450AE /* Products */,
 				7EBBC37E5138AC0DC2531E81 /* Pods */,
 				5A1397C70914F48F80DC18AB /* Frameworks */,
@@ -183,6 +222,8 @@
 			isa = PBXGroup;
 			children = (
 				851000A22043327800D450AE /* Wanda.app */,
+				F1609E3D23431CD90007A4D3 /* WandaTests.xctest */,
+				F1609E4B23431CE30007A4D3 /* WandaUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -320,6 +361,23 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		F1609E3E23431CD90007A4D3 /* WandaTests */ = {
+			isa = PBXGroup;
+			children = (
+				F1609E3F23431CD90007A4D3 /* WandaTests.swift */,
+				F1609E4123431CD90007A4D3 /* Info.plist */,
+			);
+			path = WandaTests;
+			sourceTree = "<group>";
+		};
+		F1609E4C23431CE30007A4D3 /* WandaUITests */ = {
+			isa = PBXGroup;
+			children = (
+				F1609E4F23431CE30007A4D3 /* Info.plist */,
+			);
+			path = WandaUITests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -342,19 +400,65 @@
 			productReference = 851000A22043327800D450AE /* Wanda.app */;
 			productType = "com.apple.product-type.application";
 		};
+		F1609E3C23431CD90007A4D3 /* WandaTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F1609E4623431CD90007A4D3 /* Build configuration list for PBXNativeTarget "WandaTests" */;
+			buildPhases = (
+				F1609E3923431CD90007A4D3 /* Sources */,
+				F1609E3A23431CD90007A4D3 /* Frameworks */,
+				F1609E3B23431CD90007A4D3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F1609E4323431CD90007A4D3 /* PBXTargetDependency */,
+			);
+			name = WandaTests;
+			productName = WandaTests;
+			productReference = F1609E3D23431CD90007A4D3 /* WandaTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F1609E4A23431CE30007A4D3 /* WandaUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F1609E5223431CE30007A4D3 /* Build configuration list for PBXNativeTarget "WandaUITests" */;
+			buildPhases = (
+				F1609E4723431CE30007A4D3 /* Sources */,
+				F1609E4823431CE30007A4D3 /* Frameworks */,
+				F1609E4923431CE30007A4D3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F1609E5123431CE30007A4D3 /* PBXTargetDependency */,
+			);
+			name = WandaUITests;
+			productName = WandaUITests;
+			productReference = F1609E4B23431CE30007A4D3 /* WandaUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		8510009A2043327700D450AE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0920;
+				LastSwiftUpdateCheck = 1100;
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Bell, Courtney";
 				TargetAttributes = {
 					851000A12043327800D450AE = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+					};
+					F1609E3C23431CD90007A4D3 = {
+						CreatedOnToolsVersion = 11.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 851000A12043327800D450AE;
+					};
+					F1609E4A23431CE30007A4D3 = {
+						CreatedOnToolsVersion = 11.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 851000A12043327800D450AE;
 					};
 				};
 			};
@@ -372,6 +476,8 @@
 			projectRoot = "";
 			targets = (
 				851000A12043327800D450AE /* Wanda */,
+				F1609E3C23431CD90007A4D3 /* WandaTests */,
+				F1609E4A23431CE30007A4D3 /* WandaUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -406,6 +512,20 @@
 				856960D6205100AB00ADFF9A /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				8581DD5D21A33E8400EC12EF /* LoginViewController.storyboard in Resources */,
 				856960D5205100A900ADFF9A /* OpenSans-ExtraBold.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F1609E3B23431CD90007A4D3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F1609E4923431CE30007A4D3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,7 +624,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F1609E3923431CD90007A4D3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F1609E4023431CD90007A4D3 /* WandaTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F1609E4323431CD90007A4D3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 851000A12043327800D450AE /* Wanda */;
+			targetProxy = F1609E4223431CD90007A4D3 /* PBXContainerItemProxy */;
+		};
+		F1609E5123431CE30007A4D3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 851000A12043327800D450AE /* Wanda */;
+			targetProxy = F1609E5023431CE30007A4D3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		851000B02043327800D450AE /* LaunchScreen.storyboard */ = {
@@ -659,6 +800,90 @@
 			};
 			name = Release;
 		};
+		F1609E4423431CD90007A4D3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9DKR7A94JE;
+				INFOPLIST_FILE = WandaTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Courtney.WandaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Wanda.app/Wanda";
+			};
+			name = Debug;
+		};
+		F1609E4523431CD90007A4D3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9DKR7A94JE;
+				INFOPLIST_FILE = WandaTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Courtney.WandaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Wanda.app/Wanda";
+			};
+			name = Release;
+		};
+		F1609E5323431CE30007A4D3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9DKR7A94JE;
+				INFOPLIST_FILE = WandaUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Courtney.WandaUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Wanda;
+			};
+			name = Debug;
+		};
+		F1609E5423431CE30007A4D3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9DKR7A94JE;
+				INFOPLIST_FILE = WandaUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Courtney.WandaUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Wanda;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -676,6 +901,24 @@
 			buildConfigurations = (
 				851000B72043327800D450AE /* Debug */,
 				851000B82043327800D450AE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F1609E4623431CD90007A4D3 /* Build configuration list for PBXNativeTarget "WandaTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F1609E4423431CD90007A4D3 /* Debug */,
+				F1609E4523431CD90007A4D3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F1609E5223431CE30007A4D3 /* Build configuration list for PBXNativeTarget "WandaUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F1609E5323431CE30007A4D3 /* Debug */,
+				F1609E5423431CE30007A4D3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
