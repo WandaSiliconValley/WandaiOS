@@ -13,6 +13,8 @@ import FirebaseAuth
 import MessageUI
 import UIKit
 
+// Bug - the text fields are too small and cuts off long letters like g and y
+
 class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeViewControllerDelegate, WandaAlertViewDelegate, EKEventEditViewDelegate {
     @IBOutlet private weak var emailInfoLabel: UILabel!
     @IBOutlet private weak var emailTextField: UITextField!
@@ -50,6 +52,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
         if let navigationBar = self.navigationController?.navigationBar {
             navigationBar.isTranslucent = true
         }
+        
+        passwordTextField.underlined()
+        emailTextField.underlined()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -63,6 +68,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
             navigationBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 80.0)
         }
         
+        // to do - is it important where we set this?
+        passwordTextField.isSecureTextEntry = true
+    
         forgot = self.forgotPasswordButton.frame.origin.y
     }
     
@@ -72,10 +80,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-        passwordTextField.isSecureTextEntry = true
         
-        passwordTextField.underlined()
-        emailTextField.underlined()
+        emailTextField.layoutIfNeeded()
+        passwordTextField.layoutIfNeeded()
     }
     
     // MARK: Private
@@ -186,7 +193,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
     private func getClasses() {
         self.dataManager.getWandaClasses() { success, error in
             guard success else {
-                
                 if let error = error {
                     // Set action state to retry get classes so the user has the option to retry the API call.
                     self.actionState = .retryGetClasses
