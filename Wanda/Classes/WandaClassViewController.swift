@@ -132,14 +132,8 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
     }
     
     @IBAction func didTapCancelRSVPButton() {
-//        guard let wandaAlertViewController = ViewControllerFactory.makeWandaAlertController(.cancelRSVP, delegate: self) else {
-//            assertionFailure("Could not load the WandaAlertViewController.")
-//            return
-//        }
-        
         reservationActionState = .cancelRSVP
         self.presentErrorAlert(for: .cancelRSVP)
-   //     self.present(wandaAlertViewController, animated: true, completion: nil)
     }
     
     @IBAction func didTapSendRSVPButton() {
@@ -209,21 +203,17 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
     @objc
     private func backButtonPressed(_ sender: UIButton) {
         if unsavedChanges {
-//            guard let wandaAlertViewController = ViewControllerFactory.makeWandaAlertController(.unsavedChanges, delegate: self) else {
-//                assertionFailure("Could not load the WandaAlertViewController.")
-//                return
-//            }
             reservationActionState = .discardRSVP
             self.presentErrorAlert(for: .unsavedChanges)
-         //   self.present(wandaAlertViewController, animated: true, completion: nil)
+        } else {
+            _ = navigationController?.popViewController(animated: true)
         }
-        _ = navigationController?.popViewController(animated: true)
     }
     
     @objc
     private func didTapAddToCalendar() {
         guard let wandaClass = wandaClass else {
-// to do should we show an error here?
+            // to do should we show an error here?
             return
         }
         
@@ -234,30 +224,29 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
             print("COULDNT GET TIME")
             return
         }
-
+        
         let startTimeString = DateFormatter.timeFormatter.string(from: startTime)
         let endTimeString = DateFormatter.timeFormatter.string(from: endTime)
         let startDateString = wandaClass.details.date + "T" + startTimeString
         let endDateString = wandaClass.details.date + "T" + endTimeString
         let startDate = DateFormatter.dateTimeFormatter.date(from: startDateString)
         let endDate = DateFormatter.dateTimeFormatter.date(from: endDateString)
-
-        // to do don't like this!
         
-        DispatchQueue.main.async {
-            let eventStore = EKEventStore()
-            eventStore.requestAccess(to: .event, completion: { (granted, error) in
-                if (granted) && (error == nil) {
-                    if let menuView = self.menuView {
-                        menuView.toggleMenu()
-                    }
-                    
-                    let event = EKEvent(eventStore: eventStore)
-                    event.title = wandaClass.details.topic
-                    event.startDate = startDate
-                    event.endDate = endDate
-                    event.location = wandaClass.details.address
-                    event.calendar = eventStore.defaultCalendarForNewEvents
+        // to do don't like this
+        let eventStore = EKEventStore()
+        eventStore.requestAccess(to: .event, completion: { (granted, error) in
+            if (granted) && (error == nil) {
+                if let menuView = self.menuView {
+                    menuView.toggleMenu()
+                }
+                
+                let event = EKEvent(eventStore: eventStore)
+                event.title = wandaClass.details.topic
+                event.startDate = startDate
+                event.endDate = endDate
+                event.location = wandaClass.details.address
+                event.calendar = eventStore.defaultCalendarForNewEvents
+                DispatchQueue.main.async {
                     
                     let controller = EKEventEditViewController()
                     controller.event = event
@@ -265,11 +254,11 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
                     controller.editViewDelegate = self
                     controller.setNeedsStatusBarAppearanceUpdate()
                     self.present(controller, animated: true)
-                } else {
-                    self.presentErrorAlert(for: .addEventError)
                 }
-            })
-        }
+            } else {
+                self.presentErrorAlert(for: .addEventError)
+            }
+        })
     }
     
     private func getReservedWandaClass() {
@@ -330,7 +319,7 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
             dateLabel.text = DateFormatter.fullDayMonthFormatter.string(from: eventDate)
         }
         
-        // to do fix this
+        // to do dont like this
         // to do log tap on address & make address open google maps
         var addressLabelText = ""
         if !wandaClass.details.unit.isEmpty {
@@ -356,7 +345,6 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
             case .upcomingClass:
                 configureUpcomingClassView()
         }
-        
     }
     
     private func configureUpcomingClassView() {
@@ -377,6 +365,7 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
                 dateTimeToReservedViewTopConstraint.priority = .defaultHigh
                 sendRSVPButton.backgroundColor = WandaColors.limeGreen
                 overlayView.backgroundColor = UIColor.white.withAlphaComponent(0.4)
+                overlayView.accessibilityIdentifier = "overlay_view"
                 addButton.imageView?.tintColor = WandaColors.mediumGrey
                 subtractbutton.imageView?.tintColor = WandaColors.mediumGrey
                 self.view.addSubview(overlayView)
@@ -404,10 +393,11 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
     
     private func configureNavigationBar() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: WandaImages.backArrow, style: .plain, target: self, action: #selector(backButtonPressed))
+        navigationItem.leftBarButtonItem?.tintColor = UIColor.white
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: WandaImages.overflowIcon, style: .plain, target: self, action: #selector(didTapOverflowMenu))
         navigationItem.rightBarButtonItem?.tintColor = UIColor.white
         
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white, NSAttributedString.Key.font: UIFont.wandaFontSemiBold(size: 20)]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white, NSAttributedString.Key.font: UIFont.wandaFontSemiBold(size: 20)]
     }
     
     private func toggleSubtractChildButton() {
