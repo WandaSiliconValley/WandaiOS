@@ -79,6 +79,7 @@
 		F165921023A0B34D009B8961 /* LoginSignUpScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165920D23A0B34D009B8961 /* LoginSignUpScreen.swift */; };
 		F165921123A0B34D009B8961 /* ReservationSuccessScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165920E23A0B34D009B8961 /* ReservationSuccessScreen.swift */; };
 		F165921323A0B354009B8961 /* SignUpScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165921223A0B354009B8961 /* SignUpScreen.swift */; };
+		F165921623A0B364009B8961 /* WandaClassUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165921423A0B364009B8961 /* WandaClassUITests.swift */; };
 		F16E58552260699D00040741 /* DateFormatter+Wanda.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16E58542260699D00040741 /* DateFormatter+Wanda.swift */; };
 		F17799A922570D1B000B3F3F /* UIViewController+Wanda.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17799A822570D1B000B3F3F /* UIViewController+Wanda.swift */; };
 /* End PBXBuildFile section */
@@ -181,6 +182,7 @@
 		F165920D23A0B34D009B8961 /* LoginSignUpScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginSignUpScreen.swift; sourceTree = "<group>"; };
 		F165920E23A0B34D009B8961 /* ReservationSuccessScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReservationSuccessScreen.swift; sourceTree = "<group>"; };
 		F165921223A0B354009B8961 /* SignUpScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpScreen.swift; sourceTree = "<group>"; };
+		F165921423A0B364009B8961 /* WandaClassUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WandaClassUITests.swift; sourceTree = "<group>"; };
 		F16E58542260699D00040741 /* DateFormatter+Wanda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Wanda.swift"; sourceTree = "<group>"; };
 		F17799A822570D1B000B3F3F /* UIViewController+Wanda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Wanda.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -397,6 +399,7 @@
 			children = (
 				F1609E5B2343204E0007A4D3 /* Screens */,
 				F1609E5523431F1F0007A4D3 /* UITestCase.swift */,
+				F165921423A0B364009B8961 /* WandaClassUITests.swift */,
 				F1609E4F23431CE30007A4D3 /* Info.plist */,
 			);
 			path = WandaUITests;
