@@ -71,6 +71,7 @@
 		F131F85C23447D64006B0A53 /* ForgotPasswordScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F131F85B23447D64006B0A53 /* ForgotPasswordScreen.swift */; };
 		F131F860234932A5006B0A53 /* WandaClassListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F131F85F234932A5006B0A53 /* WandaClassListScreen.swift */; };
 		F1609E4023431CD90007A4D3 /* WandaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1609E3F23431CD90007A4D3 /* WandaTests.swift */; };
+		F1609E5623431F1F0007A4D3 /* UITestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1609E5523431F1F0007A4D3 /* UITestCase.swift */; };
 		F1609E5D234320C60007A4D3 /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1609E5C234320C60007A4D3 /* Screen.swift */; };
 		F165920A23A0B341009B8961 /* AlertScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165920823A0B341009B8961 /* AlertScreen.swift */; };
 		F165920B23A0B341009B8961 /* ClassDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165920923A0B341009B8961 /* ClassDetailScreen.swift */; };
@@ -172,6 +173,7 @@
 		F1609E4123431CD90007A4D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F1609E4B23431CE30007A4D3 /* WandaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WandaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1609E4F23431CE30007A4D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F1609E5523431F1F0007A4D3 /* UITestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestCase.swift; sourceTree = "<group>"; };
 		F1609E5C234320C60007A4D3 /* Screen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
 		F165920823A0B341009B8961 /* AlertScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertScreen.swift; sourceTree = "<group>"; };
 		F165920923A0B341009B8961 /* ClassDetailScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassDetailScreen.swift; sourceTree = "<group>"; };
@@ -394,6 +396,7 @@
 			isa = PBXGroup;
 			children = (
 				F1609E5B2343204E0007A4D3 /* Screens */,
+				F1609E5523431F1F0007A4D3 /* UITestCase.swift */,
 				F1609E4F23431CE30007A4D3 /* Info.plist */,
 			);
 			path = WandaUITests;
