@@ -64,12 +64,12 @@
 		85FB6A58212F861000EB8852 /* ClassesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB6A57212F861000EB8852 /* ClassesViewController.swift */; };
 		85FB6A5B212F870000EB8852 /* WandaLocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB6A5A212F870000EB8852 /* WandaLocalizableStrings.swift */; };
 		85FB6A5D212F8B6E00EB8852 /* WandaConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB6A5C212F8B6E00EB8852 /* WandaConstants.swift */; };
-		F1292CD9237E767600B0D23B /* LoginSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1292CD8237E767600B0D23B /* LoginSignUpViewController.swift */; };
-		F1296AAA23581128001AED6C /* LoginSignUpViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1296AA923581127001AED6C /* LoginSignUpViewController.storyboard */; };
 		F1296AA823541E12001AED6C /* SignUpSuccessScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1296AA723541E12001AED6C /* SignUpSuccessScreen.swift */; };
 		F12B5F8622A797BE001B2E27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F12B5F8522A797BE001B2E27 /* GoogleService-Info.plist */; };
 		F131F85C23447D64006B0A53 /* ForgotPasswordScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F131F85B23447D64006B0A53 /* ForgotPasswordScreen.swift */; };
 		F131F860234932A5006B0A53 /* WandaClassListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F131F85F234932A5006B0A53 /* WandaClassListScreen.swift */; };
+		F14CA77123A0B25E00B0D2D6 /* LoginSignUpViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F14CA77023A0B25E00B0D2D6 /* LoginSignUpViewController.storyboard */; };
+		F14CA77323A0B26A00B0D2D6 /* LoginSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14CA77223A0B26A00B0D2D6 /* LoginSignUpViewController.swift */; };
 		F1609E4023431CD90007A4D3 /* WandaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1609E3F23431CD90007A4D3 /* WandaTests.swift */; };
 		F1609E5623431F1F0007A4D3 /* UITestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1609E5523431F1F0007A4D3 /* UITestCase.swift */; };
 		F1609E5D234320C60007A4D3 /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1609E5C234320C60007A4D3 /* Screen.swift */; };
@@ -164,12 +164,12 @@
 		85FB6A5A212F870000EB8852 /* WandaLocalizableStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WandaLocalizableStrings.swift; sourceTree = "<group>"; };
 		85FB6A5C212F8B6E00EB8852 /* WandaConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WandaConstants.swift; sourceTree = "<group>"; };
 		9518B1ED484EC8C2CB9E8743 /* Pods-Wanda.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wanda.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wanda/Pods-Wanda.debug.xcconfig"; sourceTree = "<group>"; };
-		F1292CD8237E767600B0D23B /* LoginSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginSignUpViewController.swift; path = /Users/Courtney/Develop/WandaNew/Wanda/LoginSignUp/LoginSignUpViewController.swift; sourceTree = "<absolute>"; };
-		F1296AA923581127001AED6C /* LoginSignUpViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginSignUpViewController.storyboard; sourceTree = "<group>"; };
 		F1296AA723541E12001AED6C /* SignUpSuccessScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpSuccessScreen.swift; sourceTree = "<group>"; };
 		F12B5F8522A797BE001B2E27 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F131F85B23447D64006B0A53 /* ForgotPasswordScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordScreen.swift; sourceTree = "<group>"; };
 		F131F85F234932A5006B0A53 /* WandaClassListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WandaClassListScreen.swift; sourceTree = "<group>"; };
+		F14CA77023A0B25E00B0D2D6 /* LoginSignUpViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LoginSignUpViewController.storyboard; sourceTree = "<group>"; };
+		F14CA77223A0B26A00B0D2D6 /* LoginSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSignUpViewController.swift; sourceTree = "<group>"; };
 		F1609E3D23431CD90007A4D3 /* WandaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WandaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1609E3F23431CD90007A4D3 /* WandaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WandaTests.swift; sourceTree = "<group>"; };
 		F1609E4123431CD90007A4D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -283,14 +283,14 @@
 		8533412021E05BC4003A0ABB /* LoginSignUp */ = {
 			isa = PBXGroup;
 			children = (
+				F14CA77023A0B25E00B0D2D6 /* LoginSignUpViewController.storyboard */,
 				85A0E3092220B6A100EEE5DF /* ForgotPasswordViewController.swift */,
 				85A0E30B2220B6AB00EEE5DF /* ForgotPasswordViewController.storyboard */,
 				8581DD5E21A33E8F00EC12EF /* LoginViewController.swift */,
 				8581DD5C21A33E8400EC12EF /* LoginViewController.storyboard */,
 				8533412121E05BDC003A0ABB /* SignUpViewController.swift */,
 				8533412521E131D4003A0ABB /* SignUpViewController.storyboard */,
-				F1296AA923581127001AED6C /* LoginSignUpViewController.storyboard */,
-				F1292CD8237E767600B0D23B /* LoginSignUpViewController.swift */,
+				F14CA77223A0B26A00B0D2D6 /* LoginSignUpViewController.swift */,
 			);
 			path = LoginSignUp;
 			sourceTree = "<group>";
@@ -542,7 +542,7 @@
 				854CB2DE21750FA4008A1019 /* ClassesTableViewCell.xib in Resources */,
 				856960DB205100B700ADFF9A /* OpenSans-SemiBold.ttf in Resources */,
 				F12B5F8622A797BE001B2E27 /* GoogleService-Info.plist in Resources */,
-				F1296AAA23581128001AED6C /* LoginSignUpViewController.storyboard in Resources */,
+				F14CA77123A0B25E00B0D2D6 /* LoginSignUpViewController.storyboard in Resources */,
 				856960D3205100A500ADFF9A /* OpenSans-Bold.ttf in Resources */,
 				85712A8B221CE0020058C9E2 /* WandaClassMenu.xib in Resources */,
 				851000BA204339F800D450AE /* ClassesHeaderView.xib in Resources */,
@@ -648,7 +648,7 @@
 				8581DD5F21A33E8F00EC12EF /* LoginViewController.swift in Sources */,
 				85670812204C73BA00305B85 /* WandaClass.swift in Sources */,
 				F17799A922570D1B000B3F3F /* UIViewController+Wanda.swift in Sources */,
-				F1292CD9237E767600B0D23B /* LoginSignUpViewController.swift in Sources */,
+				F14CA77323A0B26A00B0D2D6 /* LoginSignUpViewController.swift in Sources */,
 				85235A5D22227032002CABD5 /* WandaAlertViewController.swift in Sources */,
 				8545C3C522207DD000FC392E /* WandaColors.swift in Sources */,
 				85D9F296221E08BA001155B2 /* WandaClassMenu.swift in Sources */,
