@@ -28,6 +28,7 @@ private enum ReservationState {
 class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMailComposeViewControllerDelegate, EKEventEditViewDelegate, UIGestureRecognizerDelegate {
     @IBOutlet private weak var addButton: UIButton!
     @IBOutlet private weak var addressLabel: UILabel!
+    @IBOutlet private weak var addressView: UIView!
     @IBOutlet private weak var cancelRSVPButton: UIButton!
     @IBOutlet private weak var changeRSVPButton: UIButton!
     @IBOutlet private weak var changeRSVPSpinner: UIActivityIndicatorView!
@@ -47,6 +48,7 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
     var classType: ClassType?
     var wandaClass: WandaClass?
     
+    private var address = ""
     private var dataManager = WandaDataManager.shared
     private var isReserved = false
     private var menuView: WandaClassMenu?
@@ -74,6 +76,7 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideMenuIfPossible))
         self.view.addGestureRecognizer(tap)
+        addressView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapLocation)))
         
         // Currently users should only see this screen for the next class.
         guard let wandaClass = wandaClass else {
@@ -336,6 +339,7 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
         
         addressLabel.isHidden = addressLabelText.isEmpty
         addressLabel.text = addressLabelText
+        address = addressLabelText
         
         numberOfChildrenLabel.text = String(wandaClass.childCareNumber)
         
@@ -517,5 +521,18 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
         }
 
         return !menuView.isHidden
+    }
+    
+    @objc
+    private func didTapLocation() {
+        guard (UIApplication.shared.canOpenURL(NSURL(string:"comgooglemaps://")! as URL)),
+            let addressString = "comgooglemaps://?q=\(address)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+                NSLog("Can't use comgooglemaps://")
+                return
+        }
+        
+        if let addressURL = URL(string: addressString) {
+            UIApplication.shared.open(addressURL)
+        }
     }
 }
