@@ -284,10 +284,10 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
                     // to do retry twice then contact support
                     self.reservationActionState = .retryGetWandaClass
                     switch error {
-                    case .networkError:
-                        self.presentErrorAlert(for: .networkError)
-                    case .unknown:
-                        self.presentErrorAlert(for: .systemError)
+                        case .networkError:
+                            self.presentErrorAlert(for: .networkError)
+                        case .unknown:
+                            self.presentErrorAlert(for: .systemError)
                     }
                 }
                 
@@ -480,10 +480,10 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
                         if let error = error {
                             self.reservationActionState = .retryCancelRSVP
                             switch error {
-                            case .networkError:
-                                self.presentErrorAlert(for: .networkError)
-                            case .unknown:
-                                self.presentErrorAlert(for: .systemError)
+                                case .networkError:
+                                    self.presentErrorAlert(for: .networkError)
+                                case .unknown:
+                                    self.presentErrorAlert(for: .systemError)
                             }
                         }
                         
