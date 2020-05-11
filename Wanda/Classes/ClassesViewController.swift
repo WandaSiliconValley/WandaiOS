@@ -15,6 +15,7 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet private var tableView: UITableView!
     @IBOutlet private var networkConnectionImage: UIImageView!
     @IBOutlet private var systemErrorImage: UIImageView!
+    @IBOutlet private var noClassesView: UIView!
     private var dataManager = WandaDataManager.shared
     private var nextClassesSection = 0
     private let overlayView = UIView(frame: UIScreen.main.bounds)
