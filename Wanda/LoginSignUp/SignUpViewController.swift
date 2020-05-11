@@ -250,7 +250,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, MFMailCompose
                     switch error {
                         case .networkError:
                             self.presentErrorAlert(for: .networkError)
-                        case .unknown:
+                        default:
                             self.presentErrorAlert(for: .systemError)
                     }
                 }

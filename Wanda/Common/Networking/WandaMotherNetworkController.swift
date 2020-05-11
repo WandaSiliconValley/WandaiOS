@@ -39,6 +39,7 @@ class WandaMotherNetworkController {
 
 public enum WandaError {
     case networkError
+    case noClasses
     case unknown
     
     init(_ errorCode: Int) {

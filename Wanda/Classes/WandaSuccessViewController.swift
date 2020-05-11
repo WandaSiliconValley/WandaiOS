@@ -53,7 +53,7 @@ class WandaSuccessViewController: UIViewController, WandaAlertViewDelegate, MFMa
                     switch error {
                         case .networkError:
                             self.presentErrorAlert(for: .networkError)
-                        case .unknown:
+                        default:
                             self.presentErrorAlert(for: .systemError)
                     }
                 }
