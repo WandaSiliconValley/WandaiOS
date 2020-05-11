@@ -215,6 +215,9 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
             self.dataManager.loadClasses()
             self.overlayView.removeFromSuperview()
             self.tableView.reloadData()
+            if (!self.dataManager.hasCurrentClasses) {
+                self.toggleErrorScreen(false, type: .noClasses)
+            }
         }
     }
     
@@ -223,6 +226,8 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
             switch type {
                 case .networkError:
                     networkConnectionImage.isHidden = isHidden
+                case .noClasses:
+                    noClassesView.isHidden = isHidden
                 default:
                     systemErrorImage.isHidden = isHidden
             }

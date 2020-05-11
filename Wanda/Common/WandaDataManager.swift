@@ -43,6 +43,7 @@ class WandaDataManager {
     var upcomingClasses = [WandaClass]()
     private var allClasses = [WandaClass]()
     var nextClass: WandaClass?
+    var hasCurrentClasses = true
     
     private init() {
         #if DEBUG
@@ -65,19 +66,18 @@ class WandaDataManager {
         }
         
         var sortedClasses = allClasses.sortedByDate(descending: false)
-        
-        sortedClasses = sortedClasses.filter {DateFormatter.simpleDateFormatter.date(from: $0.details.date) ?? Date() >= Date()}
-        
-        //let pets = animals.filter { $0 != "chimps" }
+        sortedClasses = sortedClasses.filter {(DateFormatter.simpleDateFormatter.date(from: $0.details.date) ?? Date() >= Date())}
 
-       // sortedClasses.filter($0.d)
-        
         if let nextClass = sortedClasses.first {
             self.nextClass = nextClass
         }
         
         // Remove first element (next class) and then set upcoming classes
-        sortedClasses.removeFirst()
+        if !sortedClasses.isEmpty {
+            sortedClasses.removeFirst()
+        } else {
+            hasCurrentClasses = false
+        }
         self.upcomingClasses = sortedClasses
     }
     
