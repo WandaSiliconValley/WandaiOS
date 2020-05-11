@@ -202,7 +202,7 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
                         case .networkError:
                             self.toggleErrorScreen(false, type: .networkError)
                             self.presentErrorAlert(for: .networkError)
-                        case .unknown:
+                        default:
                             self.toggleErrorScreen(false, type: .unknown)
                             self.presentErrorAlert(for: .systemError)
                     }

@@ -286,7 +286,7 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
                     switch error {
                         case .networkError:
                             self.presentErrorAlert(for: .networkError)
-                        case .unknown:
+                        default:
                             self.presentErrorAlert(for: .systemError)
                     }
                 }
@@ -432,7 +432,7 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
                     switch error {
                         case .networkError:
                             self.presentErrorAlert(for: .networkError)
-                        case .unknown:
+                        default:
                             self.presentErrorAlert(for: .systemError)
                     }
                 }
@@ -482,7 +482,7 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
                             switch error {
                                 case .networkError:
                                     self.presentErrorAlert(for: .networkError)
-                                case .unknown:
+                                default:
                                     self.presentErrorAlert(for: .systemError)
                             }
                         }
