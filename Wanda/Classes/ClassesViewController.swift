@@ -163,12 +163,6 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
             leftBarButtonItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.wandaFontBold(size: 20)], for: .normal)
             rightBarButtonItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.wandaFontRegular(size: 16)], for: .normal)
         }
-        
-        // to do fix this! can no longer do it this way or itll crash - deprecated
-//        let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
-//        if statusBar.responds(to:#selector(setter: UIView.backgroundColor)) {
-//            statusBar.backgroundColor = UIColor.black.withAlphaComponent(0.2)
-//        }
     }
     
     private func configureTableView() {

@@ -255,7 +255,7 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
                     controller.event = event
                     controller.eventStore = eventStore
                     controller.editViewDelegate = self
-                    controller.setNeedsStatusBarAppearanceUpdate()
+//                    controller.setNeedsStatusBarAppearanceUpdate()
                     self.present(controller, animated: true)
                 }
             } else {

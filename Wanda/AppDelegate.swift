@@ -19,11 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         FirebaseApp.configure()
 
-//        let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
-//        if statusBar.responds(to:#selector(setter: UIView.backgroundColor)) {
-//            statusBar.backgroundColor = UIColor.black.withAlphaComponent(0.2)
-//        }
-
         return true
     }
 
