@@ -12,7 +12,7 @@ struct WandaConstants {
     static let jenniferEmail = "jennifer@wandasiliconvalley.org"
     static let wandaSupportEmail = "wandaapphelp@gmail.com"
     static let wandaProdURL = "http://wanda.us-east-2.elasticbeanstalk.com/wanda-app"
-    static let wandaDevURL = "http://wanda.us-east-2.elasticbeanstalk.com/wanda-app"
+    static let wandaDevURL = "http://wanda-dev.us-east-2.elasticbeanstalk.com/wanda-app"
 }
 
 
