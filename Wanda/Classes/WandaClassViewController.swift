@@ -241,35 +241,33 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
         let endDateString = wandaClass.details.date + "T" + endTimeString
         let startDate = DateFormatter.dateTimeFormatter.date(from: startDateString)
         let endDate = DateFormatter.dateTimeFormatter.date(from: endDateString)
-
-        // to do don't like this!
         
-        DispatchQueue.main.async {
-            let eventStore = EKEventStore()
-            eventStore.requestAccess(to: .event, completion: { (granted, error) in
-                if (granted) && (error == nil) {
-                    if let menuView = self.menuView {
-                        menuView.toggleMenu()
-                    }
-                    
-                    let event = EKEvent(eventStore: eventStore)
-                    event.title = wandaClass.details.topic
-                    event.startDate = startDate
-                    event.endDate = endDate
-                    event.location = wandaClass.details.address
-                    event.calendar = eventStore.defaultCalendarForNewEvents
+        // to do don't like this!
+        let eventStore = EKEventStore()
+        eventStore.requestAccess(to: .event, completion: { (granted, error) in
+            if (granted) && (error == nil) {
+                if let menuView = self.menuView {
+                    menuView.toggleMenu()
+                }
+                
+                let event = EKEvent(eventStore: eventStore)
+                event.title = wandaClass.details.topic
+                event.startDate = startDate
+                event.endDate = endDate
+                event.location = wandaClass.details.address
+                event.calendar = eventStore.defaultCalendarForNewEvents
+                DispatchQueue.main.async {
                     
                     let controller = EKEventEditViewController()
                     controller.event = event
                     controller.eventStore = eventStore
                     controller.editViewDelegate = self
-//                    controller.setNeedsStatusBarAppearanceUpdate()
                     self.present(controller, animated: true)
-                } else {
-                    self.presentErrorAlert(for: .addEventError)
                 }
-            })
-        }
+            } else {
+                self.presentErrorAlert(for: .addEventError)
+            }
+        })
     }
     
     private func getReservedWandaClass() {
