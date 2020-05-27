@@ -150,8 +150,8 @@ class WandaDataManager {
         }
     }
     
-    func cancelWandaClassReservation(classId: Int, motherId: Int, completion: @escaping (Bool, WandaError?) -> Void) {
-        ClassRSVPNetworkController.cancelWandaClassReservation(classId: classId, motherId: motherId) { success, error in
+    func cancelWandaClassReservation(rsvpId: Int, completion: @escaping (Bool, WandaError?) -> Void) {
+        ClassRSVPNetworkController.cancelWandaClassReservation(rsvpId: rsvpId) { success, error in
             guard success else {
                 completion(false, error)
                 return

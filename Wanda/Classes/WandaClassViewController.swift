@@ -309,6 +309,7 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
             self.view.bringSubview(toFront: self.changeRSVPView)
             self.view.bringSubview(toFront: self.reservedHeader)
             wandaClass.childCareNumber = reservedClass.childcareNumber
+            wandaClass.rsvpId = reservedClass.rsvpId
             self.numberOfChildrenLabel.text = String(wandaClass.childCareNumber)
             self.configureMenu()
         }
@@ -470,16 +471,17 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
     // MARK: WandaAlertViewDelegate
     
     func didTapActionButton() {
-        guard let motherId = dataManager.wandaMother?.motherId, let wandaClass = dataManager.nextClass, let navigationController = navigationController else {
+        guard let wandaClass = dataManager.nextClass, let navigationController = navigationController else {
             return
         }
+        
         
         switch reservationActionState {
             case .getWandaClass, .retryGetWandaClass:
                 getReservedWandaClass()
             case .cancelRSVP, .retryCancelRSVP:
                 // to do where should the spinner be here since this is an alert?
-                dataManager.cancelWandaClassReservation(classId: wandaClass.details.classId, motherId: motherId) { success, error in
+                dataManager.cancelWandaClassReservation(rsvpId: wandaClass.rsvpId) { success, error in
                     guard success else {
                         if let error = error {
                             self.reservationActionState = .retryCancelRSVP

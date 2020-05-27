@@ -36,8 +36,8 @@ class ClassRSVPNetworkController {
         }
     }
     
-    static func cancelWandaClassReservation(classId: Int, motherId: Int, resultHandler: @escaping (Bool, WandaError?) -> Void) {
-        let url = URL(string: "\(WandaDataManager.shared.environmentURL)/rsvp/\(classId)/\(motherId)")!
+    static func cancelWandaClassReservation(rsvpId: Int, resultHandler: @escaping (Bool, WandaError?) -> Void) {
+        let url = URL(string: "\(WandaDataManager.shared.environmentURL)/rsvp/\(rsvpId)")!
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "DELETE"
