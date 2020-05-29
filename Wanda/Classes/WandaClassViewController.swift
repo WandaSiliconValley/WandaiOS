@@ -265,7 +265,9 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
                     self.present(controller, animated: true)
                 }
             } else {
-                self.presentErrorAlert(for: .addEventError)
+                DispatchQueue.main.async {
+                    self.presentErrorAlert(for: .addEventError)
+                }
             }
         })
     }
