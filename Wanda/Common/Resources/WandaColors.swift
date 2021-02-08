@@ -19,4 +19,9 @@ struct WandaColors {
     static let mediumGrey = UIColor(hexString: "#8B8B8B")
     static let darkPurple = UIColor(hexString: "#663498")
     static let newErrorRed = UIColor(hexString: "#FF6E6E")
+    static let toggleOffGrey = UIColor(hexString: "#C4C4C4")
+    static let thumbTintOn = UIColor(hexString: "#663498")
+    static let thumbTintOff = UIColor(hexString: "#313131")
+    static let underlinePurple = UIColor(hexString: "#6200EE")
+
 }

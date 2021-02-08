@@ -94,4 +94,15 @@ struct ViewControllerFactory {
 
         return emailComposeViewController
     }
+    
+    /// The view controller that appears when the user navigates to their profile
+    static func makeProfileViewController() -> ProfileViewController? {
+        return UIStoryboard(identifier: .profile).instantiateViewController(withIdentifier: ProfileViewController.storyboardIdentifier) as? ProfileViewController
+    }
+    
+    /// The view controller that appears when the user clicks edit profile
+    static func makeEditProfileViewController() -> EditProfileViewController? {
+        return UIStoryboard(identifier: .editProfile).instantiateViewController(withIdentifier: EditProfileViewController.storyboardIdentifier) as? EditProfileViewController
+    }
+
 }

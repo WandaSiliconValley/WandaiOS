@@ -64,6 +64,10 @@
 		85FB6A58212F861000EB8852 /* ClassesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB6A57212F861000EB8852 /* ClassesViewController.swift */; };
 		85FB6A5B212F870000EB8852 /* WandaLocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB6A5A212F870000EB8852 /* WandaLocalizableStrings.swift */; };
 		85FB6A5D212F8B6E00EB8852 /* WandaConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB6A5C212F8B6E00EB8852 /* WandaConstants.swift */; };
+		D9111F7025CF5035001FCE89 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9111F6F25CF5035001FCE89 /* EditProfileViewController.swift */; };
+		D9CAFAC525CF12F30011C4D5 /* ProfileViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9CAFAC125CF12F20011C4D5 /* ProfileViewController.storyboard */; };
+		D9CAFAC625CF12F30011C4D5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CAFAC225CF12F20011C4D5 /* ProfileViewController.swift */; };
+		D9E6C46725CF1F6C00FBFBC8 /* EditProfileViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9E6C46625CF1F6C00FBFBC8 /* EditProfileViewController.storyboard */; };
 		F1296AA823541E12001AED6C /* SignUpSuccessScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1296AA723541E12001AED6C /* SignUpSuccessScreen.swift */; };
 		F12B5F8622A797BE001B2E27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F12B5F8522A797BE001B2E27 /* GoogleService-Info.plist */; };
 		F131F85C23447D64006B0A53 /* ForgotPasswordScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F131F85B23447D64006B0A53 /* ForgotPasswordScreen.swift */; };
@@ -164,6 +168,10 @@
 		85FB6A5A212F870000EB8852 /* WandaLocalizableStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WandaLocalizableStrings.swift; sourceTree = "<group>"; };
 		85FB6A5C212F8B6E00EB8852 /* WandaConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WandaConstants.swift; sourceTree = "<group>"; };
 		9518B1ED484EC8C2CB9E8743 /* Pods-Wanda.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wanda.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wanda/Pods-Wanda.debug.xcconfig"; sourceTree = "<group>"; };
+		D9111F6F25CF5035001FCE89 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		D9CAFAC125CF12F20011C4D5 /* ProfileViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ProfileViewController.storyboard; sourceTree = "<group>"; };
+		D9CAFAC225CF12F20011C4D5 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		D9E6C46625CF1F6C00FBFBC8 /* EditProfileViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditProfileViewController.storyboard; sourceTree = "<group>"; };
 		F1296AA723541E12001AED6C /* SignUpSuccessScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpSuccessScreen.swift; sourceTree = "<group>"; };
 		F12B5F8522A797BE001B2E27 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F131F85B23447D64006B0A53 /* ForgotPasswordScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordScreen.swift; sourceTree = "<group>"; };
@@ -257,6 +265,7 @@
 		851000A42043327800D450AE /* Wanda */ = {
 			isa = PBXGroup;
 			children = (
+				D9CAFAC025CF12F20011C4D5 /* Profile */,
 				8533412A21E14876003A0ABB /* Common */,
 				8533412021E05BC4003A0ABB /* LoginSignUp */,
 				854096222162AF400074D98D /* Classes */,
@@ -385,6 +394,17 @@
 				85FB6A5A212F870000EB8852 /* WandaLocalizableStrings.swift */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		D9CAFAC025CF12F20011C4D5 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				D9CAFAC125CF12F20011C4D5 /* ProfileViewController.storyboard */,
+				D9CAFAC225CF12F20011C4D5 /* ProfileViewController.swift */,
+				D9E6C46625CF1F6C00FBFBC8 /* EditProfileViewController.storyboard */,
+				D9111F6F25CF5035001FCE89 /* EditProfileViewController.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		F1609E3E23431CD90007A4D3 /* WandaTests */ = {
@@ -534,6 +554,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9E6C46725CF1F6C00FBFBC8 /* EditProfileViewController.storyboard in Resources */,
 				856960D8205100AF00ADFF9A /* OpenSans-Light.ttf in Resources */,
 				85670814204CCA7D00305B85 /* WandaClassViewController.storyboard in Resources */,
 				85C181B620ACE7BC003A8556 /* WandaSuccessViewController.storyboard in Resources */,
@@ -546,6 +567,7 @@
 				856960D3205100A500ADFF9A /* OpenSans-Bold.ttf in Resources */,
 				85712A8B221CE0020058C9E2 /* WandaClassMenu.xib in Resources */,
 				851000BA204339F800D450AE /* ClassesHeaderView.xib in Resources */,
+				D9CAFAC525CF12F30011C4D5 /* ProfileViewController.storyboard in Resources */,
 				851000B22043327800D450AE /* LaunchScreen.storyboard in Resources */,
 				851000AF2043327800D450AE /* Assets.xcassets in Resources */,
 				856960D4205100A700ADFF9A /* OpenSans-BoldItalic.ttf in Resources */,
@@ -658,8 +680,10 @@
 				859ED2062249C00C006580C8 /* UILabel+Wanda.swift in Sources */,
 				851000A62043327800D450AE /* AppDelegate.swift in Sources */,
 				854CB2DA21750CF0008A1019 /* UIView+Wanda.swift in Sources */,
+				D9111F7025CF5035001FCE89 /* EditProfileViewController.swift in Sources */,
 				858C33D921E9304C00F17504 /* ViewControllerFactory.swift in Sources */,
 				85F7C8C9204FAF8A005A1D00 /* WandaClassViewController.swift in Sources */,
+				D9CAFAC625CF12F30011C4D5 /* ProfileViewController.swift in Sources */,
 				85FB6A5D212F8B6E00EB8852 /* WandaConstants.swift in Sources */,
 				859ED2082249C02C006580C8 /* UIActivityIndicatorView+Wanda.swift in Sources */,
 				8545C3C322207A4D00FC392E /* UITextField+Wanda.swift in Sources */,
@@ -843,6 +867,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9DKR7A94JE;
 				INFOPLIST_FILE = Wanda/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = courtney.wanda;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -859,6 +884,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9DKR7A94JE;
 				INFOPLIST_FILE = Wanda/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = courtney.wanda;
 				PRODUCT_NAME = "$(TARGET_NAME)";

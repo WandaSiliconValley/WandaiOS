@@ -83,6 +83,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
         
         emailTextField.layoutIfNeeded()
         passwordTextField.layoutIfNeeded()
+
+        passwordTextField.isSecureTextEntry = true
     }
     
     // MARK: Private
@@ -210,14 +212,20 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
             // Ensure action state is set back to contact us if the call was successful.
             self.actionState = .contactUs
             DispatchQueue.main.async {
-                guard let classesViewController = ViewControllerFactory.makeClassesViewController() else {
-                    assertionFailure("Could not instantiate ClassesViewController.")
+//                guard let classesViewController = ViewControllerFactory.makeClassesViewController() else {
+//                    assertionFailure("Could not instantiate ClassesViewController.")
+//                    return
+//                }
+                
+                guard let profileViewController = ViewControllerFactory.makeEditProfileViewController() else {
+                    assertionFailure("Could not instantiate EditProfileViewController.")
                     return
                 }
                 
                 self.spinner.toggleSpinner(for: self.loginButton, title: LoginSignUpStrings.login)
                 self.dataManager.needsReload = true
-                self.navigationController?.pushViewController(classesViewController, animated: true)
+                self.navigationController?.pushViewController(profileViewController, animated: true)
+//                self.navigationController?.pushViewController(classesViewController, animated: true)
             }
         }
     }
