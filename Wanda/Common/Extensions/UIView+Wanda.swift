@@ -32,7 +32,7 @@ extension UIView {
          layer.mask = mask
      }
     
-    func underlined(color: CGColor? = WandaColors.mediumPurple.cgColor){
+    func underlinedView(color: CGColor? = WandaColors.mediumPurple.cgColor){
         let border = CALayer()
         let width = CGFloat(1.0)
         border.borderColor = color

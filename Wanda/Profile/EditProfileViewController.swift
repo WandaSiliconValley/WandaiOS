@@ -9,8 +9,10 @@
 import Foundation
 import UIKit
 
-class EditProfileViewController: UIViewController {
-    @IBOutlet weak var scrollView: UIScrollView!
+class EditProfileViewController: UIViewController, UITextViewDelegate {
+    @IBOutlet var scrollView: UIScrollView!
+    @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var bioView: UIView!
     @IBOutlet weak var bioTextView: UITextView!
     @IBOutlet weak var nameView: UIView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -32,74 +34,109 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var emailPublicLabel: UILabel!
 
     static let storyboardIdentifier = String(describing: EditProfileViewController.self)
-
+    
+    let bioPlaceholderText =  "'Here is your bio, let your cohort know a bit about you. If you have preferences for how to be contacted let other moms know here :)'"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.addSubview(scrollView)
-        let profileTextFields = [bioTextView, nameView, languagesView, emailView, cellPhoneView]
-        for textField in profileTextFields {
-            textField?.roundCorners(corners: [.topLeft, .topRight], radius: 5.0)
-            textField?.underlined(color: UIColor.black.cgColor)
-        }
-        
+                
+        roundViews()
+        underlineViews()
+        setupBioViewPlaceholder()
         addImagesToTextFields()
     }
     
+    override func viewDidLayoutSubviews() {
+        scrollView.contentSize = contentView.frame.size
+    }
+    
+    func setupBioViewPlaceholder() {
+        self.bioTextView.delegate = self
+        let bio = ""
+        if bio == "" {
+            bioTextView.textColor = UIColor.lightGray
+            bioTextView.text = bioPlaceholderText
+        }
+    }
+    
+    func roundViews() {
+        let profileViews = [bioView, nameView, languagesView, emailView, cellPhoneView]
+        for view in profileViews {
+            view?.roundCorners(corners: [.topLeft, .topRight], radius: 5.0)
+        }
+    }
+    
+    func underlineViews() {
+        let profileTextFields = [nameTextField, languaguesTextField, emailTextField, cellPhoneTextField]
+        for textField in profileTextFields {
+            textField?.underlined(color: UIColor.black.cgColor)
+        }
+        // This view has to be done separately b/c it is a UIView not a UITextField
+        bioView.underlinedView(color: UIColor.black.cgColor)
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if bioTextView.text == bioPlaceholderText {
+            bioTextView.text = ""
+            bioTextView.textColor = UIColor.black
+        }
+        bioView.underlinedView(color: WandaColors.brightPurple.cgColor)
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if bioTextView.text?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty  == true {
+            bioTextView.text = bioPlaceholderText
+            bioTextView.textColor = UIColor.lightGray
+        }
+        bioView.underlinedView(color: UIColor.black.cgColor)
+    }
+    
+    func profileTextFieldEditingDidBegin(_ textField: UITextField, _ label: UILabel) {
+        textField.placeholder = ""
+        label.textColor = WandaColors.brightPurple
+        label.isHidden = false
+        textField.underlined(color: WandaColors.brightPurple.cgColor)
+    }
+    
+    func profileTextFieldEditingDidEnd(_ textField: UITextField, _ label: UILabel, _ placeholder: String) {
+        if textField.text?.trimmingCharacters(in: .whitespaces).isEmpty == true {
+            label.isHidden = true
+            textField.text = ""
+            textField.placeholder = placeholder
+        }
+        label.textColor = WandaColors.lightBlack
+        textField.underlined(color: UIColor.black.cgColor)
+    }
+    
     @IBAction func nameTextFieldEditingDidBegin(_ sender: UITextField) {
-        nameTextField.placeholder = ""
-        nameLabel.isHidden = false
+        profileTextFieldEditingDidBegin(nameTextField, nameLabel)
     }
     
     @IBAction func nameTextFieldEditingDidEnd(_ sender: UITextField) {
-        if nameTextField.text?.isEmpty == true {
-            nameLabel.isHidden = true
-            nameTextField.placeholder = "Name"
-        }
+        profileTextFieldEditingDidEnd(nameTextField, nameLabel, "Name")
     }
     
     @IBAction func languagesTextFieldEditingDidBegin(_ sender: UITextField) {
-        languaguesTextField.placeholder = ""
-        languagesLabel.isHidden = false
+        profileTextFieldEditingDidBegin(languaguesTextField, languagesLabel)
     }
     
     @IBAction func languagesTextFieldEditingDidEnd(_ sender: UITextField) {
-        if languaguesTextField.text?.isEmpty == true {
-            languagesLabel.isHidden = true
-            languaguesTextField.placeholder = "Languages"
-        }
+        profileTextFieldEditingDidEnd(languaguesTextField, languagesLabel, "Languages")
     }
     
     @IBAction func emailTextFieldEditingDidBegin(_ sender: UITextField) {
-        emailTextField.placeholder = ""
-        emailLabel.isHidden = false
+        profileTextFieldEditingDidBegin(emailTextField, emailLabel)
     }
     
-    @IBAction func emailTextFieldEditingDidEnd(_ sender: UITextField) {
-        if emailTextField.text?.isEmpty == true {
-            emailLabel.isHidden = true
-            emailTextField.placeholder = "Email"
-        }
+    @IBAction func emailTextFieldEditingDidEnd(_ sender: UITextField) {        profileTextFieldEditingDidEnd(emailTextField, emailLabel, "Email")
     }
     
     @IBAction func cellPhoneTextFieldEditingDidBegin(_ sender: UITextField) {
-        cellPhoneTextField.placeholder = ""
-        cellPhoneLabel.isHidden = false
+        profileTextFieldEditingDidBegin(cellPhoneTextField, cellPhoneLabel)
     }
     
     @IBAction func cellPhoneTextFieldEditingDidEnd(_ sender: UITextField) {
-        if cellPhoneTextField.text?.isEmpty == true {
-            cellPhoneLabel.isHidden = true
-            cellPhoneTextField.placeholder = "Cell Phone"
-        }
-    }
-    
-    @IBAction func textFieldEditingDidBegin(_ sender: UITextField) {
-        sender.underlined(color: WandaColors.underlinePurple.cgColor)
-    }
-    
-    @IBAction func textFieldEditingDidEnd(_ sender: UITextField) {
-        sender.underlined(color: UIColor.black.cgColor)
+        profileTextFieldEditingDidEnd(cellPhoneTextField, cellPhoneLabel, "Cell Phone")
     }
 
     @IBAction func toggleCellPhoneSwitch() {
