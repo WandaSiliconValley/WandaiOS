@@ -117,8 +117,8 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
     }
 
     // MARK: IBActions
-    
-    @IBAction func didTapLogoutButton() {
+    @objc
+    func didTapLogoutButton() {
         logAnalytic(tag: WandaAnalytics.classLogoutButtonTapped)
         do {
             try Auth.auth().signOut()
@@ -157,13 +157,27 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     private func configureNavigationBar() {
-        self.navigationItem.hidesBackButton = true
+//        self.navigationItem.hidesBackButton = true
         
-        if let navigationBar = navigationController?.navigationBar, let leftBarButtonItem = navigationItem.leftBarButtonItem, let rightBarButtonItem = navigationItem.rightBarButtonItem {
+        if let navigationBar = navigationController?.navigationBar,
+            let navigationItem = self.tabBarController?.navigationItem {
+            let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width - 32, height: view.frame.height))
+            titleLabel.text = "       Class Schedule"
+            titleLabel.textColor = UIColor.white
+            titleLabel.font = UIFont.wandaFontBold(size: 20)
+            navigationItem.titleView = titleLabel
             navigationBar.barTintColor = WandaColors.lightPurple
-            leftBarButtonItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.wandaFontBold(size: 20)], for: .normal)
-            rightBarButtonItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.wandaFontRegular(size: 16)], for: .normal)
+            navigationItem.leftBarButtonItem = UIBarButtonItem(image: WandaImages.backArrow, style: .plain, target: self, action: #selector(backButtonPressed))
+            navigationItem.leftBarButtonItem?.tintColor = UIColor.white
+            
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(didTapLogoutButton))
+            navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.wandaFontRegular(size: 16)], for: .normal)
         }
+    }
+    
+    @objc
+    private func backButtonPressed(_ sender: UIButton) {
+        _ = navigationController?.popViewController(animated: true)
     }
     
     private func configureTableView() {

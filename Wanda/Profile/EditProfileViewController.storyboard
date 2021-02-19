@@ -223,7 +223,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="384" height="58"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
-                                                                <textInputTraits key="textInputTraits"/>
+                                                                <textInputTraits key="textInputTraits" keyboardType="phonePad" textContentType="tel"/>
                                                                 <connections>
                                                                     <action selector="cellPhoneTextFieldEditingDidBegin:" destination="h1Y-uC-V4h" eventType="editingDidBegin" id="Xqd-bT-EJe"/>
                                                                     <action selector="cellPhoneTextFieldEditingDidEnd:" destination="h1Y-uC-V4h" eventType="editingDidEnd" id="R62-XJ-feT"/>

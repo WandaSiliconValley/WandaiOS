@@ -16,6 +16,7 @@ enum WandaStoryboardIdentifier {
     case login
     case profile
     case signUp
+    case tabbed
     case wandaAlert
     case wandaClass
     case wandaSuccess
@@ -36,6 +37,8 @@ extension UIStoryboard {
                 self.init(name: ProfileViewController.storyboardIdentifier, bundle: Bundle(for: ProfileViewController.self))
             case .signUp:
                 self.init(name: SignUpViewController.storyboardIdentifier, bundle: Bundle(for: SignUpViewController.self))
+            case .tabbed:
+                self.init(name: TabbedViewController.storyboardIdentifier, bundle: Bundle(for: TabbedViewController.self))
             case .wandaAlert:
                 self.init(name: WandaAlertViewController.storyboardIdentifier, bundle: Bundle(for: WandaAlertViewController.self))
             case .wandaClass:

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nYa-TS-vOg">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--ProfileViewController-->
+        <scene sceneID="2HL-PM-NQP">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ProfileViewController" id="6n0-tw-bSO" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Profile" image="Person" selectedImage="Person" id="iCY-2c-tvt"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rf9-oA-X8x" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-78" y="-157"/>
+        </scene>
+        <!--Tabbed View Controller-->
+        <scene sceneID="2fy-0t-ods">
+            <objects>
+                <tabBarController storyboardIdentifier="TabbedViewController" id="nYa-TS-vOg" customClass="TabbedViewController" customModule="Wanda" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="j1n-St-uPL">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="0.40000000000000002" green="0.20392156862745098" blue="0.59607843137254901" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </tabBar>
+                    <connections>
+                        <segue destination="IG3-hc-JuB" kind="relationship" relationship="viewControllers" id="yTZ-FY-Y7R"/>
+                        <segue destination="6n0-tw-bSO" kind="relationship" relationship="viewControllers" id="Pu2-fB-SIU"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kvm-rs-49z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-993" y="-260"/>
+        </scene>
+        <!--ClassesViewController-->
+        <scene sceneID="lXO-Fu-oF0">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ClassesViewController" id="IG3-hc-JuB" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Schedule" image="GreyCalendarIcon" selectedImage="GreyCalendarIcon" id="NMW-eq-lVI"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sQw-bn-Sg7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-73" y="-402"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="GreyCalendarIcon" width="20" height="23"/>
+        <image name="Person" width="20" height="20"/>
+    </resources>
+</document>

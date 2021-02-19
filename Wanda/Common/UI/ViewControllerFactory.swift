@@ -11,6 +11,7 @@ import UIKit
 
 enum ContactUsType {
     case login
+    case profile
     case signUp
     case wandaClass
 }
@@ -73,7 +74,7 @@ struct ViewControllerFactory {
     }
 
     /// The view controller that appears when the user taps contact us the mail app will open and pre-fill an email.
-    static func makeContactUsViewController(for contactUsType: ContactUsType) -> MFMailComposeViewController? {
+    static func makeContactUsViewController(for contactUsType: ContactUsType, recipient: String = "") -> MFMailComposeViewController? {
         guard MFMailComposeViewController.canSendMail() else {
             return nil
         }
@@ -84,6 +85,9 @@ struct ViewControllerFactory {
             case .login:
                 emailComposeViewController.setToRecipients([WandaConstants.wandaSupportEmail])
                 emailComposeViewController.setSubject("Login Help")
+            case .profile:
+                emailComposeViewController.setToRecipients([recipient])
+                emailComposeViewController.setSubject("Hi")
             case .signUp:
                 emailComposeViewController.setToRecipients([WandaConstants.wandaSupportEmail])
                 emailComposeViewController.setSubject("Sign Up Help")
@@ -105,4 +109,7 @@ struct ViewControllerFactory {
         return UIStoryboard(identifier: .editProfile).instantiateViewController(withIdentifier: EditProfileViewController.storyboardIdentifier) as? EditProfileViewController
     }
 
+    static func makeTabbedViewController() -> TabbedViewController? {
+        return UIStoryboard(identifier: .tabbed).instantiateViewController(withIdentifier: TabbedViewController.storyboardIdentifier) as? TabbedViewController
+    }
 }

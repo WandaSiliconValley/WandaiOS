@@ -216,8 +216,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
 //                    assertionFailure("Could not instantiate ClassesViewController.")
 //                    return
 //                }
-                
-                guard let profileViewController = ViewControllerFactory.makeEditProfileViewController() else {
+//
+                guard let profileViewController = ViewControllerFactory.makeTabbedViewController() else {
                     assertionFailure("Could not instantiate EditProfileViewController.")
                     return
                 }

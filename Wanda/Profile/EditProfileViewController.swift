@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class EditProfileViewController: UIViewController, UITextViewDelegate {
+class EditProfileViewController: UIViewController, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var bioView: UIView!
@@ -32,6 +32,9 @@ class EditProfileViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var emailSwitch: UISwitch!
     @IBOutlet weak var emailPrivateLabel: UILabel!
     @IBOutlet weak var emailPublicLabel: UILabel!
+    
+    private var menuView: WandaClassMenu?
+    let salutations = ["", "Mr.", "Ms.", "Mrs."]
 
     static let storyboardIdentifier = String(describing: EditProfileViewController.self)
     
@@ -39,15 +42,90 @@ class EditProfileViewController: UIViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+
         roundViews()
         underlineViews()
         setupBioViewPlaceholder()
         addImagesToTextFields()
+
+        let pickerView = UIPickerView()
+        pickerView.delegate = self
+        pickerView.showsSelectionIndicator = true
+
+        languaguesTextField.inputView = pickerView
     }
+    
+//    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+//       return 1
+//   }
+//
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 2
+    }
+
+   // Sets the number of rows in the picker view
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+       return salutations.count
+   }
+    
+
+   // This function sets the text of the picker view to the content of the "salutations" array
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+       return salutations[row]
+   }
+
+   // When user selects an option, this function will set the text of the text field to reflect
+   // the selected option.
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+       languaguesTextField.text = salutations[row]
+   }
     
     override func viewDidLayoutSubviews() {
         scrollView.contentSize = contentView.frame.size
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        configureNavigationBar()
+    }
+    
+    private func configureNavigationBar() {
+        self.navigationController?.isNavigationBarHidden = false
+
+        navigationController?.view.backgroundColor = WandaColors.lightPurple
+        if let navigationBar = self.navigationController?.navigationBar {
+            let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width - 32, height: view.frame.height))
+           titleLabel.text = "       Profile"
+           titleLabel.textColor = UIColor.white
+           titleLabel.font = UIFont.wandaFontBold(size: 20)
+           navigationItem.titleView = titleLabel
+            navigationItem.leftBarButtonItem = UIBarButtonItem(image: WandaImages.backArrow, style: .plain, target: self, action: #selector(backButtonPressed))
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: WandaImages.overflowIcon, style: .plain, target: self, action: #selector(didTapOverflowMenu))
+            navigationItem.leftBarButtonItem?.tintColor = UIColor.white
+            navigationItem.rightBarButtonItem?.tintColor = UIColor.white
+            navigationBar.barTintColor = WandaColors.lightPurple
+            navigationBar.isTranslucent = false
+        }
+    }
+    
+//    TO DO - will need to add a new menu list for this - doesnt work at the moment
+    @objc
+    private func didTapOverflowMenu() {
+        logAnalytic(tag: WandaAnalytics.classDetailMenuButtonTapped)
+        if let menuView = menuView {
+            menuView.toggleMenu()
+        }
+    }
+    
+    @objc
+    private func backButtonPressed(_ sender: UIButton) {
+//        if unsavedChanges {
+//            reservationActionState = .discardRSVP
+//            self.presentErrorAlert(for: .unsavedChanges)
+//        } else {
+        _ = navigationController?.popViewController(animated: true)
+//        }
     }
     
     func setupBioViewPlaceholder() {
@@ -108,6 +186,27 @@ class EditProfileViewController: UIViewController, UITextViewDelegate {
         textField.underlined(color: UIColor.black.cgColor)
     }
     
+    func format(with mask: String, phone: String) -> String {
+        let numbers = phone.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
+        var result = ""
+        var index = numbers.startIndex // numbers iterator
+
+        // iterate over the mask characters until the iterator of numbers ends
+        for ch in mask where index < numbers.endIndex {
+            if ch == "X" {
+                // mask requires a number in this place, so take the next one
+                result.append(numbers[index])
+
+                // move numbers iterator to the next index
+                index = numbers.index(after: index)
+
+            } else {
+                result.append(ch) // just append a mask character
+            }
+        }
+        return result
+    }
+    
     @IBAction func nameTextFieldEditingDidBegin(_ sender: UITextField) {
         profileTextFieldEditingDidBegin(nameTextField, nameLabel)
     }
@@ -126,9 +225,15 @@ class EditProfileViewController: UIViewController, UITextViewDelegate {
     
     @IBAction func emailTextFieldEditingDidBegin(_ sender: UITextField) {
         profileTextFieldEditingDidBegin(emailTextField, emailLabel)
+        emailLabel.text = "Email"
     }
     
     @IBAction func emailTextFieldEditingDidEnd(_ sender: UITextField) {        profileTextFieldEditingDidEnd(emailTextField, emailLabel, "Email")
+        let email = emailTextField.text ?? ""
+        let isEmailValid = email.isEmailValid(emailTextField: emailTextField, emailInfoLabel: emailLabel)
+        if isEmailValid == true {
+            emailLabel.text = "Email"
+        }
     }
     
     @IBAction func cellPhoneTextFieldEditingDidBegin(_ sender: UITextField) {
