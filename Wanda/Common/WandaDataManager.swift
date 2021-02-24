@@ -44,6 +44,20 @@ class WandaDataManager {
     private var allClasses = [WandaClass]()
     var nextClass: WandaClass?
     var hasCurrentClasses = true
+    var cohortSections = [CohortSection]()
+    
+    struct CohortSection {
+        var cohortId: Int
+        var mothers: [WandaCohortMother]
+        var collapsed: Bool
+
+        init(cohortId: Int, mothers: [WandaCohortMother], collapsed: Bool = false) {
+            self.cohortId = cohortId
+            self.mothers = mothers
+            self.collapsed = collapsed
+      }
+    }
+
     
     private init() {
         #if DEBUG
@@ -158,6 +172,42 @@ class WandaDataManager {
                 return
             }
             
+            completion(true, nil)
+        }
+    }
+    
+    func updateWandMother(mother: EditWandaMotherInfo, completion: @escaping (Bool, WandaError?) -> Void) {
+        WandaMotherNetworkController.updateWandaMother(mother: mother) { wandaMother, error in
+            guard let wandaMother = wandaMother else {
+                completion(false, error)
+                return
+            }
+
+            self.wandaMother = WandaMotherInfo(from: wandaMother)
+            completion(true, nil)
+        }
+    }
+    
+//    func getWandaMother(firebaseId: String, completion: @escaping (Bool, WandaError?) -> Void) {
+//        WandaMotherNetworkController.getWandaMother(firebaseId: firebaseId) { wandaMother, error in
+//            guard let wandaMother = wandaMother else {
+//                completion(false, error)
+//                return
+//            }
+//
+//            self.wandaMother = WandaMotherInfo(from: wandaMother)
+//            completion(true, nil)
+//        }
+//    }
+    
+    func getCohort(cohortId: Int, completion: @escaping (Bool, WandaError?) -> Void) {
+        CohortNetworkController.getCohort(cohortId: cohortId) { cohort, error in
+            guard let cohort = cohort else {
+                completion(false, error)
+                return
+            }
+            
+            self.cohortSections = [CohortSection(cohortId: cohort.cohortId, mothers: cohort.mothers)]
             completion(true, nil)
         }
     }

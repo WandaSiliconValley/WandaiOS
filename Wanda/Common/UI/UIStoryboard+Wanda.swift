@@ -11,6 +11,7 @@ import UIKit
 /// A collection of storyboard identifiers.
 enum WandaStoryboardIdentifier {
     case classes
+    case cohortMotherProfile
     case editProfile
     case forgotPassword
     case login
@@ -27,6 +28,8 @@ extension UIStoryboard {
         switch identifier {
             case .classes:
                 self.init(name: ClassesViewController.storyboardIdentifier, bundle: Bundle(for: ClassesViewController.self))
+            case .cohortMotherProfile:
+                  self.init(name: CohortMotherProfileViewController.storyboardIdentifier, bundle: Bundle(for: CohortMotherProfileViewController.self))
             case .editProfile:
                    self.init(name: EditProfileViewController.storyboardIdentifier, bundle: Bundle(for: EditProfileViewController.self))
             case .forgotPassword:

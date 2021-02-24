@@ -108,6 +108,17 @@ struct ViewControllerFactory {
     static func makeEditProfileViewController() -> EditProfileViewController? {
         return UIStoryboard(identifier: .editProfile).instantiateViewController(withIdentifier: EditProfileViewController.storyboardIdentifier) as? EditProfileViewController
     }
+    
+    static func makeCohortMotherProfileViewController(cohortMother: WandaCohortMother, cohortId: Int) -> CohortMotherProfileViewController? {
+        guard let cohortMotherProfileViewController = UIStoryboard(identifier: .cohortMotherProfile).instantiateViewController(withIdentifier: CohortMotherProfileViewController.storyboardIdentifier) as? CohortMotherProfileViewController else {
+            return nil
+        }
+        
+        cohortMotherProfileViewController.cohortMother = cohortMother
+        cohortMotherProfileViewController.cohortId = cohortId
+        
+        return cohortMotherProfileViewController
+    }
 
     static func makeTabbedViewController() -> TabbedViewController? {
         return UIStoryboard(identifier: .tabbed).instantiateViewController(withIdentifier: TabbedViewController.storyboardIdentifier) as? TabbedViewController

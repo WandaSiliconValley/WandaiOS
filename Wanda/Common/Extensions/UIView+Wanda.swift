@@ -42,9 +42,11 @@ extension UIView {
         self.layer.masksToBounds = true
     }
     
-//    func setLeftPaddingPoints(_ amount:CGFloat){
-//        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
-//        self.leftView = paddingView
-//        self.leftViewMode = .always
-//    }
+    func circularBorder() {
+        layer.cornerRadius = (self.frame.size.width / 2.0)
+        self.clipsToBounds = true
+        self.layer.masksToBounds = true
+        self.layer.borderColor = WandaColors.toggleOffGrey.cgColor
+        self.layer.borderWidth = 1.0
+    }
 }

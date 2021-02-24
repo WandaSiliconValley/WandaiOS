@@ -65,11 +65,21 @@
 		85FB6A5B212F870000EB8852 /* WandaLocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB6A5A212F870000EB8852 /* WandaLocalizableStrings.swift */; };
 		85FB6A5D212F8B6E00EB8852 /* WandaConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB6A5C212F8B6E00EB8852 /* WandaConstants.swift */; };
 		D9111F7025CF5035001FCE89 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9111F6F25CF5035001FCE89 /* EditProfileViewController.swift */; };
+		D94D532625E610B100DA2441 /* CohortMotherProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94D532525E610B000DA2441 /* CohortMotherProfileViewController.swift */; };
+		D94D532A25E610F100DA2441 /* CohortMotherProfileViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D94D532925E610F100DA2441 /* CohortMotherProfileViewController.storyboard */; };
+		D964737325E3036900855199 /* CohortTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D964737225E3036900855199 /* CohortTableViewCell.xib */; };
+		D964737525E304BA00855199 /* CohortTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D964737425E304BA00855199 /* CohortTableViewCell.swift */; };
+		D964737725E308D500855199 /* CollapsibleTableViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = D964737625E308D500855199 /* CollapsibleTableViewHeader.xib */; };
+		D964737925E367CD00855199 /* UIImage+Wanda.swift in Sources */ = {isa = PBXBuildFile; fileRef = D964737825E367CD00855199 /* UIImage+Wanda.swift */; };
+		D964737B25E4E5B500855199 /* CohortNetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D964737A25E4E5B500855199 /* CohortNetworkController.swift */; };
+		D964737D25E4E62B00855199 /* Cohort.swift in Sources */ = {isa = PBXBuildFile; fileRef = D964737C25E4E62B00855199 /* Cohort.swift */; };
 		D9C0769825DE38DA00C89FC6 /* CollapsibleTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C0769725DE38DA00C89FC6 /* CollapsibleTableViewHeader.swift */; };
 		D9C0769A25DE3BF600C89FC6 /* TabbedViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9C0769925DE3BF600C89FC6 /* TabbedViewController.storyboard */; };
 		D9C0769C25DE3C2600C89FC6 /* TabbedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C0769B25DE3C2600C89FC6 /* TabbedViewController.swift */; };
 		D9CAFAC525CF12F30011C4D5 /* ProfileViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9CAFAC125CF12F20011C4D5 /* ProfileViewController.storyboard */; };
 		D9CAFAC625CF12F30011C4D5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CAFAC225CF12F20011C4D5 /* ProfileViewController.swift */; };
+		D9D8A74C25DF4C24004233EC /* CircularImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D8A74B25DF4C24004233EC /* CircularImageView.swift */; };
+		D9D8A74E25DF5517004233EC /* CohortHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9D8A74D25DF5517004233EC /* CohortHeaderView.xib */; };
 		D9E6C46725CF1F6C00FBFBC8 /* EditProfileViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9E6C46625CF1F6C00FBFBC8 /* EditProfileViewController.storyboard */; };
 		F1296AA823541E12001AED6C /* SignUpSuccessScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1296AA723541E12001AED6C /* SignUpSuccessScreen.swift */; };
 		F12B5F8622A797BE001B2E27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F12B5F8522A797BE001B2E27 /* GoogleService-Info.plist */; };
@@ -172,11 +182,21 @@
 		85FB6A5C212F8B6E00EB8852 /* WandaConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WandaConstants.swift; sourceTree = "<group>"; };
 		9518B1ED484EC8C2CB9E8743 /* Pods-Wanda.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wanda.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wanda/Pods-Wanda.debug.xcconfig"; sourceTree = "<group>"; };
 		D9111F6F25CF5035001FCE89 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		D94D532525E610B000DA2441 /* CohortMotherProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CohortMotherProfileViewController.swift; sourceTree = "<group>"; };
+		D94D532925E610F100DA2441 /* CohortMotherProfileViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CohortMotherProfileViewController.storyboard; sourceTree = "<group>"; };
+		D964737225E3036900855199 /* CohortTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CohortTableViewCell.xib; sourceTree = "<group>"; };
+		D964737425E304BA00855199 /* CohortTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CohortTableViewCell.swift; sourceTree = "<group>"; };
+		D964737625E308D500855199 /* CollapsibleTableViewHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollapsibleTableViewHeader.xib; sourceTree = "<group>"; };
+		D964737825E367CD00855199 /* UIImage+Wanda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Wanda.swift"; sourceTree = "<group>"; };
+		D964737A25E4E5B500855199 /* CohortNetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CohortNetworkController.swift; sourceTree = "<group>"; };
+		D964737C25E4E62B00855199 /* Cohort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cohort.swift; sourceTree = "<group>"; };
 		D9C0769725DE38DA00C89FC6 /* CollapsibleTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollapsibleTableViewHeader.swift; sourceTree = "<group>"; };
 		D9C0769925DE3BF600C89FC6 /* TabbedViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabbedViewController.storyboard; sourceTree = "<group>"; };
 		D9C0769B25DE3C2600C89FC6 /* TabbedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbedViewController.swift; sourceTree = "<group>"; };
 		D9CAFAC125CF12F20011C4D5 /* ProfileViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ProfileViewController.storyboard; sourceTree = "<group>"; };
 		D9CAFAC225CF12F20011C4D5 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		D9D8A74B25DF4C24004233EC /* CircularImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularImageView.swift; sourceTree = "<group>"; };
+		D9D8A74D25DF5517004233EC /* CohortHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CohortHeaderView.xib; sourceTree = "<group>"; };
 		D9E6C46625CF1F6C00FBFBC8 /* EditProfileViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditProfileViewController.storyboard; sourceTree = "<group>"; };
 		F1296AA723541E12001AED6C /* SignUpSuccessScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpSuccessScreen.swift; sourceTree = "<group>"; };
 		F12B5F8522A797BE001B2E27 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -291,6 +311,7 @@
 				85A2E929221366E9005A9296 /* ClassRSVPNetworkController.swift */,
 				85A2E92322135B81005A9296 /* WandaClassesNetworkController.swift */,
 				85A2E927221366C4005A9296 /* WandaMotherNetworkController.swift */,
+				D964737A25E4E5B500855199 /* CohortNetworkController.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -321,6 +342,7 @@
 				85670811204C73BA00305B85 /* WandaClass.swift */,
 				85DCCCAB20DC164D00D36FBF /* WandaDataManager.swift */,
 				8533412821E140C6003A0ABB /* WandaMother.swift */,
+				D964737C25E4E62B00855199 /* Cohort.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -387,6 +409,7 @@
 				854CB2D921750CF0008A1019 /* UIView+Wanda.swift */,
 				F17799A822570D1B000B3F3F /* UIViewController+Wanda.swift */,
 				F16E58542260699D00040741 /* DateFormatter+Wanda.swift */,
+				D964737825E367CD00855199 /* UIImage+Wanda.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -410,8 +433,15 @@
 				D9E6C46625CF1F6C00FBFBC8 /* EditProfileViewController.storyboard */,
 				D9111F6F25CF5035001FCE89 /* EditProfileViewController.swift */,
 				D9C0769725DE38DA00C89FC6 /* CollapsibleTableViewHeader.swift */,
+				D964737625E308D500855199 /* CollapsibleTableViewHeader.xib */,
 				D9C0769925DE3BF600C89FC6 /* TabbedViewController.storyboard */,
 				D9C0769B25DE3C2600C89FC6 /* TabbedViewController.swift */,
+				D9D8A74B25DF4C24004233EC /* CircularImageView.swift */,
+				D9D8A74D25DF5517004233EC /* CohortHeaderView.xib */,
+				D964737225E3036900855199 /* CohortTableViewCell.xib */,
+				D964737425E304BA00855199 /* CohortTableViewCell.swift */,
+				D94D532525E610B000DA2441 /* CohortMotherProfileViewController.swift */,
+				D94D532925E610F100DA2441 /* CohortMotherProfileViewController.storyboard */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -571,6 +601,7 @@
 				85235A5B22227027002CABD5 /* WandaAlertViewController.storyboard in Resources */,
 				854CB2DE21750FA4008A1019 /* ClassesTableViewCell.xib in Resources */,
 				856960DB205100B700ADFF9A /* OpenSans-SemiBold.ttf in Resources */,
+				D9D8A74E25DF5517004233EC /* CohortHeaderView.xib in Resources */,
 				F12B5F8622A797BE001B2E27 /* GoogleService-Info.plist in Resources */,
 				F14CA77123A0B25E00B0D2D6 /* LoginSignUpViewController.storyboard in Resources */,
 				856960D3205100A500ADFF9A /* OpenSans-Bold.ttf in Resources */,
@@ -578,13 +609,16 @@
 				85712A8B221CE0020058C9E2 /* WandaClassMenu.xib in Resources */,
 				851000BA204339F800D450AE /* ClassesHeaderView.xib in Resources */,
 				D9CAFAC525CF12F30011C4D5 /* ProfileViewController.storyboard in Resources */,
+				D964737725E308D500855199 /* CollapsibleTableViewHeader.xib in Resources */,
 				851000B22043327800D450AE /* LaunchScreen.storyboard in Resources */,
 				851000AF2043327800D450AE /* Assets.xcassets in Resources */,
 				856960D4205100A700ADFF9A /* OpenSans-BoldItalic.ttf in Resources */,
 				8533412621E131D4003A0ABB /* SignUpViewController.storyboard in Resources */,
+				D964737325E3036900855199 /* CohortTableViewCell.xib in Resources */,
 				856960DA205100B500ADFF9A /* OpenSans-Regular.ttf in Resources */,
 				85A0E30C2220B6AB00EEE5DF /* ForgotPasswordViewController.storyboard in Resources */,
 				85FB6A56212F860800EB8852 /* ClassesViewController.storyboard in Resources */,
+				D94D532A25E610F100DA2441 /* CohortMotherProfileViewController.storyboard in Resources */,
 				856960DC205100BA00ADFF9A /* OpenSans-SemiBoldItalic.ttf in Resources */,
 				856960D22051009700ADFF9A /* LICENSE.txt in Resources */,
 				856960D7205100AD00ADFF9A /* OpenSans-Italic.ttf in Resources */,
@@ -674,6 +708,7 @@
 				854CB2DC21750F9B008A1019 /* ClassesTableViewCell.swift in Sources */,
 				8533412221E05BDC003A0ABB /* SignUpViewController.swift in Sources */,
 				85A688AB20E5949600094B4F /* Array+Wanda.swift in Sources */,
+				D964737525E304BA00855199 /* CohortTableViewCell.swift in Sources */,
 				858C33DC21E9308100F17504 /* UIStoryboard+Wanda.swift in Sources */,
 				85DCCCAC20DC164D00D36FBF /* WandaDataManager.swift in Sources */,
 				855232F622236618007043D5 /* CALayer+Wanda.swift in Sources */,
@@ -682,6 +717,7 @@
 				F17799A922570D1B000B3F3F /* UIViewController+Wanda.swift in Sources */,
 				F14CA77323A0B26A00B0D2D6 /* LoginSignUpViewController.swift in Sources */,
 				85235A5D22227032002CABD5 /* WandaAlertViewController.swift in Sources */,
+				D964737925E367CD00855199 /* UIImage+Wanda.swift in Sources */,
 				8545C3C522207DD000FC392E /* WandaColors.swift in Sources */,
 				85D9F296221E08BA001155B2 /* WandaClassMenu.swift in Sources */,
 				F16E58552260699D00040741 /* DateFormatter+Wanda.swift in Sources */,
@@ -692,17 +728,21 @@
 				D9C0769825DE38DA00C89FC6 /* CollapsibleTableViewHeader.swift in Sources */,
 				854CB2DA21750CF0008A1019 /* UIView+Wanda.swift in Sources */,
 				D9111F7025CF5035001FCE89 /* EditProfileViewController.swift in Sources */,
+				D9D8A74C25DF4C24004233EC /* CircularImageView.swift in Sources */,
 				858C33D921E9304C00F17504 /* ViewControllerFactory.swift in Sources */,
 				85F7C8C9204FAF8A005A1D00 /* WandaClassViewController.swift in Sources */,
 				D9C0769C25DE3C2600C89FC6 /* TabbedViewController.swift in Sources */,
 				D9CAFAC625CF12F30011C4D5 /* ProfileViewController.swift in Sources */,
 				85FB6A5D212F8B6E00EB8852 /* WandaConstants.swift in Sources */,
+				D964737D25E4E62B00855199 /* Cohort.swift in Sources */,
 				859ED2082249C02C006580C8 /* UIActivityIndicatorView+Wanda.swift in Sources */,
+				D964737B25E4E5B500855199 /* CohortNetworkController.swift in Sources */,
 				8545C3C322207A4D00FC392E /* UITextField+Wanda.swift in Sources */,
 				85A2E92A221366E9005A9296 /* ClassRSVPNetworkController.swift in Sources */,
 				8533412921E140C6003A0ABB /* WandaMother.swift in Sources */,
 				85FB6A5B212F870000EB8852 /* WandaLocalizableStrings.swift in Sources */,
 				85A0E30A2220B6A100EEE5DF /* ForgotPasswordViewController.swift in Sources */,
+				D94D532625E610B100DA2441 /* CohortMotherProfileViewController.swift in Sources */,
 				85A2E928221366C4005A9296 /* WandaMotherNetworkController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

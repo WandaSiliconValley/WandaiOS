@@ -188,6 +188,31 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
 
             // Ensure action state is set back to contact us if the call was successful.
             self.actionState = .contactUs
+            self.getCohort()
+        }
+    }
+    
+    private func getCohort() {
+        dataManager.getCohort(cohortId: 12) { success, error in
+            guard success else {
+                if let error = error {
+                    // Set action state to retry get mother so the user has the option to retry the API call.
+//                    TO DO - add in retry
+//                    self.actionState = .retryGetMother
+                    self.spinner.toggleSpinner(for: self.loginButton, title: LoginSignUpStrings.login)
+                    switch error {
+                        case .networkError:
+                            self.presentErrorAlert(for: .networkError)
+                        default:
+                            self.presentErrorAlert(for: .systemError)
+                    }
+                }
+                
+                return
+            }
+            
+            // Ensure action state is set back to contact us if the call was successful.
+            self.actionState = .contactUs
             self.getClasses()
         }
     }
