@@ -9,6 +9,9 @@
 import Foundation
 import MessageUI
 import UIKit
+import SDWebImage
+
+var firstView = true
 
 class ProfileViewController: UIViewController, MFMailComposeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, CollapsibleTableViewHeaderDelegate {
     @IBOutlet var tableView: UITableView!
@@ -28,7 +31,7 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
     private var menuView: WandaClassMenu?
     private var dataManager = WandaDataManager.shared
 //    private var cohortSections: [CohortSection]?
-    private var firstView = true
+//    private var firstView = true
 
     
 //    struct CohortSection {
@@ -67,11 +70,10 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
         super.viewWillAppear(animated)
 
         configureNavigationBar()
-        let motherName = dataManager.wandaMother?.name ?? "?"
-        showInitialView(name: motherName, initialImage: profileImage)
+        getMotherPhoto()
+//        let motherName = dataManager.wandaMother?.name ?? "?"
+//        showInitialView(name: motherName, initialImage: profileImage)
         configureMotherInfo()
-
-
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -79,6 +81,11 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
         tableView.register(cohortTableViewCellNib, forCellReuseIdentifier: CohortTableViewCell.nibName())
         let classesHeaderViewNib = UINib(nibName: CollapsibleTableViewHeader.nibName(), bundle: nibBundle)
         tableView.register(classesHeaderViewNib, forHeaderFooterViewReuseIdentifier: CollapsibleTableViewHeader.nibName())
+    }
+    
+    func getMotherPhoto() {
+        profileImage.sd_setImage(with: URL(string: "https://wanda-photos-bucket.s3-us-west-2.amazonaws.com/12"))
+        print("HM")
     }
     
     func configureMotherInfo() {
@@ -189,13 +196,22 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
         guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: CollapsibleTableViewHeader.nibName()) as? CollapsibleTableViewHeader else {
             return UIView()
         }
-        if firstView != true {
-            print("IS IT")
-            headerView.setCollapsed(collapsed: dataManager.cohortSections[section].collapsed)
-        }
-        firstView = false
+        
         headerView.section = section
         headerView.delegate = self
+        
+        if firstView == true {
+            print("IS IT")
+            headerView.setCollapsed(collapsed: dataManager.cohortSections[section].collapsed)
+            firstView = false
+        } else {
+            let collapsed = !dataManager.cohortSections[section].collapsed
+
+             // Toggle collapse
+            dataManager.cohortSections[section].collapsed = collapsed
+            headerView.setCollapsed(collapsed: dataManager.cohortSections[section].collapsed)
+        }
+        
         return headerView
     }
     
@@ -230,10 +246,10 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
 
     
     func toggleSection(_ header: CollapsibleTableViewHeader, section: Int) {
-        let collapsed = !dataManager.cohortSections[section].collapsed
-
-        // Toggle collapse
-        dataManager.cohortSections[section].collapsed = collapsed
+//        let collapsed = !dataManager.cohortSections[section].collapsed
+//
+//        // Toggle collapse
+//        dataManager.cohortSections[section].collapsed = collapsed
 //        header.setCollapsed(collapsed: collapsed)
 
         // Reload the whole section

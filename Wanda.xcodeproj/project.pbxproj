@@ -78,6 +78,7 @@
 		D9C0769C25DE3C2600C89FC6 /* TabbedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C0769B25DE3C2600C89FC6 /* TabbedViewController.swift */; };
 		D9CAFAC525CF12F30011C4D5 /* ProfileViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9CAFAC125CF12F20011C4D5 /* ProfileViewController.storyboard */; };
 		D9CAFAC625CF12F30011C4D5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CAFAC225CF12F20011C4D5 /* ProfileViewController.swift */; };
+		D9CB014925E774F700EE4821 /* PhotoNetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CB014825E774F700EE4821 /* PhotoNetworkController.swift */; };
 		D9D8A74C25DF4C24004233EC /* CircularImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D8A74B25DF4C24004233EC /* CircularImageView.swift */; };
 		D9D8A74E25DF5517004233EC /* CohortHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9D8A74D25DF5517004233EC /* CohortHeaderView.xib */; };
 		D9E6C46725CF1F6C00FBFBC8 /* EditProfileViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9E6C46625CF1F6C00FBFBC8 /* EditProfileViewController.storyboard */; };
@@ -195,6 +196,7 @@
 		D9C0769B25DE3C2600C89FC6 /* TabbedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbedViewController.swift; sourceTree = "<group>"; };
 		D9CAFAC125CF12F20011C4D5 /* ProfileViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ProfileViewController.storyboard; sourceTree = "<group>"; };
 		D9CAFAC225CF12F20011C4D5 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		D9CB014825E774F700EE4821 /* PhotoNetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoNetworkController.swift; sourceTree = "<group>"; };
 		D9D8A74B25DF4C24004233EC /* CircularImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularImageView.swift; sourceTree = "<group>"; };
 		D9D8A74D25DF5517004233EC /* CohortHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CohortHeaderView.xib; sourceTree = "<group>"; };
 		D9E6C46625CF1F6C00FBFBC8 /* EditProfileViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditProfileViewController.storyboard; sourceTree = "<group>"; };
@@ -312,6 +314,7 @@
 				85A2E92322135B81005A9296 /* WandaClassesNetworkController.swift */,
 				85A2E927221366C4005A9296 /* WandaMotherNetworkController.swift */,
 				D964737A25E4E5B500855199 /* CohortNetworkController.swift */,
+				D9CB014825E774F700EE4821 /* PhotoNetworkController.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -652,20 +655,28 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Wanda/Pods-Wanda-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
-				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
-				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseAuth/FirebaseAuth.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseInstallations/FirebaseInstallations.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseAuth.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreDiagnostics.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseInstallations.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleDataTransport.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -702,6 +713,7 @@
 				85A688A920E591F300094B4F /* UIColor+Wanda.swift in Sources */,
 				85A2E926221366BC005A9296 /* AccountNetworkController.swift in Sources */,
 				851000BE2043403D00D450AE /* ClassesHeaderView.swift in Sources */,
+				D9CB014925E774F700EE4821 /* PhotoNetworkController.swift in Sources */,
 				85C181B420ACE629003A8556 /* WandaSuccessViewController.swift in Sources */,
 				85FB6A58212F861000EB8852 /* ClassesViewController.swift in Sources */,
 				8533412421E12DE8003A0ABB /* String+Wanda.swift in Sources */,

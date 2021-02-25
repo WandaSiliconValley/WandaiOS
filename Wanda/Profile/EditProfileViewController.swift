@@ -9,7 +9,8 @@
 import Foundation
 import UIKit
 
-class EditProfileViewController: UIViewController, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
+class EditProfileViewController: UIViewController, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, WandaAlertViewDelegate {
+    
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var bioView: UIView!
@@ -37,6 +38,9 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UIPickerV
     @IBOutlet weak var emailPublicLabel: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var addImageButton: UIButton!
+    
+    var imagePicker = UIImagePickerController()
+    var unsavedChanges = false
 
     private var menuView: WandaClassMenu?
     let languages = [
@@ -68,7 +72,15 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UIPickerV
         pickerView.showsSelectionIndicator = true
 
         self.cellPhoneTextField.delegate = self
+        emailTextField.delegate = self
+        nameTextField.delegate = self
+        languaguesTextField.delegate = self
+        bioTextView.delegate = self
         languaguesTextField.inputView = pickerView
+        
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
 //        TO DO - can bring these back but it doesnt scal properly
 //        emailSwitch.transform = CGAffineTransform(scaleX: 0.95, y: 0.85)
@@ -220,12 +232,15 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UIPickerV
     
     @objc
     private func backButtonPressed(_ sender: UIButton) {
-//        if unsavedChanges {
-//            reservationActionState = .discardRSVP
-//            self.presentErrorAlert(for: .unsavedChanges)
-//        } else {
-        _ = navigationController?.popViewController(animated: true)
-//        }
+        if unsavedChanges {
+            self.presentErrorAlert(for: .unsavedChanges)
+        } else {
+            _ = navigationController?.popViewController(animated: true)
+        }
+    }
+    
+    func didTapActionButton() {
+        navigationController?.popViewController(animated: true)
     }
     
     func setupBioViewPlaceholder() {
@@ -269,6 +284,7 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UIPickerV
             bioTextView.textColor = UIColor.black
         }
         bioView.underlinedView(color: WandaColors.brightPurple.cgColor)
+        unsavedChanges = true
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
@@ -284,6 +300,7 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UIPickerV
         label.textColor = WandaColors.brightPurple
         label.isHidden = false
         textField.underlined(color: WandaColors.brightPurple.cgColor)
+        unsavedChanges = true
     }
     
     func profileTextFieldEditingDidEnd(_ textField: UITextField, _ label: UILabel, _ placeholder: String) {
@@ -336,6 +353,24 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UIPickerV
         let updatedMother = EditWandaMotherInfo(
             motherId: mother.motherId, firebaseId: mother.firebaseId, cohortId: mother.cohortId, name: nameTextField.text ?? mother.name, email: mother.email, contactEmail: emailTextField.text, shareContactEmail: emailSwitch.isOn, sharePhoneNumber: cellPhoneSwitch.isOn, phoneNumber: cellPhoneTextField.text, bio: updatedBio, languages: languages)
         
+        if let image = profileImage.image {
+            let imageData:NSData = UIImagePNGRepresentation(image)! as NSData
+            let strBase64 = imageData.base64EncodedString(options: .lineLength64Characters)
+
+            dataManager.uploadMotherPhoto(motherId: String(updatedMother.motherId), photo: strBase64) { success, error in
+                guard success else {
+                    if let error = error {
+    //                     TO DO handle errors here
+                        print("OH NO")
+                    }
+                    return
+    //                self.overlayView.removeFromSuperview()
+                }
+                
+                
+            }
+        }
+        
         dataManager.updateWandMother(mother: updatedMother) { success, error in
             guard success else {
                 if let error = error {
@@ -348,10 +383,61 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UIPickerV
             
             _ = self.navigationController?.popViewController(animated: true)
         }
+    
     }
+    
+    @IBAction func didTapAddImage(){
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
+            print("Button capture")
+
+            imagePicker.delegate = self
+            imagePicker.sourceType = .savedPhotosAlbum
+            imagePicker.allowsEditing = false
+
+            present(imagePicker, animated: true, completion: nil)
+        }
+    }
+//
+//    private func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+//        picker.dismiss(animated: true, completion: nil)
+////        guard let image = info[UIImagePickerController.InfoKey.edit] else {
+////            fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
+////        }
+////
+////        profileImage.image = image
+//
+////        pickImageCallback?(image)
+//    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        picker.dismiss(animated: true, completion: nil)
+        guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {
+            fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
+        }
+
+        profileImage.image = image
+//          self.dismiss(animated: true, completion: { () -> Void in
+//
+//          })
+
+//          profileImage.image = image
+    }
+    
+//    func imagepicker
+    
+    
+    
+//    func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!){
+//          self.dismiss(animated: true, completion: { () -> Void in
+//
+//          })
+//
+//          profileImage.image = image
+//      }
     
     @IBAction func nameTextFieldEditingDidBegin(_ sender: UITextField) {
         profileTextFieldEditingDidBegin(nameTextField, nameLabel)
+        unsavedChanges = true
     }
     
     @IBAction func nameTextFieldEditingDidEnd(_ sender: UITextField) {
@@ -360,6 +446,7 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UIPickerV
     
     @IBAction func languagesTextFieldEditingDidBegin(_ sender: UITextField) {
         profileTextFieldEditingDidBegin(languaguesTextField, languagesLabel)
+        unsavedChanges = true
     }
     
     @IBAction func languagesTextFieldEditingDidEnd(_ sender: UITextField) {
@@ -369,9 +456,11 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UIPickerV
     @IBAction func emailTextFieldEditingDidBegin(_ sender: UITextField) {
         profileTextFieldEditingDidBegin(emailTextField, emailLabel)
         emailLabel.text = "Email"
+        unsavedChanges = true
     }
     
-    @IBAction func emailTextFieldEditingDidEnd(_ sender: UITextField) {        profileTextFieldEditingDidEnd(emailTextField, emailLabel, "Email")
+    @IBAction func emailTextFieldEditingDidEnd(_ sender: UITextField) {
+        profileTextFieldEditingDidEnd(emailTextField, emailLabel, "Email")
         let email = emailTextField.text ?? ""
         let isEmailValid = email.isEmailValid(emailTextField: emailTextField, emailInfoLabel: emailIncorrectLabel)
         if isEmailValid == true {
@@ -442,6 +531,7 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UIPickerV
     
     @IBAction func cellPhoneTextFieldEditingDidBegin(_ sender: UITextField) {
         profileTextFieldEditingDidBegin(cellPhoneTextField, cellPhoneLabel)
+        unsavedChanges = true
     }
     
     @IBAction func cellPhoneTextFieldEditingDidEnd(_ sender: UITextField) {
@@ -502,5 +592,45 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UIPickerV
         super.viewWillLayoutSubviews()
         
         scrollView.contentSize = CGSize(width: 375, height: 800)
+    }
+    
+    @objc
+    private func keyboardWillShow(notification: NSNotification) {
+        DispatchQueue.main.async {
+            let userInfo = notification.userInfo!
+            let keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+            var contentInset:UIEdgeInsets = self.scrollView.contentInset
+            contentInset.bottom = keyboardFrame.size.height + 60
+            self.scrollView.contentInset = contentInset
+        }
+    }
+    
+    @objc
+    private func keyboardWillHide(notification:NSNotification){
+        DispatchQueue.main.async {
+            let contentInset:UIEdgeInsets = UIEdgeInsets.zero
+            self.scrollView.contentInset = contentInset
+        }
+    }
+    
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        <#code#>
+//    }
+//
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let nextTag = textField.tag + 1
+
+        if let nextResponder = textField.superview?.superview?.viewWithTag(nextTag) {
+            nextResponder.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+
+        return true
+    }
+    
+    @objc
+    private func dismissKeyboard() {
+        view.endEditing(true)
     }
 }

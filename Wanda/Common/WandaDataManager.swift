@@ -211,4 +211,16 @@ class WandaDataManager {
             completion(true, nil)
         }
     }
+    
+    func uploadMotherPhoto(motherId: String, photo: String, completion: @escaping (Bool, WandaError?) -> Void) {
+        PhotoNetworkController.uploadMotherPhoto(motherId: motherId, photo: photo) { success, error in
+            guard let success = success else {
+                completion(false, error)
+                return
+            }
+            
+//            self.cohortSections = [CohortSection(cohortId: cohort.cohortId, mothers: cohort.mothers)]
+            completion(true, nil)
+        }
+    }
 }
