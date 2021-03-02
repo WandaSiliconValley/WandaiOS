@@ -1,4 +1,7 @@
 PODS:
+  - Alamofire (5.4.1)
+  - AlamofireImage (4.1.0):
+    - Alamofire (~> 5.1)
   - Firebase/Auth (7.7.0):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 7.7.0)
@@ -69,17 +72,16 @@ PODS:
   - nanopb/decode (2.30907.0)
   - nanopb/encode (2.30907.0)
   - PromisesObjC (1.2.12)
-  - SDWebImage (5.10.4):
-    - SDWebImage/Core (= 5.10.4)
-  - SDWebImage/Core (5.10.4)
 
 DEPENDENCIES:
+  - AlamofireImage
   - Firebase/Auth
   - Firebase/Core
-  - SDWebImage
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
+    - Alamofire
+    - AlamofireImage
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -92,9 +94,10 @@ SPEC REPOS:
     - GTMSessionFetcher
     - nanopb
     - PromisesObjC
-    - SDWebImage
 
 SPEC CHECKSUMS:
+  Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
+  AlamofireImage: c4a2ba349885fb3064feb74d2e547bd42ce9be10
   Firebase: cd2ab85eec8170dc260186159f21072ecb679ad5
   FirebaseAnalytics: f3f8f75de34fe04141a69bb1c4bd7e24a80178e1
   FirebaseAuth: 76aa97ecd51e20ecd21321d08474d25f5d2b7b9f
@@ -107,8 +110,7 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
   nanopb: 59221d7f958fb711001e6a449489542d92ae113e
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
-  SDWebImage: c666b97e1fa9c64b4909816a903322018f0a9c84
 
-PODFILE CHECKSUM: f007851e44ffd718662b588e764eb5d9f67e3474
+PODFILE CHECKSUM: 3a87a4d85e77d5f0912e64d7ccb73cc12d5d1f73
 
 COCOAPODS: 1.10.1

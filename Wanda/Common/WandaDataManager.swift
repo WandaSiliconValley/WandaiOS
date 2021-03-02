@@ -45,6 +45,7 @@ class WandaDataManager {
     var nextClass: WandaClass?
     var hasCurrentClasses = true
     var cohortSections = [CohortSection]()
+    var cohortMothers = [WandaCohortMother]()
     
     struct CohortSection {
         var cohortId: Int
@@ -207,6 +208,7 @@ class WandaDataManager {
                 return
             }
             
+            self.cohortMothers = cohort.mothers
             self.cohortSections = [CohortSection(cohortId: cohort.cohortId, mothers: cohort.mothers)]
             completion(true, nil)
         }

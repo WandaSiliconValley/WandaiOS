@@ -7,9 +7,11 @@
 //
 
 import Foundation
+import FirebaseAuth
 import UIKit
+import MessageUI
 
-class CohortMotherProfileViewController: UIViewController {
+class CohortMotherProfileViewController: UIViewController, MFMailComposeViewControllerDelegate {
     @IBOutlet weak var introLabel: UILabel!
     @IBOutlet weak var cohortLabel: UILabel!
     @IBOutlet weak var languagesTitle: UILabel!
@@ -23,10 +25,11 @@ class CohortMotherProfileViewController: UIViewController {
     @IBOutlet weak var bioLabel: UILabel!
     
     static let storyboardIdentifier = String(describing: CohortMotherProfileViewController.self)
-    private var menuView: WandaClassMenu?
+//    private var menuView: WandaClassMenu?
     private var dataManager = WandaDataManager.shared
     var cohortMother: WandaCohortMother?
     var cohortId: Int = 0
+    private var menuView: WandaMenu?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,12 +37,19 @@ class CohortMotherProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        guard let cohortMother = cohortMother else {
+            // to do - throw error - couldnt retriee profile
+            return
+        }
 
         configureNavigationBar()
-        let motherName = cohortMother?.name ?? "?"
+        let motherName = cohortMother.name
         showInitialView(name: motherName, initialImage: profileImage)
+        let downloadURL = URL(string: "https://wanda-photos-bucket.s3-us-west-2.amazonaws.com/\(cohortMother.motherId)")!
+        profileImage.af.setImage(withURL: downloadURL)
         configureMotherInfo()
-
+        configureMenu()
     }
     
     func showInitialView(name: String, initialImage: UIImageView) {
@@ -142,10 +152,55 @@ class CohortMotherProfileViewController: UIViewController {
 
     @objc
     private func didTapOverflowMenu() {
-        logAnalytic(tag: WandaAnalytics.classDetailMenuButtonTapped)
         if let menuView = menuView {
             menuView.toggleMenu()
         }
+    }
+    
+    
+    private func configureMenu() {
+        menuView = WandaMenu(frame: CGRect(x: 0, y: 0, width: 250, height: 96))
+        if let menuView = menuView {
+            menuView.frame.origin.y = 0
+            menuView.frame.origin.x = self.view.frame.width - menuView.frame.width
+            
+            self.view.addSubview(menuView)
+            self.view.bringSubview(toFront: menuView)
+        }
+        
+        menuView?.logoutButton.addTarget(self, action: #selector(didTapLogoutButton), for: .touchUpInside)
+        menuView?.contactUsButton.addTarget(self, action: #selector(didTapContactWanda), for: .touchUpInside)
+    }
+    
+    @objc
+    func didTapLogoutButton() {
+        logAnalytic(tag: WandaAnalytics.classLogoutButtonTapped)
+        do {
+            try Auth.auth().signOut()
+        } catch {
+            // We are currently failing silently and sending the user back to the LoginViewController.
+            print("Couldn't sign user out. Returning back to Login.")
+        }
+        popBack(toControllerType: LoginViewController.self)
+    }
+    
+    @objc
+    private func didTapContactWanda() {
+        guard let contactUsViewController = ViewControllerFactory.makeContactUsViewController(for: .wandaClass) else {
+            self.presentErrorAlert(for: .contactUsError)
+            return
+        }
+        
+        logAnalytic(tag: WandaAnalytics.classDetailMenuContatctWandaTapped)
+        contactUsViewController.mailComposeDelegate = self
+        contactUsViewController.setSubject("Test Title")
+        contactUsViewController.setMessageBody("Test", isHTML: false)
+        
+        if let menuView = menuView {
+            menuView.toggleMenu()
+        }
+        
+        self.present(contactUsViewController, animated: true, completion: nil)
     }
     
     @objc

@@ -12,14 +12,14 @@ extension UILabel {
     func configureError(_ errorMessage: String, invalidTextField: UITextField) {
         self.isHidden = false
         self.text = errorMessage
-        self.font = UIFont.wandaFontItalic(size: 10)
+        self.font = UIFont.wandaFontItalic(size: 12)
         self.textColor = WandaColors.newErrorRed
         invalidTextField.underlined(color: WandaColors.newErrorRed.cgColor)
         invalidTextField.shake()
     }
 
     func configureValidEmail(_ emailTextField:UITextField) {
-        self.font = UIFont.wandaFontRegular(size: 10)
+        self.font = UIFont.wandaFontRegular(size: 12)
         self.textColor = WandaColors.mediumPurple
         self.text = LoginSignUpStrings.useEmailOnFile
         emailTextField.underlined()

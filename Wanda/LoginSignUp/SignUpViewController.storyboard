@@ -42,10 +42,10 @@
                                                 </constraints>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WBJ-92-YDY" userLabel="Email View">
-                                                <rect key="frame" x="34" y="168" width="309" height="38"/>
+                                                <rect key="frame" x="34" y="168" width="309" height="42"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PersonIcon" translatesAutoresizingMaskIntoConstraints="NO" id="mzy-yZ-VQr">
-                                                        <rect key="frame" x="0.0" y="-2" width="24" height="24"/>
+                                                        <rect key="frame" x="0.0" y="2" width="24" height="24"/>
                                                         <color key="tintColor" red="0.36078431370000003" green="0.0" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <accessibility key="accessibilityConfiguration" identifier="email_icon"/>
                                                         <constraints>
@@ -54,11 +54,11 @@
                                                         </constraints>
                                                     </imageView>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mla-S6-5UH">
-                                                        <rect key="frame" x="42" y="0.0" width="267" height="24"/>
+                                                        <rect key="frame" x="42" y="0.0" width="267" height="28"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <accessibility key="accessibilityConfiguration" identifier="su_email_text_field"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="24" id="4Wy-20-46Y"/>
+                                                            <constraint firstAttribute="height" constant="28" id="4Wy-20-46Y"/>
                                                         </constraints>
                                                         <color key="textColor" red="0.36078431370000003" green="0.0" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="20"/>
@@ -74,9 +74,9 @@
                                                         </connections>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Use email on file with WANDA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ATi-eK-ZNO" userLabel="Email Info Label">
-                                                        <rect key="frame" x="42" y="28" width="267" height="10"/>
+                                                        <rect key="frame" x="42" y="32" width="267" height="10"/>
                                                         <accessibility key="accessibilityConfiguration" identifier="su_email_info_label"/>
-                                                        <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="10"/>
+                                                        <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="12"/>
                                                         <color key="textColor" red="0.36078431370000003" green="0.0" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -92,11 +92,11 @@
                                                     <constraint firstItem="Mla-S6-5UH" firstAttribute="leading" secondItem="mzy-yZ-VQr" secondAttribute="trailing" constant="18" id="ZPX-xj-wyH"/>
                                                     <constraint firstAttribute="trailing" secondItem="Mla-S6-5UH" secondAttribute="trailing" id="b4z-cc-zOG"/>
                                                     <constraint firstItem="ATi-eK-ZNO" firstAttribute="trailing" secondItem="Mla-S6-5UH" secondAttribute="trailing" id="d0p-jH-0pI"/>
-                                                    <constraint firstAttribute="height" constant="38" id="hdh-kF-9NC"/>
+                                                    <constraint firstAttribute="height" constant="42" id="hdh-kF-9NC"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PZW-AG-CJw" userLabel="Password View">
-                                                <rect key="frame" x="32" y="246" width="311" height="42"/>
+                                                <rect key="frame" x="32" y="250" width="311" height="42"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PurpleLockIcon" translatesAutoresizingMaskIntoConstraints="NO" id="GN6-Ii-Noo" userLabel="Lock Icon">
                                                         <rect key="frame" x="0.0" y="4" width="24" height="24"/>
@@ -129,7 +129,7 @@
                                                     </textField>
                                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password must be at least 6 characters." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v3e-eb-IJu" userLabel="Password Info Label">
                                                         <rect key="frame" x="40" y="28" width="271" height="14"/>
-                                                        <fontDescription key="fontDescription" name="OpenSans-Italic" family="Open Sans" pointSize="10"/>
+                                                        <fontDescription key="fontDescription" name="OpenSans-Italic" family="Open Sans" pointSize="12"/>
                                                         <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -164,7 +164,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5fF-4b-y4p" userLabel="Confirm Password View">
-                                                <rect key="frame" x="72" y="312" width="271" height="24"/>
+                                                <rect key="frame" x="72" y="316" width="271" height="24"/>
                                                 <subviews>
                                                     <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0SY-TP-WgH">
                                                         <rect key="frame" x="0.0" y="0.0" width="271" height="24"/>

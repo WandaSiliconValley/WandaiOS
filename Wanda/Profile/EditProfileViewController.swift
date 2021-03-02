@@ -80,11 +80,23 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UIPickerV
         cellPhoneTextField.delegate = self
         languaguesTextField.inputView = pickerView
         
+        if let motherId =  dataManager.wandaMother?.motherId {
+            let downloadURL = URL(string: "https://wanda-photos-bucket.s3-us-west-2.amazonaws.com/\(motherId)")!
+            profileImage.af.setImage(withURL: downloadURL)
+            if profileImage.image != nil {
+                addImageButton.imageView?.tintColor = UIColor(hexString: "#E0E0E0")
+            } else {
+                showInitialView()
+            }
+        } else {
+            showInitialView()
+        }
+        
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
-//        TO DO - can bring these back but it doesnt scal properly
+//        TO DO - can bring these back but it doesnt scale properly
 //        emailSwitch.transform = CGAffineTransform(scaleX: 0.95, y: 0.85)
 //        cellPhoneSwitch.transform = CGAffineTransform(scaleX: 0.95, y: 0.85)
     }
@@ -100,6 +112,7 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UIPickerV
         profileImage.image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
+        addImageButton.tintColor = UIColor(hexString: "#8B8B8B")
         addImageButton.imageView?.tintColor = UIColor(hexString: "#8B8B8B")
     }
     
@@ -193,9 +206,7 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UIPickerV
         super.viewWillAppear(animated)
 
         configureNavigationBar()
-        
-        addImageButton.imageView?.tintColor = UIColor(hexString: "#E0E0E0")
-        
+                
         configureInfo()
         
         configureMenu()
@@ -397,8 +408,9 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UIPickerV
             motherId: mother.motherId, firebaseId: mother.firebaseId, cohortId: mother.cohortId, name: nameTextField.text ?? mother.name, email: mother.email, contactEmail: emailTextField.text, shareContactEmail: emailSwitch.isOn, sharePhoneNumber: cellPhoneSwitch.isOn, phoneNumber: cellPhoneTextField.text, bio: updatedBio, languages: languages)
         
         if let image = profileImage.image {
-            let imageData:NSData = UIImagePNGRepresentation(image)! as NSData
-            let strBase64 = imageData.base64EncodedString(options: .lineLength64Characters)
+//            image.sd_imageData()
+            let imageData = UIImagePNGRepresentation(image)
+            let strBase64 = imageData!.base64EncodedString(options: .lineLength64Characters)
 
             dataManager.uploadMotherPhoto(motherId: String(updatedMother.motherId), photo: strBase64) { success, error in
                 guard success else {
@@ -459,6 +471,7 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UIPickerV
         }
 
         profileImage.image = image
+        addImageButton.imageView?.tintColor = UIColor(hexString: "#E0E0E0")
 //          self.dismiss(animated: true, completion: { () -> Void in
 //
 //          })

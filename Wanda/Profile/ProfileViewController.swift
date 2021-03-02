@@ -10,7 +10,7 @@ import FirebaseAuth
 import Foundation
 import MessageUI
 import UIKit
-import SDWebImage
+import AlamofireImage
 
 var firstView = true
 
@@ -73,11 +73,10 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
     }
     
     func getMotherPhoto() {
-        let url = URL(string: "https://wanda-photos-bucket.s3-us-west-2.amazonaws.com/12")
-        let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
-        profileImage.image = UIImage(data: data!)
-//        profileImage.sd_setImage(with: URL(string: "https://wanda-photos-bucket.s3-us-west-2.amazonaws.com/12"), placeholderImage: WandaImages.eyeIcon)
-        print("HM")
+        let motherName = dataManager.wandaMother?.name ?? "?"
+        showInitialView(name: motherName, initialImage: profileImage)
+        let downloadURL = URL(string: "https://wanda-photos-bucket.s3-us-west-2.amazonaws.com/12")!
+        profileImage.af.setImage(withURL: downloadURL)
     }
     
     func configureMotherInfo() {
@@ -176,10 +175,7 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        guard let sections = cohortSections else {
-//            return 0
-//        }
-        
+
         return dataManager.cohortSections[section].collapsed ? 0 : dataManager.cohortSections[section].mothers.count
     }
     
@@ -191,18 +187,12 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
         headerView.section = section
         headerView.delegate = self
         
-        if firstView == true {
-            print("IS IT")
-            headerView.setCollapsed(collapsed: dataManager.cohortSections[section].collapsed)
-            firstView = false
+        if dataManager.cohortSections[section].collapsed {
+            headerView.arrowImage.image = WandaImages.downArrow
         } else {
-            let collapsed = !dataManager.cohortSections[section].collapsed
-
-             // Toggle collapse
-            dataManager.cohortSections[section].collapsed = collapsed
             headerView.setCollapsed(collapsed: dataManager.cohortSections[section].collapsed)
         }
-        
+
         return headerView
     }
     
@@ -214,10 +204,12 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
         guard let cohortCell = tableView.dequeueReusableCell(withIdentifier: CohortTableViewCell.nibName(), for: indexPath) as? CohortTableViewCell else {
             return UITableViewCell()
         }
-        
-        let userName = dataManager.cohortSections[indexPath.section].mothers[indexPath.row].name
+        let cohortMother = dataManager.cohortSections[indexPath.section].mothers[indexPath.row]
+        let userName = cohortMother.name
         cohortCell.nameLabel.text = userName
         showInitialView(name: userName, initialImage: cohortCell.profilePicture)
+        let downloadURL = URL(string: "https://wanda-photos-bucket.s3-us-west-2.amazonaws.com/\(cohortMother.motherId)")!
+        cohortCell.profilePicture.af.setImage(withURL: downloadURL)
         return cohortCell
     }
     
@@ -233,15 +225,16 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
         }
         
         self.navigationController?.pushViewController(cohortMotherProfileViewController, animated: true)
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
     
     func toggleSection(_ header: CollapsibleTableViewHeader, section: Int) {
-//        let collapsed = !dataManager.cohortSections[section].collapsed
-//
-//        // Toggle collapse
-//        dataManager.cohortSections[section].collapsed = collapsed
-//        header.setCollapsed(collapsed: collapsed)
+        let collapsed = !dataManager.cohortSections[section].collapsed
+
+        // Toggle collapse
+        dataManager.cohortSections[section].collapsed = collapsed
 
         // Reload the whole section
         tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .automatic)
