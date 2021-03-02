@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="OpenSans-Regular.ttf">
+            <string>OpenSans-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WandaMenu" customModule="Wanda" customModuleProvider="target">
+            <connections>
+                <outlet property="contactUsButton" destination="ORZ-5Z-Txj" id="vKl-ml-eWs"/>
+                <outlet property="contentView" destination="JEV-s4-Wry" id="hDc-lj-Gzl"/>
+                <outlet property="logoutButton" destination="0tu-KV-HTd" id="4jc-zC-9U5"/>
+                <outletCollection property="menuView" destination="eca-6g-hfn" collectionClass="NSMutableArray" id="J2v-uF-Op3"/>
+                <outletCollection property="menuView" destination="2Tu-6z-w3t" collectionClass="NSMutableArray" id="5sU-mi-ytC"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="JEV-s4-Wry">
+            <rect key="frame" x="0.0" y="0.0" width="250" height="96"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="fZe-MN-4qb">
+                    <rect key="frame" x="0.0" y="0.0" width="250" height="96"/>
+                    <subviews>
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eca-6g-hfn" userLabel="Contact View">
+                            <rect key="frame" x="0.0" y="0.0" width="250" height="48"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EnvelopeIcon" translatesAutoresizingMaskIntoConstraints="NO" id="DjM-ra-3c0">
+                                    <rect key="frame" x="26" y="16" width="20" height="16"/>
+                                    <color key="tintColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="20" id="Mlm-lt-HdR"/>
+                                        <constraint firstAttribute="height" constant="16" id="igr-pQ-JTf"/>
+                                    </constraints>
+                                </imageView>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ORZ-5Z-Txj">
+                                    <rect key="frame" x="0.0" y="0.0" width="250" height="48"/>
+                                    <accessibility key="accessibilityConfiguration" identifier="add_to_calendar_button"/>
+                                    <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
+                                    <state key="normal">
+                                        <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
+                                    </state>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Wanda" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tKC-We-Gc0">
+                                    <rect key="frame" x="64" y="13" width="113.5" height="22"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="22" id="jgK-wi-tpl"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
+                                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstItem="tKC-We-Gc0" firstAttribute="centerY" secondItem="DjM-ra-3c0" secondAttribute="centerY" id="7Hw-Du-nWL"/>
+                                <constraint firstItem="tKC-We-Gc0" firstAttribute="leading" secondItem="DjM-ra-3c0" secondAttribute="trailing" constant="18" id="AQH-zI-4gX"/>
+                                <constraint firstItem="ORZ-5Z-Txj" firstAttribute="top" secondItem="eca-6g-hfn" secondAttribute="top" id="GKX-cZ-9lr"/>
+                                <constraint firstAttribute="trailing" secondItem="ORZ-5Z-Txj" secondAttribute="trailing" id="Miw-2n-OZU"/>
+                                <constraint firstItem="DjM-ra-3c0" firstAttribute="leading" secondItem="eca-6g-hfn" secondAttribute="leading" constant="26" id="RQD-yq-0TR"/>
+                                <constraint firstAttribute="bottom" secondItem="ORZ-5Z-Txj" secondAttribute="bottom" id="VNb-K1-V5O"/>
+                                <constraint firstItem="ORZ-5Z-Txj" firstAttribute="leading" secondItem="eca-6g-hfn" secondAttribute="leading" id="ZjW-3y-5jc"/>
+                                <constraint firstItem="tKC-We-Gc0" firstAttribute="centerY" secondItem="eca-6g-hfn" secondAttribute="centerY" id="qcX-Ir-tae"/>
+                                <constraint firstAttribute="height" constant="48" id="v0R-gp-oKq"/>
+                            </constraints>
+                        </view>
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Tu-6z-w3t" userLabel="Logout View">
+                            <rect key="frame" x="0.0" y="0.0" width="250" height="0.0"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GreyCalendarIcon" translatesAutoresizingMaskIntoConstraints="NO" id="eSe-SD-V0S">
+                                    <rect key="frame" x="26" y="-11" width="20" height="22"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="22" id="BbZ-vE-hqT"/>
+                                        <constraint firstAttribute="width" constant="20" id="Oxd-gh-YTX"/>
+                                    </constraints>
+                                </imageView>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0tu-KV-HTd">
+                                    <rect key="frame" x="0.0" y="0.0" width="250" height="0.0"/>
+                                    <accessibility key="accessibilityConfiguration" identifier="contact_us_button"/>
+                                    <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
+                                    <state key="normal">
+                                        <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
+                                    </state>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logout" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uy0-LQ-JuE">
+                                    <rect key="frame" x="67" y="-11" width="52" height="22"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="22" id="HBM-D2-pda"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
+                                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="0tu-KV-HTd" secondAttribute="bottom" id="0q4-2u-nQE"/>
+                                <constraint firstItem="0tu-KV-HTd" firstAttribute="leading" secondItem="2Tu-6z-w3t" secondAttribute="leading" id="1tY-1T-QbL"/>
+                                <constraint firstAttribute="trailing" secondItem="0tu-KV-HTd" secondAttribute="trailing" id="Bm6-Tp-8E6"/>
+                                <constraint firstItem="0tu-KV-HTd" firstAttribute="top" secondItem="2Tu-6z-w3t" secondAttribute="top" id="I4s-hQ-KQ4"/>
+                                <constraint firstItem="uy0-LQ-JuE" firstAttribute="centerY" secondItem="eSe-SD-V0S" secondAttribute="centerY" id="LuO-Ae-kv2"/>
+                                <constraint firstItem="uy0-LQ-JuE" firstAttribute="leading" secondItem="eSe-SD-V0S" secondAttribute="trailing" constant="21" id="OkE-tP-xId"/>
+                                <constraint firstItem="uy0-LQ-JuE" firstAttribute="centerY" secondItem="2Tu-6z-w3t" secondAttribute="centerY" id="a5s-Rb-4uR"/>
+                                <constraint firstItem="eSe-SD-V0S" firstAttribute="leading" secondItem="2Tu-6z-w3t" secondAttribute="leading" constant="26" id="o1q-d9-6P7"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="fZe-MN-4qb" secondAttribute="bottom" id="55P-dG-Q3o"/>
+                <constraint firstItem="fZe-MN-4qb" firstAttribute="top" secondItem="JEV-s4-Wry" secondAttribute="top" id="9qA-If-pCk"/>
+                <constraint firstItem="fZe-MN-4qb" firstAttribute="leading" secondItem="fwI-vf-cKF" secondAttribute="leading" id="H27-q6-ae5"/>
+                <constraint firstItem="fwI-vf-cKF" firstAttribute="trailing" secondItem="fZe-MN-4qb" secondAttribute="trailing" id="RZH-vM-nCb"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="fwI-vf-cKF"/>
+            <point key="canvasLocation" x="131" y="154"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="EnvelopeIcon" width="20" height="17"/>
+        <image name="GreyCalendarIcon" width="20" height="23"/>
+    </resources>
+</document>

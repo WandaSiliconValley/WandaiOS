@@ -20,10 +20,13 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
     private var nextClassesSection = 0
     private let overlayView = UIView(frame: UIScreen.main.bounds)
     static let storyboardIdentifier = String(describing: ClassesViewController.self)
+    private var menuView: WandaMenu?
+
 
     private struct DefaultHeight {
         static let headerViewHeight: CGFloat = 50
-        static let nextClassHeight: CGFloat = 118
+//        static let nextClassHeight: CGFloat = 118
+        static let nextClassHeight: CGFloat = 86
         static let upcomingClassHeight: CGFloat = 86
         static let upcomingClassBackgroundViewHeight: CGFloat = 75
     }
@@ -46,6 +49,41 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
             navigationBar.barTintColor = WandaColors.lightPurple
             navigationBar.isTranslucent = false
         }
+        
+        configureMenu()
+    }
+    
+    private func configureMenu() {
+        menuView = WandaMenu(frame: CGRect(x: 0, y: 0, width: 250, height: 96))
+        if let menuView = menuView {
+            menuView.frame.origin.y = 0
+            menuView.frame.origin.x = self.view.frame.width - menuView.frame.width
+            
+            self.view.addSubview(menuView)
+            self.view.bringSubview(toFront: menuView)
+        }
+        
+        menuView?.logoutButton.addTarget(self, action: #selector(didTapLogoutButton), for: .touchUpInside)
+        menuView?.contactUsButton.addTarget(self, action: #selector(didTapContactWanda), for: .touchUpInside)
+    }
+    
+    @objc
+    private func didTapContactWanda() {
+        guard let contactUsViewController = ViewControllerFactory.makeContactUsViewController(for: .wandaClass) else {
+            self.presentErrorAlert(for: .contactUsError)
+            return
+        }
+        
+        logAnalytic(tag: WandaAnalytics.classDetailMenuContatctWandaTapped)
+        contactUsViewController.mailComposeDelegate = self
+        contactUsViewController.setSubject("Test Title")
+        contactUsViewController.setMessageBody("Test", isHTML: false)
+        
+        if let menuView = menuView {
+            menuView.toggleMenu()
+        }
+        
+        self.present(contactUsViewController, animated: true, completion: nil)
     }
     
     // MARK: UITableViewDataSource
@@ -166,8 +204,19 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
             navigationItem.titleView = titleLabel
             navigationBar.barTintColor = WandaColors.lightPurple
             navigationItem.hidesBackButton = true
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(didTapLogoutButton))
-            navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.wandaFontRegular(size: 16)], for: .normal)
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: WandaImages.overflowIcon, style: .plain, target: self, action: #selector(didTapOverflowMenu))
+            navigationItem.rightBarButtonItem?.tintColor = UIColor.white
+
+//            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(didTapLogoutButton))
+//            navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.wandaFontRegular(size: 16)], for: .normal)
+        }
+    }
+    
+    @objc
+    private func didTapOverflowMenu() {
+//        logAnalytic(tag: WandaAnalytics.classDetailMenuButtonTapped)
+        if let menuView = menuView {
+            menuView.toggleMenu()
         }
     }
 

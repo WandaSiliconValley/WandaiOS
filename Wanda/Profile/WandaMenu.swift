@@ -1,17 +1,18 @@
 //
-//  WandaClassMenu.swift
+//  WandaMenu.swift
 //  Wanda
 //
-//  Created by Bell, Courtney on 2/20/19.
-//  Copyright © 2019 Bell, Courtney. All rights reserved.
+//  Created by Courtney Bell on 2/25/21.
+//  Copyright © 2021 Bell, Courtney. All rights reserved.
 //
+
 import Foundation
 import UIKit
-class WandaClassMenu: UIView {
-    @IBOutlet var addToCalendarButton: UIButton!
+
+class WandaMenu: UIView {
+    @IBOutlet var logoutButton: UIButton!
     @IBOutlet var contactUsButton: UIButton!
     @IBOutlet var contentView: UIView!
-    @IBOutlet var addToCalendarView: UIView!
     @IBOutlet var menuView: [UIView]!
     var view: UIView?
 
@@ -29,25 +30,13 @@ class WandaClassMenu: UIView {
         commonInit()
     }
     
-    func toggleMenu(hideCalendar: Bool = false) {
-        if hideCalendar == true {
-            addToCalendarView.isHidden = true
-        }
+    func toggleMenu() {
         var isHidden = false
         DispatchQueue.main.async {
             self.contentView.isHidden = !self.contentView.isHidden
             self.menuView.forEach { menuItem in
-                if hideCalendar == true {
-                    if menuItem != self.addToCalendarView {
-                        menuItem.isHidden = !menuItem.isHidden
-                        isHidden = menuItem.isHidden
-                    }
-                } else {
-                    if menuItem != self.addToCalendarView {
-                        menuItem.isHidden = !menuItem.isHidden
-                        isHidden = menuItem.isHidden
-                    }
-                }
+                menuItem.isHidden = !menuItem.isHidden
+                isHidden = menuItem.isHidden
             }
             
             if isHidden {
@@ -60,7 +49,7 @@ class WandaClassMenu: UIView {
 
     // MARK: Private
     private func commonInit() {
-        Bundle.main.loadNibNamed(WandaClassMenu.nibName(), owner: self, options: nil)
+        Bundle.main.loadNibNamed(WandaMenu.nibName(), owner: self, options: nil)
         self.addSubview(contentView)
         contentView.translatesAutoresizingMaskIntoConstraints = false
         contentView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true

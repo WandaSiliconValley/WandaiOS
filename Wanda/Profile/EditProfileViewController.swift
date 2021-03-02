@@ -6,10 +6,12 @@
 //  Copyright © 2021 Bell, Courtney. All rights reserved.
 //
 
+import FirebaseAuth
 import Foundation
+import MessageUI
 import UIKit
 
-class EditProfileViewController: UIViewController, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, WandaAlertViewDelegate {
+class EditProfileViewController: UIViewController, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, WandaAlertViewDelegate, MFMailComposeViewControllerDelegate {
     
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
@@ -41,8 +43,8 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UIPickerV
     
     var imagePicker = UIImagePickerController()
     var unsavedChanges = false
+    private var menuView: WandaMenu?
 
-    private var menuView: WandaClassMenu?
     let languages = [
         "Afrikaans", "Albanian", "Arabic", "Armenian", "Basque", "Bengali", "Bulgarian",
         "Catalan", "Cambodian", "Chinese (Mandarin)", "Croatian", "Czech", "Danish", "Dutch",
@@ -71,11 +73,11 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UIPickerV
         pickerView.delegate = self
         pickerView.showsSelectionIndicator = true
 
-        self.cellPhoneTextField.delegate = self
         emailTextField.delegate = self
         nameTextField.delegate = self
         languaguesTextField.delegate = self
         bioTextView.delegate = self
+        cellPhoneTextField.delegate = self
         languaguesTextField.inputView = pickerView
         
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
@@ -104,7 +106,6 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UIPickerV
     
     func configureInfo() {
         guard let mother = dataManager.wandaMother else {
-            // TO DO handle error
             return
         }
         
@@ -193,14 +194,58 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UIPickerV
 
         configureNavigationBar()
         
-//        to do - make sure we check their settings before doing this.
-//        cellPhoneSwitch.isOn = false
-//        toggleCellPhoneSwitch()
-
         addImageButton.imageView?.tintColor = UIColor(hexString: "#E0E0E0")
         
         configureInfo()
+        
+        configureMenu()
     }
+    
+    private func configureMenu() {
+        menuView = WandaMenu(frame: CGRect(x: 0, y: 0, width: 250, height: 96))
+        if let menuView = menuView {
+            menuView.frame.origin.y = 0
+            menuView.frame.origin.x = self.view.frame.width - menuView.frame.width
+            
+            self.view.addSubview(menuView)
+            self.view.bringSubview(toFront: menuView)
+        }
+        
+        menuView?.logoutButton.addTarget(self, action: #selector(didTapLogoutButton), for: .touchUpInside)
+        menuView?.contactUsButton.addTarget(self, action: #selector(didTapContactWanda), for: .touchUpInside)
+    }
+    
+    @objc
+    func didTapLogoutButton() {
+        logAnalytic(tag: WandaAnalytics.classLogoutButtonTapped)
+        do {
+            try Auth.auth().signOut()
+        } catch {
+            // We are currently failing silently and sending the user back to the LoginViewController.
+            print("Couldn't sign user out. Returning back to Login.")
+        }
+        popBack(toControllerType: LoginViewController.self)
+    }
+    
+    @objc
+    private func didTapContactWanda() {
+        guard let contactUsViewController = ViewControllerFactory.makeContactUsViewController(for: .wandaClass) else {
+            self.presentErrorAlert(for: .contactUsError)
+            return
+        }
+        
+        logAnalytic(tag: WandaAnalytics.classDetailMenuContatctWandaTapped)
+        contactUsViewController.mailComposeDelegate = self
+        contactUsViewController.setSubject("Test Title")
+        contactUsViewController.setMessageBody("Test", isHTML: false)
+        
+        if let menuView = menuView {
+            menuView.toggleMenu()
+        }
+        
+        self.present(contactUsViewController, animated: true, completion: nil)
+    }
+    
     
     private func configureNavigationBar() {
         self.navigationController?.isNavigationBarHidden = false
@@ -221,10 +266,8 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UIPickerV
         }
     }
     
-//    TO DO - will need to add a new menu list for this - doesnt work at the moment
     @objc
     private func didTapOverflowMenu() {
-        logAnalytic(tag: WandaAnalytics.classDetailMenuButtonTapped)
         if let menuView = menuView {
             menuView.toggleMenu()
         }
@@ -467,6 +510,7 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UIPickerV
             emailIncorrectLabel.textColor = WandaColors.black60
             emailIncorrectLabel.font = UIFont.wandaFontRegular(size: 12)
             emailIncorrectLabel.text = "This email will only be used for contact"
+            emailTextField.underlined(color: UIColor.black.cgColor)
         }
     }
     

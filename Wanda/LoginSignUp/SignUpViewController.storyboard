@@ -14,6 +14,9 @@
         <array key="OpenSans-Regular.ttf">
             <string>OpenSans-Regular</string>
         </array>
+        <array key="OpenSans-SemiBold.ttf">
+            <string>OpenSans-SemiBold</string>
+        </array>
     </customFonts>
     <scenes>
         <!--Sign Up View Controller-->
@@ -259,22 +262,48 @@
                                                     <constraint firstAttribute="height" constant="45" id="vq0-UB-JHN"/>
                                                 </constraints>
                                             </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Need help?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MaU-Gg-HKK">
+                                                <rect key="frame" x="16" y="633" width="63" height="17"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="17" id="hsB-S4-0KI"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="12"/>
+                                                <color key="textColor" red="0.59999999999999998" green="0.15686274509803921" blue="0.70196078431372544" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YDG-dG-Yov">
+                                                <rect key="frame" x="89" y="633" width="73" height="17"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="17" id="00A-If-Z16"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="OpenSans-SemiBold" family="Open Sans" pointSize="12"/>
+                                                <state key="normal" title="CONTACT US">
+                                                    <color key="titleColor" red="0.59999999999999998" green="0.80000000000000004" blue="0.20392156862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="didTapContactUs" destination="TuE-3r-anb" eventType="touchUpInside" id="KWB-4I-Eff"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="MaU-Gg-HKK" firstAttribute="leading" secondItem="zc8-FE-OwC" secondAttribute="leading" id="4ZX-sa-R84"/>
                                             <constraint firstItem="IPQ-dk-NpL" firstAttribute="leading" secondItem="9Pg-KE-x7E" secondAttribute="leading" constant="16" id="AHB-0O-apM"/>
                                             <constraint firstItem="WBJ-92-YDY" firstAttribute="top" secondItem="GaH-bl-cza" secondAttribute="bottom" constant="40" id="BiM-TS-eu1"/>
                                             <constraint firstItem="GaH-bl-cza" firstAttribute="top" secondItem="9Pg-KE-x7E" secondAttribute="top" id="CRX-CK-P48"/>
                                             <constraint firstItem="PZW-AG-CJw" firstAttribute="leading" secondItem="9Pg-KE-x7E" secondAttribute="leading" constant="32" id="D2i-fL-cbG"/>
                                             <constraint firstItem="IPQ-dk-NpL" firstAttribute="top" relation="greaterThanOrEqual" secondItem="5fF-4b-y4p" secondAttribute="bottom" constant="50" id="DC9-nU-eM7"/>
+                                            <constraint firstItem="YDG-dG-Yov" firstAttribute="leading" secondItem="MaU-Gg-HKK" secondAttribute="trailing" constant="10" id="IvW-ea-xmD"/>
                                             <constraint firstAttribute="trailing" secondItem="PZW-AG-CJw" secondAttribute="trailing" constant="32" id="XnV-My-ilh"/>
                                             <constraint firstItem="IPQ-dk-NpL" firstAttribute="centerX" secondItem="9Pg-KE-x7E" secondAttribute="centerX" id="Zcf-lq-V8a"/>
                                             <constraint firstItem="5fF-4b-y4p" firstAttribute="top" secondItem="PZW-AG-CJw" secondAttribute="bottom" constant="24" id="asE-X4-rl0"/>
                                             <constraint firstItem="GaH-bl-cza" firstAttribute="centerX" secondItem="9Pg-KE-x7E" secondAttribute="centerX" id="ch6-pb-MSf"/>
+                                            <constraint firstItem="MaU-Gg-HKK" firstAttribute="top" secondItem="zc8-FE-OwC" secondAttribute="bottom" constant="6" id="f8A-ZH-6qv"/>
                                             <constraint firstItem="WBJ-92-YDY" firstAttribute="leading" secondItem="9Pg-KE-x7E" secondAttribute="leading" constant="34" id="gt1-Ll-tUo"/>
                                             <constraint firstAttribute="trailing" secondItem="WBJ-92-YDY" secondAttribute="trailing" constant="32" id="pdd-Y8-EM2"/>
                                             <constraint firstAttribute="trailing" secondItem="IPQ-dk-NpL" secondAttribute="trailing" constant="16" id="piO-vY-28E"/>
                                             <constraint firstAttribute="trailing" secondItem="5fF-4b-y4p" secondAttribute="trailing" constant="32" id="qLu-3Z-2xu"/>
+                                            <constraint firstItem="YDG-dG-Yov" firstAttribute="top" secondItem="zc8-FE-OwC" secondAttribute="bottom" constant="6" id="quH-QW-hgc"/>
                                             <constraint firstItem="5fF-4b-y4p" firstAttribute="leading" secondItem="U4W-Et-xNw" secondAttribute="leading" id="tuL-gG-QUT"/>
                                             <constraint firstAttribute="bottom" secondItem="IPQ-dk-NpL" secondAttribute="bottom" constant="40" id="wyo-mP-k7o"/>
                                             <constraint firstItem="PZW-AG-CJw" firstAttribute="top" secondItem="WBJ-92-YDY" secondAttribute="bottom" constant="40" id="ykO-0V-NlG"/>

@@ -65,6 +65,8 @@
 		85FB6A5B212F870000EB8852 /* WandaLocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB6A5A212F870000EB8852 /* WandaLocalizableStrings.swift */; };
 		85FB6A5D212F8B6E00EB8852 /* WandaConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB6A5C212F8B6E00EB8852 /* WandaConstants.swift */; };
 		D9111F7025CF5035001FCE89 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9111F6F25CF5035001FCE89 /* EditProfileViewController.swift */; };
+		D911C42125E80767008FC90A /* WandaMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = D911C42025E80767008FC90A /* WandaMenu.swift */; };
+		D911C42325E80774008FC90A /* WandaMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D911C42225E80774008FC90A /* WandaMenu.xib */; };
 		D94D532625E610B100DA2441 /* CohortMotherProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94D532525E610B000DA2441 /* CohortMotherProfileViewController.swift */; };
 		D94D532A25E610F100DA2441 /* CohortMotherProfileViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D94D532925E610F100DA2441 /* CohortMotherProfileViewController.storyboard */; };
 		D964737325E3036900855199 /* CohortTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D964737225E3036900855199 /* CohortTableViewCell.xib */; };
@@ -183,6 +185,8 @@
 		85FB6A5C212F8B6E00EB8852 /* WandaConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WandaConstants.swift; sourceTree = "<group>"; };
 		9518B1ED484EC8C2CB9E8743 /* Pods-Wanda.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wanda.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wanda/Pods-Wanda.debug.xcconfig"; sourceTree = "<group>"; };
 		D9111F6F25CF5035001FCE89 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		D911C42025E80767008FC90A /* WandaMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WandaMenu.swift; sourceTree = "<group>"; };
+		D911C42225E80774008FC90A /* WandaMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WandaMenu.xib; sourceTree = "<group>"; };
 		D94D532525E610B000DA2441 /* CohortMotherProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CohortMotherProfileViewController.swift; sourceTree = "<group>"; };
 		D94D532925E610F100DA2441 /* CohortMotherProfileViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CohortMotherProfileViewController.storyboard; sourceTree = "<group>"; };
 		D964737225E3036900855199 /* CohortTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CohortTableViewCell.xib; sourceTree = "<group>"; };
@@ -445,6 +449,8 @@
 				D964737425E304BA00855199 /* CohortTableViewCell.swift */,
 				D94D532525E610B000DA2441 /* CohortMotherProfileViewController.swift */,
 				D94D532925E610F100DA2441 /* CohortMotherProfileViewController.storyboard */,
+				D911C42025E80767008FC90A /* WandaMenu.swift */,
+				D911C42225E80774008FC90A /* WandaMenu.xib */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -628,6 +634,7 @@
 				856960D6205100AB00ADFF9A /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				8581DD5D21A33E8400EC12EF /* LoginViewController.storyboard in Resources */,
 				856960D5205100A900ADFF9A /* OpenSans-ExtraBold.ttf in Resources */,
+				D911C42325E80774008FC90A /* WandaMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -751,6 +758,7 @@
 				D964737B25E4E5B500855199 /* CohortNetworkController.swift in Sources */,
 				8545C3C322207A4D00FC392E /* UITextField+Wanda.swift in Sources */,
 				85A2E92A221366E9005A9296 /* ClassRSVPNetworkController.swift in Sources */,
+				D911C42125E80767008FC90A /* WandaMenu.swift in Sources */,
 				8533412921E140C6003A0ABB /* WandaMother.swift in Sources */,
 				85FB6A5B212F870000EB8852 /* WandaLocalizableStrings.swift in Sources */,
 				85A0E30A2220B6A100EEE5DF /* ForgotPasswordViewController.swift in Sources */,

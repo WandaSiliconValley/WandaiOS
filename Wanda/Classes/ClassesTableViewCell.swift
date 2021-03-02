@@ -55,14 +55,24 @@ class ClassesTableViewCell: UITableViewCell {
         
       //  let numberOfDays = Calendar.current.dateComponents([.day], from: eventDate, to: Date()).day ?? 0
       //  if numberOfDays <= 7 {
-            switch wandaClass.isReserved {
-                case true:
-                    reservationButton.isHidden = true
-                    reservedView.isHidden = false
-                case false:
-                    reservationButton.isHidden = false
-                    reservedView.isHidden = true
-            }
+        
+        
+        reservationButton.isHidden = true
+        reservedView.isHidden = true
+        
+//            switch wandaClass.isReserved {
+//                case true:
+//                    reservationButton.isHidden = true
+//                    reservedView.isHidden = false
+//                case false:
+//                    reservationButton.isHidden = false
+//                    reservedView.isHidden = true
+//            }
+        
+        
+        
+        
+        
      //   } else {
 //            reservationButton.isHidden = true
 //            reservedView.isHidden = true
