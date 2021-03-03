@@ -27,7 +27,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6aq-8v-hhf" customClass="CircularImageView" customModule="Wanda" customModuleProvider="target">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6aq-8v-hhf" customClass="CircularImageView" customModule="Wanda" customModuleProvider="target">
                                 <rect key="frame" x="270" y="60" width="128" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="6aq-8v-hhf" secondAttribute="height" multiplier="1:1" id="DhG-W0-QxJ"/>
@@ -110,6 +110,9 @@
                                         <state key="normal">
                                             <color key="titleColor" red="0.15686274510000001" green="0.21960784310000001" blue="0.77647058820000003" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="didTapPhoneNumber:" destination="iJx-mg-xYU" eventType="touchUpInside" id="cbE-U1-f8S"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TwI-YO-6xg">
                                         <rect key="frame" x="0.0" y="219" width="27" height="14"/>

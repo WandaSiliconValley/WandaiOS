@@ -75,8 +75,10 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
     func getMotherPhoto() {
         let motherName = dataManager.wandaMother?.name ?? "?"
         showInitialView(name: motherName, initialImage: profileImage)
-        let downloadURL = URL(string: "https://wanda-photos-bucket.s3-us-west-2.amazonaws.com/12")!
-        profileImage.af.setImage(withURL: downloadURL)
+        if let motherId = dataManager.wandaMother?.motherId {
+            let downloadURL = URL(string: "https://wanda-photos-bucket.s3-us-west-2.amazonaws.com/\(motherId)")!
+            profileImage.af.setImage(withURL: downloadURL)
+        }
     }
     
     func configureMotherInfo() {
@@ -276,21 +278,25 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
     
     @objc
     private func didTapContactWanda() {
-        guard let contactUsViewController = ViewControllerFactory.makeContactUsViewController(for: .wandaClass) else {
+        guard let contactUsViewController = ViewControllerFactory.makeContactUsViewController(for: .profileHelp) else {
             self.presentErrorAlert(for: .contactUsError)
             return
         }
         
-        logAnalytic(tag: WandaAnalytics.classDetailMenuContatctWandaTapped)
         contactUsViewController.mailComposeDelegate = self
-        contactUsViewController.setSubject("Test Title")
-        contactUsViewController.setMessageBody("Test", isHTML: false)
         
         if let menuView = menuView {
             menuView.toggleMenu()
         }
         
         self.present(contactUsViewController, animated: true, completion: nil)
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController,
+                               didFinishWith result: MFMailComposeResult, error: Error?) {
+        
+        // Dismiss the mail compose view controller.
+        controller.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func didTapEditProfile() {

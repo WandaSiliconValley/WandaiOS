@@ -186,15 +186,12 @@ class CohortMotherProfileViewController: UIViewController, MFMailComposeViewCont
     
     @objc
     private func didTapContactWanda() {
-        guard let contactUsViewController = ViewControllerFactory.makeContactUsViewController(for: .wandaClass) else {
+        guard let contactUsViewController = ViewControllerFactory.makeContactUsViewController(for: .cohortMotherProfile) else {
             self.presentErrorAlert(for: .contactUsError)
             return
         }
         
-        logAnalytic(tag: WandaAnalytics.classDetailMenuContatctWandaTapped)
         contactUsViewController.mailComposeDelegate = self
-        contactUsViewController.setSubject("Test Title")
-        contactUsViewController.setMessageBody("Test", isHTML: false)
         
         if let menuView = menuView {
             menuView.toggleMenu()
@@ -203,8 +200,24 @@ class CohortMotherProfileViewController: UIViewController, MFMailComposeViewCont
         self.present(contactUsViewController, animated: true, completion: nil)
     }
     
+    func mailComposeController(_ controller: MFMailComposeViewController,
+                               didFinishWith result: MFMailComposeResult, error: Error?) {
+        
+        // Dismiss the mail compose view controller.
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
     @objc
     private func backButtonPressed(_ sender: UIButton) {
         _ = navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func didTapPhoneNumber(_ sender: UIButton) {
+        guard let phoneNumber = sender.titleLabel?.text, let url = URL(string: "tel://\(phoneNumber)"), UIApplication.shared.canOpenURL(url) else {
+            self.presentErrorAlert(for: .contactUsError)
+            return
+        }
+        
+        UIApplication.shared.open(url)
     }
 }

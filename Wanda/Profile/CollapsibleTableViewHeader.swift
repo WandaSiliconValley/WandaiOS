@@ -64,7 +64,9 @@ class CollapsibleTableViewHeader: UITableViewHeaderFooterView {
     }
     
     func setCollapsed(collapsed: Bool) {
-        print("TESTANG")
-        self.arrowImage.transform = self.arrowImage.transform.rotated(by: .pi)
+        UIView.animate(withDuration: 2.0,  delay: 0.0,
+        options: [], animations: {
+            self.arrowImage.transform = self.arrowImage.transform.rotated(by: .pi)
+        })
     }
 }

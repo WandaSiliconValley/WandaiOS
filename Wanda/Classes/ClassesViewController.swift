@@ -69,21 +69,25 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
     
     @objc
     private func didTapContactWanda() {
-        guard let contactUsViewController = ViewControllerFactory.makeContactUsViewController(for: .wandaClass) else {
+        guard let contactUsViewController = ViewControllerFactory.makeContactUsViewController(for: .classes) else {
             self.presentErrorAlert(for: .contactUsError)
             return
         }
         
-        logAnalytic(tag: WandaAnalytics.classDetailMenuContatctWandaTapped)
         contactUsViewController.mailComposeDelegate = self
-        contactUsViewController.setSubject("Test Title")
-        contactUsViewController.setMessageBody("Test", isHTML: false)
         
         if let menuView = menuView {
             menuView.toggleMenu()
         }
         
         self.present(contactUsViewController, animated: true, completion: nil)
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController,
+                               didFinishWith result: MFMailComposeResult, error: Error?) {
+        
+        // Dismiss the mail compose view controller.
+        controller.dismiss(animated: true, completion: nil)
     }
     
     // MARK: UITableViewDataSource

@@ -75,6 +75,10 @@
 		D964737925E367CD00855199 /* UIImage+Wanda.swift in Sources */ = {isa = PBXBuildFile; fileRef = D964737825E367CD00855199 /* UIImage+Wanda.swift */; };
 		D964737B25E4E5B500855199 /* CohortNetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D964737A25E4E5B500855199 /* CohortNetworkController.swift */; };
 		D964737D25E4E62B00855199 /* Cohort.swift in Sources */ = {isa = PBXBuildFile; fileRef = D964737C25E4E62B00855199 /* Cohort.swift */; };
+		D99F4C5625EF60C6001D4BDC /* LanguagesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D99F4C5525EF60C6001D4BDC /* LanguagesTableViewCell.xib */; };
+		D99F4C5825EF60D7001D4BDC /* LanguagesDropDown.xib in Resources */ = {isa = PBXBuildFile; fileRef = D99F4C5725EF60D7001D4BDC /* LanguagesDropDown.xib */; };
+		D99F4C5A25EF6203001D4BDC /* LanguagesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99F4C5925EF6203001D4BDC /* LanguagesTableViewCell.swift */; };
+		D99F4C5C25EF6257001D4BDC /* LanguagesDropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99F4C5B25EF6257001D4BDC /* LanguagesDropDown.swift */; };
 		D9C0769825DE38DA00C89FC6 /* CollapsibleTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C0769725DE38DA00C89FC6 /* CollapsibleTableViewHeader.swift */; };
 		D9C0769A25DE3BF600C89FC6 /* TabbedViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9C0769925DE3BF600C89FC6 /* TabbedViewController.storyboard */; };
 		D9C0769C25DE3C2600C89FC6 /* TabbedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C0769B25DE3C2600C89FC6 /* TabbedViewController.swift */; };
@@ -82,7 +86,6 @@
 		D9CAFAC625CF12F30011C4D5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CAFAC225CF12F20011C4D5 /* ProfileViewController.swift */; };
 		D9CB014925E774F700EE4821 /* PhotoNetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CB014825E774F700EE4821 /* PhotoNetworkController.swift */; };
 		D9D8A74C25DF4C24004233EC /* CircularImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D8A74B25DF4C24004233EC /* CircularImageView.swift */; };
-		D9D8A74E25DF5517004233EC /* CohortHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9D8A74D25DF5517004233EC /* CohortHeaderView.xib */; };
 		D9E6C46725CF1F6C00FBFBC8 /* EditProfileViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9E6C46625CF1F6C00FBFBC8 /* EditProfileViewController.storyboard */; };
 		F1296AA823541E12001AED6C /* SignUpSuccessScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1296AA723541E12001AED6C /* SignUpSuccessScreen.swift */; };
 		F12B5F8622A797BE001B2E27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F12B5F8522A797BE001B2E27 /* GoogleService-Info.plist */; };
@@ -195,6 +198,10 @@
 		D964737825E367CD00855199 /* UIImage+Wanda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Wanda.swift"; sourceTree = "<group>"; };
 		D964737A25E4E5B500855199 /* CohortNetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CohortNetworkController.swift; sourceTree = "<group>"; };
 		D964737C25E4E62B00855199 /* Cohort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cohort.swift; sourceTree = "<group>"; };
+		D99F4C5525EF60C6001D4BDC /* LanguagesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LanguagesTableViewCell.xib; sourceTree = "<group>"; };
+		D99F4C5725EF60D7001D4BDC /* LanguagesDropDown.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LanguagesDropDown.xib; sourceTree = "<group>"; };
+		D99F4C5925EF6203001D4BDC /* LanguagesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagesTableViewCell.swift; sourceTree = "<group>"; };
+		D99F4C5B25EF6257001D4BDC /* LanguagesDropDown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagesDropDown.swift; sourceTree = "<group>"; };
 		D9C0769725DE38DA00C89FC6 /* CollapsibleTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollapsibleTableViewHeader.swift; sourceTree = "<group>"; };
 		D9C0769925DE3BF600C89FC6 /* TabbedViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabbedViewController.storyboard; sourceTree = "<group>"; };
 		D9C0769B25DE3C2600C89FC6 /* TabbedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbedViewController.swift; sourceTree = "<group>"; };
@@ -202,7 +209,6 @@
 		D9CAFAC225CF12F20011C4D5 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D9CB014825E774F700EE4821 /* PhotoNetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoNetworkController.swift; sourceTree = "<group>"; };
 		D9D8A74B25DF4C24004233EC /* CircularImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularImageView.swift; sourceTree = "<group>"; };
-		D9D8A74D25DF5517004233EC /* CohortHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CohortHeaderView.xib; sourceTree = "<group>"; };
 		D9E6C46625CF1F6C00FBFBC8 /* EditProfileViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditProfileViewController.storyboard; sourceTree = "<group>"; };
 		F1296AA723541E12001AED6C /* SignUpSuccessScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpSuccessScreen.swift; sourceTree = "<group>"; };
 		F12B5F8522A797BE001B2E27 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -444,13 +450,16 @@
 				D9C0769925DE3BF600C89FC6 /* TabbedViewController.storyboard */,
 				D9C0769B25DE3C2600C89FC6 /* TabbedViewController.swift */,
 				D9D8A74B25DF4C24004233EC /* CircularImageView.swift */,
-				D9D8A74D25DF5517004233EC /* CohortHeaderView.xib */,
 				D964737225E3036900855199 /* CohortTableViewCell.xib */,
 				D964737425E304BA00855199 /* CohortTableViewCell.swift */,
 				D94D532525E610B000DA2441 /* CohortMotherProfileViewController.swift */,
 				D94D532925E610F100DA2441 /* CohortMotherProfileViewController.storyboard */,
 				D911C42025E80767008FC90A /* WandaMenu.swift */,
 				D911C42225E80774008FC90A /* WandaMenu.xib */,
+				D99F4C5525EF60C6001D4BDC /* LanguagesTableViewCell.xib */,
+				D99F4C5725EF60D7001D4BDC /* LanguagesDropDown.xib */,
+				D99F4C5925EF6203001D4BDC /* LanguagesTableViewCell.swift */,
+				D99F4C5B25EF6257001D4BDC /* LanguagesDropDown.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -604,13 +613,13 @@
 			files = (
 				D9E6C46725CF1F6C00FBFBC8 /* EditProfileViewController.storyboard in Resources */,
 				856960D8205100AF00ADFF9A /* OpenSans-Light.ttf in Resources */,
+				D99F4C5825EF60D7001D4BDC /* LanguagesDropDown.xib in Resources */,
 				85670814204CCA7D00305B85 /* WandaClassViewController.storyboard in Resources */,
 				85C181B620ACE7BC003A8556 /* WandaSuccessViewController.storyboard in Resources */,
 				856960D9205100B200ADFF9A /* OpenSans-LightItalic.ttf in Resources */,
 				85235A5B22227027002CABD5 /* WandaAlertViewController.storyboard in Resources */,
 				854CB2DE21750FA4008A1019 /* ClassesTableViewCell.xib in Resources */,
 				856960DB205100B700ADFF9A /* OpenSans-SemiBold.ttf in Resources */,
-				D9D8A74E25DF5517004233EC /* CohortHeaderView.xib in Resources */,
 				F12B5F8622A797BE001B2E27 /* GoogleService-Info.plist in Resources */,
 				F14CA77123A0B25E00B0D2D6 /* LoginSignUpViewController.storyboard in Resources */,
 				856960D3205100A500ADFF9A /* OpenSans-Bold.ttf in Resources */,
@@ -632,6 +641,7 @@
 				856960D22051009700ADFF9A /* LICENSE.txt in Resources */,
 				856960D7205100AD00ADFF9A /* OpenSans-Italic.ttf in Resources */,
 				856960D6205100AB00ADFF9A /* OpenSans-ExtraBoldItalic.ttf in Resources */,
+				D99F4C5625EF60C6001D4BDC /* LanguagesTableViewCell.xib in Resources */,
 				8581DD5D21A33E8400EC12EF /* LoginViewController.storyboard in Resources */,
 				856960D5205100A900ADFF9A /* OpenSans-ExtraBold.ttf in Resources */,
 				D911C42325E80774008FC90A /* WandaMenu.xib in Resources */,
@@ -758,9 +768,11 @@
 				D964737D25E4E62B00855199 /* Cohort.swift in Sources */,
 				859ED2082249C02C006580C8 /* UIActivityIndicatorView+Wanda.swift in Sources */,
 				D964737B25E4E5B500855199 /* CohortNetworkController.swift in Sources */,
+				D99F4C5C25EF6257001D4BDC /* LanguagesDropDown.swift in Sources */,
 				8545C3C322207A4D00FC392E /* UITextField+Wanda.swift in Sources */,
 				85A2E92A221366E9005A9296 /* ClassRSVPNetworkController.swift in Sources */,
 				D911C42125E80767008FC90A /* WandaMenu.swift in Sources */,
+				D99F4C5A25EF6203001D4BDC /* LanguagesTableViewCell.swift in Sources */,
 				8533412921E140C6003A0ABB /* WandaMother.swift in Sources */,
 				85FB6A5B212F870000EB8852 /* WandaLocalizableStrings.swift in Sources */,
 				85A0E30A2220B6A100EEE5DF /* ForgotPasswordViewController.swift in Sources */,

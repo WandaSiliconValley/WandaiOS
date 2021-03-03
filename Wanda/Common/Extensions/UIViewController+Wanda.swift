@@ -27,6 +27,7 @@ extension UIViewController {
             viewControllers = viewControllers.reversed()
             for currentViewController in viewControllers {
                 if currentViewController .isKind(of: toControllerType) {
+                    self.dismiss(animated: false)
                     self.navigationController?.popToViewController(currentViewController, animated: true)
                     break
                 }

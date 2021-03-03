@@ -11,7 +11,7 @@ import Foundation
 import MessageUI
 import UIKit
 
-class EditProfileViewController: UIViewController, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, WandaAlertViewDelegate, MFMailComposeViewControllerDelegate {
+class EditProfileViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, WandaAlertViewDelegate, MFMailComposeViewControllerDelegate {
     
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
@@ -44,17 +44,9 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UIPickerV
     var imagePicker = UIImagePickerController()
     var unsavedChanges = false
     private var menuView: WandaMenu?
+//    private var dropDown: LanguagesDropDown?
 
-    let languages = [
-        "Afrikaans", "Albanian", "Arabic", "Armenian", "Basque", "Bengali", "Bulgarian",
-        "Catalan", "Cambodian", "Chinese (Mandarin)", "Croatian", "Czech", "Danish", "Dutch",
-        "English", "Estonian", "Fiji", "Finnish", "French", "Georgian", "German", "Greek",
-        "Gujarati", "Hebrew", "Hindi", "Hungarian", "Icelandic", "Indonesian", "Irish", "Italian",
-        "Japanese", "Javanese", "Korean", "Latin", "Latvian", "Lithuanian", "Macedonian", "Malay",
-        "Malayalam", "Maltese", "Maori", "Marathi", "Mongolian", "Nepali", "Norwegian", "Persian",
-        "Polish", "Portuguese", "Punjabi", "Quechua", "Romanian", "Russian", "Samoan", "Serbian",
-        "Slovak", "Slovenian", "Spanish", "Swahili", "Swedish", "Tamil", "Tatar", "Telugu", "Thai",
-        "Tibetan", "Tonga", "Turkish", "Ukrainian", "Urdu", "Uzbek", "Vietnamese", "Welsh", "Xhosa"]
+
 
     static let storyboardIdentifier = String(describing: EditProfileViewController.self)
     private var dataManager = WandaDataManager.shared
@@ -69,16 +61,17 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UIPickerV
         setupBioViewPlaceholder()
         addImagesToTextFields()
 
-        let pickerView = UIPickerView()
-        pickerView.delegate = self
-        pickerView.showsSelectionIndicator = true
+//        let pickerView = UIPickerView()
+//        pickerView.delegate = self
+//        pickerView.showsSelectionIndicator = true
 
         emailTextField.delegate = self
         nameTextField.delegate = self
         languaguesTextField.delegate = self
         bioTextView.delegate = self
         cellPhoneTextField.delegate = self
-        languaguesTextField.inputView = pickerView
+//        languaguesTextField.inputView = LanguagesDropDown(frame: CGRect(x: 0, y: 0, width: 250, height: 96))
+//        languaguesTextField.inputView = pickerView
         
         if let motherId =  dataManager.wandaMother?.motherId {
             let downloadURL = URL(string: "https://wanda-photos-bucket.s3-us-west-2.amazonaws.com/\(motherId)")!
@@ -177,26 +170,26 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UIPickerV
     }
     
     
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-
-   // Sets the number of rows in the picker view
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-       return languages.count
-   }
-    
-
-   // This function sets the text of the picker view to the content of the "languages" array
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-       return languages[row]
-   }
+//    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+//        return 1
+//    }
+//
+//   // Sets the number of rows in the picker view
+//    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+//       return languages.count
+//   }
+//
+//
+//   // This function sets the text of the picker view to the content of the "languages" array
+//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+//       return languages[row]
+//   }
 
    // When user selects an option, this function will set the text of the text field to reflect
    // the selected option.
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-       languaguesTextField.text = languages[row]
-   }
+//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+//       languaguesTextField.text = languages[row]
+//   }
     
     override func viewDidLayoutSubviews() {
         scrollView.contentSize = contentView.frame.size
@@ -210,6 +203,8 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UIPickerV
         configureInfo()
         
         configureMenu()
+        
+//        configureDropDown()
     }
     
     private func configureMenu() {
@@ -225,6 +220,20 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UIPickerV
         menuView?.logoutButton.addTarget(self, action: #selector(didTapLogoutButton), for: .touchUpInside)
         menuView?.contactUsButton.addTarget(self, action: #selector(didTapContactWanda), for: .touchUpInside)
     }
+//
+//    private func configureDropDown() {
+//        dropDown = LanguagesDropDown(frame: CGRect(x: 500, y: 500, width: 250, height: 96))
+//        if let dropDown = dropDown {
+//            dropDown.frame.origin.y = 0
+//            dropDown.frame.origin.x = self.view.frame.width - dropDown.frame.width
+//
+//            self.view.addSubview(dropDown)
+//            self.view.bringSubview(toFront: dropDown)
+//        }
+//
+////        menuView?.logoutButton.addTarget(self, action: #selector(didTapLogoutButton), for: .touchUpInside)
+////        menuView?.contactUsButton.addTarget(self, action: #selector(didTapContactWanda), for: .touchUpInside)
+//    }
     
     @objc
     func didTapLogoutButton() {
@@ -240,21 +249,25 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UIPickerV
     
     @objc
     private func didTapContactWanda() {
-        guard let contactUsViewController = ViewControllerFactory.makeContactUsViewController(for: .wandaClass) else {
+        guard let contactUsViewController = ViewControllerFactory.makeContactUsViewController(for: .editProfile) else {
             self.presentErrorAlert(for: .contactUsError)
             return
         }
         
-        logAnalytic(tag: WandaAnalytics.classDetailMenuContatctWandaTapped)
         contactUsViewController.mailComposeDelegate = self
-        contactUsViewController.setSubject("Test Title")
-        contactUsViewController.setMessageBody("Test", isHTML: false)
         
         if let menuView = menuView {
             menuView.toggleMenu()
         }
         
         self.present(contactUsViewController, animated: true, completion: nil)
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController,
+                               didFinishWith result: MFMailComposeResult, error: Error?) {
+        
+        // Dismiss the mail compose view controller.
+        controller.dismiss(animated: true, completion: nil)
     }
     
     
@@ -501,11 +514,13 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UIPickerV
     }
     
     @IBAction func languagesTextFieldEditingDidBegin(_ sender: UITextField) {
+//        dropDown?.toggleLanguagesDropDown()
         profileTextFieldEditingDidBegin(languaguesTextField, languagesLabel)
         unsavedChanges = true
     }
     
     @IBAction func languagesTextFieldEditingDidEnd(_ sender: UITextField) {
+//        dropDown?.toggleLanguagesDropDown()
         profileTextFieldEditingDidEnd(languaguesTextField, languagesLabel, "Languages")
     }
     
@@ -676,8 +691,9 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UIPickerV
 //
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         let nextTag = textField.tag + 1
-
-        if let nextResponder = textField.superview?.superview?.viewWithTag(nextTag) {
+        
+        print("CELL PHONE TAG \(cellPhoneTextField.tag)")
+        if let nextResponder = textField.superview?.superview?.superview?.viewWithTag(nextTag) {
             nextResponder.becomeFirstResponder()
         } else {
             textField.resignFirstResponder()

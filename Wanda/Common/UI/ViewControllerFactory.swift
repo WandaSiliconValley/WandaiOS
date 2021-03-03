@@ -14,6 +14,10 @@ enum ContactUsType {
     case profile
     case signUp
     case wandaClass
+    case cohortMotherProfile
+    case classes
+    case profileHelp
+    case editProfile
 }
 
 /// A collection of view controller instances.
@@ -85,9 +89,21 @@ struct ViewControllerFactory {
             case .login:
                 emailComposeViewController.setToRecipients([WandaConstants.wandaSupportEmail])
                 emailComposeViewController.setSubject("Login Help")
-            case .profile:
+            case .cohortMotherProfile:
                 emailComposeViewController.setToRecipients([recipient])
-                emailComposeViewController.setSubject("Hi")
+                emailComposeViewController.setSubject("Hi!")
+            case .profile:
+                 emailComposeViewController.setToRecipients([recipient])
+                 emailComposeViewController.setSubject("Hi!")
+            case .profileHelp:
+                emailComposeViewController.setToRecipients([WandaConstants.wandaSupportEmail])
+                emailComposeViewController.setSubject("Profile Help")
+            case .editProfile:
+                emailComposeViewController.setToRecipients([WandaConstants.wandaSupportEmail])
+                emailComposeViewController.setSubject("Edit Profile Help")
+            case .classes:
+                emailComposeViewController.setToRecipients([WandaConstants.wandaSupportEmail])
+                emailComposeViewController.setSubject("Classes Help")
             case .signUp:
                 emailComposeViewController.setToRecipients([WandaConstants.wandaSupportEmail])
                 emailComposeViewController.setSubject("Sign Up Help")

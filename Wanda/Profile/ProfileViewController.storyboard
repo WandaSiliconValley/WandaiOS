@@ -27,7 +27,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6aq-8v-hhf" customClass="CircularImageView" customModule="Wanda" customModuleProvider="target">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6aq-8v-hhf" customClass="CircularImageView" customModule="Wanda" customModuleProvider="target">
                                 <rect key="frame" x="270" y="60" width="128" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="6aq-8v-hhf" secondAttribute="height" multiplier="1:1" id="DhG-W0-QxJ"/>
@@ -160,9 +160,10 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="a1a-Bh-osI">
                                 <rect key="frame" x="16" y="525.5" width="381" height="287.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="a1a-Bh-osI" firstAttribute="top" secondItem="fuV-V4-PIU" secondAttribute="top" constant="16" id="0GR-V5-cp7"/>
                             <constraint firstItem="Kuf-8O-bTA" firstAttribute="trailing" secondItem="fuV-V4-PIU" secondAttribute="trailing" constant="16" id="2aA-SB-OWA"/>
