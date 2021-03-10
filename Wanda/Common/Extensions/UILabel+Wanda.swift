@@ -9,13 +9,15 @@
 import UIKit
 
 extension UILabel {
-    func configureError(_ errorMessage: String, invalidTextField: UITextField) {
+    func configureError(_ errorMessage: String, invalidTextField: UITextField, _ shake: Bool = true) {
         self.isHidden = false
         self.text = errorMessage
         self.font = UIFont.wandaFontItalic(size: 12)
         self.textColor = WandaColors.newErrorRed
         invalidTextField.underlined(color: WandaColors.newErrorRed.cgColor)
-        invalidTextField.shake()
+        if shake == true {
+            invalidTextField.shake()
+        }
     }
 
     func configureValidEmail(_ emailTextField:UITextField) {

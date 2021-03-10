@@ -25,4 +25,5 @@ struct WandaColors {
     static let brightPurple = UIColor(hexString: "#6200EE")
     static let lightBlack = UIColor(white: 0.0, alpha: 0.38)
     static let black60 = UIColor(white: 0.0, alpha: 0.60)
+    static let black87 = UIColor(white: 0.0, alpha: 0.87)
 }

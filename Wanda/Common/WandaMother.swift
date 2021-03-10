@@ -58,14 +58,12 @@ struct WandaMotherInfo: CustomDebugStringConvertible {
         email = wandaMother.email
         reservedClassIds = wandaMother.reservedClassIds
         cohortId = wandaMother.cohortId
-//        contactEmail = wandaMother.contactEmail
-        contactEmail = "bellcourtney@yahoo.com"
+        contactEmail = wandaMother.contactEmail
         shareContactEmail = wandaMother.shareContactEmail
         sharePhoneNumber = wandaMother.sharePhoneNumber
         phoneNumber = wandaMother.phoneNumber
         bio = wandaMother.bio
-        languages = ["English", "Spanish"]
-//        languages = wandaMother.languages
+        languages = wandaMother.languages
     }
 
     var debugDescription: String {

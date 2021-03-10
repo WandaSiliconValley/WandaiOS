@@ -14,6 +14,7 @@ enum WandaAlertType {
     case addEventError
     case cancelRSVP
     case contactUsError
+    case cohortMotherError
     case forgotPasswordSuccess
     case networkError
     case systemError
@@ -63,6 +64,11 @@ class WandaAlertViewController: UIViewController, MFMailComposeViewControllerDel
             case .contactUsError:
                 alertTitleLabel.text = ErrorStrings.systemError
                 alertMessageLabel.text = "We can't seem to access your email. You may need to check your settings."
+                closeButton.isHidden = true
+                actionButton.setTitle(GeneralStrings.dismissAction, for: .normal)
+            case .cohortMotherError:
+                alertTitleLabel.text = ErrorStrings.systemError
+                alertMessageLabel.text = "We can't seem to load this profile. Please try again later."
                 closeButton.isHidden = true
                 actionButton.setTitle(GeneralStrings.dismissAction, for: .normal)
             case .forgotPasswordSuccess:

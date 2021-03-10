@@ -45,13 +45,50 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
 //      }
 //    }
     
+    let bioPlaceholderText =  "'Here is your bio, let your cohort know a bit about you. If you have preferences for how to be contacted let other moms know here :)'"
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideMenuIfPossible))
+        self.view.addGestureRecognizer(tap)
+        
+        tableView.dataSource = self
+        tableView.delegate = self
+        let cohortTableViewCellNib = UINib(nibName: CohortTableViewCell.nibName(), bundle: nibBundle)
+        tableView.register(cohortTableViewCellNib, forCellReuseIdentifier: CohortTableViewCell.nibName())
+        let classesHeaderViewNib = UINib(nibName: CollapsibleTableViewHeader.nibName(), bundle: nibBundle)
+        tableView.register(classesHeaderViewNib, forHeaderFooterViewReuseIdentifier: CollapsibleTableViewHeader.nibName())
         
         // Auto resizing the height of the cell
         tableView.estimatedRowHeight = 56.0
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.separatorStyle = .none
+        configureMenu()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        hideMenuIfPossible()
+    }
+    
+    @objc
+    func hideMenuIfPossible() {
+        guard menuView?.contentView.isHidden == false else {
+            return
+        }
+        
+        menuView?.toggleMenu()
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        guard let menuView = menuView else {
+            return false
+        }
+
+        return !menuView.isHidden
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,14 +99,23 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
 //        let motherName = dataManager.wandaMother?.name ?? "?"
 //        showInitialView(name: motherName, initialImage: profileImage)
         configureMotherInfo()
-        
-        tableView.dataSource = self
-        tableView.delegate = self
-        let cohortTableViewCellNib = UINib(nibName: CohortTableViewCell.nibName(), bundle: nibBundle)
-        tableView.register(cohortTableViewCellNib, forCellReuseIdentifier: CohortTableViewCell.nibName())
-        let classesHeaderViewNib = UINib(nibName: CollapsibleTableViewHeader.nibName(), bundle: nibBundle)
-        tableView.register(classesHeaderViewNib, forHeaderFooterViewReuseIdentifier: CollapsibleTableViewHeader.nibName())
-        configureMenu()
+
+        adjustUITextViewHeight()
+    }
+    
+//    override func viewWillDisappear(_ animated: Bool) {
+//        if menuView?.isHidden == false {
+//            menuView?.toggleMenu()
+//        }
+//    }
+    
+    func adjustUITextViewHeight()
+    {
+        bioLabel.invalidateIntrinsicContentSize()
+        bioLabel.sizeToFit()
+        bioLabel.layoutSubviews()
+        bioLabel.setNeedsLayout()
+        bioLabel.layoutIfNeeded()
     }
     
     func getMotherPhoto() {
@@ -91,6 +137,8 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
         
         if mother.bio?.isEmpty == false, let bio = mother.bio {
             bioLabel.text = bio
+        } else {
+            bioLabel.text = bioPlaceholderText
         }
         
         if mother.shareContactEmail == true, let email = mother.contactEmail {
@@ -222,11 +270,16 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cohortSection = dataManager.cohortSections[indexPath.section]
         let cohortMother = cohortSection.mothers[indexPath.row]
-        guard let cohortMotherProfileViewController = ViewControllerFactory.makeCohortMotherProfileViewController(cohortMother: cohortMother, cohortId: cohortSection.cohortId) else {
+        let idk = false
+//        guard let cohortMotherProfileViewController = ViewControllerFactory.makeCohortMotherProfileViewController(cohortMother: cohortMother, cohortId: cohortSection.cohortId) else {
+        guard idk == true else {
+            self.presentErrorAlert(for: .cohortMotherError)
             return
         }
         
-        self.navigationController?.pushViewController(cohortMotherProfileViewController, animated: true)
+        hideMenuIfPossible()
+        
+//        self.navigationController?.pushViewController(cohortMotherProfileViewController, animated: true)
         
         tableView.deselectRow(at: indexPath, animated: true)
     }

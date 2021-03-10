@@ -183,7 +183,7 @@ struct LoginSignUpStrings {
     }
     static var invalidEmail: String {
         return NSLocalizedString("Wanda_LoginSignUp_InvalidEmail",
-            value: "Not a valid email",
+            value: "Please enter a valid email",
             comment: "Message indicating that the email entered is invalid.")
     }
     static var login: String {

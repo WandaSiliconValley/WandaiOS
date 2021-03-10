@@ -53,6 +53,37 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
         configureMenu()
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideMenuIfPossible))
+        self.view.addGestureRecognizer(tap)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        hideMenuIfPossible()
+    }
+    
+    @objc
+    func hideMenuIfPossible() {
+        guard menuView?.contentView.isHidden == false else {
+            return
+        }
+        
+        menuView?.toggleMenu()
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        guard let menuView = menuView else {
+            return false
+        }
+
+        return !menuView.isHidden
+    }
+    
+    
     private func configureMenu() {
         menuView = WandaMenu(frame: CGRect(x: 0, y: 0, width: 250, height: 96))
         if let menuView = menuView {
