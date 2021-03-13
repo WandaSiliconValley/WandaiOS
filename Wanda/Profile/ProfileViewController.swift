@@ -15,6 +15,8 @@ import AlamofireImage
 var firstView = true
 
 class ProfileViewController: UIViewController, MFMailComposeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, CollapsibleTableViewHeaderDelegate, UIGestureRecognizerDelegate, WandaAlertViewDelegate {
+    @IBOutlet var scrollView: UIScrollView!
+    @IBOutlet weak var contentView: UIView!
     @IBOutlet var tableView: UITableView!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var bioTitle: UILabel!
@@ -41,7 +43,8 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
         
         tap = UITapGestureRecognizer(target: self, action: #selector(hideMenuIfPossible))
         self.tap.delegate = self
-        self.view.addGestureRecognizer(tap)
+        self.scrollView.addGestureRecognizer(tap)
+        scrollView.scrollsToTop = false
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -62,6 +65,17 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
         super.viewWillDisappear(animated)
         
         hideMenuIfPossible()
+    }
+    
+    
+    override func viewWillLayoutSubviews(){
+        super.viewWillLayoutSubviews()
+        
+        scrollView.contentSize = CGSize(width: 375, height: 800)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        scrollView.contentSize = contentView.frame.size
     }
     
     @objc
