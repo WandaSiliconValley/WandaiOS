@@ -14,7 +14,7 @@ import AlamofireImage
 
 var firstView = true
 
-class ProfileViewController: UIViewController, MFMailComposeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, CollapsibleTableViewHeaderDelegate {
+class ProfileViewController: UIViewController, MFMailComposeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, CollapsibleTableViewHeaderDelegate, UIGestureRecognizerDelegate, WandaAlertViewDelegate {
     @IBOutlet var tableView: UITableView!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var bioTitle: UILabel!
@@ -31,19 +31,7 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
     static let storyboardIdentifier = String(describing: ProfileViewController.self)
     private var menuView: WandaMenu?
     private var dataManager = WandaDataManager.shared
-//    private var cohortSections: [CohortSection]?
-//    private var firstView = true
-
-    
-//    struct CohortSection {
-//      var mothers: [WandaCohortMother]
-//      var collapsed: Bool
-//
-//      init(mothers: [WandaCohortMother], collapsed: Bool = false) {
-//        self.mothers = mothers
-//        self.collapsed = collapsed
-//      }
-//    }
+    private var tap: UITapGestureRecognizer!
     
     let bioPlaceholderText =  "'Here is your bio, let your cohort know a bit about you. If you have preferences for how to be contacted let other moms know here :)'"
 
@@ -51,7 +39,8 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideMenuIfPossible))
+        tap = UITapGestureRecognizer(target: self, action: #selector(hideMenuIfPossible))
+        self.tap.delegate = self
         self.view.addGestureRecognizer(tap)
         
         tableView.dataSource = self
@@ -65,6 +54,7 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
         tableView.estimatedRowHeight = 56.0
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.separatorStyle = .none
+        tableView.scrollsToTop = true
         configureMenu()
     }
     
@@ -87,9 +77,14 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
         guard let menuView = menuView else {
             return false
         }
+        
+        if touch.view?.isDescendant(of: self.tableView) == true {
+            return false
+        }
 
         return !menuView.isHidden
     }
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -111,12 +106,28 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
     
     func adjustUITextViewHeight()
     {
+        bioLabel.numberOfLines = 0
+        var maximumLabelSize: CGSize = CGSize(width: 280, height: 9999)
+        var expectedLabelSize: CGSize = bioLabel.sizeThatFits(maximumLabelSize)
+        // create a frame that is filled with the UILabel frame data
+        var newFrame: CGRect = bioLabel.frame
+        // resizing the frame to calculated size
+        newFrame.size.height = expectedLabelSize.height
+        // put calculated frame into UILabel frame
+        bioLabel.frame = newFrame
+        
+        
+//        bioLabel.sizeThatFits(CGSize(width: bioLabel.frame.size.width, height: bioLabel.frame.size.height))
         bioLabel.invalidateIntrinsicContentSize()
-        bioLabel.sizeToFit()
+//        bioLabel.sizeToFit()
         bioLabel.layoutSubviews()
         bioLabel.setNeedsLayout()
         bioLabel.layoutIfNeeded()
     }
+    
+    func didTapActionButton() {
+        return
+      }
     
     func getMotherPhoto() {
         let motherName = dataManager.wandaMother?.name ?? "?"
@@ -141,7 +152,7 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
             bioLabel.text = bioPlaceholderText
         }
         
-        if mother.shareContactEmail == true, let email = mother.contactEmail {
+        if mother.shareContactEmail == true, let email = mother.contactEmail, !email.isEmpty {
             emailTitle.isHidden = false
             emailButton.isHidden = false
             emailButton.setTitle(email, for: .normal)
@@ -150,7 +161,7 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
             emailButton.isHidden = true
         }
         
-        if mother.sharePhoneNumber == true, let phoneNumber = mother.phoneNumber {
+        if mother.sharePhoneNumber == true, let phoneNumber = mother.phoneNumber, !phoneNumber.isEmpty {
             phoneNumberTitle.isHidden = false
             phoneNumberButton.isHidden = false
             phoneNumberButton.setTitle(phoneNumber, for: .normal)
@@ -270,18 +281,19 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cohortSection = dataManager.cohortSections[indexPath.section]
         let cohortMother = cohortSection.mothers[indexPath.row]
-        let idk = false
-//        guard let cohortMotherProfileViewController = ViewControllerFactory.makeCohortMotherProfileViewController(cohortMother: cohortMother, cohortId: cohortSection.cohortId) else {
-        guard idk == true else {
-            self.presentErrorAlert(for: .cohortMotherError)
-            return
+
+        guard let cohortMotherProfileViewController = ViewControllerFactory.makeCohortMotherProfileViewController(cohortMother: cohortMother, cohortId: cohortSection.cohortId) else {
+                hideMenuIfPossible()
+                tableView.deselectRow(at: indexPath, animated: true)
+                self.presentErrorAlert(for: .cohortMotherError)
+
+                return
         }
         
         hideMenuIfPossible()
-        
-//        self.navigationController?.pushViewController(cohortMotherProfileViewController, animated: true)
-        
         tableView.deselectRow(at: indexPath, animated: true)
+        self.navigationController?.pushViewController(cohortMotherProfileViewController, animated: true)
+        
     }
 
     

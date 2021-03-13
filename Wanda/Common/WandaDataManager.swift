@@ -189,27 +189,24 @@ class WandaDataManager {
         }
     }
     
-//    func getWandaMother(firebaseId: String, completion: @escaping (Bool, WandaError?) -> Void) {
-//        WandaMotherNetworkController.getWandaMother(firebaseId: firebaseId) { wandaMother, error in
-//            guard let wandaMother = wandaMother else {
-//                completion(false, error)
-//                return
-//            }
-//
-//            self.wandaMother = WandaMotherInfo(from: wandaMother)
-//            completion(true, nil)
-//        }
-//    }
-    
     func getCohort(cohortId: Int, completion: @escaping (Bool, WandaError?) -> Void) {
         CohortNetworkController.getCohort(cohortId: cohortId) { cohort, error in
             guard let cohort = cohort else {
                 completion(false, error)
                 return
             }
-            
-            self.cohortMothers = cohort.mothers
-            self.cohortSections = [CohortSection(cohortId: cohort.cohortId, mothers: cohort.mothers)]
+            var updatedCohortMothers = [WandaCohortMother]()
+            if let motherId = self.wandaMother?.motherId {
+                for mother in cohort.mothers {
+                    if mother.motherId != motherId {
+                        updatedCohortMothers.append(mother)
+                    }
+                }
+            } else {
+                updatedCohortMothers = cohort.mothers
+            }
+            self.cohortMothers = updatedCohortMothers
+            self.cohortSections = [CohortSection(cohortId: cohort.cohortId, mothers: updatedCohortMothers)]
             completion(true, nil)
         }
     }

@@ -84,7 +84,7 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="GS7-Ey-oxb">
-                                <rect key="frame" x="16" y="221" width="382" height="296"/>
+                                <rect key="frame" x="16" y="221" width="382" height="327.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About Me" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nsJ-Ra-X6i">
                                         <rect key="frame" x="0.0" y="0.0" width="66" height="24"/>
@@ -96,17 +96,14 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bcd-lA-ezh">
-                                        <rect key="frame" x="0.0" y="32" width="382" height="72"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="72" id="4FI-dO-erJ"/>
-                                        </constraints>
+                                        <rect key="frame" x="0.0" y="32" width="382" height="103.5"/>
                                         <string key="text">“Here is your bio, let your cohort know a bit about you. If you have preferences for how to be contacted let other moms know here :)”</string>
                                         <fontDescription key="fontDescription" name="OpenSans-Italic" family="Open Sans" pointSize="14"/>
                                         <color key="textColor" red="0.28235294117647058" green="0.28235294117647058" blue="0.28235294117647058" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Languages" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vTW-Qd-0tu">
-                                        <rect key="frame" x="0.0" y="112" width="62" height="24"/>
+                                        <rect key="frame" x="0.0" y="143.5" width="62" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="1jc-XL-Jhh"/>
                                         </constraints>
@@ -115,7 +112,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="English, Spanish" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GKL-lp-bGB">
-                                        <rect key="frame" x="0.0" y="144" width="105" height="24"/>
+                                        <rect key="frame" x="0.0" y="175.5" width="105" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="cBz-qI-6U4"/>
                                         </constraints>
@@ -124,7 +121,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c2R-ua-I20">
-                                        <rect key="frame" x="0.0" y="176" width="37" height="24"/>
+                                        <rect key="frame" x="0.0" y="207.5" width="37" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="My1-nf-eWn"/>
                                         </constraints>
@@ -133,7 +130,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1nA-6r-Arz" userLabel="Phone Button">
-                                        <rect key="frame" x="0.0" y="208" width="30" height="24"/>
+                                        <rect key="frame" x="0.0" y="239.5" width="30" height="24"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="Xtj-mw-Hxv"/>
@@ -147,7 +144,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TwI-YO-6xg">
-                                        <rect key="frame" x="0.0" y="240" width="32" height="24"/>
+                                        <rect key="frame" x="0.0" y="271.5" width="32" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="yGg-jH-YgT"/>
                                         </constraints>
@@ -156,7 +153,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gta-H5-jYC" userLabel="Email Button">
-                                        <rect key="frame" x="0.0" y="272" width="186" height="24"/>
+                                        <rect key="frame" x="0.0" y="303.5" width="186" height="24"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="7gm-W8-jlx"/>
@@ -176,14 +173,14 @@
                                 </constraints>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fuV-V4-PIU" userLabel="Bottom Divider View">
-                                <rect key="frame" x="16" y="525" width="382" height="1"/>
+                                <rect key="frame" x="16" y="556.5" width="382" height="1"/>
                                 <color key="backgroundColor" red="0.76862745098039209" green="0.76862745098039209" blue="0.76862745098039209" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="KfS-Im-Heg"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="a1a-Bh-osI">
-                                <rect key="frame" x="16" y="541" width="381" height="272"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" minimumZoomScale="2" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="a1a-Bh-osI">
+                                <rect key="frame" x="16" y="572.5" width="381" height="240.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
@@ -194,7 +191,7 @@
                             <constraint firstItem="6aq-8v-hhf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="1Yx-px-HYT" secondAttribute="trailing" constant="10" id="1IG-gR-zob"/>
                             <constraint firstItem="Kuf-8O-bTA" firstAttribute="trailing" secondItem="fuV-V4-PIU" secondAttribute="trailing" constant="16" id="2aA-SB-OWA"/>
                             <constraint firstItem="o16-Hj-Nrc" firstAttribute="top" secondItem="6aq-8v-hhf" secondAttribute="bottom" constant="16" id="7Qq-QG-w46"/>
-                            <constraint firstItem="fuV-V4-PIU" firstAttribute="top" secondItem="GS7-Ey-oxb" secondAttribute="bottom" constant="8" id="Fqm-cE-z67"/>
+                            <constraint firstItem="fuV-V4-PIU" firstAttribute="top" secondItem="GS7-Ey-oxb" secondAttribute="bottom" priority="250" constant="8" id="Fqm-cE-z67"/>
                             <constraint firstItem="GS7-Ey-oxb" firstAttribute="leading" secondItem="Kuf-8O-bTA" secondAttribute="leading" constant="16" id="GK7-1A-Fy4"/>
                             <constraint firstItem="o7p-E3-cgl" firstAttribute="leading" secondItem="BLK-hy-QZI" secondAttribute="leading" constant="16" id="Hxb-Ba-x9n"/>
                             <constraint firstItem="6aq-8v-hhf" firstAttribute="leading" secondItem="o7p-E3-cgl" secondAttribute="trailing" constant="57" id="LQu-h0-ho6"/>

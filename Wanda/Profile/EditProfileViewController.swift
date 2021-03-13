@@ -11,7 +11,7 @@ import Foundation
 import MessageUI
 import UIKit
 
-class EditProfileViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, WandaAlertViewDelegate, MFMailComposeViewControllerDelegate {
+class EditProfileViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, WandaAlertViewDelegate, MFMailComposeViewControllerDelegate, UIGestureRecognizerDelegate {
     
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
@@ -45,6 +45,8 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UITextFie
     var imagePicker = UIImagePickerController()
     var unsavedChanges = false
     private var menuView: WandaMenu?
+    private var tap: UITapGestureRecognizer!
+
 //    private var dropDown: LanguagesDropDown?
 
 
@@ -85,8 +87,9 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UITextFie
             showInitialView()
         }
         
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideMenuIfPossible))
-        self.view.addGestureRecognizer(tap)
+        tap = UITapGestureRecognizer(target: self, action: #selector(hideMenuIfPossible))
+        self.tap.delegate = self
+        self.scrollView.addGestureRecognizer(tap)
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -453,9 +456,27 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UITextFie
     }
     
     @IBAction func didTapUpdateProfile() {
-        let isCellPhoneValid = checkCellPhoneIsValid(value: cellPhoneTextField.text ?? "")
-        cellPhoneTextField.text?.isCellPhoneValid(cellPhoneTextField: cellPhoneTextField, cellPhoneInfoLabel: cellPhoneIncorrectLabel, isValid: isCellPhoneValid)
-        let isEmailValid = emailTextField.text?.isEmailValid(emailTextField: emailTextField, emailInfoLabel: emailIncorrectLabel)
+        guard let email = emailTextField.text, let cellPhone = cellPhoneTextField.text, let name = nameTextField.text else {
+            // to do error handle
+            return
+        }
+        
+        var isCellPhoneValid = true
+        if !cellPhone.isEmpty {
+            isCellPhoneValid = checkCellPhoneIsValid(value: cellPhone)
+            cellPhone.isCellPhoneValid(cellPhoneTextField: cellPhoneTextField, cellPhoneInfoLabel: cellPhoneIncorrectLabel, isValid: isCellPhoneValid)
+        }
+    
+        if isCellPhoneValid {
+            cellPhoneTextField.underlined(color: UIColor.black.cgColor)
+        }
+        
+        // Email is valid if empty
+        var isEmailValid = true
+        if !email.isEmpty {
+            isEmailValid = email.isEmailValid(emailTextField: emailTextField, emailInfoLabel: emailIncorrectLabel)
+        }
+        
         if isEmailValid == true {
             emailIncorrectLabel.textColor = WandaColors.black60
             emailIncorrectLabel.font = UIFont.wandaFontRegular(size: 12)
@@ -463,20 +484,17 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UITextFie
             emailTextField.underlined(color: UIColor.black.cgColor)
         }
 
-        let isNameValid = !(nameTextField.text?.isEmpty ?? false)
+
+        let isNameValid = !name.isEmpty
         if !isNameValid {
             nameEmptyLabel.configureError("Name is required", invalidTextField: nameTextField, true)
         }
         
-        guard let mother = dataManager.wandaMother, isCellPhoneValid == true, isEmailValid == true,
-            isNameValid == true else {
-//            if isCellPhoneValid == false {
-//                cellPhoneIncorrectLabel.isHidden = false
-//            }
-//             to do - error handle
-            return
+        guard  isCellPhoneValid == true, isEmailValid == true,
+            isNameValid == true, let mother = dataManager.wandaMother else {
+                return
         }
-        
+
         var updatedBio: String? = nil
         if bioTextView.text != bioPlaceholderText {
             updatedBio = bioTextView.text
@@ -488,32 +506,38 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UITextFie
         }
         
         let updatedMother = EditWandaMotherInfo(
-            motherId: mother.motherId, firebaseId: mother.firebaseId, cohortId: mother.cohortId, name: nameTextField.text ?? mother.name, email: mother.email, contactEmail: emailTextField.text, shareContactEmail: emailSwitch.isOn, sharePhoneNumber: cellPhoneSwitch.isOn, phoneNumber: cellPhoneTextField.text, bio: updatedBio, languages: languages)
+            motherId: mother.motherId, firebaseId: mother.firebaseId, cohortId: mother.cohortId, name: name, email: mother.email, contactEmail: email, shareContactEmail: emailSwitch.isOn, sharePhoneNumber: cellPhoneSwitch.isOn, phoneNumber: cellPhone, bio: updatedBio, languages: languages)
         
-        if let image = profileImage.image {
-            let imageData = UIImagePNGRepresentation(image)
-            let imageStr = imageData?.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
+        if let myProfileImage = WandaImages.successEmail {
+//            let imageData = UIImagePNGRepresentation(myProfileImage)
+//            let imageStr = imageData?.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
 
-            dataManager.uploadMotherPhoto(motherId: String(updatedMother.motherId), photo: imageStr ?? "") { success, error in
-                guard success else {
-                    if let error = error {
-    //                     TO DO handle errors here
-//                        to do - if this fails should we just continue?
-                        print("OH NO")
+            
+            let jpegCompressionQuality: CGFloat = 0.9 // Set this to whatever suits your purpose
+            
+            
+            if let base64String = UIImageJPEGRepresentation(myProfileImage, jpegCompressionQuality)?.base64EncodedString() {
+                    // Upload base64String to your database
+                
+                
+                dataManager.uploadMotherPhoto(motherId: String(updatedMother.motherId), photo: base64String ?? "") { success, error in
+                    guard success else {
+    //                    if let error = error {
+                        self.presentErrorAlert(for: .systemError)
+    //                    }
+                        return
                     }
-                    return
+                    
+                    
                 }
-                
-                
             }
         }
         
         dataManager.updateWandMother(mother: updatedMother) { success, error in
             guard success else {
-                if let error = error {
-//                     TO DO handle errors here
-                    print("OH NO")
-                }
+//                if let error = error {
+                self.presentErrorAlert(for: .systemError)
+//                }
                 return
 //                self.overlayView.removeFromSuperview()
             }
@@ -534,18 +558,7 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UITextFie
             present(imagePicker, animated: true, completion: nil)
         }
     }
-//
-//    private func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-//        picker.dismiss(animated: true, completion: nil)
-////        guard let image = info[UIImagePickerController.InfoKey.edit] else {
-////            fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
-////        }
-////
-////        profileImage.image = image
-//
-////        pickImageCallback?(image)
-//    }
-    
+
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         picker.dismiss(animated: true, completion: nil)
         guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {
@@ -554,24 +567,7 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UITextFie
 
         profileImage.image = image
         addImageButton.imageView?.tintColor = UIColor(hexString: "#E0E0E0")
-//          self.dismiss(animated: true, completion: { () -> Void in
-//
-//          })
-
-//          profileImage.image = image
     }
-    
-//    func imagepicker
-    
-    
-    
-//    func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!){
-//          self.dismiss(animated: true, completion: { () -> Void in
-//
-//          })
-//
-//          profileImage.image = image
-//      }
     
     @IBAction func nameTextFieldEditingDidBegin(_ sender: UITextField) {
         profileTextFieldEditingDidBegin(nameTextField, nameLabel, "Name")
@@ -602,7 +598,10 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UITextFie
     @IBAction func emailTextFieldEditingDidEnd(_ sender: UITextField) {
         profileTextFieldEditingDidEnd(emailTextField, emailLabel, "Email")
         let email = emailTextField.text ?? ""
-        let isEmailValid = email.isEmailValid(emailTextField: emailTextField, emailInfoLabel: emailIncorrectLabel)
+        var isEmailValid = true
+        if !email.isEmpty {
+            isEmailValid = email.isEmailValid(emailTextField: emailTextField, emailInfoLabel: emailIncorrectLabel)
+        }
         if isEmailValid == true {
             emailIncorrectLabel.textColor = WandaColors.black60
             emailIncorrectLabel.font = UIFont.wandaFontRegular(size: 12)
@@ -610,21 +609,6 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UITextFie
             emailTextField.underlined(color: UIColor.black.cgColor)
         }
     }
-    
-//    @IBAction func cellPhoneDidChange(_ sender: UITextField) {
-//        let currentText = sender.text ?? ""
-//          let numCheck = Int(currentText)
-//          if numCheck == nil && currentText.contains("-") == false {
-//              print("INVALID")
-//              print(currentText)
-//              cellPhoneIncorrectLabel.configureError("Please enter a valid phone number", invalidTextField: cellPhoneTextField)
-//          } else {
-//              print("VALID")
-//              cellPhoneTextField.underlined(color: UIColor.black.cgColor)
-//              cellPhoneIncorrectLabel.isHidden = true
-//          }
-//
-//    }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
     {
@@ -660,25 +644,18 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UITextFie
             textField.text = formattedString as String
             
             if cellPhoneIncorrectLabel.isHidden == false {
-                let isCellPhoneValid = checkCellPhoneIsValid(value: cellPhoneTextField.text ?? "")
-                if isCellPhoneValid == false {
-                    cellPhoneIncorrectLabel.isHidden = false
-                } else {
-                    cellPhoneIncorrectLabel.isHidden = true
-                }
+                cellPhoneIncorrectLabel.isHidden = true
             }
             
             return false
         }
         else if (textField == emailTextField) {
             if emailIncorrectLabel.isHidden == false {
-                let isEmailValid = emailTextField.text?.isEmailValid(emailTextField: emailTextField, emailInfoLabel: emailIncorrectLabel, shake: false)
-                if isEmailValid == true {
-                    emailIncorrectLabel.textColor = WandaColors.black60
-                    emailIncorrectLabel.font = UIFont.wandaFontRegular(size: 12)
-                    emailIncorrectLabel.text = "This email will only be used for contact"
-                    emailTextField.underlined(color: UIColor.black.cgColor)
-                }
+                emailIncorrectLabel.isHidden = true
+                emailIncorrectLabel.textColor = WandaColors.black60
+                emailIncorrectLabel.font = UIFont.wandaFontRegular(size: 12)
+                emailIncorrectLabel.text = "This email will only be used for contact"
+                emailTextField.underlined(color: WandaColors.brightPurple.cgColor)
             }
             return true
         }
@@ -686,7 +663,7 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UITextFie
             if nameEmptyLabel.isHidden == false {
                 print("REPLACE")
                 print(string)
-                if textField.text?.isEmpty == false {
+                if !string.isEmpty {
                     nameEmptyLabel.isHidden = true
                     nameTextField.underlined(color: WandaColors.brightPurple.cgColor)
                 }
@@ -706,13 +683,18 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UITextFie
     @IBAction func cellPhoneTextFieldEditingDidEnd(_ sender: UITextField) {
         profileTextFieldEditingDidEnd(cellPhoneTextField, cellPhoneLabel, "Cell Phone")
         let cellPhone = cellPhoneTextField.text ?? ""
-        let isCellPhoneValid = checkCellPhoneIsValid(value: cellPhone)
+        var isCellPhoneValid = true
+        if !cellPhone.isEmpty {
+            isCellPhoneValid = checkCellPhoneIsValid(value: cellPhone)
+            cellPhone.isCellPhoneValid(cellPhoneTextField: cellPhoneTextField, cellPhoneInfoLabel: cellPhoneIncorrectLabel, isValid: isCellPhoneValid)
+        }
         
         if isCellPhoneValid == false {
             cellPhoneIncorrectLabel.isHidden = false
             cellPhoneTextField.underlined(color: WandaColors.newErrorRed.cgColor)
         } else {
             cellPhoneIncorrectLabel.isHidden = true
+            cellPhoneTextField.underlined(color: UIColor.black.cgColor)
         }
     }
     
@@ -782,15 +764,10 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UITextFie
             self.scrollView.contentInset = contentInset
         }
     }
-    
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        <#code#>
-//    }
-//
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         let nextTag = textField.tag + 1
         
-        print("CELL PHONE TAG \(cellPhoneTextField.tag)")
         if let nextResponder = textField.superview?.superview?.superview?.viewWithTag(nextTag) {
             nextResponder.becomeFirstResponder()
         } else {

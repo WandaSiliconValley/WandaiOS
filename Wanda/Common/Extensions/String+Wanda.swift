@@ -10,21 +10,14 @@ import Foundation
 import UIKit
 
 extension String {
-    func isCellPhoneValid(cellPhoneTextField: UITextField, cellPhoneInfoLabel: UILabel, isValid: Bool) -> Bool {
-//        if self.isEmpty {
-//            cellPhoneInfoLabel.configureError(ErrorStrings.emailRequired, invalidTextField: cellPhoneTextField)
-//
-//            return false
-//        } else
+    func isCellPhoneValid(cellPhoneTextField: UITextField, cellPhoneInfoLabel: UILabel, isValid: Bool) -> Void {
         if !isValid {
-            cellPhoneInfoLabel.configureError("Please enter a valid phone number", invalidTextField: cellPhoneTextField)
+            cellPhoneInfoLabel.configureError("Please enter a valid phone number", invalidTextField: cellPhoneTextField, true)
 
-            return false
+            return
         }
 
         cellPhoneInfoLabel.configureValidEmail(cellPhoneTextField)
-
-        return true
     }
     
     func isEmailValid(emailTextField: UITextField, emailInfoLabel: UILabel, shake: Bool = true) -> Bool {
