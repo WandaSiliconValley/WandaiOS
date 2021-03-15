@@ -76,11 +76,11 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
     
     override func viewDidLayoutSubviews() {
         scrollView.contentSize = contentView.frame.size
-        scrollView.contentSize.height = contentView.frame.size.height + 50
-        tableView.frame.size = tableView.contentSize
-        tableView.setNeedsLayout()
-        tableView.sizeToFit()
-        tableView.layoutSubviews()
+//        scrollView.contentSize.height = contentView.frame.size.height + 50
+//        tableView.frame.size = tableView.contentSize
+//        tableView.setNeedsLayout()
+//        tableView.sizeToFit()
+//        tableView.layoutSubviews()
     }
     
     @objc
