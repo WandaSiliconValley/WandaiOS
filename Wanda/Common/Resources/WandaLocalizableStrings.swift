@@ -21,12 +21,12 @@ struct AlertStrings {
     }
     static var keepWorking: String {
         return NSLocalizedString("Wanda_Alerts_KeepWorking",
-            value: "KEEP WORKING",
+            value: "KEEP EDITING",
             comment: "Alert button title indicating that on tap the user will remain on the current page.")
     }
     static var oopsMessage: String {
         return NSLocalizedString("Wanda_Alerts_Oops",
-            value: "Oops, your edits didn't get saved. Do you want to keep working?",
+            value: "Your edits have not been saved. Do you want to discard changes?",
             comment: "Alert title indicating that any edits won't be saved if the user navigates away from the current page.")
     }
 }
