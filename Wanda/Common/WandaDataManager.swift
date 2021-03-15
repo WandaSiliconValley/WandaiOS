@@ -39,6 +39,7 @@ class WandaDataManager {
     
     var environmentURL = WandaConstants.wandaProdURL
     var needsReload = false
+    var profilePictureNeedsReload = false
     var wandaMother: WandaMotherInfo?
     var upcomingClasses = [WandaClass]()
     private var allClasses = [WandaClass]()

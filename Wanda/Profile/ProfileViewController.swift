@@ -71,11 +71,16 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
     override func viewWillLayoutSubviews(){
         super.viewWillLayoutSubviews()
         
-        scrollView.contentSize = CGSize(width: 375, height: 800)
+        scrollView.contentSize = CGSize(width: 375, height: 1000)
     }
     
     override func viewDidLayoutSubviews() {
         scrollView.contentSize = contentView.frame.size
+        scrollView.contentSize.height = contentView.frame.size.height + 50
+        tableView.frame.size = tableView.contentSize
+        tableView.setNeedsLayout()
+        tableView.sizeToFit()
+        tableView.layoutSubviews()
     }
     
     @objc
@@ -86,6 +91,8 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
         
         menuView?.toggleMenu()
     }
+    
+//    override func didmove
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         guard let menuView = menuView else {
@@ -104,41 +111,22 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
         super.viewWillAppear(animated)
 
         configureNavigationBar()
-        getMotherPhoto()
-//        let motherName = dataManager.wandaMother?.name ?? "?"
-//        showInitialView(name: motherName, initialImage: profileImage)
+        if dataManager.profilePictureNeedsReload {
+            clearImageFromCache()
+        } else {
+            getMotherPhoto()
+        }
+
         configureMotherInfo()
 
         adjustUITextViewHeight()
     }
-    
-//    override func viewWillDisappear(_ animated: Bool) {
-//        if menuView?.isHidden == false {
-//            menuView?.toggleMenu()
-//        }
-//    }
-    
+
     func adjustUITextViewHeight()
     {
-        bioLabel.numberOfLines = 0
-        var maximumLabelSize: CGSize = CGSize(width: 280, height: 9999)
-        var expectedLabelSize: CGSize = bioLabel.sizeThatFits(maximumLabelSize)
-        // create a frame that is filled with the UILabel frame data
-        var newFrame: CGRect = bioLabel.frame
-        // resizing the frame to calculated size
-        newFrame.size.height = expectedLabelSize.height
-        // put calculated frame into UILabel frame
-        bioLabel.frame = newFrame
-        
-        
-//        bioLabel.sizeThatFits(CGSize(width: bioLabel.frame.size.width, height: bioLabel.frame.size.height))
-        bioLabel.invalidateIntrinsicContentSize()
-//        bioLabel.sizeToFit()
-        bioLabel.layoutSubviews()
-        bioLabel.setNeedsLayout()
-        bioLabel.layoutIfNeeded()
+        bioLabel.sizeToFit()
     }
-    
+
     func didTapActionButton() {
         return
       }
@@ -148,7 +136,20 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
         showInitialView(name: motherName, initialImage: profileImage)
         if let motherId = dataManager.wandaMother?.motherId {
             let downloadURL = URL(string: "https://wanda-photos-bucket.s3-us-west-2.amazonaws.com/\(motherId)")!
-            profileImage.af.setImage(withURL: downloadURL)
+            let urlRequest = URLRequest(url: downloadURL)
+            profileImage.af.setImage(withURLRequest: urlRequest)
+        }
+    }
+    
+    func clearImageFromCache() {
+        if let motherId = dataManager.wandaMother?.motherId {
+            let downloadURL = URL(string: "https://wanda-photos-bucket.s3-us-west-2.amazonaws.com/\(motherId)")!
+            let urlRequest = URLRequest(url: downloadURL)
+            let imageDownloader = UIImageView.af.sharedImageDownloader
+            _ = imageDownloader.imageCache?.removeImage(for: urlRequest, withIdentifier: nil)
+            imageDownloader.session.sessionConfiguration.urlCache?.removeCachedResponse(for: urlRequest)
+            
+            getMotherPhoto()
         }
     }
     
@@ -184,7 +185,8 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
             phoneNumberButton.isHidden = true
         }
         
-        if mother.languages.isEmpty == false {
+       let firstLanguage = mother.languages[0]
+        if mother.languages.isEmpty == false && firstLanguage != "" {
             languagesTitle.isHidden = false
             languagesLabel.isHidden = false
             languagesLabel.text = configureLanguagesText(mother.languages)
@@ -379,12 +381,13 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
     }
     
     @IBAction func didTapEditProfile() {
+        hideMenuIfPossible()
+
         DispatchQueue.main.async {
             guard let editProfileViewController = ViewControllerFactory.makeEditProfileViewController() else {
                 assertionFailure("Could not instantiate EditProfileViewController.")
                 return
             }
-
             self.navigationController?.pushViewController(editProfileViewController, animated: true)
         }
     }

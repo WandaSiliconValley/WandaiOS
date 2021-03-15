@@ -160,7 +160,7 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UITextFie
             toggleEmailSwitch()
         }
             
-        if let email = mother.contactEmail {
+        if let email = mother.contactEmail, email.isEmpty == false {
             emailLabel.isHidden = false
             emailTextField.text = email
         }
@@ -173,12 +173,13 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UITextFie
             toggleCellPhoneSwitch()
         }
         
-        if let phoneNumber = mother.phoneNumber {
+        if let phoneNumber = mother.phoneNumber, phoneNumber.isEmpty == false {
             cellPhoneLabel.isHidden = false
             cellPhoneTextField.text = phoneNumber
         }
         
-        if mother.languages.isEmpty == false {
+        let firstLanguage = mother.languages[0]
+        if mother.languages.isEmpty == false && firstLanguage != "" {
             languagesLabel.isHidden = false
             languaguesTextField.text = configureLanguagesText(mother.languages)
         }
@@ -484,10 +485,9 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UITextFie
             emailTextField.underlined(color: UIColor.black.cgColor)
         }
 
-
         let isNameValid = !name.isEmpty
         if !isNameValid {
-            nameEmptyLabel.configureError("Name is required", invalidTextField: nameTextField, true)
+            name.isNameValid(nameTextField: nameTextField, nameInfoLabel: nameEmptyLabel, isValid: false)
         }
         
         guard  isCellPhoneValid == true, isEmailValid == true,
@@ -507,41 +507,14 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UITextFie
         
         let updatedMother = EditWandaMotherInfo(
             motherId: mother.motherId, firebaseId: mother.firebaseId, cohortId: mother.cohortId, name: name, email: mother.email, contactEmail: email, shareContactEmail: emailSwitch.isOn, sharePhoneNumber: cellPhoneSwitch.isOn, phoneNumber: cellPhone, bio: updatedBio, languages: languages)
-        
-        if let myProfileImage = WandaImages.successEmail {
-//            let imageData = UIImagePNGRepresentation(myProfileImage)
-//            let imageStr = imageData?.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
 
-            
-            let jpegCompressionQuality: CGFloat = 0.9 // Set this to whatever suits your purpose
-            
-            
-            if let base64String = UIImageJPEGRepresentation(myProfileImage, jpegCompressionQuality)?.base64EncodedString() {
-                    // Upload base64String to your database
-                
-                
-                dataManager.uploadMotherPhoto(motherId: String(updatedMother.motherId), photo: base64String ?? "") { success, error in
-                    guard success else {
-    //                    if let error = error {
-                        self.presentErrorAlert(for: .systemError)
-    //                    }
-                        return
-                    }
-                    
-                    
-                }
-            }
-        }
-        
         dataManager.updateWandMother(mother: updatedMother) { success, error in
             guard success else {
-//                if let error = error {
+                // to do - test
                 self.presentErrorAlert(for: .systemError)
-//                }
                 return
-//                self.overlayView.removeFromSuperview()
             }
-            
+
             _ = self.navigationController?.popViewController(animated: true)
         }
     
@@ -567,6 +540,18 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UITextFie
 
         profileImage.image = image
         addImageButton.imageView?.tintColor = UIColor(hexString: "#E0E0E0")
+        dataManager.profilePictureNeedsReload = true
+        
+        let jpegCompressionQuality: CGFloat = 0.1
+        if let myProfileImage = profileImage.image, let newbase64String = UIImageJPEGRepresentation(myProfileImage, jpegCompressionQuality)?.base64EncodedString(), let mother = dataManager.wandaMother {
+                dataManager.uploadMotherPhoto(motherId: String(mother.motherId), photo: newbase64String) { success, error in
+                    guard success else {
+//                        to do - test
+                        self.presentErrorAlert(for: .systemError)
+                        return
+                    }
+                }
+            }
     }
     
     @IBAction func nameTextFieldEditingDidBegin(_ sender: UITextField) {
@@ -661,8 +646,6 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UITextFie
         }
         else if (textField == nameTextField) {
             if nameEmptyLabel.isHidden == false {
-                print("REPLACE")
-                print(string)
                 if !string.isEmpty {
                     nameEmptyLabel.isHidden = true
                     nameTextField.underlined(color: WandaColors.brightPurple.cgColor)

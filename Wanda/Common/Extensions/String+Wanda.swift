@@ -20,6 +20,13 @@ extension String {
         cellPhoneInfoLabel.configureValidEmail(cellPhoneTextField)
     }
     
+    func isNameValid(nameTextField: UITextField, nameInfoLabel: UILabel, isValid: Bool) -> Void {
+        if !isValid {
+            nameInfoLabel.configureError("Name is required", invalidTextField: nameTextField, true)
+            return
+        }
+    }
+    
     func isEmailValid(emailTextField: UITextField, emailInfoLabel: UILabel, shake: Bool = true) -> Bool {
         if self.isEmpty {
             emailInfoLabel.configureError(ErrorStrings.emailRequired, invalidTextField: emailTextField, shake)

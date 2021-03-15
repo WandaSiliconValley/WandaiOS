@@ -64,16 +64,13 @@
                                 <rect key="frame" x="71" y="6" width="289" height="58"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Financial Literacy II" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cSN-o1-GHP">
-                                        <rect key="frame" x="0.0" y="0.0" width="289" height="22"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="22" id="3iG-35-YQo"/>
-                                        </constraints>
+                                        <rect key="frame" x="0.0" y="0.0" width="289" height="39"/>
                                         <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
                                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9:30am - 2:00pm" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="1" translatesAutoresizingMaskIntoConstraints="NO" id="0av-7m-nXk">
-                                        <rect key="frame" x="0.0" y="24" width="289" height="17"/>
+                                        <rect key="frame" x="0.0" y="41" width="289" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="17" id="d3k-5t-V0l"/>
                                         </constraints>
@@ -81,8 +78,8 @@
                                         <color key="textColor" red="0.5450980392" green="0.5450980392" blue="0.5450980392" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delaware Pacific Apartments" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="1" translatesAutoresizingMaskIntoConstraints="NO" id="mDW-P3-tt8">
-                                        <rect key="frame" x="0.0" y="41" width="289" height="17"/>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delaware Pacific Apartments" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="1" translatesAutoresizingMaskIntoConstraints="NO" id="mDW-P3-tt8">
+                                        <rect key="frame" x="0.0" y="58" width="289" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="17" id="pyb-TG-UUb"/>
                                         </constraints>

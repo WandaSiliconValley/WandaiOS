@@ -44,7 +44,7 @@
                                                 <rect key="frame" x="16" y="34" width="197" height="83.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hi, I'm Kimberly" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="16" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Yx-px-HYT">
-                                                        <rect key="frame" x="0.0" y="0.0" width="131.5" height="25"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="234" height="25"/>
                                                         <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="18"/>
                                                         <color key="textColor" red="0.19215686274509802" green="0.19215686274509802" blue="0.19215686274509802" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -195,6 +195,7 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstItem="o16-Hj-Nrc" firstAttribute="leading" secondItem="8DI-D9-gEc" secondAttribute="leading" constant="16" id="25W-QU-LoU"/>
+                                            <constraint firstItem="6aq-8v-hhf" firstAttribute="leading" secondItem="1Yx-px-HYT" secondAttribute="trailing" constant="20" id="4Ge-p5-XSM"/>
                                             <constraint firstItem="o16-Hj-Nrc" firstAttribute="top" secondItem="6aq-8v-hhf" secondAttribute="bottom" constant="16" id="9qB-tB-MHd"/>
                                             <constraint firstAttribute="trailing" secondItem="6aq-8v-hhf" secondAttribute="trailing" constant="16" id="ADk-PG-8uZ"/>
                                             <constraint firstAttribute="trailing" secondItem="a1a-Bh-osI" secondAttribute="trailing" constant="16" id="AH4-0M-Dkl"/>
@@ -204,9 +205,9 @@
                                             <constraint firstAttribute="trailing" secondItem="o16-Hj-Nrc" secondAttribute="trailing" constant="16" id="DbO-dE-deQ"/>
                                             <constraint firstItem="6aq-8v-hhf" firstAttribute="leading" secondItem="o7p-E3-cgl" secondAttribute="trailing" constant="57" id="Msj-l6-gEG"/>
                                             <constraint firstAttribute="trailing" secondItem="fuV-V4-PIU" secondAttribute="trailing" constant="16" id="OPY-co-zwb"/>
+                                            <constraint firstAttribute="bottom" secondItem="a1a-Bh-osI" secondAttribute="bottom" id="Pxw-wg-t42"/>
                                             <constraint firstItem="fuV-V4-PIU" firstAttribute="top" secondItem="GS7-Ey-oxb" secondAttribute="bottom" priority="250" constant="8" id="TPt-jr-M5J"/>
                                             <constraint firstItem="fuV-V4-PIU" firstAttribute="leading" secondItem="8DI-D9-gEc" secondAttribute="leading" constant="16" id="UNe-D6-XHj"/>
-                                            <constraint firstAttribute="bottom" secondItem="a1a-Bh-osI" secondAttribute="bottom" id="Uks-8O-5zH"/>
                                             <constraint firstItem="o7p-E3-cgl" firstAttribute="top" secondItem="8DI-D9-gEc" secondAttribute="top" constant="34" id="YXi-w3-CVl"/>
                                             <constraint firstAttribute="trailing" secondItem="GS7-Ey-oxb" secondAttribute="trailing" constant="16" id="kyk-E1-hLx"/>
                                             <constraint firstItem="o7p-E3-cgl" firstAttribute="leading" secondItem="8DI-D9-gEc" secondAttribute="leading" constant="16" id="mTa-no-RiQ"/>

@@ -177,16 +177,17 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let isNextClass = isNextClassesSection(section: indexPath.section)
-        let classType = isNextClass ? ClassType.nextClass : ClassType.upcomingClass
-        // to do ask about analytic here
-        guard let wandaClass = isNextClass ? dataManager.nextClass : dataManager.upcomingClasses[indexPath.row], let wandaClassViewController = ViewControllerFactory.makeWandaClassViewController(wandaClass: wandaClass, classType: classType) else {
-            return
-        }
-        
-        let analyticsTag = isNextClass ? WandaAnalytics.classReserveSpotButtonTapped : WandaAnalytics.classUpcomingClassTapped
-        logAnalytic(tag: analyticsTag)
-        self.navigationController?.pushViewController(wandaClassViewController, animated: true)
+        print("Temporarily disabled tapping")
+//        let isNextClass = isNextClassesSection(section: indexPath.section)
+//        let classType = isNextClass ? ClassType.nextClass : ClassType.upcomingClass
+//        // to do ask about analytic here
+//        guard let wandaClass = isNextClass ? dataManager.nextClass : dataManager.upcomingClasses[indexPath.row], let wandaClassViewController = ViewControllerFactory.makeWandaClassViewController(wandaClass: wandaClass, classType: classType) else {
+//            return
+//        }
+//
+//        let analyticsTag = isNextClass ? WandaAnalytics.classReserveSpotButtonTapped : WandaAnalytics.classUpcomingClassTapped
+//        logAnalytic(tag: analyticsTag)
+//        self.navigationController?.pushViewController(wandaClassViewController, animated: true)
     }
 
     // MARK: IBActions

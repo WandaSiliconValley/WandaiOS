@@ -12,7 +12,7 @@ class PhotoNetworkController {
     static func uploadMotherPhoto(motherId: String, photo: String, resultHandler: @escaping(Bool?, WandaError?) -> Void) {
         let url = URL(string: "\(WandaDataManager.shared.environmentURL)/mother/photo")!
         var request = URLRequest(url: url)
-        request.httpMethod = "GET"
+        request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
         let parameters: [String: Any] = [
