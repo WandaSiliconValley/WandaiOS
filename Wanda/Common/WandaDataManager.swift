@@ -121,15 +121,16 @@ class WandaDataManager {
         }
     }
     
-    func getWandaMother(firebaseId: String, completion: @escaping (Bool, WandaError?) -> Void) {
+    func getWandaMother(firebaseId: String, completion: @escaping (Bool, WandaError?, Int) -> Void) {
         WandaMotherNetworkController.getWandaMother(firebaseId: firebaseId) { wandaMother, error in
             guard let wandaMother = wandaMother else {
-                completion(false, error)
+                completion(false, error, 0)
                 return
             }
             
-            self.wandaMother = WandaMotherInfo(from: wandaMother)
-            completion(true, nil)
+            let motherInfo = WandaMotherInfo(from: wandaMother)
+            self.wandaMother = motherInfo
+            completion(true, nil, motherInfo.cohortId)
         }
     }
     

@@ -285,7 +285,7 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
         
         dataManager.needsReload = false
         configureLoadingView()
-        dataManager.getWandaMother(firebaseId: firebaseId) { success, error in
+        dataManager.getWandaMother(firebaseId: firebaseId) { success, error, motherId in
             guard success else {
                 if let error = error {
                     switch error {

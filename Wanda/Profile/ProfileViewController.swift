@@ -15,9 +15,9 @@ import AlamofireImage
 var firstView = true
 
 class ProfileViewController: UIViewController, MFMailComposeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, CollapsibleTableViewHeaderDelegate, UIGestureRecognizerDelegate, WandaAlertViewDelegate {
-    @IBOutlet var scrollView: UIScrollView!
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
-    @IBOutlet var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var bioTitle: UILabel!
     @IBOutlet weak var bioLabel: UILabel!
@@ -29,6 +29,8 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
     @IBOutlet weak var emailButton: UIButton!
     @IBOutlet weak var introLabel: UILabel!
     @IBOutlet weak var cohortLabel: UILabel!
+    
+    let screenHeight = UIScreen.main.bounds.height
     
     static let storyboardIdentifier = String(describing: ProfileViewController.self)
     private var menuView: WandaMenu?
@@ -46,6 +48,13 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
         self.scrollView.addGestureRecognizer(tap)
         scrollView.scrollsToTop = false
         
+//        scrollView.contentSize = CGSize(width: scrollView.frame.width, height: 1000)
+//        scrollView.delegate = self
+//        scrollView.bounces = false
+//        tableView.bounces = false
+//        tableView.isScrollEnabled = false
+
+        
         tableView.dataSource = self
         tableView.delegate = self
         let cohortTableViewCellNib = UINib(nibName: CohortTableViewCell.nibName(), bundle: nibBundle)
@@ -60,6 +69,55 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
         tableView.scrollsToTop = true
         configureMenu()
     }
+//
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        if scrollView.bounds.intersects(self.view.frame) == true {
+//                 //the UIView is within frame, use the UIScrollView's scrolling.
+//
+//                    if tableView.contentOffset.y == 0 {
+//                        //tableViews content is at the top of the tableView.
+//
+//                    tableView.isUserInteractionEnabled = false
+//                   tableView.resignFirstResponder()
+//                    print("using scrollView scroll")
+//
+//                    } else {
+
+                        //UIView is in frame, but the tableView still has more content to scroll before resigning its scrolling over to ScrollView.
+//
+//                        tableView.isUserInteractionEnabled = true
+//                        scrollView.resignFirstResponder()
+//                        print("using tableView scroll")
+//                    }
+//
+//                } else {
+//
+//                    //UIView is not in frame. Use tableViews scroll.
+//
+//                    tableView.isUserInteractionEnabled = true
+//                   scrollView.resignFirstResponder()
+//                    print("using tableView scroll")
+//
+//                }
+//    }
+    
+//    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        let yOffset = scrollView.contentOffset.y
+//
+//        if scrollView == self.scrollView {
+//            if yOffset >= 1000 - screenHeight {
+//                scrollView.isScrollEnabled = false
+//                tableView.isScrollEnabled = true
+//            }
+//        }
+//
+//        if scrollView == self.tableView {
+//            if yOffset <= 0 {
+//                self.scrollView.isScrollEnabled = true
+//                self.tableView.isScrollEnabled = false
+//            }
+//        }
+//    }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -68,20 +126,20 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
     }
     
     
-    override func viewWillLayoutSubviews(){
-        super.viewWillLayoutSubviews()
-        
-        scrollView.contentSize = CGSize(width: 375, height: 1000)
-    }
-    
-    override func viewDidLayoutSubviews() {
-        scrollView.contentSize = contentView.frame.size
-//        scrollView.contentSize.height = contentView.frame.size.height + 50
-//        tableView.frame.size = tableView.contentSize
-//        tableView.setNeedsLayout()
-//        tableView.sizeToFit()
-//        tableView.layoutSubviews()
-    }
+//    override func viewWillLayoutSubviews(){
+//        super.viewWillLayoutSubviews()
+//
+//        scrollView.contentSize = CGSize(width: 375, height: 1000)
+//    }
+//
+//    override func viewDidLayoutSubviews() {
+//        scrollView.contentSize = contentView.frame.size
+////        scrollView.contentSize.height = contentView.frame.size.height + 50
+////        tableView.frame.size = tableView.contentSize
+////        tableView.setNeedsLayout()
+////        tableView.sizeToFit()
+////        tableView.layoutSubviews()
+//    }
     
     @objc
     func hideMenuIfPossible() {
@@ -185,8 +243,8 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
             phoneNumberButton.isHidden = true
         }
         
-       let firstLanguage = mother.languages[0]
-        if mother.languages.isEmpty == false && firstLanguage != "" {
+        
+        if mother.languages.isEmpty == false && mother.languages[0] != "" {
             languagesTitle.isHidden = false
             languagesLabel.isHidden = false
             languagesLabel.text = configureLanguagesText(mother.languages)

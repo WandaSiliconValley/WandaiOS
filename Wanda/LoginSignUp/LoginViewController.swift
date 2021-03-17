@@ -169,7 +169,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
             return
         }
 
-        dataManager.getWandaMother(firebaseId: firebaseId) { success, error in
+        dataManager.getWandaMother(firebaseId: firebaseId) { success, error, cohortId in
             guard success else {
                 if let error = error {
                     // Set action state to retry get mother so the user has the option to retry the API call.
@@ -188,12 +188,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
 
             // Ensure action state is set back to contact us if the call was successful.
             self.actionState = .contactUs
-            self.getCohort()
+            self.getCohort(cohortId)
         }
     }
     
-    private func getCohort() {
-        dataManager.getCohort(cohortId: 12) { success, error in
+    private func getCohort(_ cohortId: Int) {
+        dataManager.getCohort(cohortId: cohortId) { success, error in
             guard success else {
                 if let error = error {
                     // Set action state to retry get mother so the user has the option to retry the API call.

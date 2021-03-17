@@ -178,8 +178,7 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UITextFie
             cellPhoneTextField.text = phoneNumber
         }
         
-        let firstLanguage = mother.languages[0]
-        if mother.languages.isEmpty == false && firstLanguage != "" {
+        if mother.languages.isEmpty == false && mother.languages[0] != "" {
             languagesLabel.isHidden = false
             languaguesTextField.text = configureLanguagesText(mother.languages)
         }
@@ -408,7 +407,7 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UITextFie
                 animations: {
                     textField.placeholder = ""
                     label.isHidden = false
-                    label.frame.origin.y = label.frame.origin.y - 6
+                    label.frame.origin.y = label.frame.origin.y - 4
             })
         }
         
@@ -418,7 +417,7 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UITextFie
     
     func profileTextFieldEditingDidEnd(_ textField: UITextField, _ label: UILabel, _ placeholder: String) {
         if textField.text?.trimmingCharacters(in: .whitespaces).isEmpty == true {
-            let test = label.frame.origin.y + 6
+            let test = label.frame.origin.y + 4
             UIView.animate(
                 withDuration: 0.1,
                 delay: 0.0,
