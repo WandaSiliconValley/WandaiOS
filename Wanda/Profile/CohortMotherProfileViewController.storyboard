@@ -38,7 +38,7 @@
                                 <rect key="frame" x="16" y="78" width="197" height="43.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hi, I'm Kimberly" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Yx-px-HYT">
-                                        <rect key="frame" x="0.0" y="0.0" width="131.5" height="25"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="244" height="25"/>
                                         <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="18"/>
                                         <color key="textColor" red="0.19215686274509802" green="0.19215686274509802" blue="0.19215686274509802" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -144,6 +144,7 @@
                             <constraint firstItem="o16-Hj-Nrc" firstAttribute="leading" secondItem="BLK-hy-QZI" secondAttribute="leading" constant="16" id="m85-Kf-L4M"/>
                             <constraint firstItem="GS7-Ey-oxb" firstAttribute="top" secondItem="o16-Hj-Nrc" secondAttribute="bottom" constant="16" id="oY4-Wv-idh"/>
                             <constraint firstAttribute="trailing" secondItem="o16-Hj-Nrc" secondAttribute="trailing" constant="16" id="rRK-83-9ZO"/>
+                            <constraint firstItem="6aq-8v-hhf" firstAttribute="leading" secondItem="1Yx-px-HYT" secondAttribute="trailing" constant="10" id="wTL-4b-JQW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Kuf-8O-bTA"/>
                     </view>
