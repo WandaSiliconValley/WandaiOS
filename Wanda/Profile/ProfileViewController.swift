@@ -183,6 +183,7 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
     func adjustUITextViewHeight()
     {
         bioLabel.sizeToFit()
+        languagesLabel.sizeToFit()
     }
 
     func didTapActionButton() {

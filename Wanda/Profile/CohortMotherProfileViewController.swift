@@ -50,6 +50,14 @@ class CohortMotherProfileViewController: UIViewController, MFMailComposeViewCont
         profileImage.af.setImage(withURL: downloadURL)
         configureMotherInfo()
         configureMenu()
+        adjustUITextViewHeight()
+    }
+    
+    
+    func adjustUITextViewHeight()
+    {
+//        bioLabel.sizeToFit()
+        languagesLabel.sizeToFit()
     }
     
     func showInitialView(name: String, initialImage: UIImageView) {
