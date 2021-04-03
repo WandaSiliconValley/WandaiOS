@@ -305,6 +305,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
         }
         
         logAnalytic(tag: WandaAnalytics.loginForgotPasswordTapped)
+        print(WandaAnalytics.loginForgotPasswordTapped)
         self.navigationController?.pushViewController(forgotPasswordViewController, animated: true)
     }
     

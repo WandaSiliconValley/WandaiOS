@@ -21,12 +21,44 @@ struct WandaAnalytics {
     // General
     static let clicked = "_clicked_"
     static let error = "_error"
+    static let simpleError = "error"
     static let success = "_success"
     static let button = "_button"
     static let div = "_"
     
     static let contactWanda = "contact_wanda"
     
+    // Profile
+    static let profile = "profile"
+    static let load = "_load"
+    static let overflowMenu = "_overflow_menu"
+    static let logout = "_logout"
+    static let profileLoadError = profile + load + error
+    static let profileCohortListLoadError = profile + "_cohort_list" + load + error
+    static let profileEditProfileClickedError = profile + "_edit_profile" + clicked + simpleError
+    static let profileCohortMotherClickedError = profile + "_cohort_mother" + clicked + simpleError
+    static let profileEmailClickedError = profile + "_email" + clicked + simpleError
+    static let profilePhoneClickedError = profile + "_phone" + clicked + simpleError
+    static let profileOverflowMenuLogoutError = profile + overflowMenu + logout + error
+    static let profileOverflowMenuContactError = profile + overflowMenu + "_" + contactWanda + error
+    
+    // Cohort Mother
+    static let cohortMother = "cohort_mother"
+    static let cohortMotherProfileLoadError = cohortMother + "_" + profile + load + error
+//    UH OH
+    static let cohortMotherEmailClickedError = cohortMother + "_" + profile + "_email" + clicked + simpleError
+    static let cohortMotherPhoneClickedError = cohortMother + "_" + profile + "_phone" + clicked + simpleError
+    static let cohortMotherOverflowMneuContactError = cohortMother + overflowMenu + error
+    static let cohortMotherOverflowMenuLogoutError = cohortMother + overflowMenu + logout + error
+        
+    // Edit Profile
+    static let editProfile = "edit_profile"
+    static let editProfileLoadError = editProfile + load + error
+    static let editProfileUpdateMotherError = editProfile + "_update_mother" + error
+    static let editProfileUpdatePhotoError = editProfile + "_update_photo" + error
+    static let editProfileOverflowMenuContactWandaError = editProfile + overflowMenu + "_" + contactWanda + error
+    static let editProfileOverflowMenuLogoutError = editProfile + overflowMenu + logout + error
+
     // Login
     static let login = "login"
     static let loginButtonTapped = login + clicked + login + button

@@ -214,6 +214,7 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
     
     func configureMotherInfo() {
         guard let mother = dataManager.wandaMother else {
+            logAnalytic(tag: WandaAnalytics.profileLoadError)
             return
         }
         
@@ -338,6 +339,7 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cohortCell = tableView.dequeueReusableCell(withIdentifier: CohortTableViewCell.nibName(), for: indexPath) as? CohortTableViewCell else {
+            logAnalytic(tag: WandaAnalytics.profileCohortListLoadError)
             return UITableViewCell()
         }
         let cohortMother = dataManager.cohortSections[indexPath.section].mothers[indexPath.row]
@@ -358,6 +360,7 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
         let cohortMother = cohortSection.mothers[indexPath.row]
 
         guard let cohortMotherProfileViewController = ViewControllerFactory.makeCohortMotherProfileViewController(cohortMother: cohortMother, cohortId: cohortSection.cohortId) else {
+                logAnalytic(tag: WandaAnalytics.profileCohortMotherClickedError)
                 hideMenuIfPossible()
                 tableView.deselectRow(at: indexPath, animated: true)
                 self.presentErrorAlert(for: .cohortMotherError)
@@ -406,11 +409,11 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
     
     @objc
     func didTapLogoutButton() {
-        logAnalytic(tag: WandaAnalytics.classLogoutButtonTapped)
         do {
             try Auth.auth().signOut()
         } catch {
             // We are currently failing silently and sending the user back to the LoginViewController.
+            self.logAnalytic(tag: WandaAnalytics.profileOverflowMenuLogoutError)
             print("Couldn't sign user out. Returning back to Login.")
         }
         popBack(toControllerType: LoginViewController.self)
@@ -419,6 +422,7 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
     @objc
     private func didTapContactWanda() {
         guard let contactUsViewController = ViewControllerFactory.makeContactUsViewController(for: .profileHelp) else {
+            self.logAnalytic(tag: WandaAnalytics.profileOverflowMenuContactError)
             self.presentErrorAlert(for: .contactUsError)
             return
         }
@@ -444,6 +448,7 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
 
         DispatchQueue.main.async {
             guard let editProfileViewController = ViewControllerFactory.makeEditProfileViewController() else {
+                self.logAnalytic(tag: WandaAnalytics.profileEditProfileClickedError)
                 assertionFailure("Could not instantiate EditProfileViewController.")
                 return
             }
@@ -453,6 +458,7 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
     
     @IBAction func didTapEmail(_ sender: UIButton) {
         guard let contactUsViewController = ViewControllerFactory.makeContactUsViewController(for: .profile, recipient: sender.titleLabel?.text ?? "") else {
+            self.logAnalytic(tag: WandaAnalytics.profileEmailClickedError)
             self.presentErrorAlert(for: .contactUsError)
             return
         }
@@ -463,6 +469,7 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
     
     @IBAction func didTapPhoneNumber(_ sender: UIButton) {
         guard let phoneNumber = sender.titleLabel?.text, let url = URL(string: "tel://\(phoneNumber)"), UIApplication.shared.canOpenURL(url) else {
+            self.logAnalytic(tag: WandaAnalytics.profilePhoneClickedError)
             self.presentErrorAlert(for: .contactUsError)
             return
         }

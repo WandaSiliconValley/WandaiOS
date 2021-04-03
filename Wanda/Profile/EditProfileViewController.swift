@@ -140,6 +140,7 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UITextFie
     
     func configureInfo() {
         guard let mother = dataManager.wandaMother else {
+            logAnalytic(tag: WandaAnalytics.editProfileLoadError)
             return
         }
         
@@ -268,11 +269,11 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UITextFie
     
     @objc
     func didTapLogoutButton() {
-        logAnalytic(tag: WandaAnalytics.classLogoutButtonTapped)
         do {
             try Auth.auth().signOut()
         } catch {
             // We are currently failing silently and sending the user back to the LoginViewController.
+            logAnalytic(tag: WandaAnalytics.editProfileOverflowMenuLogoutError)
             print("Couldn't sign user out. Returning back to Login.")
         }
         popBack(toControllerType: LoginViewController.self)
@@ -281,6 +282,7 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UITextFie
     @objc
     private func didTapContactWanda() {
         guard let contactUsViewController = ViewControllerFactory.makeContactUsViewController(for: .editProfile) else {
+            logAnalytic(tag: WandaAnalytics.editProfileOverflowMenuContactWandaError)
             self.presentErrorAlert(for: .contactUsError)
             return
         }
@@ -457,6 +459,7 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UITextFie
     
     @IBAction func didTapUpdateProfile() {
         guard let email = emailTextField.text, let cellPhone = cellPhoneTextField.text, let name = nameTextField.text else {
+            self.logAnalytic(tag: WandaAnalytics.editProfileUpdateMotherError)
             // to do error handle
             return
         }
@@ -546,6 +549,7 @@ class EditProfileViewController: UIViewController, UITextViewDelegate, UITextFie
                 dataManager.uploadMotherPhoto(motherId: String(mother.motherId), photo: newbase64String) { success, error in
                     guard success else {
 //                        to do - test
+                        self.logAnalytic(tag: WandaAnalytics.editProfileUpdatePhotoError)
                         self.presentErrorAlert(for: .systemError)
                         return
                     }

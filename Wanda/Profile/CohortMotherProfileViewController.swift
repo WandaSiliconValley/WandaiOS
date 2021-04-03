@@ -39,6 +39,7 @@ class CohortMotherProfileViewController: UIViewController, MFMailComposeViewCont
         super.viewWillAppear(animated)
         
         guard let cohortMother = cohortMother else {
+            logAnalytic(tag: WandaAnalytics.cohortMotherProfileLoadError)
             // to do - throw error - couldnt retriee profile
             return
         }
@@ -80,6 +81,7 @@ class CohortMotherProfileViewController: UIViewController, MFMailComposeViewCont
     
     func configureMotherInfo() {
         guard let mother = cohortMother else {
+            logAnalytic(tag: WandaAnalytics.cohortMotherProfileLoadError)
             // TO DO handle error
             return
         }
@@ -182,11 +184,11 @@ class CohortMotherProfileViewController: UIViewController, MFMailComposeViewCont
     
     @objc
     func didTapLogoutButton() {
-        logAnalytic(tag: WandaAnalytics.classLogoutButtonTapped)
         do {
             try Auth.auth().signOut()
         } catch {
             // We are currently failing silently and sending the user back to the LoginViewController.
+            logAnalytic(tag: WandaAnalytics.cohortMotherOverflowMenuLogoutError)
             print("Couldn't sign user out. Returning back to Login.")
         }
         popBack(toControllerType: LoginViewController.self)
@@ -195,6 +197,7 @@ class CohortMotherProfileViewController: UIViewController, MFMailComposeViewCont
     @objc
     private func didTapContactWanda() {
         guard let contactUsViewController = ViewControllerFactory.makeContactUsViewController(for: .cohortMotherProfile) else {
+            self.logAnalytic(tag: WandaAnalytics.cohortMotherOverflowMneuContactError)
             self.presentErrorAlert(for: .contactUsError)
             return
         }
@@ -222,10 +225,23 @@ class CohortMotherProfileViewController: UIViewController, MFMailComposeViewCont
     
     @IBAction func didTapPhoneNumber(_ sender: UIButton) {
         guard let phoneNumber = sender.titleLabel?.text, let url = URL(string: "tel://\(phoneNumber)"), UIApplication.shared.canOpenURL(url) else {
+            self.logAnalytic(tag: WandaAnalytics.cohortMotherPhoneClickedError)
             self.presentErrorAlert(for: .contactUsError)
             return
         }
         
         UIApplication.shared.open(url)
     }
+    
+    @IBAction func didTapEmail(_ sender: UIButton) {
+        guard let contactUsViewController = ViewControllerFactory.makeContactUsViewController(for: .profile, recipient: sender.titleLabel?.text ?? "") else {
+            self.logAnalytic(tag: WandaAnalytics.cohortMotherEmailClickedError)
+            self.presentErrorAlert(for: .contactUsError)
+            return
+        }
+
+        contactUsViewController.mailComposeDelegate = self
+        self.present(contactUsViewController, animated: true, completion: nil)
+    }
+    
 }
