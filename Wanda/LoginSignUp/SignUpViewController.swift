@@ -233,6 +233,31 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, MFMailCompose
         }
     }
     
+    private func getCohort() {
+        guard let cohortId = dataManager.wandaMother?.cohortId else {
+            return
+        }
+        dataManager.getCohort(cohortId: cohortId) { success, error in
+            guard success else {
+                if let error = error {
+                    // Set action state to retry get mother so the user has the option to retry the API call.
+//                    TO DO - add in retry
+//                    self.actionState = .retryGetMother
+                    switch error {
+                        case .networkError:
+                            self.presentErrorAlert(for: .networkError)
+                        default:
+                            self.presentErrorAlert(for: .systemError)
+                    }
+                }
+                
+                return
+            }
+            return
+        }
+        return
+    }
+    
     private func createWandaMother() {
         guard verifySignUp(), let email = emailTextField.text, let motherId = motherId else {
             return
@@ -258,6 +283,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, MFMailCompose
                 
                 return
             }
+            
+            self.getCohort()
             signUpSuccessViewController.successType = .signUp
             self.spinner.toggleSpinner(for: self.signUpButton, title: GeneralStrings.submitAction)
             self.navigationController?.pushViewController(signUpSuccessViewController, animated: true)
