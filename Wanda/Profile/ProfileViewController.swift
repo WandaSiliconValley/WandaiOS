@@ -416,7 +416,20 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
             self.logAnalytic(tag: WandaAnalytics.profileOverflowMenuLogoutError)
             print("Couldn't sign user out. Returning back to Login.")
         }
-        popBack(toControllerType: LoginViewController.self)
+//        popBack(toControllerType: LoginViewController.self)
+        
+        let didPopBack = popBack(toControllerType: LoginViewController.self)
+        
+        if didPopBack == false {
+            guard let loginViewController = ViewControllerFactory.makeLoginViewController() else {
+                assertionFailure("Could not load the LoginViewController.")
+                return
+            }
+            loginViewController.fromSignUpFlow = true
+
+    //        logAnalytic(tag: WandaAnalytics.loginSignUpButtonTapped)
+            self.navigationController?.pushViewController(loginViewController, animated: true)
+        }
     }
     
     @objc

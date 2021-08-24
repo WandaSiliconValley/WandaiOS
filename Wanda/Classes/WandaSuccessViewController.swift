@@ -47,7 +47,7 @@ class WandaSuccessViewController: UIViewController, WandaAlertViewDelegate, MFMa
     @IBAction func didTapSignUpNextButton() {
         spinner.toggleSpinner(for: signUpNextButton, title: GeneralStrings.nextAction)
         dataManager.getWandaClasses() { success, error in
-            guard success, let classesViewController = ViewControllerFactory.makeClassesViewController() else {
+            guard success, let classesViewController = ViewControllerFactory.makeTabbedViewController() else {
                 if let error = error {
                     self.spinner.toggleSpinner(for: self.signUpNextButton, title: GeneralStrings.nextAction)
                     switch error {
@@ -59,6 +59,8 @@ class WandaSuccessViewController: UIViewController, WandaAlertViewDelegate, MFMa
                 }
                 return
             }
+            
+            self.dataManager.needsReload = true
             self.spinner.toggleSpinner(for: self.signUpNextButton, title: GeneralStrings.nextAction)
             self.navigationController?.pushViewController(classesViewController, animated: true)
         }

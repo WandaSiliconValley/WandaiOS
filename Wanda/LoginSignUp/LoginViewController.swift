@@ -33,6 +33,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
     private var isValidPassword = false
     private var showHideIconClicked = false
     
+    var fromSignUpFlow = false
+    
     var forgot: CGFloat?
     
     static let storyboardIdentifier = String(describing: LoginViewController.self)
@@ -47,8 +49,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: WandaImages.backArrow, style: .plain, target: self, action: #selector(didTapBackButton))
-        navigationItem.leftBarButtonItem?.tintColor = UIColor(hexString: "#663498")
+        if fromSignUpFlow == false {
+            navigationItem.leftBarButtonItem = UIBarButtonItem(image: WandaImages.backArrow, style: .plain, target: self, action: #selector(didTapBackButton))
+            navigationItem.leftBarButtonItem?.tintColor = UIColor(hexString: "#663498")
+        } else {
+            navigationItem.hidesBackButton = true
+        }
         if let navigationBar = self.navigationController?.navigationBar {
             navigationBar.isTranslucent = true
         }
@@ -243,7 +249,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, MFMailComposeV
 //                }
 //
                 guard let profileViewController = ViewControllerFactory.makeTabbedViewController() else {
-                    assertionFailure("Could not instantiate EditProfileViewController.")
+                    assertionFailure("Could not instantiate TabbedViewController.")
                     return
                 }
                 

@@ -200,7 +200,17 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
             // We are currently failing silently and sending the user back to the LoginViewController.
             print("Couldn't sign user out. Returning back to Login.")
         }
-        popBack(toControllerType: LoginViewController.self)
+        let didPopBack = popBack(toControllerType: LoginViewController.self)
+        
+        if didPopBack == false {
+            guard let loginViewController = ViewControllerFactory.makeLoginViewController() else {
+                assertionFailure("Could not load the LoginViewController.")
+                return
+            }
+            loginViewController.fromSignUpFlow = true
+    //        logAnalytic(tag: WandaAnalytics.loginSignUpButtonTapped)
+            self.navigationController?.pushViewController(loginViewController, animated: true)
+        }
     }
     
     // MARK: Private

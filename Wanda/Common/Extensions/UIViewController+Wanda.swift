@@ -22,7 +22,7 @@ extension UIViewController {
         }
     }
     
-    func popBack<T: UIViewController>(toControllerType: T.Type) {
+    func popBack<T: UIViewController>(toControllerType: T.Type) -> Bool? {
         if var viewControllers: [UIViewController] = self.navigationController?.viewControllers {
             viewControllers = viewControllers.reversed()
             for currentViewController in viewControllers {
@@ -33,6 +33,8 @@ extension UIViewController {
                 }
             }
         }
+        
+        return false
     }
     
     // to do make this strict to the analytics tag strings - enum?
