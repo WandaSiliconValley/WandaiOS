@@ -11,6 +11,7 @@ import UIKit
 
 enum ContactUsType {
     case login
+    case forgotPassword
     case profile
     case signUp
     case wandaClass
@@ -92,6 +93,9 @@ struct ViewControllerFactory {
             case .cohortMotherProfile:
                 emailComposeViewController.setToRecipients([recipient])
                 emailComposeViewController.setSubject("Hi!")
+            case .forgotPassword:
+                emailComposeViewController.setToRecipients([WandaConstants.wandaSupportEmail])
+                emailComposeViewController.setSubject("Forgot Password Help")
             case .profile:
                  emailComposeViewController.setToRecipients([recipient])
                  emailComposeViewController.setSubject("Hi!")

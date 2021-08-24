@@ -150,7 +150,7 @@ class ForgotPasswordViewController: UIViewController, MFMailComposeViewControlle
     }
 
     @IBAction func didTapContactUs() {
-        guard let contactUsViewController = ViewControllerFactory.makeContactUsViewController(for: .signUp) else {
+        guard let contactUsViewController = ViewControllerFactory.makeContactUsViewController(for: .forgotPassword) else {
             self.presentErrorAlert(for: .contactUsError)
             return
         }
