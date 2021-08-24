@@ -68,6 +68,7 @@ class ForgotPasswordViewController: UIViewController, MFMailComposeViewControlle
     private func configureNavigationBar() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: WandaImages.backArrow, style: .plain, target: self, action: #selector(backButtonPressed))
         navigationItem.leftBarButtonItem?.accessibilityIdentifier = "Back"
+        navigationItem.leftBarButtonItem?.tintColor = UIColor.white
 
         if let navigationBar = navigationController?.navigationBar {
             navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.wandaFontBold(size: 20)]
