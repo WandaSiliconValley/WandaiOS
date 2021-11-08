@@ -29,6 +29,7 @@ struct WandaClassDetail: Decodable {
 
 class ReservedWandaClass: Decodable {
     let childcareNumber: Int
+    let rsvpId: Int
 }
 
 class WandaClass: CustomDebugStringConvertible {

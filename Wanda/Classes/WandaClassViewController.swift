@@ -47,6 +47,7 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
     @IBOutlet private weak var timeLabel: UILabel!
     var classType: ClassType?
     var wandaClass: WandaClass?
+    var rsvpId: Int?
     
     private var address = ""
     private var dataManager = WandaDataManager.shared
@@ -76,7 +77,7 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideMenuIfPossible))
         self.view.addGestureRecognizer(tap)
-        addressView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapLocation)))
+
         
         // Currently users should only see this screen for the next class.
         guard let wandaClass = wandaClass else {
@@ -92,6 +93,15 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
             configureView()
             configureMenu()
         }
+    }
+    
+    func verifyUrl (urlString: String?) -> Bool {
+        if let urlString = urlString {
+            if let url = NSURL(string: urlString) {
+                return UIApplication.shared.canOpenURL(url as URL)
+            }
+        }
+        return false
     }
     
     @objc
@@ -303,6 +313,7 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
             self.view.bringSubview(toFront: self.changeRSVPView)
             self.view.bringSubview(toFront: self.reservedHeader)
             wandaClass.childCareNumber = reservedClass.childcareNumber
+            self.rsvpId = reservedClass.rsvpId
             self.numberOfChildrenLabel.text = String(wandaClass.childCareNumber)
             self.configureMenu()
         }
@@ -317,10 +328,6 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
         title = wandaClass.details.topic
         timeLabel.text = wandaClass.details.time
         locationNameLabel.text = wandaClass.details.address
-        
-        if let eventDate = DateFormatter.simpleDateFormatter.date(from: wandaClass.details.date) {
-            dateLabel.text = DateFormatter.fullDayMonthFormatter.string(from: eventDate)
-        }
         
         // to do dont like this
         // to do log tap on address & make address open google maps
@@ -339,7 +346,22 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
         
         addressLabel.isHidden = addressLabelText.isEmpty
         addressLabel.text = addressLabelText
+
+        
         address = addressLabelText
+        
+        let is_valid_url = verifyUrl(urlString: wandaClass.details.address)
+        if is_valid_url {
+            locationNameLabel.textColor = WandaColors.linkBlue
+            addressView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapURL)))
+        } else {
+            addressView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapLocation)))
+        }
+        
+        if let eventDate = DateFormatter.simpleDateFormatter.date(from: wandaClass.details.date) {
+            dateLabel.text = DateFormatter.fullDayMonthFormatter.string(from: eventDate)
+        }
+
         
         numberOfChildrenLabel.text = String(wandaClass.childCareNumber)
         
@@ -351,6 +373,8 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
         }
     }
     
+    
+    
     private func configureUpcomingClassView() {
         sendRSVPButton.isHidden = true
         childCareView.isHidden = true
@@ -360,6 +384,9 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
     private func configureNextClassView() {
         reservedHeader.isHidden = !isReserved
         changeRSVPView.isHidden = !isReserved
+//        Added because users cant reserve childcare during online classes
+//        so there is no need to change their rsvp, only cancel
+        changeRSVPButton.isHidden = true
         sendRSVPButton.isHidden = isReserved
         
         switch isReserved {
@@ -466,7 +493,7 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
     // MARK: WandaAlertViewDelegate
     
     func didTapActionButton() {
-        guard let motherId = dataManager.wandaMother?.motherId, let wandaClass = dataManager.nextClass, let navigationController = navigationController else {
+        guard let rsvpId = rsvpId, let wandaClass = dataManager.nextClass, let navigationController = navigationController else {
             return
         }
         
@@ -475,7 +502,7 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
                 getReservedWandaClass()
             case .cancelRSVP, .retryCancelRSVP:
                 // to do where should the spinner be here since this is an alert?
-                dataManager.cancelWandaClassReservation(classId: wandaClass.details.classId, motherId: motherId) { success, error in
+                dataManager.cancelWandaClassReservation(rsvpId: rsvpId) { success, error in
                     guard success else {
                         if let error = error {
                             self.reservationActionState = .retryCancelRSVP
@@ -532,6 +559,18 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
         
         if let addressURL = URL(string: addressString) {
             UIApplication.shared.open(addressURL)
+        }
+    }
+    
+    @objc
+    private func didTapURL() {
+        guard let urlString = locationNameLabel.text, (UIApplication.shared.canOpenURL(NSURL(string:urlString)! as URL)) else {
+                NSLog("Can't open url")
+                return
+        }
+        
+        if let realUrl = URL(string: urlString) {
+            UIApplication.shared.open(realUrl)
         }
     }
 }

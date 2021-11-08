@@ -29,25 +29,14 @@ class WandaClassMenu: UIView {
         commonInit()
     }
     
-    func toggleMenu(hideCalendar: Bool = false) {
-        if hideCalendar == true {
-            addToCalendarView.isHidden = true
-        }
+    
+    func toggleMenu() {
         var isHidden = false
         DispatchQueue.main.async {
             self.contentView.isHidden = !self.contentView.isHidden
             self.menuView.forEach { menuItem in
-                if hideCalendar == true {
-                    if menuItem != self.addToCalendarView {
-                        menuItem.isHidden = !menuItem.isHidden
-                        isHidden = menuItem.isHidden
-                    }
-                } else {
-                    if menuItem != self.addToCalendarView {
-                        menuItem.isHidden = !menuItem.isHidden
-                        isHidden = menuItem.isHidden
-                    }
-                }
+                menuItem.isHidden = !menuItem.isHidden
+                isHidden = menuItem.isHidden
             }
             
             if isHidden {

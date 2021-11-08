@@ -9,6 +9,7 @@
 import UIKit
 
 struct WandaColors {
+    static let linkBlue = UIColor(hexString: "#2838C6")
     static let errorRed = UIColor(hexString: "#FA3F47")
     static let lightGrey = UIColor(hexString: "#FAFAFA")
     static let lightPurple = UIColor(hexString: "#986699")

@@ -70,7 +70,17 @@ class WandaSuccessViewController: UIViewController, WandaAlertViewDelegate, MFMa
     @objc
     private func closeView() {
         dataManager.needsReload = true
-        popBack(toControllerType: ClassesViewController.self)
+        
+        let didPopBack = popBack(toControllerType: TabbedViewController.self)
+        
+        if didPopBack == false {
+            guard let classesViewController = ViewControllerFactory.makeTabbedViewController() else {
+                assertionFailure("Could not load the LoginViewController.")
+                return
+            }
+
+            self.navigationController?.pushViewController(classesViewController, animated: true)
+        }
     }
     
     private func configureSuccessView() {

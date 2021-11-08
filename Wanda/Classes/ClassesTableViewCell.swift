@@ -53,30 +53,23 @@ class ClassesTableViewCell: UITableViewCell {
         classTimeLabel.text = wandaClass.details.time
         classLocationLabel.text = wandaClass.details.address
         
-      //  let numberOfDays = Calendar.current.dateComponents([.day], from: eventDate, to: Date()).day ?? 0
-      //  if numberOfDays <= 7 {
-        
-        
-        reservationButton.isHidden = true
-        reservedView.isHidden = true
-        
-//            switch wandaClass.isReserved {
-//                case true:
-//                    reservationButton.isHidden = true
-//                    reservedView.isHidden = false
-//                case false:
-//                    reservationButton.isHidden = false
-//                    reservedView.isHidden = true
-//            }
-        
-        
-        
-        
-        
-     //   } else {
-//            reservationButton.isHidden = true
-//            reservedView.isHidden = true
-     //   }
+        let numberOfDays = Calendar.current.dateComponents([.day], from: eventDate, to: Date()).day ?? 0
+        if numberOfDays <= 7 {
+            reservationButton.isHidden = true
+            reservedView.isHidden = true
+            
+                switch wandaClass.isReserved {
+                    case true:
+                        reservationButton.isHidden = true
+                        reservedView.isHidden = false
+                    case false:
+                        reservationButton.isHidden = false
+                        reservedView.isHidden = true
+                }
+        } else {
+            reservationButton.isHidden = true
+            reservedView.isHidden = true
+        }
         
         if isNextClass {
             classDescriptionView.layer.applySketchShadow(alpha: 0, y: 0, blur: 0)

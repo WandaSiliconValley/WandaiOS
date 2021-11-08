@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aGe-8Y-NHp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aGe-8Y-NHp">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -108,7 +108,7 @@
                                             <constraint firstAttribute="width" constant="17" id="HAB-cr-cf5"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delaware Pacific Apartments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vlJ-lB-25m">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delaware Pacific Apartments" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vlJ-lB-25m">
                                         <rect key="frame" x="88" y="15" width="214" height="22"/>
                                         <accessibility key="accessibilityConfiguration" identifier="location_name_label"/>
                                         <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
@@ -131,6 +131,7 @@
                                     <constraint firstItem="6Ui-NT-E6I" firstAttribute="top" secondItem="hl8-gz-Adu" secondAttribute="top" constant="20" id="3B4-7I-oyj"/>
                                     <constraint firstItem="vlJ-lB-25m" firstAttribute="top" secondItem="hl8-gz-Adu" secondAttribute="top" constant="15" id="7VQ-Bg-uSX"/>
                                     <constraint firstItem="d4H-2S-O4k" firstAttribute="top" secondItem="vlJ-lB-25m" secondAttribute="bottom" id="Qua-6p-UQ3"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="vlJ-lB-25m" secondAttribute="trailing" constant="15" id="Z6Z-Hy-mNz"/>
                                     <constraint firstItem="vlJ-lB-25m" firstAttribute="leading" secondItem="d4H-2S-O4k" secondAttribute="leading" id="eue-mn-UuJ"/>
                                     <constraint firstItem="d4H-2S-O4k" firstAttribute="leading" secondItem="6Ui-NT-E6I" secondAttribute="trailing" constant="31" id="kTa-0W-lja"/>
                                     <constraint firstAttribute="height" constant="96" id="kgC-PA-0vi"/>
@@ -222,7 +223,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tvM-dT-J4o">
                                         <rect key="frame" x="16" y="0.0" width="343" height="56"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P4w-GI-Q3h">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P4w-GI-Q3h">
                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="56"/>
                                                 <color key="backgroundColor" red="0.59999999999999998" green="0.80000000000000004" blue="0.20392156862745098" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                 <constraints>
@@ -256,7 +257,7 @@
                                             <constraint firstItem="P4w-GI-Q3h" firstAttribute="leading" secondItem="tvM-dT-J4o" secondAttribute="leading" id="sMG-hF-8H0"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E01-2n-d63">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E01-2n-d63">
                                         <rect key="frame" x="16" y="69" width="343" height="48"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -282,10 +283,10 @@
                                     <constraint firstAttribute="trailing" secondItem="E01-2n-d63" secondAttribute="trailing" constant="16" id="y04-sQ-Opf"/>
                                 </constraints>
                             </view>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2tF-6x-8Fu" userLabel="Make RSVP View">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2tF-6x-8Fu" userLabel="Make RSVP View">
                                 <rect key="frame" x="16" y="591" width="343" height="56"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="usa-Ja-BXn">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="usa-Ja-BXn">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="56"/>
                                         <color key="backgroundColor" red="0.40000000000000002" green="0.20392156862745098" blue="0.59607843137254901" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -320,6 +321,7 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="pfN-27-OGf"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Gud-WA-qTy" firstAttribute="top" secondItem="pfN-27-OGf" secondAttribute="top" priority="750" constant="20" id="6Y0-J0-gS0"/>
@@ -342,7 +344,6 @@
                             <constraint firstItem="Gud-WA-qTy" firstAttribute="top" secondItem="8bK-jn-5hD" secondAttribute="bottom" priority="250" constant="10" id="sYO-N6-5b7"/>
                             <constraint firstItem="pfN-27-OGf" firstAttribute="trailing" secondItem="2tF-6x-8Fu" secondAttribute="trailing" constant="16" id="tgJ-IL-UIr"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="pfN-27-OGf"/>
                     </view>
                     <connections>
                         <outlet property="addButton" destination="Nf0-9k-YdZ" id="eZb-sN-hF1"/>

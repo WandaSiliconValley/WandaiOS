@@ -25,8 +25,8 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
 
     private struct DefaultHeight {
         static let headerViewHeight: CGFloat = 50
-//        static let nextClassHeight: CGFloat = 118
-        static let nextClassHeight: CGFloat = 86
+        static let nextClassHeight: CGFloat = 118
+//        static let nextClassHeight: CGFloat = 86
         static let upcomingClassHeight: CGFloat = 86
         static let upcomingClassBackgroundViewHeight: CGFloat = 75
     }
@@ -39,7 +39,6 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
         configureNavigationBar()
-        configureTableView()
         if dataManager.needsReload {
             getWandaMother()
         }
@@ -57,7 +56,10 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
         super.viewDidLoad()
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideMenuIfPossible))
+        tap.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tap)
+//        tap.cancelsTouchesInView = false
+        configureTableView()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -175,19 +177,21 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
         configureClassCell(classCell, indexPath: indexPath)
         return classCell
     }
+    
+//    func tabalviewdidsel
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Temporarily disabled tapping")
-//        let isNextClass = isNextClassesSection(section: indexPath.section)
-//        let classType = isNextClass ? ClassType.nextClass : ClassType.upcomingClass
-//        // to do ask about analytic here
-//        guard let wandaClass = isNextClass ? dataManager.nextClass : dataManager.upcomingClasses[indexPath.row], let wandaClassViewController = ViewControllerFactory.makeWandaClassViewController(wandaClass: wandaClass, classType: classType) else {
-//            return
-//        }
-//
-//        let analyticsTag = isNextClass ? WandaAnalytics.classReserveSpotButtonTapped : WandaAnalytics.classUpcomingClassTapped
-//        logAnalytic(tag: analyticsTag)
-//        self.navigationController?.pushViewController(wandaClassViewController, animated: true)
+//        print("Temporarily disabled tapping")
+        let isNextClass = isNextClassesSection(section: indexPath.section)
+        let classType = isNextClass ? ClassType.nextClass : ClassType.upcomingClass
+        // to do ask about analytic here
+        guard let wandaClass = isNextClass ? dataManager.nextClass : dataManager.upcomingClasses[indexPath.row], let wandaClassViewController = ViewControllerFactory.makeWandaClassViewController(wandaClass: wandaClass, classType: classType) else {
+            return
+        }
+
+        let analyticsTag = isNextClass ? WandaAnalytics.classReserveSpotButtonTapped : WandaAnalytics.classUpcomingClassTapped
+        logAnalytic(tag: analyticsTag)
+        self.navigationController?.pushViewController(wandaClassViewController, animated: true)
     }
 
     // MARK: IBActions
@@ -271,7 +275,7 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
         tableView.delegate = self
         tableView.separatorStyle = .none
         tableView.tableFooterView = UIView()
-        
+//        tableView.cance
         let classesHeaderViewNib = UINib(nibName: ClassesHeaderView.nibName(), bundle: nibBundle)
         tableView.register(classesHeaderViewNib, forHeaderFooterViewReuseIdentifier: ClassesHeaderView.nibName())
         let classesTableViewCellNib = UINib(nibName: ClassesTableViewCell.nibName(), bundle: nibBundle)
