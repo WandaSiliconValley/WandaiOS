@@ -367,7 +367,9 @@ class WandaClassViewController: UIViewController, WandaAlertViewDelegate, MFMail
         
         switch classType {
             case .nextClass:
-                configureNextClassView()
+                print("users temporarily cannot reserve the next class.")
+                sendRSVPButton.isHidden = true
+//                configureNextClassView()
             case .upcomingClass:
                 configureUpcomingClassView()
         }

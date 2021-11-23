@@ -150,7 +150,9 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let heightForRow = indexPath.section == nextClassesSection ? DefaultHeight.nextClassHeight : DefaultHeight.upcomingClassHeight
+//        Temporarily commenting out reservation view
+//        let heightForRow = indexPath.section == nextClassesSection ? DefaultHeight.nextClassHeight : DefaultHeight.upcomingClassHeight
+        let heightForRow = DefaultHeight.upcomingClassHeight
         return heightForRow
     }
 
