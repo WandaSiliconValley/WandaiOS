@@ -47,7 +47,7 @@ class WandaDataManager {
     var hasCurrentClasses = true
     var cohortSections = [CohortSection]()
     var cohortMothers = [WandaCohortMother]()
-    
+    //test
     struct CohortSection {
         var cohortId: Int
         var mothers: [WandaCohortMother]
