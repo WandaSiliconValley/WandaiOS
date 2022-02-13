@@ -37,7 +37,7 @@ public enum FirebaseError: String {
 class WandaDataManager {
     static let shared = WandaDataManager()
     
-    var environmentURL = WandaConstants.wandaProdURL
+    var environmentURL = WandaConstants.wandaDevURL
     var needsReload = false
     var profilePictureNeedsReload = false
     var wandaMother: WandaMotherInfo?

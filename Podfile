@@ -6,5 +6,6 @@ target 'Wanda' do
   use_frameworks!
   pod 'Firebase/Auth'
   pod 'Firebase/Core'
+  pod 'Firebase/Messaging'
   pod 'AlamofireImage'
 end

@@ -10,7 +10,7 @@ import Firebase
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
 
@@ -19,9 +19,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         FirebaseApp.configure()
         
+        FirebaseConfiguration.shared.setLoggerLevel(.min)
+        
         if #available(iOS 13.0, *) {
             window?.overrideUserInterfaceStyle = .light
         }
+        
+//        if #available(iOS 10.0, *) {
+//          // For iOS 10 display notification (sent via APNS)
+//          UNUserNotificationCenter.current().delegate = self
+//
+//          let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+//          UNUserNotificationCenter.current().requestAuthorization(
+//            options: authOptions,
+//            completionHandler: { _, _ in }
+//          )
+//        } else {
+//          let settings: UIUserNotificationSettings =
+//            UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+//          application.registerUserNotificationSettings(settings)
+//        }
+//
+//        application.registerForRemoteNotifications()
+        
+//        Messaging.messaging().delegate = self
 
         return true
     }
@@ -47,5 +68,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    func userNotificationCenter(
+       _ center: UNUserNotificationCenter,
+       willPresent notification: UNNotification,
+       withCompletionHandler completionHandler:
+       @escaping (UNNotificationPresentationOptions) -> Void
+     ) {
+        if #available(iOS 14.0, *) {
+            completionHandler([[.banner, .sound]])
+        } else {
+            // Fallback on earlier versions
+        }
+     }
+
+     func userNotificationCenter(
+       _ center: UNUserNotificationCenter,
+       didReceive response: UNNotificationResponse,
+       withCompletionHandler completionHandler: @escaping () -> Void
+     ) {
+       completionHandler()
+     }
+    
+//    func application(
+//      _ application: UIApplication,
+//      didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
+//    ) {
+//      Messaging.messaging().apnsToken = deviceToken
+//    }
 }
 
