@@ -12,6 +12,7 @@ import Foundation
 // hwoever we will have to re-get the mom if the make a reservation
 struct WandaMother: Decodable {
     let motherId: Int
+    let cohortId: Int
     let firebaseId: String
     let name: String
     let email: String
@@ -21,6 +22,7 @@ struct WandaMother: Decodable {
 
     enum CodingKeys : String, CodingKey {
         case motherId
+        case cohortId
         case firebaseId
         case name
         case email
@@ -32,6 +34,7 @@ struct WandaMother: Decodable {
 
 struct WandaMotherInfo: CustomDebugStringConvertible {
     let motherId: Int
+    let cohortId: Int
     let firebaseId: String
     let name: String
     let email: String
@@ -39,6 +42,7 @@ struct WandaMotherInfo: CustomDebugStringConvertible {
 
     init(from wandaMother: WandaMother) {
         motherId = wandaMother.motherId
+        cohortId = wandaMother.cohortId
         firebaseId = wandaMother.firebaseId
         name = wandaMother.name
         email = wandaMother.email
@@ -46,7 +50,7 @@ struct WandaMotherInfo: CustomDebugStringConvertible {
     }
 
     var debugDescription: String {
-        return "motherId: '\(motherId)', firebaseId: '\(firebaseId)', name: '\(name)', email: '\(email)', reservedClassIds: '\(reservedClassIds)'"
+        return "motherId: '\(motherId)', cohortId: '\(cohortId)' firebaseId: '\(firebaseId)', name: '\(name)', email: '\(email)', reservedClassIds: '\(reservedClassIds)'"
     }
 }
 

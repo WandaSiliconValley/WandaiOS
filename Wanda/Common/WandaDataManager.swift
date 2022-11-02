@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import FirebaseAnalytics
 
 public enum FirebaseError: String {
     case invalidEmail = "invalid_email"
@@ -124,6 +125,7 @@ class WandaDataManager {
             }
             
             self.wandaMother = WandaMotherInfo(from: wandaMother)
+            Analytics.setUserProperty(String(wandaMother.cohortId), forName: "cohortId")
             completion(true, nil)
         }
     }
